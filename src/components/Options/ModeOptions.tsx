@@ -6,6 +6,16 @@ import styles from "./ModeOptions.module.css";
 const ModeOptions: React.FC = () => {
   const [mode, setMode] = useState(Mode.RANDOM);
 
+  const onSetModeRandomHandler = () => {
+    setMode(Mode.RANDOM);
+    GameConfig.mode = Mode.RANDOM;
+  };
+
+  const onSetModeAscendingHandler = () => {
+    setMode(Mode.ASCENDING);
+    GameConfig.mode = Mode.ASCENDING;
+  };
+
   return (
     <div className={styles.modeOptions}>
       <h3>Mode</h3>
@@ -14,10 +24,7 @@ const ModeOptions: React.FC = () => {
           type="radio"
           name="mode"
           checked={mode === Mode.RANDOM ? true : false}
-          onClick={() => {
-            setMode(Mode.RANDOM);
-            GameConfig.mode = Mode.RANDOM;
-          }}
+          onChange={onSetModeRandomHandler}
         />
         <label htmlFor="random">Random</label>
       </div>
@@ -26,10 +33,7 @@ const ModeOptions: React.FC = () => {
           type="radio"
           name="mode"
           checked={mode === Mode.ASCENDING ? true : false}
-          onClick={() => {
-            setMode(Mode.ASCENDING);
-            GameConfig.mode = Mode.ASCENDING;
-          }}
+          onChange={onSetModeAscendingHandler}
         />
         <label htmlFor="Ascending">Ascending</label>
       </div>

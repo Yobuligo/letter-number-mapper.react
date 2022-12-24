@@ -6,6 +6,16 @@ import styles from "./DirectionOptions.module.css";
 const DirectionOptions: React.FC = () => {
   const [direction, setDirection] = useState(Direction.LETTER_TO_NUMBER);
 
+  const onSetLetterToNumberHandler = () => {
+    setDirection(Direction.LETTER_TO_NUMBER);
+    GameConfig.direction = Direction.LETTER_TO_NUMBER;
+  };
+
+  const onSetNumberToLetterHandler = () => {
+    setDirection(Direction.NUMBER_TO_LETTER);
+    GameConfig.direction = Direction.NUMBER_TO_LETTER;
+  };
+
   return (
     <div className={styles.directionOptions}>
       <h3>Direction</h3>
@@ -14,10 +24,7 @@ const DirectionOptions: React.FC = () => {
           type="radio"
           name="direction"
           checked={direction === Direction.LETTER_TO_NUMBER ? true : false}
-          onClick={() => {
-            setDirection(Direction.LETTER_TO_NUMBER);
-            GameConfig.direction = Direction.LETTER_TO_NUMBER;
-          }}
+          onChange={onSetLetterToNumberHandler}
         />
         <label htmlFor="LetterToNumber">Letter to number</label>
       </div>
@@ -26,10 +33,7 @@ const DirectionOptions: React.FC = () => {
           type="radio"
           name="direction"
           checked={direction === Direction.NUMBER_TO_LETTER ? true : false}
-          onClick={() => {
-            setDirection(Direction.NUMBER_TO_LETTER);
-            GameConfig.direction = Direction.NUMBER_TO_LETTER;
-          }}
+          onChange={onSetNumberToLetterHandler}
         />
         <label htmlFor="NumberToLetter">Number to letter</label>
       </div>
