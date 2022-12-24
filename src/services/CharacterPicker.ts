@@ -12,7 +12,7 @@ class CharacterPickerDefault implements ICharacterPicker {
   }
 
   private nextNumber(): string {
-    return (Math.random() * 10).toString();
+    return (Math.round( Math.random() * 26)).toString();
   }
 
   private nextLetter(): string {
