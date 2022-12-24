@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Direction } from "../../gameConfig/Direction";
+import { GameConfig } from "../../gameConfig/GameConfig";
 import styles from "./DirectionOptions.module.css";
 
 const DirectionOptions: React.FC = () => {
@@ -15,6 +16,7 @@ const DirectionOptions: React.FC = () => {
           checked={direction === Direction.LETTER_TO_NUMBER ? true : false}
           onClick={() => {
             setDirection(Direction.LETTER_TO_NUMBER);
+            GameConfig.direction = Direction.LETTER_TO_NUMBER;
           }}
         />
         <label htmlFor="LetterToNumber">Letter to number</label>
@@ -26,6 +28,7 @@ const DirectionOptions: React.FC = () => {
           checked={direction === Direction.NUMBER_TO_LETTER ? true : false}
           onClick={() => {
             setDirection(Direction.NUMBER_TO_LETTER);
+            GameConfig.direction = Direction.NUMBER_TO_LETTER;
           }}
         />
         <label htmlFor="NumberToLetter">Number to letter</label>
