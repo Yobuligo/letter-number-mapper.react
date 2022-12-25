@@ -1,3 +1,4 @@
+import { OptionsChangedHandler } from "./../components/Options/OptionsChangedHandler";
 import { Direction } from "./Direction";
 import { IGameConfig } from "./IGameConfig";
 import { Mode } from "./Mode";
@@ -6,6 +7,7 @@ class GameConfigDefault implements IGameConfig {
   private showResultInternal: boolean = false;
   private directionInternal: Direction = Direction.LETTER_TO_NUMBER;
   private modeInternal: Mode = Mode.RANDOM;
+  private handlers: OptionsChangedHandler[] = [];
 
   public get showResult(): boolean {
     return this.showResultInternal;
@@ -14,6 +16,7 @@ class GameConfigDefault implements IGameConfig {
   public set showResult(value: boolean) {
     this.showResultInternal = value;
     this.logConfig();
+    this.onUpdateConfig();
   }
 
   public get direction(): Direction {
@@ -23,6 +26,7 @@ class GameConfigDefault implements IGameConfig {
   public set direction(value: Direction) {
     this.directionInternal = value;
     this.logConfig();
+    this.onUpdateConfig();
   }
 
   public get mode(): Mode {
@@ -32,6 +36,17 @@ class GameConfigDefault implements IGameConfig {
   public set mode(value: Mode) {
     this.modeInternal = value;
     this.logConfig();
+    this.onUpdateConfig();
+  }
+
+  registerOnConfigChanged(handler: () => void): void {
+    this.handlers.push(handler);
+  }
+
+  private onUpdateConfig(): void {
+    this.handlers.forEach((handler) => {
+      handler(this);
+    });
   }
 
   private logConfig() {

@@ -1,3 +1,14 @@
 .field {
   margin: 1rem;
 }
+
+.field form {
+  display: flex;
+  flex-direction: row;
+  padding: 0.5rem;
+}
+
+.field input {
+  font-size: larger;
+  width: 3rem;
+}
