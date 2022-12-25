@@ -2,18 +2,23 @@ import { useState } from "react";
 import { Direction } from "../../gameConfig/Direction";
 import { GameConfig } from "../../gameConfig/GameConfig";
 import styles from "./DirectionOptions.module.css";
+import { OptionsChangedHandler } from "./OptionsChangedHandler";
 
-const DirectionOptions: React.FC = () => {
-  const [direction, setDirection] = useState(Direction.LETTER_TO_NUMBER);
+const DirectionOptions: React.FC<{
+  onOptionsChanged: OptionsChangedHandler;
+}> = (props) => {
+  const [direction, setDirection] = useState(GameConfig.direction);
 
   const onSetLetterToNumberHandler = () => {
     setDirection(Direction.LETTER_TO_NUMBER);
     GameConfig.direction = Direction.LETTER_TO_NUMBER;
+    props.onOptionsChanged(GameConfig);
   };
 
   const onSetNumberToLetterHandler = () => {
     setDirection(Direction.NUMBER_TO_LETTER);
     GameConfig.direction = Direction.NUMBER_TO_LETTER;
+    props.onOptionsChanged(GameConfig);
   };
 
   return (

@@ -1,18 +1,24 @@
+import { GameConfig } from "../../gameConfig/GameConfig";
 import Card from "../card/Card";
 import DirectionOptions from "./DirectionOptions";
 import ModeOptions from "./ModeOptions";
 import styles from "./Options.module.css";
+import { OptionsChangedHandler } from "./OptionsChangedHandler";
 import OthersOptions from "./OthersOptions";
 
-const Options: React.FC = () => {
+const Options: React.FC<{ onOptionsChanged?: OptionsChangedHandler }> = (
+  props
+) => {
+  const onOptionsChangedHandler = () => {
+    props.onOptionsChanged?.(GameConfig);
+  };
+
   return (
-    <div className={styles.options}>
-      <Card>
-        <DirectionOptions />
-        <ModeOptions />
-        <OthersOptions />
-      </Card>
-    </div>
+    <Card className={styles.options}>
+      <DirectionOptions onOptionsChanged={onOptionsChangedHandler} />
+      <ModeOptions onOptionsChanged={onOptionsChangedHandler} />
+      <OthersOptions onOptionsChanged={onOptionsChangedHandler} />
+    </Card>
   );
 };
 
