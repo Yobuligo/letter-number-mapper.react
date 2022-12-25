@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { CharacterPicker } from "../../services/CharacterPicker";
+import Card from "../card/Card";
+import styles from "./Field.module.css";
 
 const Field: React.FC = () => {
   const [character, setCharacter] = useState(CharacterPicker.next());
   return (
-    <div>
+    <Card className={styles.field}>
       <div>
         <input type="text" readOnly value={character} />
       </div>
@@ -18,7 +20,7 @@ const Field: React.FC = () => {
       >
         Confirm
       </button>
-    </div>
+    </Card>
   );
 };
 
