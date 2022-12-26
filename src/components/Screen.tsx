@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Direction } from "../gameConfig/Direction";
 import { Mode } from "../gameConfig/Mode";
 import Field from "./field/Field";
-import { GameConfigContext } from "./GameConfigContext";
+import GameConfigContext from "./GameConfigContext";
+
 import Menu from "./menu/Menu";
 import Options from "./Options/Options";
 import styles from "./Screen.module.css";
