@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.css";
-import { StartScreen } from "./components/StartScreen";
+import { Screen } from "./components/Screen";
 
 const App: React.FC = () => {
   return (
     <>
-      <StartScreen />
+      <Screen />
     </>
   );
 };

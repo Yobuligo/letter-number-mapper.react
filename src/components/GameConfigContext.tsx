@@ -4,6 +4,6 @@ import { Mode } from "../gameConfig/Mode";
 
 export const GameConfigContext = React.createContext({
   showResult: false,
-  direction: Direction.LETTER_TO_NUMBER,
+  direction: Direction.NUMBER_TO_LETTER,
   mode: Mode.RANDOM,
 });
