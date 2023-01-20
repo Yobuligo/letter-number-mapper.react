@@ -1,25 +1,31 @@
-import { useState } from "react";
+import { useContext } from "react";
+import { AppContext } from "../../AppContext";
 import { ExerciseType } from "../exercise/ExerciseType";
 import styles from "./Settings.module.css";
 
 const Settings: React.FC = () => {
-  const [exerciseType, setExerciseType] = useState(
-    ExerciseType.LETTER_TO_NUMBER
-  );
+  const context = useContext(AppContext);
 
   const switchExerciseType = () => {
-    if (exerciseType === ExerciseType.LETTER_TO_NUMBER) {
-      setExerciseType(ExerciseType.NUMBER_TO_LETTER);
+    if (context.settings.exerciseType === ExerciseType.LETTER_TO_NUMBER) {
+      context.settings.setExerciseType(ExerciseType.NUMBER_TO_LETTER);
     } else {
-      setExerciseType(ExerciseType.LETTER_TO_NUMBER);
+      context.settings.setExerciseType(ExerciseType.LETTER_TO_NUMBER);
     }
   };
 
-  const onSwitchExerciseType = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onSwitchExerciseTypeHandler = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     if (event.target.checked) {
       switchExerciseType();
     }
   };
+
+  const isChecked = (exerciseType: ExerciseType) => {
+    return context.settings.exerciseType === exerciseType ? true : false;
+  };
+
   return (
     <section>
       <form>
@@ -31,10 +37,8 @@ const Settings: React.FC = () => {
               id="letterToNumber"
               name="exerciseType"
               type="radio"
-              checked={
-                exerciseType === ExerciseType.LETTER_TO_NUMBER ? true : false
-              }
-              onChange={onSwitchExerciseType}
+              checked={isChecked(ExerciseType.LETTER_TO_NUMBER)}
+              onChange={onSwitchExerciseTypeHandler}
             />
           </div>
           <div>
@@ -44,10 +48,8 @@ const Settings: React.FC = () => {
               name="exerciseType"
               type="radio"
               value=""
-              checked={
-                exerciseType === ExerciseType.NUMBER_TO_LETTER ? true : false
-              }
-              onChange={onSwitchExerciseType}
+              checked={isChecked(ExerciseType.NUMBER_TO_LETTER)}
+              onChange={onSwitchExerciseTypeHandler}
             />
           </div>
         </div>
