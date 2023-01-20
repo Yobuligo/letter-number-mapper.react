@@ -12,13 +12,17 @@ const App: React.FC = () => {
 
   const [keyboardType, setKeyboardType] = useState(KeyboardType.NUMBER);
 
-  const onSetExerciseTypeHandler = (exerciseType: ExerciseType) => {
-    console.log(`ExerciseType changed to ${ExerciseType[exerciseType]}`);
-    if (exerciseType == ExerciseType.LETTER_TO_NUMBER) {
+  const updateKeyboardType = (exerciseType: ExerciseType) => {
+    if (exerciseType === ExerciseType.LETTER_TO_NUMBER) {
       setKeyboardType(KeyboardType.NUMBER);
     } else {
       setKeyboardType(KeyboardType.LETTER);
     }
+  };
+
+  const onSetExerciseTypeHandler = (exerciseType: ExerciseType) => {
+    console.log(`ExerciseType changed to ${ExerciseType[exerciseType]}`);
+    updateKeyboardType(exerciseType);
     setExerciseType(exerciseType);
   };
 
