@@ -1,19 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "../../AppContext";
 import { SymbolMapper } from "../../symbolInfo/SymbolMapper";
 import { Display } from "../display/Display";
-import { ExerciseType } from "../exercise/ExerciseType";
 import Keyboard from "../keyboard/Keyboard";
-import { KeyboardType } from "../keyboard/KeyboardType";
+import Settings from "../settings/Settings";
 import styles from "./Main.module.css";
 
 export const Main: React.FC<{
   symbol: string;
-  exerciseType: ExerciseType;
 }> = (props) => {
-  const keyboardType =
-    props.exerciseType == ExerciseType.LETTER_TO_NUMBER
-      ? KeyboardType.NUMBER
-      : KeyboardType.LETTER;
+  const context = useContext(AppContext);
 
   const onKeyboardClickHandler = (selectedSymbol: string) => {
     console.log(SymbolMapper.numberToLetter(selectedSymbol));
@@ -21,11 +17,15 @@ export const Main: React.FC<{
 
   return (
     <div className={styles.main}>
-      <Display symbol={props.symbol} exerciseType={props.exerciseType} />
+      <Display
+        symbol={props.symbol}
+        exerciseType={context.settings.exerciseType}
+      />
       <Keyboard
-        keyboardType={keyboardType}
+        keyboardType={context.settings.keyboardType}
         clickHandler={onKeyboardClickHandler}
       />
+      <Settings />
     </div>
   );
 };
