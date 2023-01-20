@@ -1,4 +1,4 @@
-export class SymbolMapperInt {
+class SymbolMapperDefault {
   numberToLetter(number: string): string {
     return String.fromCharCode(Number(number) + 64);
   }
@@ -7,4 +7,4 @@ export class SymbolMapperInt {
   }
 }
 
-export const SymbolMapper = new SymbolMapperInt();
+export const SymbolMapper = new SymbolMapperDefault();

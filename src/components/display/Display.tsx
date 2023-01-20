@@ -6,5 +6,5 @@ export const Display: React.FC<{
   symbol: string;
   exerciseType: ExerciseType;
 }> = (props) => {
-  return <Exercise symbol={props.symbol} exerciseType={props.exerciseType} />;
+  return <Exercise symbol={props.symbol} />;
 };

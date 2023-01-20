@@ -1,14 +1,16 @@
-import { ExerciseType } from "./ExerciseType";
+import { useContext } from "react";
+import { AppContext } from "../../AppContext";
 import styles from "./Exercise.module.css";
+import { ExerciseType } from "./ExerciseType";
 
 export const Exercise: React.FC<{
   symbol: string;
-  exerciseType: ExerciseType;
 }> = (props) => {
+  const context = useContext(AppContext);
   return (
     <div className={styles.exercise}>
       <h4>
-        {props.exerciseType == ExerciseType.LETTER_TO_NUMBER
+        {context.settings.exerciseType === ExerciseType.LETTER_TO_NUMBER
           ? "Der wievielte Buchstabe ist"
           : "Welcher Buchstabe ist an Stelle"}
       </h4>
