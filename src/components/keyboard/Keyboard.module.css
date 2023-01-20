@@ -1,0 +1,6 @@
+.keyboard button {
+  width: 4rem;
+  height: 4rem;
+  font-size: large;
+  margin: 0.2rem;
+}

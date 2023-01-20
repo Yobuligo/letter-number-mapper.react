@@ -1,11 +1,12 @@
 import React from "react";
 import "./App.css";
-import { Screen } from "./components/Screen";
+import Keyboard from "./components/keyboard/Keyboard";
+import { KeyboardType } from "./components/keyboard/KeyboardType";
 
 const App: React.FC = () => {
   return (
     <>
-      <Screen />
+      <Keyboard keyboardType={KeyboardType.NUMBER} />
     </>
   );
 };
