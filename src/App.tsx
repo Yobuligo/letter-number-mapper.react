@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import "./App.css";
+import { AppContext } from "./AppContext";
 import { Exercise } from "./components/exercise/Exercise";
 import { ExerciseType } from "./components/exercise/ExerciseType";
 import Keyboard from "./components/keyboard/Keyboard";
 import { KeyboardType } from "./components/keyboard/KeyboardType";
 import Settings from "./components/settings/Settings";
-import { AppContext } from "./AppContext";
 
 const App: React.FC = () => {
   const [exerciseType, setExerciseType] = useState(
     ExerciseType.LETTER_TO_NUMBER
   );
 
-  const onExerciseTypeChangedHandler = (exerciseType: ExerciseType) => {
+  const onSetExerciseTypeHandler = (exerciseType: ExerciseType) => {
     console.log(`ExerciseType changed to ${ExerciseType[exerciseType]}`);
     setExerciseType(exerciseType);
   };
@@ -23,7 +23,7 @@ const App: React.FC = () => {
         value={{
           settings: {
             exerciseType: exerciseType,
-            setExerciseType: onExerciseTypeChangedHandler,
+            setExerciseType: onSetExerciseTypeHandler,
           },
         }}
       >
