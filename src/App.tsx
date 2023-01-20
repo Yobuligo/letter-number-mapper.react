@@ -6,7 +6,7 @@ import { KeyboardType } from "./components/keyboard/KeyboardType";
 const App: React.FC = () => {
   return (
     <>
-      <Keyboard keyboardType={KeyboardType.NUMBER} />
+      <Keyboard keyboardType={KeyboardType.LETTER} />
     </>
   );
 };
