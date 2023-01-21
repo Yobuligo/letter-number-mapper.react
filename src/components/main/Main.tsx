@@ -5,7 +5,7 @@ import settingsImage from "../../images/settings.png";
 import { SymbolMapper } from "../../symbolInfo/SymbolMapper";
 import { Display } from "../display/Display";
 import Keyboard from "../keyboard/Keyboard";
-import ModalDialog from "../modalDialog/ModalDialog";
+import ModalDialog from "../core/modalDialog/ModalDialog";
 import Settings from "../settings/Settings";
 import IToolbarAction from "../toolbar/IToolbarAction";
 import Toolbar from "../toolbar/Toolbar";

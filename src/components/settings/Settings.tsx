@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { AppContext } from "../../AppContext";
-import Card from "../card/Card";
+import Card from "../core/card/Card";
 import { ExerciseType } from "../exercise/ExerciseType";
 import styles from "./Settings.module.css";
 
