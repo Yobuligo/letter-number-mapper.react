@@ -1,8 +1,13 @@
-import React, { useContext } from "react";
+import React, { ReactNode, useContext, useState } from "react";
+import ReactDOM from "react-dom";
 import { AppContext } from "../../AppContext";
+import settingsImage from "../../images/settings.png";
+import ModalDialog from "../core/modalDialog/ModalDialog";
 import { Display } from "../display/Display";
 import Keyboard from "../keyboard/Keyboard";
 import Settings from "../settings/Settings";
+import IToolbarAction from "../toolbar/IToolbarAction";
+import Toolbar from "../toolbar/Toolbar";
 import styles from "./Main.module.css";
 
 export const Main: React.FC = () => {
@@ -25,8 +30,46 @@ export const Main: React.FC = () => {
       }
     }
   };
+
+  const [modalDialogActive, setModalDialogActive] = useState(false);
+  const [modalDialogChildren, setModalDialogChildren] =
+    useState<ReactNode>(null);
+
+  const showModalDialog = (children: ReactNode) => {
+    setModalDialogChildren(children);
+    setModalDialogActive(true);
+  };
+
+  const hideModalDialog = () => {
+    setModalDialogChildren(null);
+    setModalDialogActive(false);
+  };
+
+  const toolbarActions: IToolbarAction[] = [
+    {
+      source: settingsImage,
+      text: "Settings",
+      onClickHandler: () => {
+        showModalDialog(<Settings />);
+      },
+    },
+  ];
+
   return (
     <div className={`${styles.main} ${getSolutionBackgroundStyle()}`}>
+      {modalDialogActive
+        ? ReactDOM.createPortal(
+            <ModalDialog
+              onConfirm={() => {
+                hideModalDialog();
+              }}
+            >
+              {modalDialogChildren}
+            </ModalDialog>,
+            document.getElementById("overlay")!
+          )
+        : ""}
+      <Toolbar toolbarActions={toolbarActions} />
       <Display
         symbol={context.settings.symbol}
         exerciseType={context.settings.exerciseType}
@@ -35,7 +78,6 @@ export const Main: React.FC = () => {
         keyboardType={context.settings.keyboardType}
         clickHandler={onKeyboardClickHandler}
       />
-      <Settings />
     </div>
   );
 };

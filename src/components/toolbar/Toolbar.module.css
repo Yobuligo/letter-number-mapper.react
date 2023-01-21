@@ -1,0 +1,16 @@
+.toolbar {
+  width: 100%;
+  height: 3.5rem;
+  background-color: gainsboro;
+}
+
+.toolbar img {
+  height: 2rem;
+  width: 2rem;
+  float: right;
+}
+
+.toolbar button {
+  margin: 0.5rem;
+  float: right;
+}
