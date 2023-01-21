@@ -28,7 +28,7 @@ const Settings: React.FC = () => {
   };
 
   return (
-    <Card className={styles.modalDialog}>
+    <Card>
       <section>
         <form>
           <h3>Exercise Type</h3>

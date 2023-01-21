@@ -3,9 +3,9 @@ import ReactDOM from "react-dom";
 import { AppContext } from "../../AppContext";
 import settingsImage from "../../images/settings.png";
 import { SymbolMapper } from "../../symbolInfo/SymbolMapper";
+import ModalDialog from "../core/modalDialog/ModalDialog";
 import { Display } from "../display/Display";
 import Keyboard from "../keyboard/Keyboard";
-import ModalDialog from "../core/modalDialog/ModalDialog";
 import Settings from "../settings/Settings";
 import IToolbarAction from "../toolbar/IToolbarAction";
 import Toolbar from "../toolbar/Toolbar";
@@ -55,7 +55,7 @@ export const Main: React.FC<{
             >
               {modalDialogChildren}
             </ModalDialog>,
-            document.getElementById("backdrop")!
+            document.getElementById("overlay")!
           )
         : ""}
       <Toolbar toolbarActions={toolbarActions} />
