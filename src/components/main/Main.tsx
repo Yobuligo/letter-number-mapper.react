@@ -4,6 +4,7 @@ import { SymbolMapper } from "../../symbolInfo/SymbolMapper";
 import { Display } from "../display/Display";
 import Keyboard from "../keyboard/Keyboard";
 import Settings from "../settings/Settings";
+import Toolbar from "../toolbar/Toolbar";
 import styles from "./Main.module.css";
 
 export const Main: React.FC<{
@@ -17,6 +18,7 @@ export const Main: React.FC<{
 
   return (
     <div className={styles.main}>
+      <Toolbar />
       <Display
         symbol={props.symbol}
         exerciseType={context.settings.exerciseType}

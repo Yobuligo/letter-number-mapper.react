@@ -1,0 +1,10 @@
+.toolbar {
+  width: 100%;
+  height: 3rem;
+}
+
+.toolbar img {
+  height: 3rem;
+  width: 3rem;
+  float: right;
+}
