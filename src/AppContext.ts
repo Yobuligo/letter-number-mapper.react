@@ -9,6 +9,7 @@ export const AppContext = createContext<{
     keyboardType: KeyboardType;
     symbol: string;
     solveExercise: (selectedSymbol: string) => void;
+    correctSolution?: Boolean;
   };
 }>({
   settings: {
@@ -17,5 +18,6 @@ export const AppContext = createContext<{
     keyboardType: KeyboardType.LETTER,
     symbol: "A",
     solveExercise: () => {},
+    correctSolution: undefined,
   },
 });

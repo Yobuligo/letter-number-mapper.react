@@ -20,6 +20,9 @@ const App: React.FC = () => {
   const [symbolPicker, setSymbolPicker] =
     useState<ISymbolPicker>(LetterSymbolPicker);
   const [symbol, setSymbol] = useState(symbolPicker.pickNext());
+  const [isCorrectSolution, setIsCorrectSolution] = useState<
+    Boolean | undefined
+  >(undefined);
 
   const updateKeyboardType = (exerciseType: ExerciseType) => {
     if (exerciseType === ExerciseType.LETTER_TO_NUMBER) {
@@ -49,6 +52,13 @@ const App: React.FC = () => {
     setSymbol(symbolPicker.pickNext());
   }, [symbolPicker]);
 
+  useEffect(() => {
+    const timer = setTimeout(() => setIsCorrectSolution(undefined), 500);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [isCorrectSolution]);
+
   const onSetExerciseTypeHandler = (exerciseType: ExerciseType) => {
     console.log(`ExerciseType changed to ${ExerciseType[exerciseType]}`);
     updateKeyboardType(exerciseType);
@@ -57,12 +67,14 @@ const App: React.FC = () => {
     setExerciseType(exerciseType);
   };
 
-  const onExerciseSolution = (selectedSymbol: string) => {
+  const onExerciseSolutionProvided = (selectedSymbol: string) => {
     const mappedSelectedSymbol = symbolMapper.map(selectedSymbol);
     if (mappedSelectedSymbol === symbol) {
       console.log("Correct!");
+      setIsCorrectSolution(true);
       setSymbol(symbolPicker.pickNext());
     } else {
+      setIsCorrectSolution(false);
       console.log("Wrong, try again");
     }
   };
@@ -76,7 +88,8 @@ const App: React.FC = () => {
             setExerciseType: onSetExerciseTypeHandler,
             keyboardType: keyboardType,
             symbol: symbol,
-            solveExercise: onExerciseSolution,
+            solveExercise: onExerciseSolutionProvided,
+            correctSolution: isCorrectSolution,
           },
         }}
       >
