@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../AppContext";
-import { SymbolMapper } from "../../symbolInfo/SymbolMapper";
 import { Display } from "../display/Display";
 import Keyboard from "../keyboard/Keyboard";
 import Settings from "../settings/Settings";
@@ -12,7 +11,7 @@ export const Main: React.FC<{
   const context = useContext(AppContext);
 
   const onKeyboardClickHandler = (selectedSymbol: string) => {
-    console.log(SymbolMapper.numberToLetter(selectedSymbol));
+    console.log(context.settings.symbolMapper.map(selectedSymbol));
   };
 
   return (
