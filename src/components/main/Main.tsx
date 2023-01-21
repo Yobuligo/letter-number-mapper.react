@@ -1,9 +1,11 @@
-import React, { useContext } from "react";
+import React, { ReactNode, useContext, useState } from "react";
+import ReactDOM from "react-dom";
 import { AppContext } from "../../AppContext";
 import settingsImage from "../../images/settings.png";
 import { SymbolMapper } from "../../symbolInfo/SymbolMapper";
 import { Display } from "../display/Display";
 import Keyboard from "../keyboard/Keyboard";
+import ModalDialog from "../modalDialog/ModalDialog";
 import Settings from "../settings/Settings";
 import IToolbarAction from "../toolbar/IToolbarAction";
 import Toolbar from "../toolbar/Toolbar";
@@ -18,18 +20,44 @@ export const Main: React.FC<{
     console.log(SymbolMapper.numberToLetter(selectedSymbol));
   };
 
+  const [modalDialogActive, setModalDialogActive] = useState(false);
+  const [modalDialogChildren, setModalDialogChildren] =
+    useState<ReactNode>(null);
+
+  const showModalDialog = (children: ReactNode) => {
+    setModalDialogChildren(children);
+    setModalDialogActive(true);
+  };
+
+  const hideModalDialog = () => {
+    setModalDialogChildren(null);
+    setModalDialogActive(false);
+  };
+
   const toolbarActions: IToolbarAction[] = [
     {
       source: settingsImage,
       text: "Settings",
       onClickHandler: () => {
-        console.log(`Settings button was clicked`);
+        showModalDialog(<Settings />);
       },
     },
   ];
 
   return (
     <div className={styles.main}>
+      {modalDialogActive
+        ? ReactDOM.createPortal(
+            <ModalDialog
+              onConfirm={() => {
+                hideModalDialog();
+              }}
+            >
+              {modalDialogChildren}
+            </ModalDialog>,
+            document.getElementById("backdrop")!
+          )
+        : ""}
       <Toolbar toolbarActions={toolbarActions} />
       <Display
         symbol={props.symbol}
@@ -39,7 +67,6 @@ export const Main: React.FC<{
         keyboardType={context.settings.keyboardType}
         clickHandler={onKeyboardClickHandler}
       />
-      <Settings />
     </div>
   );
 };

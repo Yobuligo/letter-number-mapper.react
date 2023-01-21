@@ -1,3 +1,7 @@
 .settings {
   margin-left: 2rem;
 }
+
+.modalDialog {
+  position: fixed;
+}
