@@ -5,19 +5,17 @@ import Keyboard from "../keyboard/Keyboard";
 import Settings from "../settings/Settings";
 import styles from "./Main.module.css";
 
-export const Main: React.FC<{
-  symbol: string;
-}> = (props) => {
+export const Main: React.FC = () => {
   const context = useContext(AppContext);
 
   const onKeyboardClickHandler = (selectedSymbol: string) => {
-    console.log(context.settings.symbolMapper.map(selectedSymbol));
+    context.settings.solveExercise(selectedSymbol);
   };
 
   return (
     <div className={styles.main}>
       <Display
-        symbol={props.symbol}
+        symbol={context.settings.symbol}
         exerciseType={context.settings.exerciseType}
       />
       <Keyboard

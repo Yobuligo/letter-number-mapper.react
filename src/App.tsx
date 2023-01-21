@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { AppContext } from "./AppContext";
 import { ExerciseType } from "./components/exercise/ExerciseType";
 import { KeyboardType } from "./components/keyboard/KeyboardType";
 import { Main } from "./components/main/Main";
-import { LetterToNumberMapper } from "./symbolMapper/LetterToNumberMapper";
-import { NumberToLetterMapper } from "./symbolMapper/NumberToLetterMapper";
+import { LetterToNumberSymbolMapper } from "./symbolMapper/LetterToNumberSymbolMapper";
+import { NumberToLetterSymbolMapper } from "./symbolMapper/NumberToLetterSymbolMapper";
+import { ISymbolPicker } from "./symbolPicker/ISymbolPicker";
+import { LetterSymbolPicker } from "./symbolPicker/LetterSymbolPicker";
+import { NumberSymbolPicker } from "./symbolPicker/NumberSymbolPicker";
 
 const App: React.FC = () => {
   const [exerciseType, setExerciseType] = useState(
@@ -13,7 +16,10 @@ const App: React.FC = () => {
   );
 
   const [keyboardType, setKeyboardType] = useState(KeyboardType.NUMBER);
-  const [symbolMapper, setSymbolMapper] = useState(new NumberToLetterMapper());
+  const [symbolMapper, setSymbolMapper] = useState(NumberToLetterSymbolMapper);
+  const [symbolPicker, setSymbolPicker] =
+    useState<ISymbolPicker>(LetterSymbolPicker);
+  const [symbol, setSymbol] = useState(symbolPicker.pickNext());
 
   const updateKeyboardType = (exerciseType: ExerciseType) => {
     if (exerciseType === ExerciseType.LETTER_TO_NUMBER) {
@@ -25,17 +31,40 @@ const App: React.FC = () => {
 
   const updateSymbolMapper = (exerciseType: ExerciseType) => {
     if (exerciseType === ExerciseType.LETTER_TO_NUMBER) {
-      setSymbolMapper(new NumberToLetterMapper());
+      setSymbolMapper(NumberToLetterSymbolMapper);
     } else {
-      setSymbolMapper(new LetterToNumberMapper());
+      setSymbolMapper(LetterToNumberSymbolMapper);
     }
   };
+
+  const updateSymbolPicker = (exerciseType: ExerciseType) => {
+    if (exerciseType === ExerciseType.LETTER_TO_NUMBER) {
+      setSymbolPicker(LetterSymbolPicker);
+    } else {
+      setSymbolPicker(NumberSymbolPicker);
+    }
+  };
+
+  useEffect(() => {
+    setSymbol(symbolPicker.pickNext());
+  }, [symbolPicker]);
 
   const onSetExerciseTypeHandler = (exerciseType: ExerciseType) => {
     console.log(`ExerciseType changed to ${ExerciseType[exerciseType]}`);
     updateKeyboardType(exerciseType);
     updateSymbolMapper(exerciseType);
+    updateSymbolPicker(exerciseType);
     setExerciseType(exerciseType);
+  };
+
+  const onExerciseSolution = (selectedSymbol: string) => {
+    const mappedSelectedSymbol = symbolMapper.map(selectedSymbol);
+    if (mappedSelectedSymbol === symbol) {
+      console.log("Correct!");
+      setSymbol(symbolPicker.pickNext());
+    } else {
+      console.log("Wrong, try again");
+    }
   };
 
   return (
@@ -46,11 +75,12 @@ const App: React.FC = () => {
             exerciseType: exerciseType,
             setExerciseType: onSetExerciseTypeHandler,
             keyboardType: keyboardType,
-            symbolMapper: symbolMapper,
+            symbol: symbol,
+            solveExercise: onExerciseSolution,
           },
         }}
       >
-        <Main symbol={"A"} />
+        <Main />
       </AppContext.Provider>
     </>
   );
