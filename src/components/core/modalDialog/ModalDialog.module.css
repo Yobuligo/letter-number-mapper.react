@@ -7,4 +7,10 @@
 
 .modalDialog {
   position: fixed;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 3.5rem;
+  margin-right: 0.5rem;
 }
