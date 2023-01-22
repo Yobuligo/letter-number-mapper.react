@@ -9,9 +9,9 @@
 }
 
 .successfulSolution {
-  background-color: green;
+  background-color: rgb(2, 204, 29);
 }
 
 .failedSolution {
-  background-color: darkred;
+  background-color: rgb(255, 99, 99);
 }

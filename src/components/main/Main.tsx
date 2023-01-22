@@ -1,7 +1,7 @@
 import React, { ReactNode, useContext, useState } from "react";
 import ReactDOM from "react-dom";
 import { AppContext } from "../../AppContext";
-import settingsImage from "../../images/settings.png";
+import settingsImage from "../../assets/images/settings.png";
 import ModalDialog from "../core/modalDialog/ModalDialog";
 import { Display } from "../display/Display";
 import { SolutionStatus } from "../exercise/SolutionStatus";
@@ -42,6 +42,7 @@ export const Main: React.FC = () => {
   };
 
   const hideModalDialog = () => {
+    console.log(`Hide modal dialog, as it was confirmed`);
     setModalDialogChildren(null);
     setModalDialogActive(false);
   };

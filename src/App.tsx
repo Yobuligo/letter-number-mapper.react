@@ -24,6 +24,7 @@ const App: React.FC = () => {
   const [solutionStatus, setSolutionStatus] = useState(
     SolutionStatus.NOT_PROVIDED
   );
+  let previousSolutionStatus = SolutionStatus.NOT_PROVIDED;
 
   const updateKeyboardType = (exerciseType: ExerciseType) => {
     if (exerciseType === ExerciseType.LETTER_TO_NUMBER) {
@@ -56,9 +57,13 @@ const App: React.FC = () => {
   useEffect(() => {
     let timer: NodeJS.Timeout;
     if (solutionStatus !== SolutionStatus.NOT_PROVIDED) {
+      previousSolutionStatus = solutionStatus;
       timer = setTimeout(() => {
         setSolutionStatus(SolutionStatus.NOT_PROVIDED);
-        setSymbol(symbolPicker.pickNext());
+        if (previousSolutionStatus === SolutionStatus.SUCCESSFUL) {
+          setSymbol(symbolPicker.pickNext());
+        }
+        previousSolutionStatus = SolutionStatus.NOT_PROVIDED;
       }, 300);
     }
     return () => {
