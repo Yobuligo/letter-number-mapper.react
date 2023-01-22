@@ -4,14 +4,14 @@
   align-items: center;
 }
 
-.noSolution {
+.noSolutionProvided {
   background-color: white;
 }
 
-.correctSolution {
+.successfulSolution {
   background-color: green;
 }
 
-.incorrectSolution {
+.failedSolution {
   background-color: darkred;
 }

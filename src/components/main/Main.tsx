@@ -4,6 +4,7 @@ import { AppContext } from "../../AppContext";
 import settingsImage from "../../images/settings.png";
 import ModalDialog from "../core/modalDialog/ModalDialog";
 import { Display } from "../display/Display";
+import { SolutionStatus } from "../exercise/SolutionStatus";
 import Keyboard from "../keyboard/Keyboard";
 import Settings from "../settings/Settings";
 import IToolbarAction from "../toolbar/IToolbarAction";
@@ -14,19 +15,19 @@ export const Main: React.FC = () => {
   const context = useContext(AppContext);
 
   const onKeyboardClickHandler = (selectedSymbol: string) => {
-    context.settings.solveExercise(selectedSymbol);
+    context.exercise.provideExerciseSolution(selectedSymbol);
   };
 
   const getSolutionBackgroundStyle = () => {
-    switch (context.settings.correctSolution) {
-      case true: {
-        return styles.correctSolution;
+    switch (context.exercise.solutionStatus) {
+      case SolutionStatus.SUCCESSFUL: {
+        return styles.successfulSolution;
       }
-      case false: {
-        return styles.incorrectSolution;
+      case SolutionStatus.FAILED: {
+        return styles.failedSolution;
       }
-      default: {
-        return styles.noSolution;
+      case SolutionStatus.NOT_PROVIDED: {
+        return styles.noSolutionProvided;
       }
     }
   };
@@ -71,7 +72,7 @@ export const Main: React.FC = () => {
         : ""}
       <Toolbar toolbarActions={toolbarActions} />
       <Display
-        symbol={context.settings.symbol}
+        symbol={context.exercise.symbol}
         exerciseType={context.settings.exerciseType}
       />
       <Keyboard

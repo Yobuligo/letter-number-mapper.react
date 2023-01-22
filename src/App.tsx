@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import { AppContext } from "./AppContext";
 import { ExerciseType } from "./components/exercise/ExerciseType";
+import { SolutionStatus } from "./components/exercise/SolutionStatus";
 import { KeyboardType } from "./components/keyboard/KeyboardType";
 import { Main } from "./components/main/Main";
-import { LetterToNumberSymbolMapper } from "./symbolMapper/LetterToNumberSymbolMapper";
-import { NumberToLetterSymbolMapper } from "./symbolMapper/NumberToLetterSymbolMapper";
-import { ISymbolPicker } from "./symbolPicker/ISymbolPicker";
-import { LetterSymbolPicker } from "./symbolPicker/LetterSymbolPicker";
-import { NumberSymbolPicker } from "./symbolPicker/NumberSymbolPicker";
+import { LetterToNumberSymbolMapper } from "./services/symbolMapper/LetterToNumberSymbolMapper";
+import { NumberToLetterSymbolMapper } from "./services/symbolMapper/NumberToLetterSymbolMapper";
+import { ISymbolPicker } from "./services/symbolPicker/ISymbolPicker";
+import { LetterSymbolPicker } from "./services/symbolPicker/LetterSymbolPicker";
+import { NumberSymbolPicker } from "./services/symbolPicker/NumberSymbolPicker";
 
 const App: React.FC = () => {
   const [exerciseType, setExerciseType] = useState(
@@ -20,9 +21,9 @@ const App: React.FC = () => {
   const [symbolPicker, setSymbolPicker] =
     useState<ISymbolPicker>(LetterSymbolPicker);
   const [symbol, setSymbol] = useState(symbolPicker.pickNext());
-  const [isCorrectSolution, setIsCorrectSolution] = useState<
-    Boolean | undefined
-  >(undefined);
+  const [solutionStatus, setSolutionStatus] = useState(
+    SolutionStatus.NOT_PROVIDED
+  );
 
   const updateKeyboardType = (exerciseType: ExerciseType) => {
     if (exerciseType === ExerciseType.LETTER_TO_NUMBER) {
@@ -53,11 +54,19 @@ const App: React.FC = () => {
   }, [symbolPicker]);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsCorrectSolution(undefined), 500);
+    let timer: NodeJS.Timeout;
+    if (solutionStatus !== SolutionStatus.NOT_PROVIDED) {
+      timer = setTimeout(() => {
+        setSolutionStatus(SolutionStatus.NOT_PROVIDED);
+        setSymbol(symbolPicker.pickNext());
+      }, 300);
+    }
     return () => {
-      clearTimeout(timer);
+      if (timer !== undefined) {
+        clearTimeout(timer);
+      }
     };
-  }, [isCorrectSolution]);
+  }, [solutionStatus]);
 
   const onSetExerciseTypeHandler = (exerciseType: ExerciseType) => {
     console.log(`ExerciseType changed to ${ExerciseType[exerciseType]}`);
@@ -71,10 +80,9 @@ const App: React.FC = () => {
     const mappedSelectedSymbol = symbolMapper.map(selectedSymbol);
     if (mappedSelectedSymbol === symbol) {
       console.log("Correct!");
-      setIsCorrectSolution(true);
-      setSymbol(symbolPicker.pickNext());
+      setSolutionStatus(SolutionStatus.SUCCESSFUL);
     } else {
-      setIsCorrectSolution(false);
+      setSolutionStatus(SolutionStatus.FAILED);
       console.log("Wrong, try again");
     }
   };
@@ -87,9 +95,11 @@ const App: React.FC = () => {
             exerciseType: exerciseType,
             setExerciseType: onSetExerciseTypeHandler,
             keyboardType: keyboardType,
+          },
+          exercise: {
             symbol: symbol,
-            solveExercise: onExerciseSolutionProvided,
-            correctSolution: isCorrectSolution,
+            provideExerciseSolution: onExerciseSolutionProvided,
+            solutionStatus: solutionStatus,
           },
         }}
       >
