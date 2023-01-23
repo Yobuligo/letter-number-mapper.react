@@ -12,6 +12,16 @@ import { LetterSymbolPicker } from "./services/symbolPicker/LetterSymbolPicker";
 import { NumberSymbolPicker } from "./services/symbolPicker/NumberSymbolPicker";
 
 const App: React.FC = () => {
+  // register on key pressed event (to handle each key)
+  useEffect(() => {
+    document.addEventListener("keydown", onKeyPressed, true);
+  }, []);
+
+  const onKeyPressed = (keyboardEvent: KeyboardEvent) => {
+    console.log(`The key ${keyboardEvent.key} was pressed`);
+    onExerciseSolutionProvided(keyboardEvent.key.toUpperCase());
+  };
+
   const [exerciseType, setExerciseType] = useState(
     ExerciseType.LETTER_TO_NUMBER
   );
