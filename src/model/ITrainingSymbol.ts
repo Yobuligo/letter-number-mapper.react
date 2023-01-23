@@ -1,4 +1,4 @@
 export interface ITrainingSymbol {
-  readonly symbol: Symbol;
+  readonly symbol: string;
   readonly numberSuccessfulAnswers: number;
 }

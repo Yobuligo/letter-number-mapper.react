@@ -22,6 +22,10 @@ export class TrainingSectionBuilder implements ITrainingSectionBuilder {
   }
 
   build(): ITrainingSection {
-    return new TrainingSection(this.probability, this.answersTillProgression);
+    return new TrainingSection(
+      this.probability,
+      this.answersTillProgression,
+      this.trainingSymbols
+    );
   }
 }

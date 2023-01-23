@@ -5,5 +5,6 @@ export interface ITrainingProgramBuilder {
   addTrainingSection(
     trainingSection: ITrainingSection
   ): ITrainingProgramBuilder;
+
   build(): ITrainingProgram;
 }
