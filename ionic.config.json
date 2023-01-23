@@ -1,0 +1,7 @@
+{
+  "name": "Letter Number Mapper",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}

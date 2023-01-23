@@ -1,0 +1,8 @@
+{
+  "appId": "com.outlivethesun.letter_number_mapper",
+  "appName": "Letter Number Mapper",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "build",
+  "cordova": {}
+}
