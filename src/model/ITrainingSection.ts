@@ -1,6 +1,12 @@
 import { ProbabilityWeight } from "../Types/Types";
 import { ITrainingSymbol } from "./ITrainingSymbol";
 
+/**
+ * An implementation of this interface represents a ITrainingSection which contains of ITrainingSymbols.
+ * A section represents a learning progress of the ITrainingSymbols.
+ * In case the learning progress increases by solving the ITrainingSymbols exercises, the ITrainingSymbol is moved to the next higher ITrainingSection.
+ * The lower the probabilityWeight of a ITrainingSection is, the rarer it will be picked as exercise, which means the ITrainingSymbol is known appropriate.
+ */
 export interface ITrainingSection {
   /**
    * The probabilityWeight is a value that defines the probability of a section to be selected while considering the weight of all sections in sum.

@@ -5,34 +5,19 @@ import { ExerciseType } from "./components/exercise/ExerciseType";
 import { SolutionStatus } from "./components/exercise/SolutionStatus";
 import { KeyboardType } from "./components/keyboard/KeyboardType";
 import { Main } from "./components/main/Main";
-import { ITrainingProgram } from "./model/ITrainingProgram";
-import { ITrainingProgramBuilder } from "./services/ITrainingProgramBuilder";
+import { LetterTrainingProgramInitializer } from "./services/LetterTrainingProgramInitializer";
+import { NumberTrainingProgramInitializer } from "./services/NumberTrainingProgramInitializer";
 import { LetterToNumberSymbolMapper } from "./services/symbolMapper/LetterToNumberSymbolMapper";
 import { NumberToLetterSymbolMapper } from "./services/symbolMapper/NumberToLetterSymbolMapper";
 import { ISymbolPicker } from "./services/symbolPicker/ISymbolPicker";
 import { LetterSymbolPicker } from "./services/symbolPicker/LetterSymbolPicker";
 import { NumberSymbolPicker } from "./services/symbolPicker/NumberSymbolPicker";
-import { TrainingProgramBuilder } from "./services/TrainingProgramBuilder";
-import { TrainingSectionBuilder } from "./services/TrainingSectionBuilder";
-
-const createTrainingProgram = (): ITrainingProgram => {
-  const trainingProgramBuilder: ITrainingProgramBuilder =
-    new TrainingProgramBuilder();
-
-  return trainingProgramBuilder.createTrainingSection().build()
-    .addTrainingSection(
-      new TrainingSectionBuilder(50)
-        .addTrainingSymbol({ symbol: "A", numberSuccessfulAnswers: 0 })
-        .addTrainingSymbol({ symbol: "B", numberSuccessfulAnswers: 0 })
-        .addTrainingSymbol({ symbol: "C", numberSuccessfulAnswers: 0 })
-        .addTrainingSymbol({ symbol: "D", numberSuccessfulAnswers: 0 })
-        .build()
-    )
-    .build();
-};
 
 const App: React.FC = () => {
-  const trainingProgram = createTrainingProgram();
+  const letterTrainingProgram =
+    new LetterTrainingProgramInitializer().initialize();
+  const numberTrainingProgram =
+    new NumberTrainingProgramInitializer().initialize();
 
   // register on key pressed event (to handle each key)
   useEffect(() => {

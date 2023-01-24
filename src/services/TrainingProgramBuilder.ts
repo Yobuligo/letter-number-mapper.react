@@ -15,13 +15,23 @@ export class TrainingProgramBuilder implements ITrainingProgramBuilder {
     return this;
   }
 
+  createEmptyTrainingSection(
+    probabilityWeight: number
+  ): ITrainingProgramBuilder {
+    const trainingSection =
+      this.createTrainingSectionBuilder(probabilityWeight).build();
+    this.addTrainingSection(trainingSection);
+    return this;
+  }
+
   createTrainingSection(
     probabilityWeight: ProbabilityWeight,
     creator: (
       trainingSectionBuilder: ITrainingSectionBuilder
     ) => ITrainingSection
   ): ITrainingProgramBuilder {
-    const trainingSectionBuilder = new TrainingSectionBuilder(probabilityWeight);
+    const trainingSectionBuilder =
+      this.createTrainingSectionBuilder(probabilityWeight);
     const trainingSection = creator(trainingSectionBuilder);
     this.addTrainingSection(trainingSection);
     return this;
@@ -29,5 +39,11 @@ export class TrainingProgramBuilder implements ITrainingProgramBuilder {
 
   build(): ITrainingProgram {
     return { trainingSections: this.trainingSections };
+  }
+
+  private createTrainingSectionBuilder(
+    probabilityWeight: ProbabilityWeight
+  ): ITrainingSectionBuilder {
+    return new TrainingSectionBuilder(probabilityWeight);
   }
 }
