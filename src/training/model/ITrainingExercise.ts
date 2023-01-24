@@ -10,6 +10,9 @@ export interface ITrainingExercise {
   succeeded(): void;
   failed(): void;
   registerOnStateChanged(
-    eventHandler: (newState: TrainingExerciseState) => void
+    eventHandler: (
+      trainingSymbol: ITrainingSymbol,
+      newState: TrainingExerciseState
+    ) => void
   ): void;
 }
