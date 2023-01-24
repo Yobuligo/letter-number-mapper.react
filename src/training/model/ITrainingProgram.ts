@@ -1,3 +1,4 @@
+import { ITrainingExercise } from "./ITrainingExercise";
 import { ITrainingSection } from "./ITrainingSection";
 
 /**
@@ -5,4 +6,5 @@ import { ITrainingSection } from "./ITrainingSection";
  */
 export interface ITrainingProgram {
   readonly trainingSections: ITrainingSection[];
+  nextTrainingExercise(): ITrainingExercise;
 }

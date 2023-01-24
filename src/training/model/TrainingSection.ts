@@ -1,4 +1,4 @@
-import { ProbabilityWeight } from "./../Types/Types";
+import { ProbabilityWeight } from "../../Types/Types";
 import { ITrainingSection } from "./ITrainingSection";
 import { ITrainingSymbol } from "./ITrainingSymbol";
 

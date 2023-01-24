@@ -1,8 +1,8 @@
 import { repeat } from "../core/repeat";
-import { ITrainingProgram } from "../model/ITrainingProgram";
-import { ITrainingProgramBuilder } from "./ITrainingProgramBuilder";
-import { ITrainingProgramInitializer } from "./ITrainingProgramInitializer";
-import { TrainingProgramBuilder } from "./TrainingProgramBuilder";
+import { ITrainingProgramBuilder } from "../training/builder/ITrainingProgramBuilder";
+import { ITrainingProgramInitializer } from "../training/builder/ITrainingProgramInitializer";
+import { TrainingProgramBuilder } from "../training/builder/TrainingProgramBuilder";
+import { ITrainingProgram } from "../training/model/ITrainingProgram";
 
 export class NumberTrainingProgramInitializer
   implements ITrainingProgramInitializer

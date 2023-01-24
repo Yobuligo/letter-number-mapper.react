@@ -19,6 +19,13 @@ const App: React.FC = () => {
   const numberTrainingProgram =
     new NumberTrainingProgramInitializer().initialize();
 
+
+  // const trainingExercise = trainingProgram.next()
+  // exercise.trainingSymbol
+  // exercise.succeeded()
+  // exercise.failed()
+
+
   // register on key pressed event (to handle each key)
   useEffect(() => {
     document.addEventListener("keydown", onKeyPressed, true);

@@ -1,8 +1,8 @@
-import { ITrainingProgram } from "../model/ITrainingProgram";
+import { ITrainingProgramBuilder } from "../training/builder/ITrainingProgramBuilder";
+import { ITrainingProgramInitializer } from "../training/builder/ITrainingProgramInitializer";
+import { TrainingProgramBuilder } from "../training/builder/TrainingProgramBuilder";
+import { ITrainingProgram } from "../training/model/ITrainingProgram";
 import { Alphabet } from "../Types/Types";
-import { ITrainingProgramBuilder } from "./ITrainingProgramBuilder";
-import { ITrainingProgramInitializer } from "./ITrainingProgramInitializer";
-import { TrainingProgramBuilder } from "./TrainingProgramBuilder";
 
 export class LetterTrainingProgramInitializer
   implements ITrainingProgramInitializer

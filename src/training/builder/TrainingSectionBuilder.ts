@@ -1,6 +1,6 @@
+import { ProbabilityWeight } from "../../Types/Types";
 import { ITrainingSection } from "../model/ITrainingSection";
 import { ITrainingSymbol } from "../model/ITrainingSymbol";
-import { ProbabilityWeight } from "../Types/Types";
 import { TrainingSection } from "./../model/TrainingSection";
 import { ITrainingSectionBuilder } from "./ITrainingSectionBuilder";
 

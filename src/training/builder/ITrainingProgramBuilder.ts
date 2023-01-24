@@ -1,6 +1,6 @@
-import { ITrainingProgram } from "./../model/ITrainingProgram";
-import { ITrainingSection } from "./../model/ITrainingSection";
-import { ProbabilityWeight } from "./../Types/Types";
+import { ProbabilityWeight } from "../../Types/Types";
+import { ITrainingProgram } from "../model/ITrainingProgram";
+import { ITrainingSection } from "../model/ITrainingSection";
 import { ITrainingSectionBuilder } from "./ITrainingSectionBuilder";
 
 /**

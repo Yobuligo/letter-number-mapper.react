@@ -1,6 +1,8 @@
+import { TrainingProgram } from "./../model/TrainingProgram";
+
+import { ProbabilityWeight } from "../../Types/Types";
 import { ITrainingProgram } from "../model/ITrainingProgram";
-import { ProbabilityWeight } from "../Types/Types";
-import { ITrainingSection } from "./../model/ITrainingSection";
+import { ITrainingSection } from "../model/ITrainingSection";
 import { ITrainingProgramBuilder } from "./ITrainingProgramBuilder";
 import { ITrainingSectionBuilder } from "./ITrainingSectionBuilder";
 import { TrainingSectionBuilder } from "./TrainingSectionBuilder";
@@ -38,7 +40,7 @@ export class TrainingProgramBuilder implements ITrainingProgramBuilder {
   }
 
   build(): ITrainingProgram {
-    return { trainingSections: this.trainingSections };
+    return new TrainingProgram(this.trainingSections);
   }
 
   private createTrainingSectionBuilder(
