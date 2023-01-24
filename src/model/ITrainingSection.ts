@@ -1,3 +1,4 @@
+import { ProbabilityWeight } from "../Types/Types";
 import { ITrainingSymbol } from "./ITrainingSymbol";
 
 export interface ITrainingSection {
@@ -8,7 +9,7 @@ export interface ITrainingSection {
    * 2. The following sections 5, 5, 5, 5 have a complete weight of 20. In percent all sections would have a probability of 25%.
    * 3. The following sections 5, 5, 5, 3, 2 have a complete weight of 20. In percent the sections would have the probabilities 25%, 25%, 25%, 15%, 10%.
    */
-  readonly probabilityWeight: number;
+  readonly probabilityWeight: ProbabilityWeight;
   readonly answersTillProgression: number;
   addTrainingSymbol(trainingSymbol: ITrainingSymbol): void;
   removeTrainingSymbol(trainingSymbol: ITrainingSymbol): void;

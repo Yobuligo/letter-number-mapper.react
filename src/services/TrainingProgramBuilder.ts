@@ -1,4 +1,5 @@
 import { ITrainingProgram } from "../model/ITrainingProgram";
+import { ProbabilityWeight } from "../Types/Types";
 import { ITrainingSection } from "./../model/ITrainingSection";
 import { ITrainingProgramBuilder } from "./ITrainingProgramBuilder";
 import { ITrainingSectionBuilder } from "./ITrainingSectionBuilder";
@@ -15,12 +16,12 @@ export class TrainingProgramBuilder implements ITrainingProgramBuilder {
   }
 
   createTrainingSection(
-    probability: number,
+    probabilityWeight: ProbabilityWeight,
     creator: (
       trainingSectionBuilder: ITrainingSectionBuilder
     ) => ITrainingSection
   ): ITrainingProgramBuilder {
-    const trainingSectionBuilder = new TrainingSectionBuilder(probability);
+    const trainingSectionBuilder = new TrainingSectionBuilder(probabilityWeight);
     const trainingSection = creator(trainingSectionBuilder);
     this.addTrainingSection(trainingSection);
     return this;

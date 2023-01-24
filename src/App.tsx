@@ -19,7 +19,7 @@ const createTrainingProgram = (): ITrainingProgram => {
   const trainingProgramBuilder: ITrainingProgramBuilder =
     new TrainingProgramBuilder();
 
-  return trainingProgramBuilder
+  return trainingProgramBuilder.createTrainingSection().build()
     .addTrainingSection(
       new TrainingSectionBuilder(50)
         .addTrainingSymbol({ symbol: "A", numberSuccessfulAnswers: 0 })
