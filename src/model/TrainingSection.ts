@@ -5,7 +5,7 @@ export class TrainingSection implements ITrainingSection {
   private trainingSymbols: ITrainingSymbol[] = [];
 
   constructor(
-    readonly probability: number,
+    readonly probabilityWeight: number,
     readonly answersTillProgression: number,
     trainingSymbols?: ITrainingSymbol[]
   ) {

@@ -32,8 +32,8 @@ const createTrainingProgram = (): ITrainingProgram => {
 };
 
 const App: React.FC = () => {
-  const trainingProgram = createTrainingProgram()
-  
+  const trainingProgram = createTrainingProgram();
+
   // register on key pressed event (to handle each key)
   useEffect(() => {
     document.addEventListener("keydown", onKeyPressed, true);

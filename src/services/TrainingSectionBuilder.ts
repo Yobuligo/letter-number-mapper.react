@@ -7,7 +7,7 @@ export class TrainingSectionBuilder implements ITrainingSectionBuilder {
   private answersTillProgression: number = 3;
   private trainingSymbols: ITrainingSymbol[] = [];
 
-  constructor(private probability: number) {}
+  constructor(private probabilityWeight: number) {}
 
   addTrainingSymbol(trainingSymbol: ITrainingSymbol): ITrainingSectionBuilder {
     this.trainingSymbols.push(trainingSymbol);
@@ -23,7 +23,7 @@ export class TrainingSectionBuilder implements ITrainingSectionBuilder {
 
   build(): ITrainingSection {
     return new TrainingSection(
-      this.probability,
+      this.probabilityWeight,
       this.answersTillProgression,
       this.trainingSymbols
     );
