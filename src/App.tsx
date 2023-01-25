@@ -12,6 +12,7 @@ import { NumberToLetterSymbolMapper } from "./services/symbolMapper/NumberToLett
 import { ISymbolPicker } from "./services/symbolPicker/ISymbolPicker";
 import { LetterSymbolPicker } from "./services/symbolPicker/LetterSymbolPicker";
 import { NumberSymbolPicker } from "./services/symbolPicker/NumberSymbolPicker";
+import { Alphabet } from "./Types/Types";
 
 const App: React.FC = () => {
   const letterTrainingProgram =
@@ -19,12 +20,10 @@ const App: React.FC = () => {
   const numberTrainingProgram =
     new NumberTrainingProgramInitializer().initialize();
 
-
   // const trainingExercise = trainingProgram.next()
   // exercise.trainingSymbol
   // exercise.succeeded()
   // exercise.failed()
-
 
   const [exerciseType, setExerciseType] = useState(
     ExerciseType.LETTER_TO_NUMBER
@@ -73,12 +72,13 @@ const App: React.FC = () => {
   }, [symbol, symbolMapper]);
 
   const onKeyPressed = (keyboardEvent: KeyboardEvent) => {
-    console.log(`The key ${keyboardEvent.key} was pressed`);
-    if (keyboardEvent.key === "F12") {
+    const uppercasedSymbol = keyboardEvent.key.toUpperCase();
+    console.log(`The key ${uppercasedSymbol} was pressed`);
+    //filter out/ignore all other keys but the alphabet
+    if (!Alphabet.includes(uppercasedSymbol)) {
       return true;
     }
-    //TODO: filter all other keys
-    onExerciseSolutionProvided(keyboardEvent.key.toUpperCase());
+    onExerciseSolutionProvided(uppercasedSymbol);
   };
 
   useEffect(() => {
@@ -119,7 +119,9 @@ const App: React.FC = () => {
       setSolutionStatus(SolutionStatus.SUCCESSFUL);
     } else {
       setSolutionStatus(SolutionStatus.FAILED);
-      console.log(`Wrong (${mappedSelectedSymbol}), try again`);
+      console.log(
+        `Wrong solution (${mappedSelectedSymbol}) provided, try again`
+      );
     }
   };
 

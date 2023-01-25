@@ -6,8 +6,5 @@ class LetterSymbolPickerDefault implements ISymbolPicker {
     const positionInAlphabet = Math.floor(Math.random() * Alphabet.length);
     return Alphabet[positionInAlphabet];
   }
-  getAll(): string[] {
-    return this.alphabet;
-  }
 }
 export const LetterSymbolPicker = new LetterSymbolPickerDefault();
