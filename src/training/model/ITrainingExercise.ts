@@ -1,3 +1,4 @@
+
 import { ITrainingSymbol } from "./ITrainingSymbol";
 import { TrainingExerciseState } from "./TrainingExerciseState";
 /**
