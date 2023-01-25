@@ -34,5 +34,8 @@ class LetterSymbolPickerDefault implements ISymbolPicker {
     const positionInAlphabet = Math.floor(Math.random() * this.alphabet.length);
     return this.alphabet[positionInAlphabet];
   }
+  getAll(): string[] {
+    return this.alphabet;
+  }
 }
 export const LetterSymbolPicker = new LetterSymbolPickerDefault();

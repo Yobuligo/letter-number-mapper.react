@@ -34,16 +34,6 @@ const createTrainingProgram = (): ITrainingProgram => {
 const App: React.FC = () => {
   const trainingProgram = createTrainingProgram();
 
-  // register on key pressed event (to handle each key)
-  useEffect(() => {
-    document.addEventListener("keydown", onKeyPressed, true);
-  }, []);
-
-  const onKeyPressed = (keyboardEvent: KeyboardEvent) => {
-    console.log(`The key ${keyboardEvent.key} was pressed`);
-    onExerciseSolutionProvided(keyboardEvent.key.toUpperCase());
-  };
-
   const [exerciseType, setExerciseType] = useState(
     ExerciseType.LETTER_TO_NUMBER
   );
@@ -80,6 +70,23 @@ const App: React.FC = () => {
     } else {
       setSymbolPicker(NumberSymbolPicker);
     }
+  };
+
+  // register on key pressed event (to handle each key)
+  useEffect(() => {
+    document.addEventListener("keydown", onKeyPressed, true);
+    return () => {
+      document.removeEventListener("keydown", onKeyPressed, true);
+    };
+  }, [symbol, symbolMapper]);
+
+  const onKeyPressed = (keyboardEvent: KeyboardEvent) => {
+    console.log(`The key ${keyboardEvent.key} was pressed`);
+    if (keyboardEvent.key === "F12") {
+      return true;
+    }
+    //TODO: filter all other keys
+    onExerciseSolutionProvided(keyboardEvent.key.toUpperCase());
   };
 
   useEffect(() => {
@@ -120,7 +127,7 @@ const App: React.FC = () => {
       setSolutionStatus(SolutionStatus.SUCCESSFUL);
     } else {
       setSolutionStatus(SolutionStatus.FAILED);
-      console.log("Wrong, try again");
+      console.log(`Wrong (${mappedSelectedSymbol}), try again`);
     }
   };
 
