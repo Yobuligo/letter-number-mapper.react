@@ -2,7 +2,7 @@ import { ITrainingProgramBuilder } from "../training/builder/ITrainingProgramBui
 import { ITrainingProgramInitializer } from "../training/builder/ITrainingProgramInitializer";
 import { TrainingProgramBuilder } from "../training/builder/TrainingProgramBuilder";
 import { ITrainingProgram } from "../training/model/ITrainingProgram";
-import { Alphabet } from "../Types/Types";
+import { Letters } from "../Types/Types";
 
 export class LetterTrainingProgramInitializer
   implements ITrainingProgramInitializer
@@ -13,7 +13,7 @@ export class LetterTrainingProgramInitializer
 
     return trainingProgramBuilder
       .createTrainingSection(50, (trainingSectionBuilder) => {
-        Alphabet.forEach((letter) => {
+        Letters.forEach((letter) => {
           trainingSectionBuilder.addTrainingSymbol({
             symbol: letter,
             numberSuccessfulAnswers: 0,
