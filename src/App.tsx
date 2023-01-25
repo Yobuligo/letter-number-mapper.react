@@ -12,7 +12,7 @@ import { NumberToLetterSymbolMapper } from "./services/symbolMapper/NumberToLett
 import { ISymbolPicker } from "./services/symbolPicker/ISymbolPicker";
 import { LetterSymbolPicker } from "./services/symbolPicker/LetterSymbolPicker";
 import { NumberSymbolPicker } from "./services/symbolPicker/NumberSymbolPicker";
-import { Letters } from "./Types/Types";
+import { Letters, Numbers } from "./Types/Types";
 
 const App: React.FC = () => {
   const letterTrainingProgram =
@@ -74,8 +74,11 @@ const App: React.FC = () => {
   const onKeyPressed = (keyboardEvent: KeyboardEvent) => {
     const uppercasedSymbol = keyboardEvent.key.toUpperCase();
     console.log(`The key ${uppercasedSymbol} was pressed`);
-    //filter out/ignore all other keys but the alphabet
-    if (!Letters.includes(uppercasedSymbol)) {
+    //filter out/ignore all other keys but the letters/numbers
+    if (
+      !Letters.includes(uppercasedSymbol) &&
+      !Numbers.includes(uppercasedSymbol)
+    ) {
       return true;
     }
     onExerciseSolutionProvided(uppercasedSymbol);
