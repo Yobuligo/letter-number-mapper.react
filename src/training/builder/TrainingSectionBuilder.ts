@@ -1,13 +1,14 @@
+import { ProbabilityWeight } from "../../Types/Types";
 import { ITrainingSection } from "../model/ITrainingSection";
 import { ITrainingSymbol } from "../model/ITrainingSymbol";
-import { TrainingSection } from "./../model/TrainingSection";
+import { TrainingSection } from "../model/TrainingSection";
 import { ITrainingSectionBuilder } from "./ITrainingSectionBuilder";
 
 export class TrainingSectionBuilder implements ITrainingSectionBuilder {
   private answersTillProgression: number = 3;
   private trainingSymbols: ITrainingSymbol[] = [];
 
-  constructor(private probabilityWeight: number) {}
+  constructor(private probabilityWeight: ProbabilityWeight) {}
 
   addTrainingSymbol(trainingSymbol: ITrainingSymbol): ITrainingSectionBuilder {
     this.trainingSymbols.push(trainingSymbol);

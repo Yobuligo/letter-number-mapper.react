@@ -1,3 +1,4 @@
+import { ProbabilityWeight } from "../../Types/Types";
 import { ITrainingSection } from "./ITrainingSection";
 import { ITrainingSymbol } from "./ITrainingSymbol";
 
@@ -5,7 +6,7 @@ export class TrainingSection implements ITrainingSection {
   private trainingSymbols: ITrainingSymbol[] = [];
 
   constructor(
-    readonly probabilityWeight: number,
+    readonly probabilityWeight: ProbabilityWeight,
     readonly answersTillProgression: number,
     trainingSymbols?: ITrainingSymbol[]
   ) {
