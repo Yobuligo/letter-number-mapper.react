@@ -14,6 +14,7 @@ import { LetterSymbolPicker } from "./services/symbolPicker/LetterSymbolPicker";
 import { NumberSymbolPicker } from "./services/symbolPicker/NumberSymbolPicker";
 import { Letters, Numbers } from "./Types/Types";
 import { useDebounce } from "./hooks/useDebounce";
+import { useSolutionStatus } from "./hooks/useSolutionStatus";
 
 const App: React.FC = () => {
   const letterTrainingProgram =
@@ -35,10 +36,10 @@ const App: React.FC = () => {
   const [symbolPicker, setSymbolPicker] =
     useState<ISymbolPicker>(LetterSymbolPicker);
   const [symbol, setSymbol] = useState(symbolPicker.pickNext());
-  const [solutionStatus, setSolutionStatus] = useState(
-    SolutionStatus.NOT_PROVIDED
-  );
-  let previousSolutionStatus = SolutionStatus.NOT_PROVIDED;
+  // const [solutionStatus, setSolutionStatus] = useState(
+  //   SolutionStatus.NOT_PROVIDED
+  // );
+  // let previousSolutionStatus = SolutionStatus.NOT_PROVIDED;
 
   const updateKeyboardType = (exerciseType: ExerciseType) => {
     if (exerciseType === ExerciseType.LETTER_TO_NUMBER) {
@@ -83,7 +84,8 @@ const App: React.FC = () => {
     //filter out/ignore all other keys but the letters/numbers
     if (
       !Letters.includes(uppercasedSymbol) &&
-      !Numbers.includes(uppercasedSymbol) && uppercasedSymbol !== "0"
+      !Numbers.includes(uppercasedSymbol) &&
+      uppercasedSymbol !== "0"
     ) {
       return true;
     }
@@ -94,24 +96,9 @@ const App: React.FC = () => {
     setSymbol(symbolPicker.pickNext());
   }, [symbolPicker]);
 
-  useEffect(() => {
-    let timer: NodeJS.Timeout;
-    if (solutionStatus !== SolutionStatus.NOT_PROVIDED) {
-      previousSolutionStatus = solutionStatus;
-      timer = setTimeout(() => {
-        setSolutionStatus(SolutionStatus.NOT_PROVIDED);
-        if (previousSolutionStatus === SolutionStatus.SUCCESSFUL) {
-          setSymbol(symbolPicker.pickNext());
-        }
-        previousSolutionStatus = SolutionStatus.NOT_PROVIDED;
-      }, 300);
-    }
-    return () => {
-      if (timer !== undefined) {
-        clearTimeout(timer);
-      }
-    };
-  }, [solutionStatus]);
+  const { solutionStatus, setSolutionStatus } = useSolutionStatus(() =>
+    setSymbol(symbolPicker.pickNext())
+  );
 
   const onSetExerciseTypeHandler = (exerciseType: ExerciseType) => {
     console.log(`ExerciseType changed to ${ExerciseType[exerciseType]}`);
