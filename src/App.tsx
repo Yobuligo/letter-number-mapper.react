@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "./App.css";
 import { AppContext } from "./AppContext";
 import { ExerciseType } from "./components/exercise/ExerciseType";
@@ -13,6 +13,7 @@ import { ISymbolPicker } from "./services/symbolPicker/ISymbolPicker";
 import { LetterSymbolPicker } from "./services/symbolPicker/LetterSymbolPicker";
 import { NumberSymbolPicker } from "./services/symbolPicker/NumberSymbolPicker";
 import { Letters, Numbers } from "./Types/Types";
+import { useDebounce } from "./hooks/useDebounce";
 
 const App: React.FC = () => {
   const letterTrainingProgram =
@@ -71,17 +72,22 @@ const App: React.FC = () => {
     };
   }, [symbol, symbolMapper]);
 
+  const addNewValue = useDebounce(300, (debouncedValue) => {
+    console.log(`Solution provided: ${debouncedValue}`);
+    onExerciseSolutionProvided(debouncedValue);
+  });
+
   const onKeyPressed = (keyboardEvent: KeyboardEvent) => {
     const uppercasedSymbol = keyboardEvent.key.toUpperCase();
     console.log(`The key ${uppercasedSymbol} was pressed`);
     //filter out/ignore all other keys but the letters/numbers
     if (
       !Letters.includes(uppercasedSymbol) &&
-      !Numbers.includes(uppercasedSymbol)
+      !Numbers.includes(uppercasedSymbol) && uppercasedSymbol !== "0"
     ) {
       return true;
     }
-    onExerciseSolutionProvided(uppercasedSymbol);
+    addNewValue(uppercasedSymbol);
   };
 
   useEffect(() => {
