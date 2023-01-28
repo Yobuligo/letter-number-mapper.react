@@ -1,20 +1,22 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { AppContext } from "./AppContext";
-import { ExerciseType } from "./components/exercise/ExerciseType";
+import {
+  ExerciseType,
+  EXERCISE_TYPE
+} from "./components/exercise/ExerciseType";
 import { SolutionStatus } from "./components/exercise/SolutionStatus";
 import { KeyboardType } from "./components/keyboard/KeyboardType";
 import { Main } from "./components/main/Main";
-import { LetterTrainingProgramInitializer } from "./services/trainingProgramInitializer/LetterTrainingProgramInitializer";
-import { NumberTrainingProgramInitializer } from "./services/trainingProgramInitializer/NumberTrainingProgramInitializer";
-import { LetterToNumberSymbolMapper } from "./services/symbolMapper/LetterToNumberSymbolMapper";
-import { NumberToLetterSymbolMapper } from "./services/symbolMapper/NumberToLetterSymbolMapper";
-import { ISymbolPicker } from "./services/symbolPicker/ISymbolPicker";
-import { LetterSymbolPicker } from "./services/symbolPicker/LetterSymbolPicker";
-import { NumberSymbolPicker } from "./services/symbolPicker/NumberSymbolPicker";
-import { Letters, Numbers } from "./Types/Types";
 import { useDebounce } from "./hooks/useDebounce";
 import { useSolutionStatus } from "./hooks/useSolutionStatus";
+import { LetterToNumberSymbolMapper } from "./services/symbolMapper/LetterToNumberSymbolMapper";
+import { NumberToLetterSymbolMapper } from "./services/symbolMapper/NumberToLetterSymbolMapper";
+import { LetterSymbolPicker } from "./services/symbolPicker/LetterSymbolPicker";
+import { NumberSymbolPicker } from "./services/symbolPicker/NumberSymbolPicker";
+import { LetterTrainingProgramInitializer } from "./services/trainingProgramInitializer/LetterTrainingProgramInitializer";
+import { NumberTrainingProgramInitializer } from "./services/trainingProgramInitializer/NumberTrainingProgramInitializer";
+import { Letters, Numbers } from "./Types/Types";
 
 const App: React.FC = () => {
   const letterTrainingProgram =
@@ -27,42 +29,62 @@ const App: React.FC = () => {
   // exercise.succeeded()
   // exercise.failed()
 
-  const [exerciseType, setExerciseType] = useState(
-    ExerciseType.LETTER_TO_NUMBER
-  );
+  const getInitialExerciseType = () => {
+    const initialExerciseType = localStorage.getItem(EXERCISE_TYPE);
+    if (initialExerciseType === null) {
+      localStorage.setItem(EXERCISE_TYPE, ExerciseType.LETTER_TO_NUMBER);
+      return ExerciseType.LETTER_TO_NUMBER;
+    } else {
+      return initialExerciseType as unknown as ExerciseType;
+    }
+  };
 
-  const [keyboardType, setKeyboardType] = useState(KeyboardType.NUMBER);
-  const [symbolMapper, setSymbolMapper] = useState(NumberToLetterSymbolMapper);
-  const [symbolPicker, setSymbolPicker] =
-    useState<ISymbolPicker>(LetterSymbolPicker);
+  const [exerciseType, setExerciseType] = useState(getInitialExerciseType());
+  const getKeyboardTypeByExerciseType = (exerciseType: ExerciseType) => {
+    if (exerciseType === ExerciseType.LETTER_TO_NUMBER) {
+      return KeyboardType.NUMBER;
+    } else {
+      return KeyboardType.LETTER;
+    }
+  };
+
+  const getSymbolMapperByExerciseType = (exerciseType: ExerciseType) => {
+    if (exerciseType === ExerciseType.LETTER_TO_NUMBER) {
+      return NumberToLetterSymbolMapper;
+    } else {
+      return LetterToNumberSymbolMapper;
+    }
+  };
+
+  const getSymbolPickerByExerciseType = (exerciseType: ExerciseType) => {
+    if (exerciseType === ExerciseType.LETTER_TO_NUMBER) {
+      return LetterSymbolPicker;
+    } else {
+      return NumberSymbolPicker;
+    }
+  };
+
+  const [keyboardType, setKeyboardType] = useState(
+    getKeyboardTypeByExerciseType(exerciseType)
+  );
+  const [symbolMapper, setSymbolMapper] = useState(
+    getSymbolMapperByExerciseType(exerciseType)
+  );
+  const [symbolPicker, setSymbolPicker] = useState(
+    getSymbolPickerByExerciseType(exerciseType)
+  );
   const [symbol, setSymbol] = useState(symbolPicker.pickNext());
-  // const [solutionStatus, setSolutionStatus] = useState(
-  //   SolutionStatus.NOT_PROVIDED
-  // );
-  // let previousSolutionStatus = SolutionStatus.NOT_PROVIDED;
 
   const updateKeyboardType = (exerciseType: ExerciseType) => {
-    if (exerciseType === ExerciseType.LETTER_TO_NUMBER) {
-      setKeyboardType(KeyboardType.NUMBER);
-    } else {
-      setKeyboardType(KeyboardType.LETTER);
-    }
+    setKeyboardType(getKeyboardTypeByExerciseType(exerciseType));
   };
 
   const updateSymbolMapper = (exerciseType: ExerciseType) => {
-    if (exerciseType === ExerciseType.LETTER_TO_NUMBER) {
-      setSymbolMapper(NumberToLetterSymbolMapper);
-    } else {
-      setSymbolMapper(LetterToNumberSymbolMapper);
-    }
+    setSymbolMapper(getSymbolMapperByExerciseType(exerciseType));
   };
 
   const updateSymbolPicker = (exerciseType: ExerciseType) => {
-    if (exerciseType === ExerciseType.LETTER_TO_NUMBER) {
-      setSymbolPicker(LetterSymbolPicker);
-    } else {
-      setSymbolPicker(NumberSymbolPicker);
-    }
+    setSymbolPicker(getSymbolPickerByExerciseType(exerciseType));
   };
 
   // register on key pressed event (to handle each key)
@@ -71,9 +93,9 @@ const App: React.FC = () => {
     return () => {
       document.removeEventListener("keydown", onKeyPressed, true);
     };
-  }, [symbol, symbolMapper]);
+  }, []);
 
-  const addNewValue = useDebounce(300, (debouncedValue) => {
+  const addKey = useDebounce(300, (debouncedValue) => {
     console.log(`Solution provided: ${debouncedValue}`);
     onExerciseSolutionProvided(debouncedValue);
   });
@@ -89,7 +111,7 @@ const App: React.FC = () => {
     ) {
       return true;
     }
-    addNewValue(uppercasedSymbol);
+    addKey(uppercasedSymbol);
   };
 
   useEffect(() => {
@@ -101,6 +123,7 @@ const App: React.FC = () => {
   );
 
   const onSetExerciseTypeHandler = (exerciseType: ExerciseType) => {
+    localStorage.setItem(EXERCISE_TYPE, exerciseType);
     console.log(`ExerciseType changed to ${ExerciseType[exerciseType]}`);
     updateKeyboardType(exerciseType);
     updateSymbolMapper(exerciseType);

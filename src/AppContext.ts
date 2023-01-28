@@ -17,9 +17,9 @@ export const AppContext = createContext<{
   };
 }>({
   settings: {
-    exerciseType: ExerciseType.NUMBER_TO_LETTER,
+    exerciseType: ExerciseType.LETTER_TO_NUMBER,
     setExerciseType: () => {},
-    keyboardType: KeyboardType.LETTER,
+    keyboardType: KeyboardType.NUMBER,
     correctSolution: undefined,
   },
   exercise: {
