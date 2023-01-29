@@ -1,6 +1,6 @@
-
 import { ITrainingSymbol } from "./ITrainingSymbol";
 import { TrainingExerciseState } from "./TrainingExerciseState";
+
 /**
  * An implementation of this interface represents a ITrainingExercise.
  * It is an exercise to learn a specific ITrainingSymbol.
