@@ -21,5 +21,7 @@ export interface ITrainingSection {
   follower: ITrainingSection | undefined;
   addTrainingSymbol(trainingSymbol: ITrainingSymbol): void;
   removeTrainingSymbol(trainingSymbol: ITrainingSymbol): void;
-  findAll(): ITrainingSymbol[];
+  countTrainingSymbols(): number;
+  findAllTrainingSymbols(): ITrainingSymbol[];
+  trainingSymbolAt(index: number): ITrainingSymbol;
 }

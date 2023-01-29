@@ -1,23 +1,24 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { AppContext } from "./AppContext";
 import { ExerciseType } from "./components/exercise/ExerciseType";
 import { SolutionStatus } from "./components/exercise/SolutionStatus";
 import { KeyboardType } from "./components/keyboard/KeyboardType";
 import { Main } from "./components/main/Main";
-import { LetterTrainingProgramInitializer } from "./services/trainingProgramInitializer/LetterTrainingProgramInitializer";
-import { NumberTrainingProgramInitializer } from "./services/trainingProgramInitializer/NumberTrainingProgramInitializer";
+import { useDebounce } from "./hooks/useDebounce";
 import { LetterToNumberSymbolMapper } from "./services/symbolMapper/LetterToNumberSymbolMapper";
 import { NumberToLetterSymbolMapper } from "./services/symbolMapper/NumberToLetterSymbolMapper";
 import { ISymbolPicker } from "./services/symbolPicker/ISymbolPicker";
 import { LetterSymbolPicker } from "./services/symbolPicker/LetterSymbolPicker";
 import { NumberSymbolPicker } from "./services/symbolPicker/NumberSymbolPicker";
+import { LetterTrainingProgramInitializer } from "./services/trainingProgramInitializer/LetterTrainingProgramInitializer";
+import { NumberTrainingProgramInitializer } from "./services/trainingProgramInitializer/NumberTrainingProgramInitializer";
 import { Letters, Numbers } from "./Types/Types";
-import { useDebounce } from "./hooks/useDebounce";
 
 const App: React.FC = () => {
   const letterTrainingProgram =
     new LetterTrainingProgramInitializer().initialize();
+  // const trainingExercise = letterTrainingProgram.nextTrainingExercise();
   const numberTrainingProgram =
     new NumberTrainingProgramInitializer().initialize();
 
@@ -83,7 +84,8 @@ const App: React.FC = () => {
     //filter out/ignore all other keys but the letters/numbers
     if (
       !Letters.includes(uppercasedSymbol) &&
-      !Numbers.includes(uppercasedSymbol) && uppercasedSymbol !== "0"
+      !Numbers.includes(uppercasedSymbol) &&
+      uppercasedSymbol !== "0"
     ) {
       return true;
     }

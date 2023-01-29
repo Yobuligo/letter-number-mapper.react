@@ -14,22 +14,17 @@ export class TrainingSymbolPicker implements ITrainingSymbolPicker {
     const probability =
       Math.random() *
       this.trainingProgram.trainingProgramInfo.probabilityWeightSum;
-
-    // Which sections belongs to the calculated probability?
-    // 50, 30, 15, 5
-    // 67%
-
-    // find section from probability
-    // 1..50    1
-    // 51..80   2
-    // 81..95   3
-    // 96..100  4
-
-    throw new Error();
+    return this.trainingProgram.trainingProgramInfo.findTrainingSectionByProbability(
+      probability
+    );
   }
 
   private selectTrainingSymbol(): ITrainingSymbol {
     const trainingSection = this.selectTrainingSection();
-    throw new Error();
+    const probability = Math.random() * trainingSection.countTrainingSymbols();
+    const index =
+      Math.round((trainingSection.countTrainingSymbols() / 100) * probability) -
+      1;
+    return trainingSection.trainingSymbolAt(index);
   }
 }

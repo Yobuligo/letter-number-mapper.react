@@ -28,7 +28,15 @@ export class TrainingSection implements ITrainingSection {
     );
   }
 
-  findAll(): ITrainingSymbol[] {
+  countTrainingSymbols(): number {
+    return this.trainingSymbols.length;
+  }
+
+  findAllTrainingSymbols(): ITrainingSymbol[] {
     return this.trainingSymbols;
+  }
+
+  trainingSymbolAt(index: number): ITrainingSymbol {
+    return this.trainingSymbols[index];
   }
 }
