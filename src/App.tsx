@@ -13,7 +13,7 @@ import { LetterSymbolPicker } from "./services/symbolPicker/LetterSymbolPicker";
 import { NumberSymbolPicker } from "./services/symbolPicker/NumberSymbolPicker";
 import { LetterTrainingProgramInitializer } from "./services/trainingProgramInitializer/LetterTrainingProgramInitializer";
 import { NumberTrainingProgramInitializer } from "./services/trainingProgramInitializer/NumberTrainingProgramInitializer";
-import { ParameterStore } from "./store/SettingsStore";
+import { LocalStore } from "./store/LocalStore";
 import { Letters, Numbers } from "./Types/Types";
 
 const App: React.FC = () => {
@@ -21,7 +21,7 @@ const App: React.FC = () => {
     new LetterTrainingProgramInitializer().initialize();
   const numberTrainingProgram =
     new NumberTrainingProgramInitializer().initialize();
-  const settingsStore = new ParameterStore();
+  const localStore = new LocalStore();
 
   // const trainingExercise = trainingProgram.next()
   // exercise.trainingSymbol
@@ -29,11 +29,15 @@ const App: React.FC = () => {
   // exercise.failed()
 
   const initializeSettings = () => {
-    const locallyStoredSettings = settingsStore.get();
-    if (locallyStoredSettings === null || locallyStoredSettings === undefined) {
+    const locallyStoredParameters =
+      localStore.get<StoredParameters>(STORED_PARAMETERS);
+    if (
+      locallyStoredParameters === null ||
+      locallyStoredParameters === undefined
+    ) {
       return { exerciseType: ExerciseType.LETTER_TO_NUMBER };
     } else {
-      return locallyStoredSettings;
+      return locallyStoredParameters;
     }
   };
   const [settings, setSettings] = useState<StoredParameters>(
@@ -41,7 +45,7 @@ const App: React.FC = () => {
   );
 
   useEffect(() => {
-    settingsStore.save(settings);
+    localStore.save(STORED_PARAMETERS, settings);
   }, [settings]);
 
   const getKeyboardTypeByExerciseType = (exerciseType: ExerciseType) => {
@@ -68,9 +72,6 @@ const App: React.FC = () => {
     }
   };
 
-  const [keyboardType, setKeyboardType] = useState(
-    getKeyboardTypeByExerciseType(settings.exerciseType)
-  );
   const [symbolMapper, setSymbolMapper] = useState(
     getSymbolMapperByExerciseType(settings.exerciseType)
   );
@@ -78,10 +79,6 @@ const App: React.FC = () => {
     getSymbolPickerByExerciseType(settings.exerciseType)
   );
   const [symbol, setSymbol] = useState(symbolPicker.pickNext());
-
-  const updateKeyboardType = (exerciseType: ExerciseType) => {
-    setKeyboardType(getKeyboardTypeByExerciseType(exerciseType));
-  };
 
   const updateSymbolMapper = (exerciseType: ExerciseType) => {
     setSymbolMapper(getSymbolMapperByExerciseType(exerciseType));
@@ -128,7 +125,6 @@ const App: React.FC = () => {
 
   const onSetExerciseTypeHandler = (exerciseType: ExerciseType) => {
     console.log(`ExerciseType changed to ${ExerciseType[exerciseType]}`);
-    updateKeyboardType(exerciseType);
     updateSymbolMapper(exerciseType);
     updateSymbolPicker(exerciseType);
     setSettings((previousSettings) => {
@@ -158,7 +154,7 @@ const App: React.FC = () => {
               exerciseType: settings.exerciseType,
             },
             setExerciseType: onSetExerciseTypeHandler,
-            keyboardType: keyboardType,
+            keyboardType: getKeyboardTypeByExerciseType(settings.exerciseType),
           },
           exercise: {
             symbol: symbol,
