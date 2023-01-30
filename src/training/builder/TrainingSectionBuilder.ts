@@ -25,8 +25,7 @@ export class TrainingSectionBuilder implements ITrainingSectionBuilder {
   build(): ITrainingSection {
     const trainingSection = new TrainingSection(
       this.probabilityWeight,
-      this.answersTillProgression,
-      this.trainingSymbols
+      this.answersTillProgression
     );
     this.trainingSymbols.forEach((trainingSymbol) => {
       trainingSymbol.trainingSection = trainingSection;
