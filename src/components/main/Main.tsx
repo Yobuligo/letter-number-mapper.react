@@ -74,7 +74,7 @@ export const Main: React.FC = () => {
       <Toolbar toolbarActions={toolbarActions} />
       <Display
         symbol={context.exercise.symbol}
-        exerciseType={context.settings.exerciseType}
+        exerciseType={context.storedSettings.exerciseType}
       />
       <Keyboard
         keyboardType={context.settings.keyboardType}

@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import { AppContext } from "./AppContext";
-import {
-  ExerciseType,
-  EXERCISE_TYPE
-} from "./components/exercise/ExerciseType";
+import { AppContext, StoredSettings, STORED_SETTINGS } from "./AppContext";
+import { ExerciseType } from "./components/exercise/ExerciseType";
 import { SolutionStatus } from "./components/exercise/SolutionStatus";
 import { KeyboardType } from "./components/keyboard/KeyboardType";
 import { Main } from "./components/main/Main";
@@ -16,6 +13,7 @@ import { LetterSymbolPicker } from "./services/symbolPicker/LetterSymbolPicker";
 import { NumberSymbolPicker } from "./services/symbolPicker/NumberSymbolPicker";
 import { LetterTrainingProgramInitializer } from "./services/trainingProgramInitializer/LetterTrainingProgramInitializer";
 import { NumberTrainingProgramInitializer } from "./services/trainingProgramInitializer/NumberTrainingProgramInitializer";
+import { SettingsStore } from "./SettingsStore";
 import { Letters, Numbers } from "./Types/Types";
 
 const App: React.FC = () => {
@@ -23,23 +21,30 @@ const App: React.FC = () => {
     new LetterTrainingProgramInitializer().initialize();
   const numberTrainingProgram =
     new NumberTrainingProgramInitializer().initialize();
+  const settingsStore = new SettingsStore();
 
   // const trainingExercise = trainingProgram.next()
   // exercise.trainingSymbol
   // exercise.succeeded()
   // exercise.failed()
 
-  const getInitialExerciseType = () => {
-    const initialExerciseType = localStorage.getItem(EXERCISE_TYPE);
-    if (initialExerciseType === null) {
-      localStorage.setItem(EXERCISE_TYPE, ExerciseType.LETTER_TO_NUMBER);
-      return ExerciseType.LETTER_TO_NUMBER;
+  const initializeSettings = () => {
+    const locallyStoredSettings = settingsStore.get();
+    if (locallyStoredSettings === null || locallyStoredSettings === undefined) {
+      return { exerciseType: ExerciseType.LETTER_TO_NUMBER };
     } else {
-      return initialExerciseType as unknown as ExerciseType;
+      return locallyStoredSettings;
     }
   };
+  const [settings, setSettings] = useState<StoredSettings>(
+    initializeSettings()
+  );
 
-  const [exerciseType, setExerciseType] = useState(getInitialExerciseType());
+  useEffect(() => {
+    settingsStore.save(settings);
+  }, [settings]);
+
+  // const [exerciseType, setExerciseType] = useState(settings.exerciseType);
   const getKeyboardTypeByExerciseType = (exerciseType: ExerciseType) => {
     if (exerciseType === ExerciseType.LETTER_TO_NUMBER) {
       return KeyboardType.NUMBER;
@@ -65,13 +70,13 @@ const App: React.FC = () => {
   };
 
   const [keyboardType, setKeyboardType] = useState(
-    getKeyboardTypeByExerciseType(exerciseType)
+    getKeyboardTypeByExerciseType(settings.exerciseType)
   );
   const [symbolMapper, setSymbolMapper] = useState(
-    getSymbolMapperByExerciseType(exerciseType)
+    getSymbolMapperByExerciseType(settings.exerciseType)
   );
   const [symbolPicker, setSymbolPicker] = useState(
-    getSymbolPickerByExerciseType(exerciseType)
+    getSymbolPickerByExerciseType(settings.exerciseType)
   );
   const [symbol, setSymbol] = useState(symbolPicker.pickNext());
 
@@ -101,17 +106,17 @@ const App: React.FC = () => {
   });
 
   const onKeyPressed = (keyboardEvent: KeyboardEvent) => {
-    const uppercasedSymbol = keyboardEvent.key.toUpperCase();
-    console.log(`The key ${uppercasedSymbol} was pressed`);
+    const uppercaseSymbol = keyboardEvent.key.toUpperCase();
+    console.log(`The key ${uppercaseSymbol} was pressed`);
     //filter out/ignore all other keys but the letters/numbers
     if (
-      !Letters.includes(uppercasedSymbol) &&
-      !Numbers.includes(uppercasedSymbol) &&
-      uppercasedSymbol !== "0"
+      !Letters.includes(uppercaseSymbol) &&
+      !Numbers.includes(uppercaseSymbol) &&
+      uppercaseSymbol !== "0"
     ) {
       return true;
     }
-    addKey(uppercasedSymbol);
+    addKey(uppercaseSymbol);
   };
 
   useEffect(() => {
@@ -123,12 +128,13 @@ const App: React.FC = () => {
   );
 
   const onSetExerciseTypeHandler = (exerciseType: ExerciseType) => {
-    localStorage.setItem(EXERCISE_TYPE, exerciseType);
     console.log(`ExerciseType changed to ${ExerciseType[exerciseType]}`);
     updateKeyboardType(exerciseType);
     updateSymbolMapper(exerciseType);
     updateSymbolPicker(exerciseType);
-    setExerciseType(exerciseType);
+    setSettings((previousSettings) => {
+      return { ...previousSettings, exerciseType: exerciseType };
+    });
   };
 
   const onExerciseSolutionProvided = (selectedSymbol: string) => {
@@ -148,8 +154,10 @@ const App: React.FC = () => {
     <>
       <AppContext.Provider
         value={{
+          storedSettings: {
+            exerciseType: settings.exerciseType,
+          },
           settings: {
-            exerciseType: exerciseType,
             setExerciseType: onSetExerciseTypeHandler,
             keyboardType: keyboardType,
           },

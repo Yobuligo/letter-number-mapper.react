@@ -3,9 +3,14 @@ import { ExerciseType } from "./components/exercise/ExerciseType";
 import { SolutionStatus } from "./components/exercise/SolutionStatus";
 import { KeyboardType } from "./components/keyboard/KeyboardType";
 
+export const STORED_SETTINGS = "StoredSettings";
+export type StoredSettings = {
+  exerciseType: ExerciseType;
+};
+
 export const AppContext = createContext<{
+  storedSettings: StoredSettings;
   settings: {
-    exerciseType: ExerciseType;
     setExerciseType: (exerciseType: ExerciseType) => void;
     keyboardType: KeyboardType;
     correctSolution?: Boolean;
@@ -16,8 +21,10 @@ export const AppContext = createContext<{
     solutionStatus: SolutionStatus;
   };
 }>({
-  settings: {
+  storedSettings: {
     exerciseType: ExerciseType.LETTER_TO_NUMBER,
+  },
+  settings: {
     setExerciseType: () => {},
     keyboardType: KeyboardType.NUMBER,
     correctSolution: undefined,

@@ -8,7 +8,7 @@ const Settings: React.FC = () => {
   const context = useContext(AppContext);
 
   const switchExerciseType = () => {
-    if (context.settings.exerciseType === ExerciseType.LETTER_TO_NUMBER) {
+    if (context.storedSettings.exerciseType === ExerciseType.LETTER_TO_NUMBER) {
       context.settings.setExerciseType(ExerciseType.NUMBER_TO_LETTER);
     } else {
       context.settings.setExerciseType(ExerciseType.LETTER_TO_NUMBER);
@@ -24,7 +24,7 @@ const Settings: React.FC = () => {
   };
 
   const isChecked = (exerciseType: ExerciseType) => {
-    return context.settings.exerciseType === exerciseType ? true : false;
+    return context.storedSettings.exerciseType === exerciseType ? true : false;
   };
 
   return (
