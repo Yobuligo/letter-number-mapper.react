@@ -17,13 +17,13 @@ export interface ITrainingSection {
    */
   readonly probabilityWeight: ProbabilityWeight;
   readonly answersTillProgression: number;
-  predecessor: ITrainingSection | undefined;
   follower: ITrainingSection | undefined;
+  predecessor: ITrainingSection | undefined;
   addTrainingSymbol(trainingSymbol: ITrainingSymbol): void;
-  removeTrainingSymbol(trainingSymbol: ITrainingSymbol): void;
   countTrainingSymbols(): number;
-  isEmpty(): boolean;
-  isNotEmpty(): boolean;
   findAllTrainingSymbols(): ITrainingSymbol[];
+  hasTrainingSymbols(): boolean;
+  hasNotTrainingSymbols(): boolean;
+  removeTrainingSymbol(trainingSymbol: ITrainingSymbol): void;
   trainingSymbolAt(index: number): ITrainingSymbol;
 }

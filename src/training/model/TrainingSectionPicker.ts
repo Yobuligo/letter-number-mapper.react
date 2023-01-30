@@ -62,7 +62,7 @@ export class TrainingSectionPicker implements ITrainingSectionPicker {
 
   private getFilledTrainingSections(): ITrainingSection[] {
     return this.trainingProgram.trainingSections.filter((trainingSection) => {
-      return trainingSection.isNotEmpty();
+      return trainingSection.hasNotTrainingSymbols();
     });
   }
 }
