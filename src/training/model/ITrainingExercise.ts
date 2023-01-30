@@ -7,6 +7,12 @@ import { ITrainingSymbol } from "./ITrainingSymbol";
  */
 export interface ITrainingExercise {
   readonly trainingSymbol: ITrainingSymbol;
-  succeeded(): void;
   failed(): void;
+  succeeded(): void;
+  registerOnFailed(
+    eventHandler: (trainingExercise: ITrainingExercise) => void
+  ): void;
+  registerOnSucceed(
+    eventHandler: (trainingExercise: ITrainingExercise) => void
+  ): void;
 }
