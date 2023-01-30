@@ -4,6 +4,8 @@ import { ITrainingSymbol } from "./ITrainingSymbol";
 
 export class TrainingSection implements ITrainingSection {
   private trainingSymbols: ITrainingSymbol[] = [];
+  predecessor: ITrainingSection | undefined = undefined;
+  follower: ITrainingSection | undefined = undefined;
 
   constructor(
     readonly probabilityWeight: ProbabilityWeight,
@@ -26,7 +28,23 @@ export class TrainingSection implements ITrainingSection {
     );
   }
 
-  findAll(): ITrainingSymbol[] {
+  countTrainingSymbols(): number {
+    return this.trainingSymbols.length;
+  }
+
+  isEmpty(): boolean {
+    return this.trainingSymbols.length === 0;
+  }
+
+  isNotEmpty(): boolean {
+    return !this.isEmpty();
+  }
+
+  findAllTrainingSymbols(): ITrainingSymbol[] {
     return this.trainingSymbols;
+  }
+
+  trainingSymbolAt(index: number): ITrainingSymbol {
+    return this.trainingSymbols[index];
   }
 }

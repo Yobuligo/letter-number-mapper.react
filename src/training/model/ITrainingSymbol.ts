@@ -5,4 +5,12 @@
 export interface ITrainingSymbol {
   readonly symbol: string;
   readonly numberSuccessfulAnswers: number;
+  failed(): void;
+  succeed(): void;
+  registerOnFailed(
+    eventHandler: (trainingSymbol: ITrainingSymbol) => void
+  ): void;
+  registerOnSucceed(
+    eventHandler: (trainingSymbol: ITrainingSymbol) => void
+  ): void;
 }

@@ -1,7 +1,8 @@
 import { ITrainingProgramBuilder } from "../../training/builder/ITrainingProgramBuilder";
+import { ITrainingProgramInitializer } from "../../training/builder/ITrainingProgramInitializer";
 import { TrainingProgramBuilder } from "../../training/builder/TrainingProgramBuilder";
 import { ITrainingProgram } from "../../training/model/ITrainingProgram";
-import { ITrainingProgramInitializer } from "../../training/builder/ITrainingProgramInitializer";
+import { TrainingSymbol } from "./../../training/model/TrainingSymbol";
 
 export class TrainingProgramInitializer implements ITrainingProgramInitializer {
   constructor(private symbols: string[]) {}
@@ -13,10 +14,7 @@ export class TrainingProgramInitializer implements ITrainingProgramInitializer {
     return trainingProgramBuilder
       .createTrainingSection(50, (trainingSectionBuilder) => {
         this.symbols.forEach((symbol) => {
-          trainingSectionBuilder.addTrainingSymbol({
-            symbol: symbol,
-            numberSuccessfulAnswers: 0,
-          });
+          trainingSectionBuilder.addTrainingSymbol(new TrainingSymbol(symbol));
         });
         return trainingSectionBuilder.build();
       })

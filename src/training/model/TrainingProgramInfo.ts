@@ -5,6 +5,10 @@ export class TrainingProgramInfo implements ITrainingProgramInfo {
   constructor(private trainingProgram: ITrainingProgram) {}
 
   public get probabilityWeightSum(): number {
-    throw new Error();
+    let probabilityWeight: number = 0;
+    this.trainingProgram.trainingSections.forEach((trainingSection) => {
+      probabilityWeight = probabilityWeight + trainingSection.probabilityWeight;
+    });
+    return probabilityWeight;
   }
 }

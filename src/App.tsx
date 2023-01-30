@@ -19,6 +19,7 @@ import { Letters, Numbers } from "./Types/Types";
 const App: React.FC = () => {
   const letterTrainingProgram =
     new LetterTrainingProgramInitializer().initialize();
+  const trainingExercise = letterTrainingProgram.nextTrainingExercise();
   const numberTrainingProgram =
     new NumberTrainingProgramInitializer().initialize();
   const localStore = new LocalStore();
