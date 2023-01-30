@@ -13,14 +13,24 @@ export class TrainingProgramInitializer implements ITrainingProgramInitializer {
 
     return trainingProgramBuilder
       .createTrainingSection(50, (trainingSectionBuilder) => {
+        trainingSectionBuilder.setAnswersTillProgression(3);
         this.symbols.forEach((symbol) => {
           trainingSectionBuilder.addTrainingSymbol(new TrainingSymbol(symbol));
         });
         return trainingSectionBuilder.build();
       })
-      .createEmptyTrainingSection(30)
-      .createEmptyTrainingSection(15)
-      .createEmptyTrainingSection(5)
+      .createTrainingSection(30, (trainingSectionBuilder) => {
+        trainingSectionBuilder.setAnswersTillProgression(6);
+        return trainingSectionBuilder.build();
+      })
+      .createTrainingSection(15, (trainingSectionBuilder) => {
+        trainingSectionBuilder.setAnswersTillProgression(9);
+        return trainingSectionBuilder.build();
+      })
+      .createTrainingSection(5, (trainingSectionBuilder) => {
+        trainingSectionBuilder.setAnswersTillProgression(12);
+        return trainingSectionBuilder.build();
+      })
       .build();
   }
 }

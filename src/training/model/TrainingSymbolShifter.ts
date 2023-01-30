@@ -1,14 +1,21 @@
-import { ITrainingProgram } from "./ITrainingProgram";
 import { ITrainingSymbol } from "./ITrainingSymbol";
 import { ITrainingSymbolShifter } from "./ITrainingSymbolShifter";
 
 export class TrainingSymbolShifter implements ITrainingSymbolShifter {
-  constructor(private trainingProgram: ITrainingProgram) {}
-
   shiftUp(trainingSymbol: ITrainingSymbol): void {
-    throw new Error("Method not implemented.");
+    if (
+      trainingSymbol.trainingSection.follower !== undefined &&
+      trainingSymbol.numberSuccessfulAnswers >
+        trainingSymbol.trainingSection.answersTillProgression
+    ) {
+      trainingSymbol.trainingSection = trainingSymbol.trainingSection.follower;
+    }
   }
+
   shiftDown(trainingSymbol: ITrainingSymbol): void {
-    throw new Error("Method not implemented.");
+    if (trainingSymbol.trainingSection.predecessor !== undefined) {
+      trainingSymbol.trainingSection =
+        trainingSymbol.trainingSection.predecessor;
+    }
   }
 }

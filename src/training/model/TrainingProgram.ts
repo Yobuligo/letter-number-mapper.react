@@ -9,7 +9,7 @@ import { TrainingSymbolShifter } from "./TrainingSymbolShifter";
 
 export class TrainingProgram implements ITrainingProgram {
   private trainingSymbolPicker = new TrainingSymbolPicker(this);
-  private trainingSymbolShifter = new TrainingSymbolShifter(this);
+  private trainingSymbolShifter = new TrainingSymbolShifter();
   readonly trainingProgramInfo: ITrainingProgramInfo = new TrainingProgramInfo(
     this
   );

@@ -23,10 +23,14 @@ export class TrainingSectionBuilder implements ITrainingSectionBuilder {
   }
 
   build(): ITrainingSection {
-    return new TrainingSection(
+    const trainingSection = new TrainingSection(
       this.probabilityWeight,
       this.answersTillProgression,
       this.trainingSymbols
     );
+    this.trainingSymbols.forEach((trainingSymbol) => {
+      trainingSymbol.trainingSection = trainingSection;
+    });
+    return trainingSection;
   }
 }

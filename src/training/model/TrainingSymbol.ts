@@ -1,3 +1,4 @@
+import { ITrainingSection } from "./ITrainingSection";
 import { ITrainingSymbol } from "./ITrainingSymbol";
 
 type EventHandler = (trainingSymbol: ITrainingSymbol) => void;
@@ -6,11 +7,25 @@ export class TrainingSymbol implements ITrainingSymbol {
   private eventHandlerOnFailed: EventHandler[] = [];
   private eventHandlerOnSuccess: EventHandler[] = [];
   private numberSuccessfulAnswersInt: number = 0;
+  private trainingSectionInt?: ITrainingSection = undefined;
 
   constructor(public symbol: string) {}
 
   public get numberSuccessfulAnswers(): number {
     return this.numberSuccessfulAnswersInt;
+  }
+
+  public get trainingSection(): ITrainingSection {
+    return this.trainingSectionInt!;
+  }
+
+  public set trainingSection(value: ITrainingSection) {
+    // detach from current training Section
+    this.trainingSectionInt?.removeTrainingSymbol(this);
+
+    // attach to new training section
+    value.addTrainingSymbol(this);
+    this.trainingSectionInt = value;
   }
 
   failed(): void {
@@ -20,7 +35,7 @@ export class TrainingSymbol implements ITrainingSymbol {
 
   succeed(): void {
     this.numberSuccessfulAnswersInt++;
-    this.raiseOnSuccess();
+    this.raiseOnSucceed();
   }
 
   registerOnFailed(
@@ -41,7 +56,7 @@ export class TrainingSymbol implements ITrainingSymbol {
     });
   }
 
-  private raiseOnSuccess() {
+  private raiseOnSucceed() {
     this.eventHandlerOnSuccess.forEach((eventHandler) => {
       eventHandler(this);
     });

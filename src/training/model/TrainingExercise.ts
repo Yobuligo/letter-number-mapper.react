@@ -10,10 +10,12 @@ export class TrainingExercise implements ITrainingExercise {
   constructor(public trainingSymbol: ITrainingSymbol) {}
 
   failed(): void {
+    this.trainingSymbol.failed();
     this.raiseOnFailed();
   }
 
   succeeded(): void {
+    this.trainingSymbol.succeed();
     this.raiseOnSucceed();
   }
 
