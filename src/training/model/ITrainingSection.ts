@@ -22,6 +22,8 @@ export interface ITrainingSection {
   addTrainingSymbol(trainingSymbol: ITrainingSymbol): void;
   removeTrainingSymbol(trainingSymbol: ITrainingSymbol): void;
   countTrainingSymbols(): number;
+  isEmpty(): boolean;
+  isNotEmpty(): boolean;
   findAllTrainingSymbols(): ITrainingSymbol[];
   trainingSymbolAt(index: number): ITrainingSymbol;
 }

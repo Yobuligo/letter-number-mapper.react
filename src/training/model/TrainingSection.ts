@@ -32,6 +32,14 @@ export class TrainingSection implements ITrainingSection {
     return this.trainingSymbols.length;
   }
 
+  isEmpty(): boolean {
+    return this.trainingSymbols.length === 0;
+  }
+
+  isNotEmpty(): boolean {
+    return !this.isEmpty();
+  }
+
   findAllTrainingSymbols(): ITrainingSymbol[] {
     return this.trainingSymbols;
   }
