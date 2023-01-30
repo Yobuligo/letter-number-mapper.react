@@ -10,7 +10,8 @@ export const Exercise: React.FC<{
   return (
     <div className={styles.exercise}>
       <h4>
-        {context.settings.exerciseType === ExerciseType.LETTER_TO_NUMBER
+        {context.settings.storedParameters.exerciseType ===
+        ExerciseType.LETTER_TO_NUMBER
           ? "Der wievielte Buchstabe ist"
           : "Welcher Buchstabe ist an Stelle"}
       </h4>

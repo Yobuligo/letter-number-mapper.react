@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import { AppContext } from "./AppContext";
+import { AppContext, StoredParameters, STORED_PARAMETERS } from "./AppContext";
 import { ExerciseType } from "./components/exercise/ExerciseType";
 import { SolutionStatus } from "./components/exercise/SolutionStatus";
 import { KeyboardType } from "./components/keyboard/KeyboardType";
 import { Main } from "./components/main/Main";
 import { useDebounce } from "./hooks/useDebounce";
+import { useSolutionStatus } from "./hooks/useSolutionStatus";
 import { LetterToNumberSymbolMapper } from "./services/symbolMapper/LetterToNumberSymbolMapper";
 import { NumberToLetterSymbolMapper } from "./services/symbolMapper/NumberToLetterSymbolMapper";
-import { ISymbolPicker } from "./services/symbolPicker/ISymbolPicker";
 import { LetterSymbolPicker } from "./services/symbolPicker/LetterSymbolPicker";
 import { NumberSymbolPicker } from "./services/symbolPicker/NumberSymbolPicker";
 import { LetterTrainingProgramInitializer } from "./services/trainingProgramInitializer/LetterTrainingProgramInitializer";
 import { NumberTrainingProgramInitializer } from "./services/trainingProgramInitializer/NumberTrainingProgramInitializer";
+import { LocalStore } from "./store/LocalStore";
 import { Letters, Numbers } from "./Types/Types";
 
 const App: React.FC = () => {
@@ -21,48 +22,71 @@ const App: React.FC = () => {
   const trainingExercise = letterTrainingProgram.nextTrainingExercise();
   const numberTrainingProgram =
     new NumberTrainingProgramInitializer().initialize();
+  const localStore = new LocalStore();
 
   // const trainingExercise = trainingProgram.next()
   // exercise.trainingSymbol
   // exercise.succeeded()
   // exercise.failed()
 
-  const [exerciseType, setExerciseType] = useState(
-    ExerciseType.LETTER_TO_NUMBER
-  );
-
-  const [keyboardType, setKeyboardType] = useState(KeyboardType.NUMBER);
-  const [symbolMapper, setSymbolMapper] = useState(NumberToLetterSymbolMapper);
-  const [symbolPicker, setSymbolPicker] =
-    useState<ISymbolPicker>(LetterSymbolPicker);
-  const [symbol, setSymbol] = useState(symbolPicker.pickNext());
-  const [solutionStatus, setSolutionStatus] = useState(
-    SolutionStatus.NOT_PROVIDED
-  );
-  let previousSolutionStatus = SolutionStatus.NOT_PROVIDED;
-
-  const updateKeyboardType = (exerciseType: ExerciseType) => {
-    if (exerciseType === ExerciseType.LETTER_TO_NUMBER) {
-      setKeyboardType(KeyboardType.NUMBER);
+  const initializeSettings = () => {
+    const locallyStoredParameters =
+      localStore.get<StoredParameters>(STORED_PARAMETERS);
+    if (
+      locallyStoredParameters === null ||
+      locallyStoredParameters === undefined
+    ) {
+      return { exerciseType: ExerciseType.LETTER_TO_NUMBER };
     } else {
-      setKeyboardType(KeyboardType.LETTER);
+      return locallyStoredParameters;
+    }
+  };
+  const [settings, setSettings] = useState<StoredParameters>(
+    initializeSettings()
+  );
+
+  useEffect(() => {
+    localStore.save(STORED_PARAMETERS, settings);
+  }, [settings]);
+
+  const getKeyboardTypeByExerciseType = (exerciseType: ExerciseType) => {
+    if (exerciseType === ExerciseType.LETTER_TO_NUMBER) {
+      return KeyboardType.NUMBER;
+    } else {
+      return KeyboardType.LETTER;
     }
   };
 
-  const updateSymbolMapper = (exerciseType: ExerciseType) => {
+  const getSymbolMapperByExerciseType = (exerciseType: ExerciseType) => {
     if (exerciseType === ExerciseType.LETTER_TO_NUMBER) {
-      setSymbolMapper(NumberToLetterSymbolMapper);
+      return NumberToLetterSymbolMapper;
     } else {
-      setSymbolMapper(LetterToNumberSymbolMapper);
+      return LetterToNumberSymbolMapper;
     }
+  };
+
+  const getSymbolPickerByExerciseType = (exerciseType: ExerciseType) => {
+    if (exerciseType === ExerciseType.LETTER_TO_NUMBER) {
+      return LetterSymbolPicker;
+    } else {
+      return NumberSymbolPicker;
+    }
+  };
+
+  const [symbolMapper, setSymbolMapper] = useState(
+    getSymbolMapperByExerciseType(settings.exerciseType)
+  );
+  const [symbolPicker, setSymbolPicker] = useState(
+    getSymbolPickerByExerciseType(settings.exerciseType)
+  );
+  const [symbol, setSymbol] = useState(symbolPicker.pickNext());
+
+  const updateSymbolMapper = (exerciseType: ExerciseType) => {
+    setSymbolMapper(getSymbolMapperByExerciseType(exerciseType));
   };
 
   const updateSymbolPicker = (exerciseType: ExerciseType) => {
-    if (exerciseType === ExerciseType.LETTER_TO_NUMBER) {
-      setSymbolPicker(LetterSymbolPicker);
-    } else {
-      setSymbolPicker(NumberSymbolPicker);
-    }
+    setSymbolPicker(getSymbolPickerByExerciseType(exerciseType));
   };
 
   // register on key pressed event (to handle each key)
@@ -71,56 +95,42 @@ const App: React.FC = () => {
     return () => {
       document.removeEventListener("keydown", onKeyPressed, true);
     };
-  }, [symbol, symbolMapper]);
+  }, []);
 
-  const addNewValue = useDebounce(300, (debouncedValue) => {
+  const addKey = useDebounce(300, (debouncedValue) => {
     console.log(`Solution provided: ${debouncedValue}`);
     onExerciseSolutionProvided(debouncedValue);
   });
 
   const onKeyPressed = (keyboardEvent: KeyboardEvent) => {
-    const uppercasedSymbol = keyboardEvent.key.toUpperCase();
-    console.log(`The key ${uppercasedSymbol} was pressed`);
+    const uppercaseSymbol = keyboardEvent.key.toUpperCase();
+    console.log(`The key ${uppercaseSymbol} was pressed`);
     //filter out/ignore all other keys but the letters/numbers
     if (
-      !Letters.includes(uppercasedSymbol) &&
-      !Numbers.includes(uppercasedSymbol) &&
-      uppercasedSymbol !== "0"
+      !Letters.includes(uppercaseSymbol) &&
+      !Numbers.includes(uppercaseSymbol) &&
+      uppercaseSymbol !== "0"
     ) {
       return true;
     }
-    addNewValue(uppercasedSymbol);
+    addKey(uppercaseSymbol);
   };
 
   useEffect(() => {
     setSymbol(symbolPicker.pickNext());
   }, [symbolPicker]);
 
-  useEffect(() => {
-    let timer: NodeJS.Timeout;
-    if (solutionStatus !== SolutionStatus.NOT_PROVIDED) {
-      previousSolutionStatus = solutionStatus;
-      timer = setTimeout(() => {
-        setSolutionStatus(SolutionStatus.NOT_PROVIDED);
-        if (previousSolutionStatus === SolutionStatus.SUCCESSFUL) {
-          setSymbol(symbolPicker.pickNext());
-        }
-        previousSolutionStatus = SolutionStatus.NOT_PROVIDED;
-      }, 300);
-    }
-    return () => {
-      if (timer !== undefined) {
-        clearTimeout(timer);
-      }
-    };
-  }, [solutionStatus]);
+  const { solutionStatus, setSolutionStatus } = useSolutionStatus(() =>
+    setSymbol(symbolPicker.pickNext())
+  );
 
   const onSetExerciseTypeHandler = (exerciseType: ExerciseType) => {
     console.log(`ExerciseType changed to ${ExerciseType[exerciseType]}`);
-    updateKeyboardType(exerciseType);
     updateSymbolMapper(exerciseType);
     updateSymbolPicker(exerciseType);
-    setExerciseType(exerciseType);
+    setSettings((previousSettings) => {
+      return { ...previousSettings, exerciseType: exerciseType };
+    });
   };
 
   const onExerciseSolutionProvided = (selectedSymbol: string) => {
@@ -141,9 +151,11 @@ const App: React.FC = () => {
       <AppContext.Provider
         value={{
           settings: {
-            exerciseType: exerciseType,
+            storedParameters: {
+              exerciseType: settings.exerciseType,
+            },
             setExerciseType: onSetExerciseTypeHandler,
-            keyboardType: keyboardType,
+            keyboardType: getKeyboardTypeByExerciseType(settings.exerciseType),
           },
           exercise: {
             symbol: symbol,

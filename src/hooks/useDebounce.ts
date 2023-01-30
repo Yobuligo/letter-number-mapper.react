@@ -16,8 +16,8 @@ export const useDebounce = (
     return () => clearTimeout(timeout);
   }, [debouncedValue, onDebounceCompletedHandler, timeInMillis]);
 
-  const addNewValue = (newValue: string) => {
+  const addKey = (newValue: string) => {
     setDebouncedValue((prev) => prev + newValue);
   };
-  return addNewValue;
+  return addKey;
 };
