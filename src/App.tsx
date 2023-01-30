@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import { AppContext, StoredSettings, STORED_SETTINGS } from "./AppContext";
+import { AppContext, StoredParameters, STORED_PARAMETERS } from "./AppContext";
 import { ExerciseType } from "./components/exercise/ExerciseType";
 import { SolutionStatus } from "./components/exercise/SolutionStatus";
 import { KeyboardType } from "./components/keyboard/KeyboardType";
@@ -13,7 +13,7 @@ import { LetterSymbolPicker } from "./services/symbolPicker/LetterSymbolPicker";
 import { NumberSymbolPicker } from "./services/symbolPicker/NumberSymbolPicker";
 import { LetterTrainingProgramInitializer } from "./services/trainingProgramInitializer/LetterTrainingProgramInitializer";
 import { NumberTrainingProgramInitializer } from "./services/trainingProgramInitializer/NumberTrainingProgramInitializer";
-import { SettingsStore } from "./SettingsStore";
+import { ParameterStore } from "./store/SettingsStore";
 import { Letters, Numbers } from "./Types/Types";
 
 const App: React.FC = () => {
@@ -21,7 +21,7 @@ const App: React.FC = () => {
     new LetterTrainingProgramInitializer().initialize();
   const numberTrainingProgram =
     new NumberTrainingProgramInitializer().initialize();
-  const settingsStore = new SettingsStore();
+  const settingsStore = new ParameterStore();
 
   // const trainingExercise = trainingProgram.next()
   // exercise.trainingSymbol
@@ -36,7 +36,7 @@ const App: React.FC = () => {
       return locallyStoredSettings;
     }
   };
-  const [settings, setSettings] = useState<StoredSettings>(
+  const [settings, setSettings] = useState<StoredParameters>(
     initializeSettings()
   );
 
@@ -44,7 +44,6 @@ const App: React.FC = () => {
     settingsStore.save(settings);
   }, [settings]);
 
-  // const [exerciseType, setExerciseType] = useState(settings.exerciseType);
   const getKeyboardTypeByExerciseType = (exerciseType: ExerciseType) => {
     if (exerciseType === ExerciseType.LETTER_TO_NUMBER) {
       return KeyboardType.NUMBER;
@@ -154,10 +153,10 @@ const App: React.FC = () => {
     <>
       <AppContext.Provider
         value={{
-          storedSettings: {
-            exerciseType: settings.exerciseType,
-          },
           settings: {
+            storedParameters: {
+              exerciseType: settings.exerciseType,
+            },
             setExerciseType: onSetExerciseTypeHandler,
             keyboardType: keyboardType,
           },
