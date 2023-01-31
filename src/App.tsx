@@ -9,16 +9,18 @@ import { useDebounce } from "./hooks/useDebounce";
 import { useSolutionStatus } from "./hooks/useSolutionStatus";
 import { LetterToNumberSymbolMapper } from "./services/symbolMapper/LetterToNumberSymbolMapper";
 import { NumberToLetterSymbolMapper } from "./services/symbolMapper/NumberToLetterSymbolMapper";
-import { LetterSymbolPicker } from "./services/symbolPicker/LetterSymbolPicker";
-import { NumberSymbolPicker } from "./services/symbolPicker/NumberSymbolPicker";
+import { LetterTrainingProgramInitializer } from "./services/trainingProgramInitializer/LetterTrainingProgramInitializer";
+import { NumberTrainingProgramInitializer } from "./services/trainingProgramInitializer/NumberTrainingProgramInitializer";
 import { LocalStore } from "./store/LocalStore";
+import { ITrainingExercise } from "./training/model/ITrainingExercise";
+import { ITrainingProgram } from "./training/model/ITrainingProgram";
 import { Letters, Numbers } from "./Types/Types";
 
 const App: React.FC = () => {
   const localStore = useMemo(() => {
     return new LocalStore();
   }, []);
-  
+
   const initializeSettings = () => {
     const locallyStoredParameters =
       localStore.get<StoredParameters>(STORED_PARAMETERS);
@@ -31,8 +33,30 @@ const App: React.FC = () => {
       return locallyStoredParameters;
     }
   };
+
   const [settings, setSettings] = useState<StoredParameters>(
     initializeSettings()
+  );
+
+  const getTrainingProgramByExerciseType = (
+    exerciseType: ExerciseType
+  ): ITrainingProgram => {
+    switch (exerciseType) {
+      case ExerciseType.LETTER_TO_NUMBER: {
+        return new LetterTrainingProgramInitializer().initialize();
+      }
+      case ExerciseType.NUMBER_TO_LETTER: {
+        return new NumberTrainingProgramInitializer().initialize();
+      }
+    }
+  };
+
+  const [trainingProgram, setTrainingProgram] = useState<ITrainingProgram>(
+    getTrainingProgramByExerciseType(settings.exerciseType)
+  );
+
+  const [trainingExercise, setTrainingExercise] = useState<ITrainingExercise>(
+    trainingProgram.nextTrainingExercise()
   );
 
   useEffect(() => {
@@ -55,28 +79,14 @@ const App: React.FC = () => {
     }
   };
 
-  const getSymbolPickerByExerciseType = (exerciseType: ExerciseType) => {
-    if (exerciseType === ExerciseType.LETTER_TO_NUMBER) {
-      return LetterSymbolPicker;
-    } else {
-      return NumberSymbolPicker;
-    }
-  };
-
   const [symbolMapper, setSymbolMapper] = useState(
     getSymbolMapperByExerciseType(settings.exerciseType)
   );
-  const [symbolPicker, setSymbolPicker] = useState(
-    getSymbolPickerByExerciseType(settings.exerciseType)
-  );
-  const [symbol, setSymbol] = useState(symbolPicker.pickNext());
+
+  const [symbol, setSymbol] = useState(trainingExercise.trainingSymbol.symbol);
 
   const updateSymbolMapper = (exerciseType: ExerciseType) => {
     setSymbolMapper(getSymbolMapperByExerciseType(exerciseType));
-  };
-
-  const updateSymbolPicker = (exerciseType: ExerciseType) => {
-    setSymbolPicker(getSymbolPickerByExerciseType(exerciseType));
   };
 
   // register on key pressed event (to handle each key)
@@ -107,17 +117,21 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
-    setSymbol(symbolPicker.pickNext());
-  }, [symbolPicker]);
+    setTrainingExercise(trainingProgram?.nextTrainingExercise());
+  }, [trainingProgram]);
+
+  useEffect(() => {
+    setSymbol(trainingExercise?.trainingSymbol.symbol!);
+  }, [trainingExercise]);
 
   const { solutionStatus, setSolutionStatus } = useSolutionStatus(() =>
-    setSymbol(symbolPicker.pickNext())
+    setTrainingExercise(trainingProgram?.nextTrainingExercise())
   );
 
   const onSetExerciseTypeHandler = (exerciseType: ExerciseType) => {
+    setTrainingProgram(getTrainingProgramByExerciseType(exerciseType));
     console.log(`ExerciseType changed to ${ExerciseType[exerciseType]}`);
     updateSymbolMapper(exerciseType);
-    updateSymbolPicker(exerciseType);
     setSettings((previousSettings) => {
       return { ...previousSettings, exerciseType: exerciseType };
     });
@@ -127,8 +141,10 @@ const App: React.FC = () => {
     const mappedSelectedSymbol = symbolMapper.map(selectedSymbol);
     if (mappedSelectedSymbol === symbol) {
       console.log("Correct!");
+      trainingExercise?.succeeded();
       setSolutionStatus(SolutionStatus.SUCCESSFUL);
     } else {
+      trainingExercise?.failed();
       setSolutionStatus(SolutionStatus.FAILED);
       console.log(
         `Wrong solution (${mappedSelectedSymbol}) provided, try again`

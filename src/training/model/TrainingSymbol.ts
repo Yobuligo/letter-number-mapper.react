@@ -31,11 +31,17 @@ export class TrainingSymbol implements ITrainingSymbol {
   failed(): void {
     this.numberSuccessfulAnswersInt = 0;
     this.raiseOnFailed();
+    console.log(
+      `Symbol '${this.symbol}' was not guessed correctly. You dropped back down to '${this.numberSuccessfulAnswers}'.`
+    );
   }
 
   succeed(): void {
     this.numberSuccessfulAnswersInt++;
     this.raiseOnSucceed();
+    console.log(
+      `Symbol '${this.symbol}' was guessed correctly '${this.numberSuccessfulAnswers}' times`
+    );
   }
 
   registerOnFailed(
