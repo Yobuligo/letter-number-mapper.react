@@ -1,38 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "./App.css";
 import { AppContext, StoredParameters, STORED_PARAMETERS } from "./AppContext";
 import { ExerciseType } from "./components/exercise/ExerciseType";
 import { SolutionStatus } from "./components/exercise/SolutionStatus";
 import { KeyboardType } from "./components/keyboard/KeyboardType";
 import { Main } from "./components/main/Main";
-import { repeat } from "./core/repeat";
 import { useDebounce } from "./hooks/useDebounce";
 import { useSolutionStatus } from "./hooks/useSolutionStatus";
 import { LetterToNumberSymbolMapper } from "./services/symbolMapper/LetterToNumberSymbolMapper";
 import { NumberToLetterSymbolMapper } from "./services/symbolMapper/NumberToLetterSymbolMapper";
 import { LetterSymbolPicker } from "./services/symbolPicker/LetterSymbolPicker";
 import { NumberSymbolPicker } from "./services/symbolPicker/NumberSymbolPicker";
-import { LetterTrainingProgramInitializer } from "./services/trainingProgramInitializer/LetterTrainingProgramInitializer";
-import { NumberTrainingProgramInitializer } from "./services/trainingProgramInitializer/NumberTrainingProgramInitializer";
 import { LocalStore } from "./store/LocalStore";
 import { Letters, Numbers } from "./Types/Types";
 
 const App: React.FC = () => {
-  const letterTrainingProgram =
-    new LetterTrainingProgramInitializer().initialize();
-  const trainingExercise = letterTrainingProgram.nextTrainingExercise();
-  repeat(13, () => {
-    trainingExercise.succeeded();
-  });
-  const numberTrainingProgram =
-    new NumberTrainingProgramInitializer().initialize();
-  const localStore = new LocalStore();
-
-  // const trainingExercise = trainingProgram.next()
-  // exercise.trainingSymbol
-  // exercise.succeeded()
-  // exercise.failed()
-
+  const localStore = useMemo(() => {
+    return new LocalStore();
+  }, []);
+  
   const initializeSettings = () => {
     const locallyStoredParameters =
       localStore.get<StoredParameters>(STORED_PARAMETERS);
@@ -51,7 +37,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     localStore.save(STORED_PARAMETERS, settings);
-  }, [settings]);
+  }, [localStore, settings]);
 
   const getKeyboardTypeByExerciseType = (exerciseType: ExerciseType) => {
     if (exerciseType === ExerciseType.LETTER_TO_NUMBER) {
