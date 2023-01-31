@@ -5,6 +5,7 @@ import { ExerciseType } from "./components/exercise/ExerciseType";
 import { SolutionStatus } from "./components/exercise/SolutionStatus";
 import { KeyboardType } from "./components/keyboard/KeyboardType";
 import { Main } from "./components/main/Main";
+import { repeat } from "./core/repeat";
 import { useDebounce } from "./hooks/useDebounce";
 import { useSolutionStatus } from "./hooks/useSolutionStatus";
 import { LetterToNumberSymbolMapper } from "./services/symbolMapper/LetterToNumberSymbolMapper";
@@ -19,6 +20,10 @@ import { Letters, Numbers } from "./Types/Types";
 const App: React.FC = () => {
   const letterTrainingProgram =
     new LetterTrainingProgramInitializer().initialize();
+  const trainingExercise = letterTrainingProgram.nextTrainingExercise();
+  repeat(13, () => {
+    trainingExercise.succeeded();
+  });
   const numberTrainingProgram =
     new NumberTrainingProgramInitializer().initialize();
   const localStore = new LocalStore();
