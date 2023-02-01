@@ -26,11 +26,11 @@ export class TrainingSection implements ITrainingSection {
   }
 
   hasTrainingSymbols(): boolean {
-    return this.trainingSymbols.length === 0;
+    return !this.hasNotTrainingSymbols();
   }
 
   hasNotTrainingSymbols(): boolean {
-    return !this.hasTrainingSymbols();
+    return this.trainingSymbols.length === 0;
   }
 
   findAllTrainingSymbols(): ITrainingSymbol[] {

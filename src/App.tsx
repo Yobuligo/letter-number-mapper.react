@@ -83,7 +83,29 @@ const App: React.FC = () => {
     getSymbolMapperByExerciseType(settings.exerciseType)
   );
 
-  const [symbol, setSymbol] = useState(trainingExercise.trainingSymbol.symbol);
+  const readTrainingSymbol = (): string => {
+    if (trainingExercise === undefined) {
+      throw new Error(
+        `Error reading training symbol. The training exercise is undefined.`
+      );
+    }
+
+    if (trainingExercise.trainingSymbol === undefined) {
+      throw new Error(
+        `Error reading training symbol. The training symbol of the training exercise is undefined.`
+      );
+    }
+
+    if (trainingExercise.trainingSymbol.symbol === undefined) {
+      throw new Error(
+        `Error reading training symbol. The symbol of the training symbol instance is undefined.`
+      );
+    }
+
+    return trainingExercise.trainingSymbol.symbol;
+  };
+
+  const [symbol, setSymbol] = useState(readTrainingSymbol());
 
   const updateSymbolMapper = (exerciseType: ExerciseType) => {
     setSymbolMapper(getSymbolMapperByExerciseType(exerciseType));
