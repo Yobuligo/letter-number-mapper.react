@@ -4,6 +4,7 @@ import { ITrainingSymbol } from "./ITrainingSymbol";
 
 export class TrainingSection implements ITrainingSection {
   private trainingSymbols: ITrainingSymbol[] = [];
+  id: number = 0;
   follower: ITrainingSection | undefined = undefined;
   predecessor: ITrainingSection | undefined = undefined;
 

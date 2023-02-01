@@ -34,6 +34,15 @@ export class TrainingProgram implements ITrainingProgram {
   private addTrainingSectionRelations() {
     this.addPredecessorTrainingSectionRelation();
     this.addFollowerTrainingSectionRelation();
+    this.setTrainingSectionId();
+  }
+
+  private setTrainingSectionId() {
+    let id: number = 0;
+    this.trainingSections.forEach((trainingSection) => {
+      id++;
+      trainingSection.id = id;
+    });
   }
 
   private addPredecessorTrainingSectionRelation() {

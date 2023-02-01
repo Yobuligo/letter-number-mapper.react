@@ -17,6 +17,7 @@ export interface ITrainingSection {
    */
   readonly probabilityWeight: ProbabilityWeight;
   readonly answersTillProgression: number;
+  id: number;
   follower: ITrainingSection | undefined;
   predecessor: ITrainingSection | undefined;
   addTrainingSymbol(trainingSymbol: ITrainingSymbol): void;
