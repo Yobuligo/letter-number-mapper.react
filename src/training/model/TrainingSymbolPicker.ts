@@ -19,7 +19,13 @@ export class TrainingSymbolPicker implements ITrainingSymbolPicker {
     const trainingSection = this.selectTrainingSection();
     const percent = Math.random() * trainingSection.countTrainingSymbols();
     const index = Math.ceil(percent);
-    return trainingSection.trainingSymbolAt(index);
+    const trainingSymbol = trainingSection.trainingSymbolAt(index - 1);
+    if (trainingSymbol === undefined) {
+      throw new Error(
+        `Error when picking training symbol. Training symbol is undefined`
+      );
+    }
+    return trainingSymbol;
   }
 
   private selectTrainingSection(): ITrainingSection {

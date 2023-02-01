@@ -7,7 +7,13 @@ export class TrainingExercise implements ITrainingExercise {
   private eventHandlerOnFailed: EventHandler[] = [];
   private eventHandlerOnSucceed: EventHandler[] = [];
 
-  constructor(public trainingSymbol: ITrainingSymbol) {}
+  constructor(public trainingSymbol: ITrainingSymbol) {
+    if (trainingSymbol === undefined) {
+      throw new Error(
+        `Error when creating training exercise. The training symbol is undefined.`
+      );
+    }
+  }
 
   failed(): void {
     this.trainingSymbol.failed();
