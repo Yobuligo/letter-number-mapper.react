@@ -38,7 +38,13 @@ export class TrainingSection implements ITrainingSection {
   }
 
   trainingSymbolAt(index: number): ITrainingSymbol {
-    return this.trainingSymbols[index];
+    const trainingSymbol = this.trainingSymbols[index];
+    if (trainingSymbol === undefined) {
+      throw new Error(
+        `Error when reading training symbol by index. Index is out of bounds.`
+      );
+    }
+    return trainingSymbol;
   }
 
   removeTrainingSymbol(trainingSymbol: ITrainingSymbol): void {
