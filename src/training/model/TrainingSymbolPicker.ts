@@ -17,14 +17,12 @@ export class TrainingSymbolPicker implements ITrainingSymbolPicker {
 
   private selectTrainingSymbol(): ITrainingSymbol {
     const trainingSection = this.selectTrainingSection();
-    const probability = Math.random() * trainingSection.countTrainingSymbols();
-    const index =
-      Math.round((trainingSection.countTrainingSymbols() / 100) * probability) -
-      1;
+    const percent = Math.random() * trainingSection.countTrainingSymbols();
+    const index = Math.ceil(percent);
     return trainingSection.trainingSymbolAt(index);
   }
 
   private selectTrainingSection(): ITrainingSection {
     return this.trainingSectionPicker.next();
-  }  
+  }
 }
