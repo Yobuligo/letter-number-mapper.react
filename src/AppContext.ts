@@ -16,6 +16,7 @@ export const AppContext = createContext<{
     setExerciseType: (exerciseType: ExerciseType) => void;
     setFeedbackTime: (feedbackTime: FeedbackTime) => void;
     keyboardType: KeyboardType;
+    feedbackTime: FeedbackTime;
     correctSolution?: Boolean;
   };
   exercise: {
@@ -32,6 +33,7 @@ export const AppContext = createContext<{
     setExerciseType: () => {},
     setFeedbackTime: () => {},
     keyboardType: KeyboardType.NUMBER,
+    feedbackTime: FeedbackTime.MIDDLE,
     correctSolution: undefined,
   },
   exercise: {

@@ -29,7 +29,10 @@ const FeedbackTimeSetting: React.FC = () => {
   };
 
   const getDefaultValue = (): number => {
-    return context.settings.storedParameters.feedbackTime ?? findFirst()
+    const feedbackTime =
+      context.settings.storedParameters.feedbackTime ?? findFirst();
+    const defaultValue = feedbackTime as any;
+    return Number(defaultValue[0]);
   };
 
   const findFirst = (): number => {
@@ -47,8 +50,14 @@ const FeedbackTimeSetting: React.FC = () => {
         valueLabelDisplay="auto"
         marks={marks}
         onChange={(event: Event, value) => {
+          let selectedValue: number;
+          if (typeof value === "number") {
+            selectedValue = value;
+          } else {
+            selectedValue = value[0];
+          }
           context.settings.setFeedbackTime(
-            findFeedbackTimeByValue(value as number)
+            findFeedbackTimeByValue(selectedValue)
           );
         }}
       />

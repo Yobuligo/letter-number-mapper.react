@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import "./App.css";
 import { AppContext, StoredParameters, STORED_PARAMETERS } from "./AppContext";
 import { ExerciseType } from "./components/exercise/ExerciseType";
@@ -22,6 +22,8 @@ const App: React.FC = () => {
     return new LocalStore();
   }, []);
 
+  const context = useContext(AppContext);
+
   const initializeSettings = () => {
     const locallyStoredParameters =
       localStore.get<StoredParameters>(STORED_PARAMETERS);
@@ -34,6 +36,7 @@ const App: React.FC = () => {
         feedbackTime: FeedbackTime.MIDDLE,
       };
     } else {
+      context.settings.feedbackTime = locallyStoredParameters.feedbackTime;
       return locallyStoredParameters;
     }
   };
@@ -165,7 +168,8 @@ const App: React.FC = () => {
 
   const onSetFeedbackTimeHandler = (feedbackTime: FeedbackTime) => {
     setSettings((previousSettings) => {
-      return { ...previousSettings, feedbackTime: feedbackTime };
+      const settings = { ...previousSettings, feedbackTime: feedbackTime };
+      return settings;
     });
   };
 
@@ -196,6 +200,7 @@ const App: React.FC = () => {
             setExerciseType: onSetExerciseTypeHandler,
             setFeedbackTime: onSetFeedbackTimeHandler,
             keyboardType: getKeyboardTypeByExerciseType(settings.exerciseType),
+            feedbackTime: FeedbackTime.MIDDLE,
           },
           exercise: {
             symbol: symbol,
