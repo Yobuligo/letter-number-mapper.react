@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { SolutionStatus } from "../components/exercise/SolutionStatus";
+import { AppContext } from "./../AppContext";
 
 export const useSolutionStatus = (onSolutionResetHandler: () => void) => {
   const [solutionStatus, setSolutionStatus] = useState(
     SolutionStatus.NOT_PROVIDED
   );
   let previousSolutionStatus = SolutionStatus.NOT_PROVIDED;
+  const context = useContext(AppContext);
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -17,7 +19,7 @@ export const useSolutionStatus = (onSolutionResetHandler: () => void) => {
           onSolutionResetHandler();
         }
         previousSolutionStatus = SolutionStatus.NOT_PROVIDED;
-      }, 600);
+      }, context.settings.storedParameters.feedbackTime);
     }
     return () => clearTimeout(timer);
   }, [solutionStatus]);

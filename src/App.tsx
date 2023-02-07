@@ -5,6 +5,7 @@ import { ExerciseType } from "./components/exercise/ExerciseType";
 import { SolutionStatus } from "./components/exercise/SolutionStatus";
 import { KeyboardType } from "./components/keyboard/KeyboardType";
 import { Main } from "./components/main/Main";
+import { FeedbackTime } from "./components/settings/FeedbackTime";
 import { useDebounce } from "./hooks/useDebounce";
 import { useSolutionStatus } from "./hooks/useSolutionStatus";
 import { LetterToNumberSymbolMapper } from "./services/symbolMapper/LetterToNumberSymbolMapper";
@@ -28,7 +29,10 @@ const App: React.FC = () => {
       locallyStoredParameters === null ||
       locallyStoredParameters === undefined
     ) {
-      return { exerciseType: ExerciseType.LETTER_TO_NUMBER };
+      return {
+        exerciseType: ExerciseType.LETTER_TO_NUMBER,
+        feedbackTime: FeedbackTime.MIDDLE,
+      };
     } else {
       return locallyStoredParameters;
     }
@@ -159,6 +163,12 @@ const App: React.FC = () => {
     });
   };
 
+  const onSetFeedbackTimeHandler = (feedbackTime: FeedbackTime) => {
+    setSettings((previousSettings) => {
+      return { ...previousSettings, feedbackTime: feedbackTime };
+    });
+  };
+
   const onExerciseSolutionProvided = (selectedSymbol: string) => {
     const mappedSelectedSymbol = symbolMapper.map(selectedSymbol);
     if (mappedSelectedSymbol === symbol) {
@@ -181,8 +191,10 @@ const App: React.FC = () => {
           settings: {
             storedParameters: {
               exerciseType: settings.exerciseType,
+              feedbackTime: settings.feedbackTime,
             },
             setExerciseType: onSetExerciseTypeHandler,
+            setFeedbackTime: onSetFeedbackTimeHandler,
             keyboardType: getKeyboardTypeByExerciseType(settings.exerciseType),
           },
           exercise: {
