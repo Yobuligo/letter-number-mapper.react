@@ -4,3 +4,11 @@
   font-size: large;
   margin: 0.2rem;
 }
+
+.highlight {
+  width: 3rem;
+  height: 3rem;
+  font-size: xx-large;
+  background-color: rgb(2, 204, 29);
+  color: white;
+}

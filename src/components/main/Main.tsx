@@ -2,10 +2,14 @@ import React, { ReactNode, useContext, useState } from "react";
 import ReactDOM from "react-dom";
 import { AppContext } from "../../AppContext";
 import settingsImage from "../../assets/images/settings.png";
+import { ISymbolMapper } from "../../services/symbolMapper/ISymbolMapper";
+import { LetterToNumberSymbolMapper } from "../../services/symbolMapper/LetterToNumberSymbolMapper";
+import { NumberToLetterSymbolMapper } from "../../services/symbolMapper/NumberToLetterSymbolMapper";
 import ModalDialog from "../core/modalDialog/ModalDialog";
 import { Display } from "../display/Display";
 import { SolutionStatus } from "../exercise/SolutionStatus";
 import Keyboard from "../keyboard/Keyboard";
+import { KeyboardType } from "../keyboard/KeyboardType";
 import Settings from "../settings/Settings";
 import IToolbarAction from "../toolbar/IToolbarAction";
 import Toolbar from "../toolbar/Toolbar";
@@ -18,10 +22,33 @@ export const Main: React.FC = () => {
     context.exercise.provideExerciseSolution(selectedSymbol);
   };
 
+  const getSymbolMapper = (): ISymbolMapper => {
+    if (context.settings.keyboardType === KeyboardType.LETTER) {
+      return NumberToLetterSymbolMapper;
+    } else {
+      return LetterToNumberSymbolMapper;
+    }
+  };
+
+  const getHighlightedSymbols = (): string[] => {
+    switch (context.exercise.solutionStatus) {
+      case SolutionStatus.SUCCESSFUL: {
+        return [getSymbolMapper().map(context.exercise.symbol)];
+      }
+      case SolutionStatus.FAILED: {
+        return [];
+      }
+      case SolutionStatus.NOT_PROVIDED: {
+        return [];
+      }
+    }
+  };
+
   const getSolutionBackgroundStyle = () => {
     switch (context.exercise.solutionStatus) {
       case SolutionStatus.SUCCESSFUL: {
-        return styles.successfulSolution;
+        // currently reset as the button itself is highlighted
+        return styles.noSolutionProvided;
       }
       case SolutionStatus.FAILED: {
         return styles.failedSolution;
@@ -78,7 +105,10 @@ export const Main: React.FC = () => {
       />
       <Keyboard
         keyboardType={context.settings.keyboardType}
-        clickHandler={onKeyboardClickHandler}
+        keyboardContext={{
+          clickHandler: onKeyboardClickHandler,
+          highlightedSymbols: getHighlightedSymbols(),
+        }}
       />
     </div>
   );

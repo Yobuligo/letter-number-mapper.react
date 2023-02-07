@@ -1,24 +1,26 @@
+import { IKeyboardContext } from "./IKeyboardContext";
 import KeyboardRow from "./KeyboardRow";
-import { ClickHandler } from "./KeyboardTypes";
 import styles from "./LetterKeyboard.module.css";
 
-const LetterKeyboard: React.FC<{  clickHandler?: ClickHandler}> = (props) => {
+const LetterKeyboard: React.FC<{
+  keyboardContext: IKeyboardContext;
+}> = (props) => {
   return (
     <>
       <div>
         <KeyboardRow
           symbols={["Q", "W", "E", "R", "T", "Z", "U", "I", "O", "P"]}
-          clickHandler={props.clickHandler}
+          keyboardContext={props.keyboardContext}
         />
         <KeyboardRow
           symbols={["A", "S", "D", "F", "G", "H", "J", "K", "L"]}
           className={styles.secondRow}
-          clickHandler={props.clickHandler}
+          keyboardContext={props.keyboardContext}
         />
         <KeyboardRow
           symbols={["Y", "X", "C", "V", "B", "N", "M"]}
           className={styles.thirdRow}
-          clickHandler={props.clickHandler}
+          keyboardContext={props.keyboardContext}
         />
       </div>
     </>

@@ -1,19 +1,25 @@
+import { IKeyboardContext } from "./IKeyboardContext";
 import styles from "./Keyboard.module.css";
 import { KeyboardType } from "./KeyboardType";
-import { ClickHandler } from "./KeyboardTypes";
 import LetterKeyboard from "./LetterKeyboard";
 import NumberKeyboard from "./NumberKeyboard";
 
 const Keyboard: React.FC<{
   keyboardType: KeyboardType;
-  clickHandler?: ClickHandler;
+  keyboardContext: IKeyboardContext;
 }> = (props) => {
+  const createKeyboardContext = (): IKeyboardContext => {
+    return {
+      ...props.keyboardContext,
+      highlightSymbolClassName: styles.highlight,
+    };
+  };
   return (
     <div className={styles.keyboard}>
       {props.keyboardType === KeyboardType.LETTER ? (
-        <LetterKeyboard clickHandler={props.clickHandler} />
+        <LetterKeyboard keyboardContext={createKeyboardContext()} />
       ) : (
-        <NumberKeyboard clickHandler={props.clickHandler} />
+        <NumberKeyboard keyboardContext={createKeyboardContext()} />
       )}
     </div>
   );

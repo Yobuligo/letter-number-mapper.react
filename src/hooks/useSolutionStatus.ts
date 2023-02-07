@@ -17,7 +17,7 @@ export const useSolutionStatus = (onSolutionResetHandler: () => void) => {
           onSolutionResetHandler();
         }
         previousSolutionStatus = SolutionStatus.NOT_PROVIDED;
-      }, 300);
+      }, 600);
     }
     return () => clearTimeout(timer);
   }, [solutionStatus]);
