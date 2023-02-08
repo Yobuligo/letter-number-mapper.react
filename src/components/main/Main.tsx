@@ -5,6 +5,7 @@ import settingsImage from "../../assets/images/settings.png";
 import { ISymbolMapper } from "../../services/symbolMapper/ISymbolMapper";
 import { LetterToNumberSymbolMapper } from "../../services/symbolMapper/LetterToNumberSymbolMapper";
 import { NumberToLetterSymbolMapper } from "../../services/symbolMapper/NumberToLetterSymbolMapper";
+import Bottom from "../bottom/Bottom";
 import ModalDialog from "../core/modalDialog/ModalDialog";
 import { Display } from "../display/Display";
 import { SolutionStatus } from "../exercise/SolutionStatus";
@@ -110,6 +111,7 @@ export const Main: React.FC = () => {
           highlightedSymbols: getHighlightedSymbols(),
         }}
       />
+      <Bottom />
     </div>
   );
 };
