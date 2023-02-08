@@ -126,7 +126,15 @@ const App: React.FC = () => {
     };
   }, []);
 
-  const addKey = useDebounce(300, (debouncedValue) => {
+  const getDebounceTimeInMillis = (): number => {
+    if (settings.exerciseType === ExerciseType.LETTER_TO_NUMBER) {
+      return 300;
+    } else {
+      return 0;
+    }
+  };
+
+  const addKey = useDebounce(getDebounceTimeInMillis(), (debouncedValue) => {
     console.log(`Solution provided: ${debouncedValue}`);
     onExerciseSolutionProvided(debouncedValue);
   });
