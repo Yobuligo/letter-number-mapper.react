@@ -25,7 +25,7 @@ export const AppContext = createContext<{
     symbol: string;
     provideExerciseSolution: (selectedSymbol: string) => void;
     solutionStatus: SolutionStatus;
-    solvingTime?: number;
+    solvingTimes: number[];
   };
   stopwatch: IStopwatch;
 }>({
@@ -44,7 +44,7 @@ export const AppContext = createContext<{
     symbol: "A",
     provideExerciseSolution: () => {},
     solutionStatus: SolutionStatus.NOT_PROVIDED,
-    solvingTime: undefined,
+    solvingTimes: [],
   },
   stopwatch: new Stopwatch(),
 });

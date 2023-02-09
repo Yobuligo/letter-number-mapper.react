@@ -12,6 +12,7 @@ import { SolutionStatus } from "../exercise/SolutionStatus";
 import Keyboard from "../keyboard/Keyboard";
 import { KeyboardType } from "../keyboard/KeyboardType";
 import Settings from "../settings/Settings";
+import SolvingTimeList from "../solvingTimeList/SolvingTimeList";
 import IToolbarAction from "../toolbar/IToolbarAction";
 import Toolbar from "../toolbar/Toolbar";
 import styles from "./Main.module.css";
@@ -100,17 +101,24 @@ export const Main: React.FC = () => {
           )
         : ""}
       <Toolbar toolbarActions={toolbarActions} />
-      <Display
-        symbol={context.exercise.symbol}
-        exerciseType={context.settings.storedParameters.exerciseType}
-      />
-      <Keyboard
-        keyboardType={context.settings.keyboardType}
-        keyboardContext={{
-          clickHandler: onKeyboardClickHandler,
-          highlightedSymbols: getHighlightedSymbols(),
-        }}
-      />
+      <div className={styles.solvingTimeList}>
+        <div>
+          <Display
+            symbol={context.exercise.symbol}
+            exerciseType={context.settings.storedParameters.exerciseType}
+          />
+          <Keyboard
+            keyboardType={context.settings.keyboardType}
+            keyboardContext={{
+              clickHandler: onKeyboardClickHandler,
+              highlightedSymbols: getHighlightedSymbols(),
+            }}
+          />
+        </div>
+        <div>
+          <SolvingTimeList />
+        </div>
+      </div>
       <Bottom />
     </div>
   );

@@ -6,5 +6,9 @@ export const Display: React.FC<{
   symbol: string;
   exerciseType: ExerciseType;
 }> = (props) => {
-  return <Exercise symbol={props.symbol} />;
+  return (
+    <>
+      <Exercise symbol={props.symbol} />
+    </>
+  );
 };

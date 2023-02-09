@@ -23,10 +23,6 @@ const App: React.FC = () => {
     return new LocalStore();
   }, []);
 
-  const stopwatch = useMemo(() => {
-    return new Stopwatch();
-  }, []);
-
   const context = useContext(AppContext);
 
   const initializeSettings = () => {
@@ -70,6 +66,14 @@ const App: React.FC = () => {
   const [trainingExercise, setTrainingExercise] = useState<ITrainingExercise>(
     trainingProgram.nextTrainingExercise()
   );
+
+  const stopwatch = useMemo(() => {
+    return new Stopwatch();
+  }, []);
+
+  const solvingTimes = useMemo<number[]>(() => {
+    return [];
+  }, [trainingProgram]);
 
   useEffect(() => {
     localStore.save(STORED_PARAMETERS, settings);
@@ -188,10 +192,16 @@ const App: React.FC = () => {
     });
   };
 
+  const pushElapsedToSolvingTimes = () => {
+    solvingTimes.splice(0, 0, stopwatch.elapsed);
+    solvingTimes.splice(10, solvingTimes.length);
+  };
+
   const onExerciseSolutionProvided = (selectedSymbol: string) => {
     const mappedSelectedSymbol = symbolMapper.map(selectedSymbol);
     if (mappedSelectedSymbol === symbol) {
       stopwatch.stop();
+      pushElapsedToSolvingTimes();
       console.log("Correct!");
       trainingExercise?.succeeded();
       setSolutionStatus(SolutionStatus.SUCCESSFUL);
@@ -222,6 +232,7 @@ const App: React.FC = () => {
             symbol: symbol,
             provideExerciseSolution: onExerciseSolutionProvided,
             solutionStatus: solutionStatus,
+            solvingTimes: solvingTimes,
           },
           stopwatch: stopwatch,
         }}

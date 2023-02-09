@@ -1,0 +1,5 @@
+.solvingTimeList {
+  display: flex;
+  flex-direction: column;
+  padding-left: 5rem;
+}
