@@ -25,7 +25,7 @@ const App: React.FC = () => {
 
   const context = useContext(AppContext);
 
-  const initializeSettings = () => {
+  const initializeSettings = (): StoredParameters => {
     const locallyStoredParameters =
       localStore.get<StoredParameters>(STORED_PARAMETERS);
     if (
@@ -35,6 +35,7 @@ const App: React.FC = () => {
       return {
         exerciseType: ExerciseType.LETTER_TO_NUMBER,
         feedbackTime: FeedbackTime.MIDDLE,
+        showSolvingTimeList: true,
       };
     } else {
       context.settings.feedbackTime = locallyStoredParameters.feedbackTime;
@@ -187,7 +188,20 @@ const App: React.FC = () => {
 
   const onSetFeedbackTimeHandler = (feedbackTime: FeedbackTime) => {
     setSettings((previousSettings) => {
-      const settings = { ...previousSettings, feedbackTime: feedbackTime };
+      const settings: StoredParameters = {
+        ...previousSettings,
+        feedbackTime: feedbackTime,
+      };
+      return settings;
+    });
+  };
+
+  const onSetShowSolvingTimeListHandler = (showSolvingTimeList: boolean) => {
+    setSettings((previousSettings) => {
+      const settings: StoredParameters = {
+        ...previousSettings,
+        showSolvingTimeList: showSolvingTimeList,
+      };
       return settings;
     });
   };
@@ -222,9 +236,11 @@ const App: React.FC = () => {
             storedParameters: {
               exerciseType: settings.exerciseType,
               feedbackTime: settings.feedbackTime,
+              showSolvingTimeList: settings.showSolvingTimeList,
             },
             setExerciseType: onSetExerciseTypeHandler,
             setFeedbackTime: onSetFeedbackTimeHandler,
+            setShowSolvingTimeList: onSetShowSolvingTimeListHandler,
             keyboardType: getKeyboardTypeByExerciseType(settings.exerciseType),
             feedbackTime: FeedbackTime.MIDDLE,
           },

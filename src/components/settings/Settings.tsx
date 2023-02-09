@@ -2,6 +2,7 @@ import Card from "../core/card/Card";
 import ExerciseTypeSetting from "./ExerciseTypeSetting";
 import FeedbackTimeSetting from "./FeedbackTimeSetting";
 import styles from "./Settings.module.css";
+import SolvingTimeSettings from "./SolvingTimeSettings";
 
 const Settings: React.FC = () => {
   return (
@@ -10,6 +11,7 @@ const Settings: React.FC = () => {
         <form>
           <ExerciseTypeSetting />
           <FeedbackTimeSetting />
+          <SolvingTimeSettings />
         </form>
       </section>
     </Card>

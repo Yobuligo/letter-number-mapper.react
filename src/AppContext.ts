@@ -10,6 +10,7 @@ export const STORED_PARAMETERS = "StoredParameters";
 export type StoredParameters = {
   exerciseType: ExerciseType;
   feedbackTime: FeedbackTime;
+  showSolvingTimeList: boolean;
 };
 
 export const AppContext = createContext<{
@@ -17,6 +18,7 @@ export const AppContext = createContext<{
     storedParameters: StoredParameters;
     setExerciseType: (exerciseType: ExerciseType) => void;
     setFeedbackTime: (feedbackTime: FeedbackTime) => void;
+    setShowSolvingTimeList: (showSolvingTimeList: boolean) => void;
     keyboardType: KeyboardType;
     feedbackTime: FeedbackTime;
     correctSolution?: Boolean;
@@ -33,9 +35,11 @@ export const AppContext = createContext<{
     storedParameters: {
       exerciseType: ExerciseType.LETTER_TO_NUMBER,
       feedbackTime: FeedbackTime.MIDDLE,
+      showSolvingTimeList: true,
     },
     setExerciseType: () => {},
     setFeedbackTime: () => {},
+    setShowSolvingTimeList: () => {},
     keyboardType: KeyboardType.NUMBER,
     feedbackTime: FeedbackTime.MIDDLE,
     correctSolution: undefined,
