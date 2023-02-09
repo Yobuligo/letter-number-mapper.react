@@ -3,6 +3,8 @@ import { ExerciseType } from "./components/exercise/ExerciseType";
 import { SolutionStatus } from "./components/exercise/SolutionStatus";
 import { KeyboardType } from "./components/keyboard/KeyboardType";
 import { FeedbackTime } from "./components/settings/FeedbackTime";
+import { IStopwatch } from "./services/IStopwatch";
+import { Stopwatch } from "./services/Stopwatch";
 
 export const STORED_PARAMETERS = "StoredParameters";
 export type StoredParameters = {
@@ -25,6 +27,7 @@ export const AppContext = createContext<{
     solutionStatus: SolutionStatus;
     solvingTime?: number;
   };
+  stopwatch: IStopwatch;
 }>({
   settings: {
     storedParameters: {
@@ -43,4 +46,5 @@ export const AppContext = createContext<{
     solutionStatus: SolutionStatus.NOT_PROVIDED,
     solvingTime: undefined,
   },
+  stopwatch: new Stopwatch(),
 });

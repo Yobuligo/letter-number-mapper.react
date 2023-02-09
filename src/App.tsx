@@ -8,6 +8,7 @@ import { Main } from "./components/main/Main";
 import { FeedbackTime } from "./components/settings/FeedbackTime";
 import { useDebounce } from "./hooks/useDebounce";
 import { useSolutionStatus } from "./hooks/useSolutionStatus";
+import { Stopwatch } from "./services/Stopwatch";
 import { LetterToNumberSymbolMapper } from "./services/symbolMapper/LetterToNumberSymbolMapper";
 import { NumberToLetterSymbolMapper } from "./services/symbolMapper/NumberToLetterSymbolMapper";
 import { LetterTrainingProgramInitializer } from "./services/trainingProgramInitializer/LetterTrainingProgramInitializer";
@@ -20,6 +21,10 @@ import { Letters, Numbers } from "./Types/Types";
 const App: React.FC = () => {
   const localStore = useMemo(() => {
     return new LocalStore();
+  }, []);
+
+  const stopwatch = useMemo(() => {
+    return new Stopwatch();
   }, []);
 
   const context = useContext(AppContext);
@@ -155,15 +160,17 @@ const App: React.FC = () => {
 
   useEffect(() => {
     setTrainingExercise(trainingProgram?.nextTrainingExercise());
-  }, [trainingProgram]);
+    stopwatch.start();
+  }, [stopwatch, trainingProgram]);
 
   useEffect(() => {
     setSymbol(trainingExercise?.trainingSymbol.symbol!);
   }, [trainingExercise]);
 
-  const { solutionStatus, setSolutionStatus } = useSolutionStatus(() =>
-    setTrainingExercise(trainingProgram?.nextTrainingExercise())
-  );
+  const { solutionStatus, setSolutionStatus } = useSolutionStatus(() => {
+    setTrainingExercise(trainingProgram?.nextTrainingExercise());
+    stopwatch.start();
+  });
 
   const onSetExerciseTypeHandler = (exerciseType: ExerciseType) => {
     setTrainingProgram(getTrainingProgramByExerciseType(exerciseType));
@@ -184,6 +191,7 @@ const App: React.FC = () => {
   const onExerciseSolutionProvided = (selectedSymbol: string) => {
     const mappedSelectedSymbol = symbolMapper.map(selectedSymbol);
     if (mappedSelectedSymbol === symbol) {
+      stopwatch.stop();
       console.log("Correct!");
       trainingExercise?.succeeded();
       setSolutionStatus(SolutionStatus.SUCCESSFUL);
@@ -215,6 +223,7 @@ const App: React.FC = () => {
             provideExerciseSolution: onExerciseSolutionProvided,
             solutionStatus: solutionStatus,
           },
+          stopwatch: stopwatch,
         }}
       >
         <Main />
