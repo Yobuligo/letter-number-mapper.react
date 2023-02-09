@@ -116,7 +116,9 @@ export const Main: React.FC = () => {
           />
         </div>
         <div>
-          <SolvingTimeList />
+          {context.settings.storedParameters.showSolvingTimeList ? (
+            <SolvingTimeList />
+          ) : undefined}
         </div>
       </div>
       <Bottom />

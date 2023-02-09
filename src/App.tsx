@@ -23,8 +23,6 @@ const App: React.FC = () => {
     return new LocalStore();
   }, []);
 
-  const context = useContext(AppContext);
-
   const initializeSettings = (): StoredParameters => {
     const locallyStoredParameters =
       localStore.get<StoredParameters>(STORED_PARAMETERS);
@@ -38,7 +36,6 @@ const App: React.FC = () => {
         showSolvingTimeList: true,
       };
     } else {
-      context.settings.feedbackTime = locallyStoredParameters.feedbackTime;
       return locallyStoredParameters;
     }
   };
@@ -242,7 +239,6 @@ const App: React.FC = () => {
             setFeedbackTime: onSetFeedbackTimeHandler,
             setShowSolvingTimeList: onSetShowSolvingTimeListHandler,
             keyboardType: getKeyboardTypeByExerciseType(settings.exerciseType),
-            feedbackTime: FeedbackTime.MIDDLE,
           },
           exercise: {
             symbol: symbol,

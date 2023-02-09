@@ -13,15 +13,18 @@ export const useSolutionStatus = (onSolutionResetHandler: () => void) => {
     let timer: NodeJS.Timeout;
     if (solutionStatus !== SolutionStatus.NOT_PROVIDED) {
       previousSolutionStatus = solutionStatus;
-      console.log(`Feedback time ${context.settings.feedbackTime}`);
-      const feedbackTime = context.settings.feedbackTime as any;
+      console.log(
+        `Feedback time ${context.settings.storedParameters.feedbackTime}`
+      );
+      const feedbackTime = context.settings.storedParameters
+        .feedbackTime as any;
       timer = setTimeout(() => {
         setSolutionStatus(SolutionStatus.NOT_PROVIDED);
         if (previousSolutionStatus === SolutionStatus.SUCCESSFUL) {
           onSolutionResetHandler();
         }
         previousSolutionStatus = SolutionStatus.NOT_PROVIDED;
-      }, feedbackTime[0]);
+      }, feedbackTime);
     }
     return () => clearTimeout(timer);
   }, [solutionStatus]);
