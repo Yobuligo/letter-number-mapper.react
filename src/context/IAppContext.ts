@@ -1,9 +1,9 @@
-import { StoredParameters } from "./AppContext";
-import { ExerciseType } from "./components/exercise/ExerciseType";
-import { SolutionStatus } from "./components/exercise/SolutionStatus";
-import { KeyboardType } from "./components/keyboard/KeyboardType";
-import { FeedbackTime } from "./components/settings/FeedbackTime";
-import { IStopwatch } from "./services/IStopwatch";
+import { StoredParameters } from "../AppContext";
+import { ExerciseType } from "../components/exercise/ExerciseType";
+import { SolutionStatus } from "../components/exercise/SolutionStatus";
+import { KeyboardType } from "../components/keyboard/KeyboardType";
+import { FeedbackTime } from "../components/settings/FeedbackTime";
+import { IStopwatch } from "../services/IStopwatch";
 
 export type IAppContext = {
   settings: {

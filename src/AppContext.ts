@@ -3,7 +3,7 @@ import { ExerciseType } from "./components/exercise/ExerciseType";
 import { SolutionStatus } from "./components/exercise/SolutionStatus";
 import { KeyboardType } from "./components/keyboard/KeyboardType";
 import { FeedbackTime } from "./components/settings/FeedbackTime";
-import { IAppContext } from "./IAppContext";
+import { IAppContext } from "./context/IAppContext";
 import { Stopwatch } from "./services/Stopwatch";
 
 export const STORED_PARAMETERS = "StoredParameters";
