@@ -4,6 +4,26 @@
   align-items: center;
 }
 
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.displayAndKeyboardContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+.display {
+  margin-top: 1em;
+}
+
+.keyboard {
+  margin-bottom: 1rem;
+}
+
 .noSolutionProvided {
   background-color: white;
 }
@@ -16,7 +36,13 @@
   background-color: rgb(255, 99, 99);
 }
 
-.solvingTimeList{
-  display: flex;
-  flex-direction: row;
+@media (min-width: 60rem) {
+  .mainContainer {
+    flex-direction: row;
+  }
+
+  .displayAndKeyboardContainer {
+    justify-content: flex-start;
+  }
+
 }

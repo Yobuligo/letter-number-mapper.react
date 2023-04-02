@@ -101,13 +101,13 @@ export const Main: React.FC = () => {
           )
         : ""}
       <Toolbar toolbarActions={toolbarActions} />
-      <div className={styles.solvingTimeList}>
-        <div>
-          <Display
+      <div className={styles.mainContainer}>
+        <div className={styles.displayAndKeyboardContainer}>
+          <Display className={styles.display}
             symbol={context.exercise.symbol}
             exerciseType={context.settings.storedParameters.exerciseType}
           />
-          <Keyboard
+          <Keyboard className={styles.keyboard}
             keyboardType={context.settings.keyboardType}
             keyboardContext={{
               clickHandler: onKeyboardClickHandler,

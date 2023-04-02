@@ -7,6 +7,7 @@ import NumberKeyboard from "./NumberKeyboard";
 const Keyboard: React.FC<{
   keyboardType: KeyboardType;
   keyboardContext: IKeyboardContext;
+  className?: string;
 }> = (props) => {
   const createKeyboardContext = (): IKeyboardContext => {
     return {
@@ -15,7 +16,7 @@ const Keyboard: React.FC<{
     };
   };
   return (
-    <div className={styles.keyboard}>
+    <div className={`${props.className} ${styles.keyboard}`}>
       {props.keyboardType === KeyboardType.LETTER ? (
         <LetterKeyboard keyboardContext={createKeyboardContext()} />
       ) : (

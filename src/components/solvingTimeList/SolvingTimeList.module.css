@@ -1,5 +1,11 @@
-.solvingTimeList {
+.items {
   display: flex;
   flex-direction: column;
-  padding-left: 5rem;
+  align-items: flex-start;
+}
+
+@media (min-width: 40rem) {
+  .solvingTimeList {
+    margin-left: 5rem;
+  }
 }
