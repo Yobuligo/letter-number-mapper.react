@@ -1,18 +1,13 @@
 import { ITrainingExercise } from "./ITrainingExercise";
 import { ITrainingProgram } from "./ITrainingProgram";
-import { ITrainingProgramInfo } from "./ITrainingProgramInfo";
 import { ITrainingSection } from "./ITrainingSection";
 import { TrainingExerciseFactory } from "./TrainingExerciseFactory";
-import { TrainingProgramInfo } from "./TrainingProgramInfo";
 import { TrainingSymbolPicker } from "./TrainingSymbolPicker";
 import { TrainingSymbolShifter } from "./TrainingSymbolShifter";
 
 export class TrainingProgram implements ITrainingProgram {
   private trainingSymbolPicker = new TrainingSymbolPicker(this);
   private trainingSymbolShifter = new TrainingSymbolShifter();
-  readonly trainingProgramInfo: ITrainingProgramInfo = new TrainingProgramInfo(
-    this
-  );
 
   constructor(public trainingSections: ITrainingSection[]) {
     this.addTrainingSectionRelations();

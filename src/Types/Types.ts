@@ -1,5 +1,3 @@
-export type ProbabilityWeight = number;
-
 export const Letters = [
   "A",
   "B",

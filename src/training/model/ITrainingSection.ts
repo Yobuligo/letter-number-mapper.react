@@ -1,21 +1,16 @@
-import { ProbabilityWeight } from "../../Types/Types";
 import { ITrainingSymbol } from "./ITrainingSymbol";
 
 /**
  * An implementation of this interface represents a ITrainingSection which contains of ITrainingSymbols.
  * A section represents a learning progress of the ITrainingSymbols.
  * In case the learning progress increases by solving the ITrainingSymbols exercises, the ITrainingSymbol is moved to the next higher ITrainingSection.
- * The lower the probabilityWeight of a ITrainingSection is, the rarer it will be picked as exercise, which means the ITrainingSymbol is known appropriate.
+ * 
+ * How to reflect the progress level of a section?
+ * The sections have a specific order (1, 2, 3, ...). The last section contains symbols which are known best. The first sections contain symbols which are more or less unknown.
+ * So a symbol of the last section (4) is added only once to a list. Symbols of section 3 are added twice. Symbols of section 2 are added three times and symbols of section 1 are added four times.
+ * At the end a symbol is picked from that list.
  */
 export interface ITrainingSection {
-  /**
-   * The probabilityWeight is a value that defines the probability of a section to be selected while considering the weight of all sections in sum.
-   * Examples:
-   * 1. There are three sections with weight 5, 3, 2. In sum the weight is 10. As result the sections get the following probability in percent, 50%, 30%, 20%.
-   * 2. The following sections 5, 5, 5, 5 have a complete weight of 20. In percent all sections would have a probability of 25%.
-   * 3. The following sections 5, 5, 5, 3, 2 have a complete weight of 20. In percent the sections would have the probabilities 25%, 25%, 25%, 15%, 10%.
-   */
-  readonly probabilityWeight: ProbabilityWeight;
   readonly answersTillProgression: number;
   id: number;
   follower: ITrainingSection | undefined;

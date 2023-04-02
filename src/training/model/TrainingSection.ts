@@ -1,4 +1,3 @@
-import { ProbabilityWeight } from "../../Types/Types";
 import { ITrainingSection } from "./ITrainingSection";
 import { ITrainingSymbol } from "./ITrainingSymbol";
 
@@ -9,7 +8,6 @@ export class TrainingSection implements ITrainingSection {
   predecessor: ITrainingSection | undefined = undefined;
 
   constructor(
-    readonly probabilityWeight: ProbabilityWeight,
     readonly answersTillProgression: number,
     trainingSymbols?: ITrainingSymbol[]
   ) {
