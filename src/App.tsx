@@ -1,6 +1,7 @@
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "./App.css";
-import { AppContext, StoredParameters, STORED_PARAMETERS } from "./AppContext";
+import { AppContext, STORED_PARAMETERS, StoredParameters } from "./AppContext";
+import { Letters, Numbers } from "./Types/Types";
 import { ExerciseType } from "./components/exercise/ExerciseType";
 import { SolutionStatus } from "./components/exercise/SolutionStatus";
 import { KeyboardType } from "./components/keyboard/KeyboardType";
@@ -8,6 +9,7 @@ import { Main } from "./components/main/Main";
 import { FeedbackTime } from "./components/settings/FeedbackTime";
 import { useDebounce } from "./hooks/useDebounce";
 import { useSolutionStatus } from "./hooks/useSolutionStatus";
+import { ISolvingTime } from "./model/ISolvingTime";
 import { Stopwatch } from "./services/Stopwatch";
 import { LetterToNumberSymbolMapper } from "./services/symbolMapper/LetterToNumberSymbolMapper";
 import { NumberToLetterSymbolMapper } from "./services/symbolMapper/NumberToLetterSymbolMapper";
@@ -16,7 +18,6 @@ import { NumberTrainingProgramInitializer } from "./services/trainingProgramInit
 import { LocalStore } from "./store/LocalStore";
 import { ITrainingExercise } from "./training/model/ITrainingExercise";
 import { ITrainingProgram } from "./training/model/ITrainingProgram";
-import { Letters, Numbers } from "./Types/Types";
 
 const App: React.FC = () => {
   const localStore = useMemo(() => {
@@ -69,7 +70,7 @@ const App: React.FC = () => {
     return new Stopwatch();
   }, []);
 
-  const solvingTimes = useMemo<number[]>(() => {
+  const solvingTimes = useMemo<ISolvingTime[]>(() => {
     return [];
   }, [trainingProgram]);
 
@@ -203,8 +204,8 @@ const App: React.FC = () => {
     });
   };
 
-  const pushElapsedToSolvingTimes = () => {
-    solvingTimes.splice(0, 0, stopwatch.elapsed);
+  const pushElapsedToSolvingTimes = (symbol: string) => {
+    solvingTimes.splice(0, 0, { symbol: symbol, time: stopwatch.elapsed });
     solvingTimes.splice(10, solvingTimes.length);
   };
 
@@ -212,7 +213,7 @@ const App: React.FC = () => {
     const mappedSelectedSymbol = symbolMapper.map(selectedSymbol);
     if (mappedSelectedSymbol === symbol) {
       stopwatch.stop();
-      pushElapsedToSolvingTimes();
+      pushElapsedToSolvingTimes(symbol);
       console.log("Correct!");
       trainingExercise?.succeeded();
       setSolutionStatus(SolutionStatus.SUCCESSFUL);
