@@ -38,14 +38,14 @@ export class TrainingExercise implements ITrainingExercise {
   }
 
   private raiseOnFailed() {
-    this.onFailHandlers.forEach((eventHandler) => {
-      eventHandler(this);
+    this.onFailHandlers.forEach((onFailHandler) => {
+      onFailHandler(this);
     });
   }
 
   private raiseOnSucceed() {
-    this.onSucceedHandlers.forEach((eventHandler) => {
-      eventHandler(this);
+    this.onSucceedHandlers.forEach((onSucceedHandler) => {
+      onSucceedHandler(this);
     });
   }
 }
