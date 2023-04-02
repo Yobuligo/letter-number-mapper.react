@@ -12,22 +12,22 @@ export class TrainingProgramInitializer implements ITrainingProgramInitializer {
       new TrainingProgramBuilder();
 
     return trainingProgramBuilder
-      .createTrainingSection(50, (trainingSectionBuilder) => {
+      .createTrainingSection((trainingSectionBuilder) => {
         trainingSectionBuilder.setAnswersTillProgression(3);
         this.symbols.forEach((symbol) => {
           trainingSectionBuilder.addTrainingSymbol(new TrainingSymbol(symbol));
         });
         return trainingSectionBuilder.build();
       })
-      .createTrainingSection(30, (trainingSectionBuilder) => {
+      .createTrainingSection((trainingSectionBuilder) => {
         trainingSectionBuilder.setAnswersTillProgression(6);
         return trainingSectionBuilder.build();
       })
-      .createTrainingSection(15, (trainingSectionBuilder) => {
+      .createTrainingSection((trainingSectionBuilder) => {
         trainingSectionBuilder.setAnswersTillProgression(9);
         return trainingSectionBuilder.build();
       })
-      .createTrainingSection(5, (trainingSectionBuilder) => {
+      .createTrainingSection((trainingSectionBuilder) => {
         trainingSectionBuilder.setAnswersTillProgression(12);
         return trainingSectionBuilder.build();
       })

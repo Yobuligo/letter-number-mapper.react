@@ -1,11 +1,7 @@
 import { ITrainingSection } from "./ITrainingSection";
 import { ITrainingSymbol } from "./ITrainingSymbol";
 
-type EventHandler = (trainingSymbol: ITrainingSymbol) => void;
-
 export class TrainingSymbol implements ITrainingSymbol {
-  private eventHandlerOnFailed: EventHandler[] = [];
-  private eventHandlerOnSuccess: EventHandler[] = [];
   private numberSuccessfulAnswersInt: number = 0;
   private trainingSectionInt?: ITrainingSection = undefined;
 
@@ -30,7 +26,6 @@ export class TrainingSymbol implements ITrainingSymbol {
 
   failed(): void {
     this.numberSuccessfulAnswersInt = 0;
-    this.raiseOnFailed();
     console.log(
       `Symbol '${this.symbol}' was not guessed correctly. You dropped back down to '${this.numberSuccessfulAnswers}'.`
     );
@@ -38,33 +33,8 @@ export class TrainingSymbol implements ITrainingSymbol {
 
   succeed(): void {
     this.numberSuccessfulAnswersInt++;
-    this.raiseOnSucceed();
     console.log(
       `Symbol '${this.symbol}' was guessed correctly '${this.numberSuccessfulAnswers}' times`
     );
-  }
-
-  registerOnFailed(
-    eventHandler: (trainingSymbol: ITrainingSymbol) => void
-  ): void {
-    this.eventHandlerOnFailed.push(eventHandler);
-  }
-
-  registerOnSucceed(
-    eventHandler: (trainingSymbol: ITrainingSymbol) => void
-  ): void {
-    this.eventHandlerOnSuccess.push(eventHandler);
-  }
-
-  private raiseOnFailed() {
-    this.eventHandlerOnFailed.forEach((eventHandler) => {
-      eventHandler(this);
-    });
-  }
-
-  private raiseOnSucceed() {
-    this.eventHandlerOnSuccess.forEach((eventHandler) => {
-      eventHandler(this);
-    });
   }
 }

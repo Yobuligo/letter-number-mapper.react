@@ -1,4 +1,3 @@
-import { ProbabilityWeight } from "../../Types/Types";
 import { ITrainingProgram } from "../model/ITrainingProgram";
 import { ITrainingSection } from "../model/ITrainingSection";
 import { ITrainingSectionBuilder } from "./ITrainingSectionBuilder";
@@ -13,12 +12,9 @@ export interface ITrainingProgramBuilder {
     trainingSection: ITrainingSection
   ): ITrainingProgramBuilder;
 
-  createEmptyTrainingSection(
-    probabilityWeight: ProbabilityWeight
-  ): ITrainingProgramBuilder;
+  createEmptyTrainingSection(): ITrainingProgramBuilder;
 
   createTrainingSection(
-    probabilityWeight: ProbabilityWeight,
     creator: (
       trainingSectionBuilder: ITrainingSectionBuilder
     ) => ITrainingSection

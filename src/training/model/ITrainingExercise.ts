@@ -9,10 +9,10 @@ export interface ITrainingExercise {
   readonly trainingSymbol: ITrainingSymbol;
   failed(): void;
   succeeded(): void;
-  registerOnFailed(
-    eventHandler: (trainingExercise: ITrainingExercise) => void
+  onFail(
+    onFailHandler: (trainingExercise: ITrainingExercise) => void
   ): void;
-  registerOnSucceed(
-    eventHandler: (trainingExercise: ITrainingExercise) => void
+  onSucceed(
+    onSucceedHandler: (trainingExercise: ITrainingExercise) => void
   ): void;
 }

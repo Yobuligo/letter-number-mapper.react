@@ -10,10 +10,4 @@ export interface ITrainingSymbol {
   trainingSection: ITrainingSection;
   failed(): void;
   succeed(): void;
-  registerOnFailed(
-    eventHandler: (trainingSymbol: ITrainingSymbol) => void
-  ): void;
-  registerOnSucceed(
-    eventHandler: (trainingSymbol: ITrainingSymbol) => void
-  ): void;
 }

@@ -1,18 +1,13 @@
 import { ITrainingExercise } from "./ITrainingExercise";
 import { ITrainingProgram } from "./ITrainingProgram";
-import { ITrainingProgramInfo } from "./ITrainingProgramInfo";
 import { ITrainingSection } from "./ITrainingSection";
 import { TrainingExerciseFactory } from "./TrainingExerciseFactory";
-import { TrainingProgramInfo } from "./TrainingProgramInfo";
 import { TrainingSymbolPicker } from "./TrainingSymbolPicker";
 import { TrainingSymbolShifter } from "./TrainingSymbolShifter";
 
 export class TrainingProgram implements ITrainingProgram {
   private trainingSymbolPicker = new TrainingSymbolPicker(this);
   private trainingSymbolShifter = new TrainingSymbolShifter();
-  readonly trainingProgramInfo: ITrainingProgramInfo = new TrainingProgramInfo(
-    this
-  );
 
   constructor(public trainingSections: ITrainingSection[]) {
     this.addTrainingSectionRelations();
@@ -22,10 +17,10 @@ export class TrainingProgram implements ITrainingProgram {
     const trainingExercise = TrainingExerciseFactory.create(
       this.trainingSymbolPicker.next()
     );
-    trainingExercise.registerOnFailed((trainingExercise) => {
+    trainingExercise.onFail((trainingExercise) => {
       this.trainingSymbolShifter.shiftDown(trainingExercise.trainingSymbol);
     });
-    trainingExercise.registerOnSucceed((trainingExercise) => {
+    trainingExercise.onSucceed((trainingExercise) => {
       this.trainingSymbolShifter.shiftUp(trainingExercise.trainingSymbol);
     });
     return trainingExercise;

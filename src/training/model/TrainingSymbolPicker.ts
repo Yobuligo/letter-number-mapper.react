@@ -1,14 +1,9 @@
+import { error, repeat } from "@yobuligo/core.typescript";
 import { ITrainingProgram } from "./ITrainingProgram";
-import { ITrainingSection } from "./ITrainingSection";
-import { ITrainingSectionPicker } from "./ITrainingSectionPicker";
 import { ITrainingSymbol } from "./ITrainingSymbol";
 import { ITrainingSymbolPicker } from "./ITrainingSymbolPicker";
-import { TrainingSectionPicker } from "./TrainingSectionPicker";
 
 export class TrainingSymbolPicker implements ITrainingSymbolPicker {
-  private trainingSectionPicker: ITrainingSectionPicker =
-    new TrainingSectionPicker(this.trainingProgram);
-
   constructor(private trainingProgram: ITrainingProgram) {}
 
   next(): ITrainingSymbol {
@@ -16,19 +11,26 @@ export class TrainingSymbolPicker implements ITrainingSymbolPicker {
   }
 
   private selectTrainingSymbol(): ITrainingSymbol {
-    const trainingSection = this.selectTrainingSection();
-    const percent = Math.random() * trainingSection.countTrainingSymbols();
+    const trainingSymbolList = this.buildTrainingSymbolList();
+    const percent = Math.random() * trainingSymbolList.length;
     const index = Math.ceil(percent);
-    const trainingSymbol = trainingSection.trainingSymbolAt(index - 1);
-    if (trainingSymbol === undefined) {
-      throw new Error(
-        `Error when picking training symbol. Training symbol is undefined`
-      );
-    }
-    return trainingSymbol;
+    return (
+      trainingSymbolList.at(index - 1) ??
+      error(`Error when picking training symbol. Training symbol is undefined`)
+    );
   }
 
-  private selectTrainingSection(): ITrainingSection {
-    return this.trainingSectionPicker.next();
+  private buildTrainingSymbolList(): ITrainingSymbol[] {
+    let size = this.trainingProgram.trainingSections.length;
+    const trainingSymbols: ITrainingSymbol[] = [];
+    this.trainingProgram.trainingSections.forEach((trainingSection) => {
+      trainingSection
+        .findAllTrainingSymbols()
+        .forEach((trainingSymbol) =>
+          repeat(size, () => trainingSymbols.push(trainingSymbol))
+        );
+      size--;
+    });
+    return trainingSymbols;
   }
 }
