@@ -10,10 +10,4 @@ export interface ITrainingSymbol {
   trainingSection: ITrainingSection;
   failed(): void;
   succeed(): void;
-  onFail(
-    onFailHandler: (trainingSymbol: ITrainingSymbol) => void
-  ): void;
-  onSucceed(
-    onSucceedHandler: (trainingSymbol: ITrainingSymbol) => void
-  ): void;
 }
