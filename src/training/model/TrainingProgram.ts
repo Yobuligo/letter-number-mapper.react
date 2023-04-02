@@ -22,10 +22,10 @@ export class TrainingProgram implements ITrainingProgram {
     const trainingExercise = TrainingExerciseFactory.create(
       this.trainingSymbolPicker.next()
     );
-    trainingExercise.registerOnFailed((trainingExercise) => {
+    trainingExercise.onFail((trainingExercise) => {
       this.trainingSymbolShifter.shiftDown(trainingExercise.trainingSymbol);
     });
-    trainingExercise.registerOnSucceed((trainingExercise) => {
+    trainingExercise.onSucceed((trainingExercise) => {
       this.trainingSymbolShifter.shiftUp(trainingExercise.trainingSymbol);
     });
     return trainingExercise;

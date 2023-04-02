@@ -4,8 +4,8 @@ import { ITrainingSymbol } from "./ITrainingSymbol";
 type EventHandler = (trainingExercise: ITrainingExercise) => void;
 
 export class TrainingExercise implements ITrainingExercise {
-  private eventHandlerOnFailed: EventHandler[] = [];
-  private eventHandlerOnSucceed: EventHandler[] = [];
+  private onFailHandlers: EventHandler[] = [];
+  private onSucceedHandlers: EventHandler[] = [];
 
   constructor(public trainingSymbol: ITrainingSymbol) {
     if (trainingSymbol === undefined) {
@@ -25,26 +25,26 @@ export class TrainingExercise implements ITrainingExercise {
     this.raiseOnSucceed();
   }
 
-  registerOnFailed(
-    eventHandler: (trainingExercise: ITrainingExercise) => void
+  onFail(
+    onFailHandler: (trainingExercise: ITrainingExercise) => void
   ): void {
-    this.eventHandlerOnFailed.push(eventHandler);
+    this.onFailHandlers.push(onFailHandler);
   }
 
-  registerOnSucceed(
-    eventHandler: (trainingExercise: ITrainingExercise) => void
+  onSucceed(
+    onSucceedHandler: (trainingExercise: ITrainingExercise) => void
   ): void {
-    this.eventHandlerOnSucceed.push(eventHandler);
+    this.onSucceedHandlers.push(onSucceedHandler);
   }
 
   private raiseOnFailed() {
-    this.eventHandlerOnFailed.forEach((eventHandler) => {
+    this.onFailHandlers.forEach((eventHandler) => {
       eventHandler(this);
     });
   }
 
   private raiseOnSucceed() {
-    this.eventHandlerOnSucceed.forEach((eventHandler) => {
+    this.onSucceedHandlers.forEach((eventHandler) => {
       eventHandler(this);
     });
   }
