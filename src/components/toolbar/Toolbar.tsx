@@ -5,7 +5,7 @@ const Toolbar: React.FC<{ toolbarActions?: IToolbarAction[] }> = (props) => {
   const items = props.toolbarActions?.map((toolbarAction) => {
     return (
       <button key={toolbarAction.source} onClick={toolbarAction.onClickHandler}>
-        <span className="material-symbols-outlined">menu</span>
+        <span className="material-symbols-outlined">{toolbarAction.source}</span>
       </button>
     );
   });

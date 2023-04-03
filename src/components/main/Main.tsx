@@ -1,7 +1,7 @@
 import React, { ReactNode, useContext, useState } from "react";
 import ReactDOM from "react-dom";
 import { AppContext } from "../../AppContext";
-import settingsImage from "../../assets/images/settings.png";
+import { MaterialIcons } from "../../assets/icons/MaterialIcons";
 import { ISymbolMapper } from "../../services/symbolMapper/ISymbolMapper";
 import { LetterToNumberSymbolMapper } from "../../services/symbolMapper/LetterToNumberSymbolMapper";
 import { NumberToLetterSymbolMapper } from "../../services/symbolMapper/NumberToLetterSymbolMapper";
@@ -78,7 +78,7 @@ export const Main: React.FC = () => {
 
   const toolbarActions: IToolbarAction[] = [
     {
-      source: settingsImage,
+      source: MaterialIcons.Menu,
       text: "Settings",
       onClickHandler: () => {
         showModalDialog(<Settings />);
@@ -103,11 +103,13 @@ export const Main: React.FC = () => {
       <Toolbar toolbarActions={toolbarActions} />
       <div className={styles.mainContainer}>
         <div className={styles.displayAndKeyboardContainer}>
-          <Display className={styles.display}
+          <Display
+            className={styles.display}
             symbol={context.exercise.symbol}
             exerciseType={context.settings.storedParameters.exerciseType}
           />
-          <Keyboard className={styles.keyboard}
+          <Keyboard
+            className={styles.keyboard}
             keyboardType={context.settings.keyboardType}
             keyboardContext={{
               clickHandler: onKeyboardClickHandler,
