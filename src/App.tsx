@@ -210,6 +210,11 @@ const App: React.FC = () => {
   };
 
   const onExerciseSolutionProvided = (selectedSymbol: string) => {
+    // It must not be allowed to to solve the same exercise multiple times by e.g. fast clicking
+    // So if an exercise is already solved, leave here
+    if (trainingExercise.isSolved) {
+      return;
+    }
     const mappedSelectedSymbol = symbolMapper.map(selectedSymbol);
     if (mappedSelectedSymbol === symbol) {
       stopwatch.stop();

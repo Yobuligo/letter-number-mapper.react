@@ -6,12 +6,11 @@ import { ITrainingSymbol } from "./ITrainingSymbol";
  * The exercise can either succeed or fail.
  */
 export interface ITrainingExercise {
+  readonly isSolved: boolean;
   readonly trainingSymbol: ITrainingSymbol;
   failed(): void;
   succeeded(): void;
-  onFail(
-    onFailHandler: (trainingExercise: ITrainingExercise) => void
-  ): void;
+  onFail(onFailHandler: (trainingExercise: ITrainingExercise) => void): void;
   onSucceed(
     onSucceedHandler: (trainingExercise: ITrainingExercise) => void
   ): void;
