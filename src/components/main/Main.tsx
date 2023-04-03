@@ -1,4 +1,4 @@
-import React, { ReactNode, useContext, useState } from "react";
+import React, { ReactNode, useContext, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { AppContext } from "../../AppContext";
 import { MaterialIcons } from "../../assets/icons/MaterialIcons";
@@ -61,44 +61,41 @@ export const Main: React.FC = () => {
     }
   };
 
-  const [modalDialogActive, setModalDialogActive] = useState(false);
-  const [modalDialogChildren, setModalDialogChildren] =
+  const [showModalDialog, setShowModalDialog] = useState(false);
+  const [modalDialogContent, setModalDialogContent] =
     useState<ReactNode>(null);
 
-  const showModalDialog = (children: ReactNode) => {
-    setModalDialogChildren(children);
-    setModalDialogActive(true);
-  };
+  useEffect(() => {
+    setModalDialogContent(showModalDialog ? <Settings /> : null)
+  }, [showModalDialog])
 
-  const hideModalDialog = () => {
-    console.log(`Hide modal dialog, as it was confirmed`);
-    setModalDialogChildren(null);
-    setModalDialogActive(false);
-  };
+  const toggleModalDialog = () => {
+    setShowModalDialog((previous) => !previous)
+  }
 
   const toolbarActions: IToolbarAction[] = [
     {
       source: MaterialIcons.Menu,
       text: "Settings",
       onClickHandler: () => {
-        showModalDialog(<Settings />);
+        toggleModalDialog()
       },
     },
   ];
 
   return (
     <div className={`${styles.main} ${getSolutionBackgroundStyle()}`}>
-      {modalDialogActive
+      {showModalDialog
         ? ReactDOM.createPortal(
-            <ModalDialog
-              onConfirm={() => {
-                hideModalDialog();
-              }}
-            >
-              {modalDialogChildren}
-            </ModalDialog>,
-            document.getElementById("overlay")!
-          )
+          <ModalDialog
+            onConfirm={() => {
+              setShowModalDialog(false)
+            }}
+          >
+            {modalDialogContent}
+          </ModalDialog>,
+          document.getElementById("overlay")!
+        )
         : ""}
       <Toolbar toolbarActions={toolbarActions} />
       <div className={styles.mainContainer}>

@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 .main {
   display: flex;
   flex-direction: column;
@@ -17,7 +21,8 @@
 }
 
 .display {
-  margin-top: 1em;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .keyboard {
@@ -36,14 +41,21 @@
   background-color: rgb(255, 99, 99);
 }
 
-@media (min-width: 60rem) and (orientation: landscape) {
+/* @media (min-height: 25rem) { */
+@media (min-width: 40rem) and (min-height: 25rem) {
   .mainContainer {
     flex-direction: row;
   }
-}
-
-@media (orientation: portrait) {
   .displayAndKeyboardContainer {
     height: auto;
   }
 }
+
+/* @media (max-width: 40rem) and (min-height: 25rem) {
+  .mainContainer {
+    flex-direction: row;
+  }
+  .displayAndKeyboardContainer {
+    height: auto;
+  }
+} */
