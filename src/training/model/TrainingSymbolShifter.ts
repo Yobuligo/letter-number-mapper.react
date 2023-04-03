@@ -16,11 +16,15 @@ export class TrainingSymbolShifter implements ITrainingSymbolShifter {
   }
 
   shiftDown(trainingSymbol: ITrainingSymbol): void {
-    if (trainingSymbol.trainingSection.predecessor !== undefined) {
+    if (
+      trainingSymbol.trainingSection.predecessor !== undefined &&
+      trainingSymbol.numberSuccessfulAnswers ===
+        trainingSymbol.trainingSection.predecessor.answersTillProgression
+    ) {
       trainingSymbol.trainingSection =
         trainingSymbol.trainingSection.predecessor;
       console.log(
-        `Symbol ${trainingSymbol.symbol} was shifted down to first section.`
+        `Symbol ${trainingSymbol.symbol} was shifted down to ${trainingSymbol.trainingSection.id}. training section.`
       );
     }
   }

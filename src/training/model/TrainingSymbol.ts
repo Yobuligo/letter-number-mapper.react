@@ -2,13 +2,13 @@ import { ITrainingSection } from "./ITrainingSection";
 import { ITrainingSymbol } from "./ITrainingSymbol";
 
 export class TrainingSymbol implements ITrainingSymbol {
-  private numberSuccessfulAnswersInt: number = 0;
+  private _numberSuccessfulAnswers: number = 0;
   private trainingSectionInt?: ITrainingSection = undefined;
 
   constructor(public symbol: string) {}
 
   public get numberSuccessfulAnswers(): number {
-    return this.numberSuccessfulAnswersInt;
+    return this._numberSuccessfulAnswers;
   }
 
   public get trainingSection(): ITrainingSection {
@@ -25,14 +25,16 @@ export class TrainingSymbol implements ITrainingSymbol {
   }
 
   failed(): void {
-    this.numberSuccessfulAnswersInt = 0;
+    if (this._numberSuccessfulAnswers > 0) {
+      this._numberSuccessfulAnswers--;
+    }
     console.log(
       `Symbol '${this.symbol}' was not guessed correctly. You dropped back down to '${this.numberSuccessfulAnswers}'.`
     );
   }
 
   succeed(): void {
-    this.numberSuccessfulAnswersInt++;
+    this._numberSuccessfulAnswers++;
     console.log(
       `Symbol '${this.symbol}' was guessed correctly '${this.numberSuccessfulAnswers}' times`
     );

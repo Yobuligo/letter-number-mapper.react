@@ -209,6 +209,7 @@ const App: React.FC = () => {
     solvingTimes.splice(0, 0, {
       trainingSymbol: trainingSymbol,
       time: stopwatch.elapsed,
+      numberSuccessfulAnswers: trainingSymbol.numberSuccessfulAnswers
     });
     solvingTimes.splice(10, solvingTimes.length);
   };
