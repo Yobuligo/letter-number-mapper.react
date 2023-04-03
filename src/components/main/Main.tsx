@@ -1,4 +1,4 @@
-import React, { ReactNode, useContext, useState } from "react";
+import React, { ReactNode, useContext, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { AppContext } from "../../AppContext";
 import { MaterialIcons } from "../../assets/icons/MaterialIcons";
@@ -65,14 +65,21 @@ export const Main: React.FC = () => {
   const [modalDialogChildren, setModalDialogChildren] =
     useState<ReactNode>(null);
 
-  const showModalDialog = (children: ReactNode) => {
-    setModalDialogChildren(children);
-    setModalDialogActive(true);
-  };
+  useEffect(() => {
+    if (modalDialogActive) {
+      setModalDialogChildren(<Settings />)
+    } else {
+      setModalDialogChildren(null)
+    }
+  }, [modalDialogActive])
+
+  const toggleModalDialog = () => {
+    setModalDialogActive((previous) => !previous)
+  }
 
   const hideModalDialog = () => {
     console.log(`Hide modal dialog, as it was confirmed`);
-    setModalDialogChildren(null);
+    // setModalDialogChildren(null);
     setModalDialogActive(false);
   };
 
@@ -81,7 +88,7 @@ export const Main: React.FC = () => {
       source: MaterialIcons.Menu,
       text: "Settings",
       onClickHandler: () => {
-        showModalDialog(<Settings />);
+        toggleModalDialog()
       },
     },
   ];
@@ -90,15 +97,15 @@ export const Main: React.FC = () => {
     <div className={`${styles.main} ${getSolutionBackgroundStyle()}`}>
       {modalDialogActive
         ? ReactDOM.createPortal(
-            <ModalDialog
-              onConfirm={() => {
-                hideModalDialog();
-              }}
-            >
-              {modalDialogChildren}
-            </ModalDialog>,
-            document.getElementById("overlay")!
-          )
+          <ModalDialog
+            onConfirm={() => {
+              hideModalDialog();
+            }}
+          >
+            {modalDialogChildren}
+          </ModalDialog>,
+          document.getElementById("overlay")!
+        )
         : ""}
       <Toolbar toolbarActions={toolbarActions} />
       <div className={styles.mainContainer}>
