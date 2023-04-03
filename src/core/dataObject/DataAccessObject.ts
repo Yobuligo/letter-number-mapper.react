@@ -1,4 +1,3 @@
-import { randomUUID } from "crypto";
 import { IDataAccessObject } from "./IDataAccessObject";
 import { IDataObject } from "./IDataObject";
 
@@ -8,7 +7,7 @@ export class DataAccessObject<T extends IDataObject>
   constructor(private storage: Storage, private key: string) {}
 
   add(data: Omit<T, "id">): T {
-    const dataObject = { ...data, id: randomUUID() } as T;
+    const dataObject = { ...data, id: crypto.randomUUID() } as T;
     const dataObjects = this.findAll();
     dataObjects.push(dataObject);
     this.save(dataObjects);

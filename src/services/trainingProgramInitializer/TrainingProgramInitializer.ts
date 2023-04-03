@@ -2,6 +2,7 @@ import { ITrainingProgramBuilder } from "../../training/builder/ITrainingProgram
 import { ITrainingProgramInitializer } from "../../training/builder/ITrainingProgramInitializer";
 import { TrainingProgramBuilder } from "../../training/builder/TrainingProgramBuilder";
 import { ITrainingProgram } from "../../training/model/ITrainingProgram";
+import { TrainingSymbolDAO } from "../../training/model/TrainingSymbolDAO";
 import { TrainingSymbol } from "./../../training/model/TrainingSymbol";
 
 export class TrainingProgramInitializer implements ITrainingProgramInitializer {
@@ -10,6 +11,8 @@ export class TrainingProgramInitializer implements ITrainingProgramInitializer {
   initialize(): ITrainingProgram {
     const trainingProgramBuilder: ITrainingProgramBuilder =
       new TrainingProgramBuilder();
+
+    TrainingSymbolDAO.deleteAll()
 
     return trainingProgramBuilder
       .createTrainingSection((trainingSectionBuilder) => {

@@ -8,6 +8,6 @@ import { ITrainingSymbol } from "./ITrainingSymbol";
  *
  */
 export interface ITrainingSymbolDO extends IDataObject {
-  readonly symbol: string;
-  readonly numberSuccessfulAnswers: number;
+  symbol: string;
+  numberSuccessfulAnswers: number;
 }
