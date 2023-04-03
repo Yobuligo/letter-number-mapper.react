@@ -61,27 +61,17 @@ export const Main: React.FC = () => {
     }
   };
 
-  const [modalDialogActive, setModalDialogActive] = useState(false);
-  const [modalDialogChildren, setModalDialogChildren] =
+  const [showModalDialog, setShowModalDialog] = useState(false);
+  const [modalDialogContent, setModalDialogContent] =
     useState<ReactNode>(null);
 
   useEffect(() => {
-    if (modalDialogActive) {
-      setModalDialogChildren(<Settings />)
-    } else {
-      setModalDialogChildren(null)
-    }
-  }, [modalDialogActive])
+    setModalDialogContent(showModalDialog ? <Settings /> : null)
+  }, [showModalDialog])
 
   const toggleModalDialog = () => {
-    setModalDialogActive((previous) => !previous)
+    setShowModalDialog((previous) => !previous)
   }
-
-  const hideModalDialog = () => {
-    console.log(`Hide modal dialog, as it was confirmed`);
-    // setModalDialogChildren(null);
-    setModalDialogActive(false);
-  };
 
   const toolbarActions: IToolbarAction[] = [
     {
@@ -95,14 +85,14 @@ export const Main: React.FC = () => {
 
   return (
     <div className={`${styles.main} ${getSolutionBackgroundStyle()}`}>
-      {modalDialogActive
+      {showModalDialog
         ? ReactDOM.createPortal(
           <ModalDialog
             onConfirm={() => {
-              hideModalDialog();
+              setShowModalDialog(false)
             }}
           >
-            {modalDialogChildren}
+            {modalDialogContent}
           </ModalDialog>,
           document.getElementById("overlay")!
         )
