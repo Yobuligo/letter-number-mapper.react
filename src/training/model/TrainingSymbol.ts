@@ -2,6 +2,7 @@ import { ITrainingSection } from "./ITrainingSection";
 import { ITrainingSymbol } from "./ITrainingSymbol";
 
 export class TrainingSymbol implements ITrainingSymbol {
+  readonly id: string = "";
   private _numberSuccessfulAnswers: number = 0;
   private trainingSectionInt?: ITrainingSection = undefined;
 

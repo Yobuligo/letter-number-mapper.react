@@ -28,6 +28,10 @@ export class DataAccessObject<T extends IDataObject>
     return this.deleteById(dataObject.id);
   }
 
+  deleteAll(): void {
+    this.save([]);
+  }
+
   deleteById(id: string): boolean {
     const dataObjects = this.findAll();
     const index = dataObjects.findIndex((dataObject) => dataObject.id === id);
