@@ -9,7 +9,7 @@ const SolvingTime: React.FC<{ solvingTime: ISolvingTime }> = (props) => {
       </div>
       <div className={styles.solvingTimeTime}>{props.solvingTime.time}s</div>
       <div className={styles.solvingTimeNumberSuccessfulAnswers}>
-        {props.solvingTime.numberSuccessfulAnswers}
+        {props.solvingTime.numberSuccessfulAnswers}x
       </div>
     </div>
   );

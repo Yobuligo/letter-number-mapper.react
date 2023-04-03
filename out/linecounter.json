@@ -1,0 +1,1123 @@
+{
+    "extension": "linecounter",
+    "version": "0.2.7",
+    "workspace": "c:\\Users\\Peter\\Documents\\ReactProjects\\letter-number-mapper.react",
+    "linecount": [
+        {
+            "version": "0.2.7",
+            "counttime": "2023-04-03 21:28:10",
+            "filesum": 166,
+            "codesum": 15324,
+            "commentsum": 203,
+            "blanksum": 325,
+            "statistics": {
+                ".json": {
+                    "code": 12796,
+                    "comment": 0,
+                    "blank": 5
+                },
+                ".md": {
+                    "code": 26,
+                    "comment": 6,
+                    "blank": 20
+                },
+                ".html": {
+                    "code": 20,
+                    "comment": 23,
+                    "blank": 0
+                },
+                ".css": {
+                    "code": 213,
+                    "comment": 1,
+                    "blank": 34
+                },
+                ".tsx": {
+                    "code": 796,
+                    "comment": 5,
+                    "blank": 88
+                },
+                ".gradle": {
+                    "code": 100,
+                    "comment": 7,
+                    "blank": 18
+                },
+                "": {
+                    "code": 139,
+                    "comment": 74,
+                    "blank": 23
+                },
+                ".txt": {
+                    "code": 3,
+                    "comment": 1,
+                    "blank": 0
+                },
+                ".bat": {
+                    "code": 44,
+                    "comment": 0,
+                    "blank": 10
+                },
+                ".properties": {
+                    "code": 22,
+                    "comment": 3,
+                    "blank": 5
+                },
+                ".pro": {
+                    "code": 18,
+                    "comment": 1,
+                    "blank": 3
+                },
+                ".ts": {
+                    "code": 787,
+                    "comment": 68,
+                    "blank": 96
+                },
+                ".xml": {
+                    "code": 332,
+                    "comment": 3,
+                    "blank": 12
+                },
+                ".java": {
+                    "code": 27,
+                    "comment": 11,
+                    "blank": 11
+                },
+                ".bin": {
+                    "code": 1,
+                    "comment": 0,
+                    "blank": 0
+                }
+            },
+            "filelist": [
+                {
+                    "blank": 5,
+                    "code": 18,
+                    "comment": 1,
+                    "filename": ".gitignore"
+                },
+                {
+                    "blank": 4,
+                    "code": 15,
+                    "comment": 1,
+                    "filename": "android\\.gitignore"
+                },
+                {
+                    "filename": "android\\.gradle\\7.4.2\\checksums\\checksums.lock",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "android\\.gradle\\7.4.2\\checksums\\md5-checksums.bin",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "android\\.gradle\\7.4.2\\checksums\\sha1-checksums.bin",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "android\\.gradle\\7.4.2\\dependencies-accessors\\dependencies-accessors.lock",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "android\\.gradle\\7.4.2\\dependencies-accessors\\gc.properties"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "android\\.gradle\\7.4.2\\fileChanges\\last-build.bin"
+                },
+                {
+                    "filename": "android\\.gradle\\7.4.2\\fileHashes\\fileHashes.lock",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "android\\.gradle\\7.4.2\\gc.properties"
+                },
+                {
+                    "filename": "android\\.gradle\\buildOutputCleanup\\buildOutputCleanup.lock",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "android\\.gradle\\buildOutputCleanup\\cache.properties"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "android\\.gradle\\vcs-1\\gc.properties"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "android\\.idea\\.gitignore"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "android\\.idea\\compiler.xml"
+                },
+                {
+                    "blank": 0,
+                    "code": 25,
+                    "comment": 0,
+                    "filename": "android\\.idea\\jarRepositories.xml"
+                },
+                {
+                    "blank": 0,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "android\\.idea\\misc.xml"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 2,
+                    "filename": "android\\app\\.gitignore"
+                },
+                {
+                    "blank": 5,
+                    "code": 46,
+                    "comment": 2,
+                    "filename": "android\\app\\build.gradle"
+                },
+                {
+                    "blank": 6,
+                    "code": 12,
+                    "comment": 1,
+                    "filename": "android\\app\\capacitor.build.gradle"
+                },
+                {
+                    "blank": 3,
+                    "code": 18,
+                    "comment": 1,
+                    "filename": "android\\app\\proguard-rules.pro"
+                },
+                {
+                    "blank": 5,
+                    "code": 15,
+                    "comment": 6,
+                    "filename": "android\\app\\src\\androidTest\\java\\com\\getcapacitor\\myapp\\ExampleInstrumentedTest.java"
+                },
+                {
+                    "blank": 7,
+                    "code": 34,
+                    "comment": 1,
+                    "filename": "android\\app\\src\\main\\AndroidManifest.xml"
+                },
+                {
+                    "blank": 2,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "android\\app\\src\\main\\java\\com\\outlivethesun\\letter_number_mapper\\MainActivity.java"
+                },
+                {
+                    "filename": "android\\app\\src\\main\\res\\drawable-land-hdpi\\splash.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "android\\app\\src\\main\\res\\drawable-land-mdpi\\splash.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "android\\app\\src\\main\\res\\drawable-land-xhdpi\\splash.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "android\\app\\src\\main\\res\\drawable-land-xxhdpi\\splash.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "android\\app\\src\\main\\res\\drawable-land-xxxhdpi\\splash.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "android\\app\\src\\main\\res\\drawable-port-hdpi\\splash.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "android\\app\\src\\main\\res\\drawable-port-mdpi\\splash.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "android\\app\\src\\main\\res\\drawable-port-xhdpi\\splash.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "android\\app\\src\\main\\res\\drawable-port-xxhdpi\\splash.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "android\\app\\src\\main\\res\\drawable-port-xxxhdpi\\splash.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 34,
+                    "comment": 0,
+                    "filename": "android\\app\\src\\main\\res\\drawable-v24\\ic_launcher_foreground.xml"
+                },
+                {
+                    "blank": 0,
+                    "code": 170,
+                    "comment": 0,
+                    "filename": "android\\app\\src\\main\\res\\drawable\\ic_launcher_background.xml"
+                },
+                {
+                    "filename": "android\\app\\src\\main\\res\\drawable\\splash.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 1,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "android\\app\\src\\main\\res\\layout\\activity_main.xml"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "android\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "android\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+                },
+                {
+                    "filename": "android\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "android\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_foreground.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "android\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "android\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "android\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_foreground.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "android\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "android\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "android\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_foreground.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "android\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "android\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "android\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_foreground.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "android\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "android\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "android\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_foreground.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "android\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "android\\app\\src\\main\\res\\values\\ic_launcher_background.xml"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "android\\app\\src\\main\\res\\values\\strings.xml"
+                },
+                {
+                    "blank": 4,
+                    "code": 16,
+                    "comment": 2,
+                    "filename": "android\\app\\src\\main\\res\\values\\styles.xml"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "android\\app\\src\\main\\res\\xml\\file_paths.xml"
+                },
+                {
+                    "blank": 4,
+                    "code": 9,
+                    "comment": 5,
+                    "filename": "android\\app\\src\\test\\java\\com\\getcapacitor\\myapp\\ExampleUnitTest.java"
+                },
+                {
+                    "blank": 6,
+                    "code": 20,
+                    "comment": 3,
+                    "filename": "android\\build.gradle"
+                },
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 1,
+                    "filename": "android\\capacitor.settings.gradle"
+                },
+                {
+                    "blank": 5,
+                    "code": 15,
+                    "comment": 2,
+                    "filename": "android\\gradle.properties"
+                },
+                {
+                    "filename": "android\\gradle\\wrapper\\gradle-wrapper.jar",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 1,
+                    "filename": "android\\gradle\\wrapper\\gradle-wrapper.properties"
+                },
+                {
+                    "blank": 14,
+                    "code": 102,
+                    "comment": 70,
+                    "filename": "android\\gradlew"
+                },
+                {
+                    "blank": 10,
+                    "code": 44,
+                    "comment": 0,
+                    "filename": "android\\gradlew.bat"
+                },
+                {
+                    "blank": 1,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "android\\settings.gradle"
+                },
+                {
+                    "blank": 0,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "android\\variables.gradle"
+                },
+                {
+                    "blank": 0,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "capacitor.config.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "ionic.config.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 12699,
+                    "comment": 0,
+                    "filename": "package-lock.json"
+                },
+                {
+                    "blank": 3,
+                    "code": 49,
+                    "comment": 0,
+                    "filename": "package.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 20,
+                    "comment": 23,
+                    "filename": "public\\index.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "public\\manifest.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 1,
+                    "filename": "public\\robots.txt"
+                },
+                {
+                    "blank": 20,
+                    "code": 26,
+                    "comment": 6,
+                    "filename": "README.md"
+                },
+                {
+                    "blank": 4,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "src\\App.css"
+                },
+                {
+                    "blank": 32,
+                    "code": 233,
+                    "comment": 4,
+                    "filename": "src\\App.tsx"
+                },
+                {
+                    "blank": 2,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src\\AppContext.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src\\assets\\icons\\MaterialIcons.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "src\\components\\bottom\\Bottom.module.css"
+                },
+                {
+                    "blank": 2,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "src\\components\\bottom\\Bottom.tsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src\\components\\core\\card\\Card.module.css"
+                },
+                {
+                    "blank": 2,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "src\\components\\core\\card\\Card.tsx"
+                },
+                {
+                    "blank": 2,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "src\\components\\core\\modalDialog\\ModalDialog.module.css"
+                },
+                {
+                    "blank": 2,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "src\\components\\core\\modalDialog\\ModalDialog.tsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 14,
+                    "comment": 0,
+                    "filename": "src\\components\\display\\Display.tsx"
+                },
+                {
+                    "blank": 3,
+                    "code": 18,
+                    "comment": 0,
+                    "filename": "src\\components\\exercise\\Exercise.module.css"
+                },
+                {
+                    "blank": 1,
+                    "code": 21,
+                    "comment": 0,
+                    "filename": "src\\components\\exercise\\Exercise.tsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src\\components\\exercise\\ExerciseType.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src\\components\\exercise\\SolutionStatus.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 6,
+                    "comment": 3,
+                    "filename": "src\\components\\keyboard\\IKeyboardContext.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 25,
+                    "comment": 0,
+                    "filename": "src\\components\\keyboard\\Key.tsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "src\\components\\keyboard\\Keyboard.module.css"
+                },
+                {
+                    "blank": 2,
+                    "code": 27,
+                    "comment": 0,
+                    "filename": "src\\components\\keyboard\\Keyboard.tsx"
+                },
+                {
+                    "blank": 3,
+                    "code": 34,
+                    "comment": 0,
+                    "filename": "src\\components\\keyboard\\KeyboardRow.tsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "src\\components\\keyboard\\KeyboardType.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "src\\components\\keyboard\\KeyboardTypes.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src\\components\\keyboard\\LetterKeyboard.module.css"
+                },
+                {
+                    "blank": 2,
+                    "code": 28,
+                    "comment": 0,
+                    "filename": "src\\components\\keyboard\\LetterKeyboard.tsx"
+                },
+                {
+                    "blank": 2,
+                    "code": 25,
+                    "comment": 0,
+                    "filename": "src\\components\\keyboard\\NumberKeyboard.tsx"
+                },
+                {
+                    "blank": 9,
+                    "code": 40,
+                    "comment": 0,
+                    "filename": "src\\components\\main\\Main.module.css"
+                },
+                {
+                    "blank": 10,
+                    "code": 118,
+                    "comment": 1,
+                    "filename": "src\\components\\main\\Main.tsx"
+                },
+                {
+                    "blank": 6,
+                    "code": 55,
+                    "comment": 0,
+                    "filename": "src\\components\\settings\\ExerciseTypeSetting.tsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src\\components\\settings\\FeedbackTime.ts"
+                },
+                {
+                    "blank": 7,
+                    "code": 61,
+                    "comment": 0,
+                    "filename": "src\\components\\settings\\FeedbackTimeSetting.tsx"
+                },
+                {
+                    "blank": 3,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src\\components\\settings\\Setting.module.css"
+                },
+                {
+                    "blank": 2,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "src\\components\\settings\\Setting.tsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "src\\components\\settings\\Settings.module.css"
+                },
+                {
+                    "blank": 2,
+                    "code": 19,
+                    "comment": 0,
+                    "filename": "src\\components\\settings\\Settings.tsx"
+                },
+                {
+                    "blank": 3,
+                    "code": 24,
+                    "comment": 0,
+                    "filename": "src\\components\\settings\\SolvingTimeSettings.tsx"
+                },
+                {
+                    "blank": 6,
+                    "code": 28,
+                    "comment": 0,
+                    "filename": "src\\components\\solvingTimeList\\SolvingTime.module.css"
+                },
+                {
+                    "blank": 2,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "src\\components\\solvingTimeList\\SolvingTime.tsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "src\\components\\solvingTimeList\\SolvingTimeList.module.css"
+                },
+                {
+                    "blank": 2,
+                    "code": 19,
+                    "comment": 0,
+                    "filename": "src\\components\\solvingTimeList\\SolvingTimeList.tsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src\\components\\toolbar\\IToolbarAction.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 14,
+                    "comment": 1,
+                    "filename": "src\\components\\toolbar\\Toolbar.module.css"
+                },
+                {
+                    "blank": 2,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "src\\components\\toolbar\\Toolbar.tsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 28,
+                    "comment": 0,
+                    "filename": "src\\context\\AppContextDefault.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 24,
+                    "comment": 0,
+                    "filename": "src\\context\\IAppContext.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "src\\context\\ISetting.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 3,
+                    "filename": "src\\context\\IStoredParameter.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 8,
+                    "comment": 6,
+                    "filename": "src\\context\\IStoredParameters.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src\\hooks\\useDebounce.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 30,
+                    "comment": 0,
+                    "filename": "src\\hooks\\useSolutionStatus.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src\\index.css"
+                },
+                {
+                    "blank": 1,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "src\\index.tsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 6,
+                    "comment": 4,
+                    "filename": "src\\model\\ISolvingTime.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 1,
+                    "filename": "src\\react-app-env.d.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 4,
+                    "filename": "src\\services\\IStopwatch.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 26,
+                    "comment": 0,
+                    "filename": "src\\services\\Stopwatch.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src\\services\\symbolMapper\\ISymbolMapper.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "src\\services\\symbolMapper\\LetterToNumberSymbolMapper.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "src\\services\\symbolMapper\\NumberToLetterSymbolMapper.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src\\services\\symbolPicker\\ISymbolPicker.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src\\services\\symbolPicker\\LetterSymbolPicker.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "src\\services\\symbolPicker\\NumberSymbolPicker.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src\\services\\trainingProgramInitializer\\LetterTrainingProgramInitializer.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src\\services\\trainingProgramInitializer\\NumberTrainingProgramInitializer.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 33,
+                    "comment": 0,
+                    "filename": "src\\services\\trainingProgramInitializer\\TrainingProgramInitializer.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src\\services\\UUIDGenerator\\IUUIDGenerator.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src\\services\\UUIDGenerator\\UUIDGenerator.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "src\\store\\LocalStore.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 15,
+                    "comment": 5,
+                    "filename": "src\\training\\builder\\ITrainingProgramBuilder.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 4,
+                    "comment": 3,
+                    "filename": "src\\training\\builder\\ITrainingProgramInitializer.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 9,
+                    "comment": 3,
+                    "filename": "src\\training\\builder\\ITrainingSectionBuilder.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 36,
+                    "comment": 0,
+                    "filename": "src\\training\\builder\\TrainingProgramBuilder.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 25,
+                    "comment": 0,
+                    "filename": "src\\training\\builder\\TrainingSectionBuilder.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 11,
+                    "comment": 5,
+                    "filename": "src\\training\\model\\ITrainingExercise.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 5,
+                    "comment": 3,
+                    "filename": "src\\training\\model\\ITrainingExerciseFactory.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 6,
+                    "comment": 4,
+                    "filename": "src\\training\\model\\ITrainingProgram.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 14,
+                    "comment": 10,
+                    "filename": "src\\training\\model\\ITrainingSection.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 8,
+                    "comment": 4,
+                    "filename": "src\\training\\model\\ITrainingSymbol.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 4,
+                    "comment": 4,
+                    "filename": "src\\training\\model\\ITrainingSymbolPicker.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 5,
+                    "comment": 4,
+                    "filename": "src\\training\\model\\ITrainingSymbolShifter.ts"
+                },
+                {
+                    "blank": 10,
+                    "code": 52,
+                    "comment": 0,
+                    "filename": "src\\training\\model\\TrainingExercise.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "src\\training\\model\\TrainingExerciseFactory.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src\\training\\model\\TrainingExerciseState.ts"
+                },
+                {
+                    "blank": 7,
+                    "code": 55,
+                    "comment": 0,
+                    "filename": "src\\training\\model\\TrainingProgram.ts"
+                },
+                {
+                    "blank": 9,
+                    "code": 46,
+                    "comment": 0,
+                    "filename": "src\\training\\model\\TrainingSection.ts"
+                },
+                {
+                    "blank": 8,
+                    "code": 32,
+                    "comment": 2,
+                    "filename": "src\\training\\model\\TrainingSymbol.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 32,
+                    "comment": 0,
+                    "filename": "src\\training\\model\\TrainingSymbolPicker.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "src\\training\\model\\TrainingSymbolShifter.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 56,
+                    "comment": 0,
+                    "filename": "src\\Types\\Types.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 24,
+                    "comment": 0,
+                    "filename": "tsconfig.json"
+                }
+            ]
+        }
+    ]
+}
