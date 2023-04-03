@@ -4,7 +4,6 @@ div.solvingTime {
   background-color: rgb(207, 207, 207);
   margin: 0.25rem;
   padding: 0.25rem 3rem 0.25rem 1.5rem;
-  width: 12rem;
 }
 
 .solvingTime div {
@@ -22,5 +21,10 @@ div.solvingTime {
 }
 
 .solvingTimeTime {
+  margin-left: 2rem;
+  width: 5rem;
+}
+
+.solvingTimeNumberSuccessfulAnswers {
   margin-left: 2rem;
 }

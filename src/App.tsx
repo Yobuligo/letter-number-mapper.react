@@ -204,8 +204,13 @@ const App: React.FC = () => {
     });
   };
 
-  const pushElapsedToSolvingTimes = (symbol: string) => {
-    solvingTimes.splice(0, 0, { symbol: symbol, time: stopwatch.elapsed });
+  const pushElapsedToSolvingTimes = (trainingExercise: ITrainingExercise) => {
+    const trainingSymbol = trainingExercise.trainingSymbol;
+    solvingTimes.splice(0, 0, {
+      trainingSymbol: trainingSymbol,
+      time: stopwatch.elapsed,
+      numberSuccessfulAnswers: trainingSymbol.numberSuccessfulAnswers
+    });
     solvingTimes.splice(10, solvingTimes.length);
   };
 
@@ -218,9 +223,9 @@ const App: React.FC = () => {
     const mappedSelectedSymbol = symbolMapper.map(selectedSymbol);
     if (mappedSelectedSymbol === symbol) {
       stopwatch.stop();
-      pushElapsedToSolvingTimes(symbol);
       console.log("Correct!");
       trainingExercise?.succeeded();
+      pushElapsedToSolvingTimes(trainingExercise);
       setSolutionStatus(SolutionStatus.SUCCESSFUL);
     } else {
       trainingExercise?.failed();
