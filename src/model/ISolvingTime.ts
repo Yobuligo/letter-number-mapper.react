@@ -1,4 +1,6 @@
+import { ITrainingSymbol } from "../training/model/ITrainingSymbol";
+
 export interface ISolvingTime {
-  symbol: string;
+  trainingSymbol: ITrainingSymbol;
   time: number;
 }
