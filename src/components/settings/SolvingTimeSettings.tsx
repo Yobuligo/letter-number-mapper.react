@@ -10,7 +10,6 @@ const SolvingTimeSettings: React.FC = () => {
 
   return (
     <Setting title="Solving Time">
-      <label htmlFor="showSolvingTimeList">Display solving time list</label>
       <input
         id="showSolvingTimeList"
         type="checkbox"
@@ -20,6 +19,7 @@ const SolvingTimeSettings: React.FC = () => {
           context.settings.setShowSolvingTimeList(event.target.checked);
         }}
       />
+      <label htmlFor="showSolvingTimeList">Display solving time list</label>
     </Setting>
   );
 };

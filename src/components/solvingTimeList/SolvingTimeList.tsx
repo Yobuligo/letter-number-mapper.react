@@ -12,7 +12,7 @@ const SolvingTimeList: React.FC = () => {
   });
   return (
     <div className={styles.solvingTimeList}>
-      <h4>Solving Time in seconds</h4>
+      <h4>Solving Time</h4>
       <div className={styles.items}>{items}</div>
     </div>
   );

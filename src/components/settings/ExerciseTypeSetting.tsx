@@ -33,9 +33,7 @@ const ExerciseTypeSetting: React.FC = () => {
 
   return (
     <Setting title="Exercise Type">
-      <>
         <div>
-          <label htmlFor="letterToNumber">Letter to number</label>
           <input
             id="letterToNumber"
             name="exerciseType"
@@ -43,9 +41,9 @@ const ExerciseTypeSetting: React.FC = () => {
             checked={isChecked(ExerciseType.LETTER_TO_NUMBER)}
             onChange={onSwitchExerciseTypeHandler}
           />
+          <label htmlFor="letterToNumber">Letter to number</label>
         </div>
         <div>
-          <label htmlFor="numberToLetter">Number to letter</label>
           <input
             id="numberToLetter"
             name="exerciseType"
@@ -54,8 +52,8 @@ const ExerciseTypeSetting: React.FC = () => {
             checked={isChecked(ExerciseType.NUMBER_TO_LETTER)}
             onChange={onSwitchExerciseTypeHandler}
           />
+          <label htmlFor="numberToLetter">Number to letter</label>
         </div>
-      </>
     </Setting>
   );
 };

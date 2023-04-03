@@ -4,7 +4,7 @@
   align-items: flex-start;
 }
 
-@media (min-width: 40rem) {
+@media (min-width: 60rem) {
   .solvingTimeList {
     margin-left: 5rem;
   }

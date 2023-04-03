@@ -12,7 +12,7 @@
 .displayAndKeyboardContainer {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   height: 100vh;
 }
 
@@ -36,13 +36,14 @@
   background-color: rgb(255, 99, 99);
 }
 
-@media (min-width: 60rem) {
+@media (min-width: 60rem) and (orientation: landscape) {
   .mainContainer {
     flex-direction: row;
   }
+}
 
+@media (orientation: portrait) {
   .displayAndKeyboardContainer {
-    justify-content: flex-start;
+    height: auto;
   }
-
 }
