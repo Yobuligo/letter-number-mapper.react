@@ -2,7 +2,7 @@ import { ITrainingSection } from "./ITrainingSection";
 import { ITrainingSymbol } from "./ITrainingSymbol";
 
 export class TrainingSection implements ITrainingSection {
-  private trainingSymbols: ITrainingSymbol[] = [];
+  private trainingSymbols = new Map<ITrainingSymbol, ITrainingSymbol>();
   id: number = 0;
   follower: ITrainingSection | undefined = undefined;
   predecessor: ITrainingSection | undefined = undefined;
@@ -12,16 +12,18 @@ export class TrainingSection implements ITrainingSection {
     trainingSymbols?: ITrainingSymbol[]
   ) {
     if (trainingSymbols !== undefined) {
-      this.trainingSymbols.push(...trainingSymbols);
+      trainingSymbols.forEach((trainingSymbol) =>
+        this.trainingSymbols.set(trainingSymbol, trainingSymbol)
+      );
     }
   }
 
   addTrainingSymbol(trainingSymbol: ITrainingSymbol): void {
-    this.trainingSymbols.push(trainingSymbol);
+    this.trainingSymbols.set(trainingSymbol, trainingSymbol);
   }
 
   countTrainingSymbols(): number {
-    return this.trainingSymbols.length;
+    return this.trainingSymbols.size;
   }
 
   hasTrainingSymbols(): boolean {
@@ -29,27 +31,18 @@ export class TrainingSection implements ITrainingSection {
   }
 
   hasNotTrainingSymbols(): boolean {
-    return this.trainingSymbols.length === 0;
+    return this.trainingSymbols.size === 0;
   }
 
   findAllTrainingSymbols(): ITrainingSymbol[] {
-    return this.trainingSymbols;
-  }
-
-  trainingSymbolAt(index: number): ITrainingSymbol {
-    const trainingSymbol = this.trainingSymbols[index];
-    if (trainingSymbol === undefined) {
-      throw new Error(
-        `Error when reading training symbol by index. Index is out of bounds.`
-      );
-    }
-    return trainingSymbol;
+    const resultTrainingSymbols: ITrainingSymbol[] = [];
+    this.trainingSymbols.forEach((trainingSymbol) =>
+      resultTrainingSymbols.push(trainingSymbol)
+    );
+    return resultTrainingSymbols;
   }
 
   removeTrainingSymbol(trainingSymbol: ITrainingSymbol): void {
-    this.trainingSymbols.splice(
-      this.trainingSymbols.indexOf(trainingSymbol),
-      1
-    );
+    this.trainingSymbols.delete(trainingSymbol);
   }
 }

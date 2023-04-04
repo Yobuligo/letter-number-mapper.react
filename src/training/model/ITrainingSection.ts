@@ -21,5 +21,4 @@ export interface ITrainingSection {
   hasTrainingSymbols(): boolean;
   hasNotTrainingSymbols(): boolean;
   removeTrainingSymbol(trainingSymbol: ITrainingSymbol): void;
-  trainingSymbolAt(index: number): ITrainingSymbol;
 }
