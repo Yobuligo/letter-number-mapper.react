@@ -1,15 +1,16 @@
-import { useContext, useMemo } from "react";
+import React, { useContext } from "react";
 import { AppContext } from "../../AppContext";
-import { UUIDGenerator } from "../../services/UUIDGenerator/UUIDGenerator";
 import SolvingTime from "./SolvingTime";
 import styles from "./SolvingTimeList.module.css";
 
 const SolvingTimeList: React.FC = () => {
   const context = useContext(AppContext);
-  const uuidGenerator = useMemo(() => new UUIDGenerator(), []);
   const items = context.exercise.solvingTimes.map((solvingTime) => {
-    return <SolvingTime key={uuidGenerator.next} solvingTime={solvingTime} />;
+    const key = crypto.randomUUID();
+    console.log(`Key is ${key}`);
+    return <SolvingTime key={key} solvingTime={solvingTime} />;
   });
+
   return (
     <div className={styles.solvingTimeList}>
       <h4>Solving Time</h4>
@@ -18,4 +19,4 @@ const SolvingTimeList: React.FC = () => {
   );
 };
 
-export default SolvingTimeList;
+export default React.memo(SolvingTimeList);
