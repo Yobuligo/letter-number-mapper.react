@@ -16,6 +16,8 @@ import { NumberToLetterSymbolMapper } from "./services/symbolMapper/NumberToLett
 import { LetterTrainingProgramInitializer } from "./services/trainingProgramInitializer/LetterTrainingProgramInitializer";
 import { NumberTrainingProgramInitializer } from "./services/trainingProgramInitializer/NumberTrainingProgramInitializer";
 import { LocalStore } from "./store/LocalStore";
+import { LetterDAO } from "./training/dataObject/LetterDAO";
+import { NumberDAO } from "./training/dataObject/NumberDAO";
 import { ITrainingExercise } from "./training/model/ITrainingExercise";
 import { ITrainingProgram } from "./training/model/ITrainingProgram";
 
@@ -62,9 +64,21 @@ const App: React.FC = () => {
     getTrainingProgramByExerciseType(settings.exerciseType)
   );
 
+  const resetTrainingProgram = () => {
+    setTrainingProgram(getTrainingProgramByExerciseType(settings.exerciseType));
+  };
+
   const [trainingExercise, setTrainingExercise] = useState<ITrainingExercise>(
     trainingProgram.nextTrainingExercise()
   );
+
+  const symbolDAO = useMemo(() => {
+    if (settings.exerciseType === ExerciseType.LETTER_TO_NUMBER) {
+      return LetterDAO;
+    } else {
+      return NumberDAO;
+    }
+  }, [settings.exerciseType]);
 
   const stopwatch = useMemo(() => {
     return new Stopwatch();
@@ -237,7 +251,9 @@ const App: React.FC = () => {
   };
 
   const onResetProgress = () => {
-    console.log(`Reset progress`);
+    symbolDAO.deleteAll();
+    resetTrainingProgram();
+    console.log(`Progress reset`);
   };
 
   return (
