@@ -209,7 +209,7 @@ const App: React.FC = () => {
     solvingTimes.splice(0, 0, {
       trainingSymbol: trainingSymbol,
       time: stopwatch.elapsed,
-      numberSuccessfulAnswers: trainingSymbol.numberSuccessfulAnswers
+      numberSuccessfulAnswers: trainingSymbol.numberSuccessfulAnswers,
     });
     solvingTimes.splice(10, solvingTimes.length);
   };
@@ -236,6 +236,10 @@ const App: React.FC = () => {
     }
   };
 
+  const onResetProgress = () => {
+    console.log(`Reset progress`);
+  };
+
   return (
     <>
       <AppContext.Provider
@@ -250,6 +254,7 @@ const App: React.FC = () => {
             setFeedbackTime: onSetFeedbackTimeHandler,
             setShowSolvingTimeList: onSetShowSolvingTimeListHandler,
             keyboardType: getKeyboardTypeByExerciseType(settings.exerciseType),
+            onResetProgress: onResetProgress,
           },
           exercise: {
             symbol: symbol,

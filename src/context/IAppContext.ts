@@ -14,6 +14,7 @@ export type IAppContext = {
     setShowSolvingTimeList: (showSolvingTimeList: boolean) => void;
     keyboardType: KeyboardType;
     correctSolution?: Boolean;
+    onResetProgress: () => void;
   };
   exercise: {
     symbol: string;

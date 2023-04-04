@@ -18,6 +18,7 @@ export const AppContextDefault: IAppContext = {
     setShowSolvingTimeList: (showSolvingTimeList: boolean) => {},
     keyboardType: KeyboardType.NUMBER,
     correctSolution: undefined,
+    onResetProgress: () => {},
   },
   exercise: {
     symbol: "A",
