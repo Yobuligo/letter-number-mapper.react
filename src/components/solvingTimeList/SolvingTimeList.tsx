@@ -6,9 +6,7 @@ import styles from "./SolvingTimeList.module.css";
 const SolvingTimeList: React.FC = () => {
   const context = useContext(AppContext);
   const items = context.exercise.solvingTimes.map((solvingTime) => {
-    const key = crypto.randomUUID();
-    console.log(`Key is ${key}`);
-    return <SolvingTime key={key} solvingTime={solvingTime} />;
+    return <SolvingTime key={crypto.randomUUID()} solvingTime={solvingTime} />;
   });
 
   return (
