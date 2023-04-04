@@ -41,6 +41,7 @@ export class TrainingProgramInitializer implements ITrainingProgramInitializer {
         trainingSectionBuilder.setAnswersTillProgression(12);
         return trainingSectionBuilder.build();
       })
+      .insertTrainingSymbols(trainingSymbols)
       .build();
   }
 

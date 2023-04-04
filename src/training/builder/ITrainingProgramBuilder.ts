@@ -1,5 +1,6 @@
 import { ITrainingProgram } from "../model/ITrainingProgram";
 import { ITrainingSection } from "../model/ITrainingSection";
+import { ITrainingSymbol } from "../model/ITrainingSymbol";
 import { ITrainingSectionBuilder } from "./ITrainingSectionBuilder";
 
 /**
@@ -18,7 +19,11 @@ export interface ITrainingProgramBuilder {
     creator: (
       trainingSectionBuilder: ITrainingSectionBuilder
     ) => ITrainingSection
-  ): ITrainingProgramBuilder;  
+  ): ITrainingProgramBuilder;
+
+  insertTrainingSymbols(
+    trainingSymbols: ITrainingSymbol[]
+  ): ITrainingProgramBuilder;
 
   build(): ITrainingProgram;
 }
