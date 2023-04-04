@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { IDataObject } from "../../core/dataObject/IDataObject";
+import { IDataObject } from "../../core/IDataObject";
 import { ITrainingSymbol } from "./ITrainingSymbol";
 
 /**

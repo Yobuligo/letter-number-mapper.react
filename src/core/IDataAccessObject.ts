@@ -6,10 +6,12 @@ import { IDataObject } from "./IDataObject";
  */
 export interface IDataAccessObject<T extends IDataObject> {
   add(data: Omit<T, "id">): T;
-  findAll(): T[];
-  findById(id: string): T | undefined;
   delete(dataObject: T): boolean;
   deleteAll(): void;
   deleteById(id: string): boolean;
+  findAll(): T[];
+  findById(id: string): T | undefined;
+  isEmpty(): boolean;
+  isNotEmpty(): boolean;
   update(dataObject: T): boolean;
 }

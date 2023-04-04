@@ -5,7 +5,11 @@ export class TrainingSymbol implements ITrainingSymbol {
   private _numberSuccessfulAnswers: number = 0;
   private trainingSectionInt?: ITrainingSection = undefined;
 
-  constructor(public symbol: string) {}
+  constructor(public symbol: string, numberSuccessfulAnswers?: number) {
+    if (numberSuccessfulAnswers) {
+      this._numberSuccessfulAnswers = numberSuccessfulAnswers;
+    }
+  }
 
   public get numberSuccessfulAnswers(): number {
     return this._numberSuccessfulAnswers;

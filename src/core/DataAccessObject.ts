@@ -14,15 +14,6 @@ export class DataAccessObject<T extends IDataObject>
     return dataObject;
   }
 
-  findAll(): T[] {
-    const items = this.storage.getItem(this.key);
-    return items ? JSON.parse(items) : [];
-  }
-
-  findById(id: string): T | undefined {
-    return this.findAll().find((dataObject) => dataObject.id === id);
-  }
-
   delete(dataObject: T): boolean {
     return this.deleteById(dataObject.id);
   }
@@ -40,6 +31,23 @@ export class DataAccessObject<T extends IDataObject>
       return true;
     }
     return false;
+  }
+
+  findAll(): T[] {
+    const items = this.storage.getItem(this.key);
+    return items ? JSON.parse(items) : [];
+  }
+
+  findById(id: string): T | undefined {
+    return this.findAll().find((dataObject) => dataObject.id === id);
+  }
+
+  isEmpty(): boolean {
+    return this.findAll().length === 0;
+  }
+
+  isNotEmpty(): boolean {
+    return !this.isEmpty();
   }
 
   update(dataObject: T): boolean {

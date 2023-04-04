@@ -18,7 +18,7 @@ export interface ITrainingProgramBuilder {
     creator: (
       trainingSectionBuilder: ITrainingSectionBuilder
     ) => ITrainingSection
-  ): ITrainingProgramBuilder;
+  ): ITrainingProgramBuilder;  
 
   build(): ITrainingProgram;
 }
