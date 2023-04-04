@@ -7,7 +7,7 @@ export class DataAccessObject<T extends IDataObject>
   constructor(private storage: Storage, private key: string) {}
 
   add(data: Omit<T, "id">): T {
-    const dataObject = { ...data, id: crypto.randomUUID() } as T;
+    const dataObject = { id: crypto.randomUUID(), ...data } as T;
     const dataObjects = this.findAll();
     dataObjects.push(dataObject);
     this.save(dataObjects);
@@ -57,6 +57,7 @@ export class DataAccessObject<T extends IDataObject>
     );
     if (index >= 0) {
       dataObjects.splice(index, 1, dataObject);
+      this.save(dataObjects);
       return true;
     }
     return false;

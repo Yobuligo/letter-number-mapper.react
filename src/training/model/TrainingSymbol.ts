@@ -2,13 +2,27 @@ import { ITrainingSection } from "./ITrainingSection";
 import { ITrainingSymbol } from "./ITrainingSymbol";
 
 export class TrainingSymbol implements ITrainingSymbol {
+  private _id: string = "";
   private _numberSuccessfulAnswers: number = 0;
   private trainingSectionInt?: ITrainingSection = undefined;
+  private onChangeHandlers: (() => void)[] = [];
 
-  constructor(public symbol: string, numberSuccessfulAnswers?: number) {
+  constructor(
+    public symbol: string,
+    id?: string,
+    numberSuccessfulAnswers?: number
+  ) {
     if (numberSuccessfulAnswers) {
       this._numberSuccessfulAnswers = numberSuccessfulAnswers;
     }
+
+    if (id) {
+      this._id = id;
+    }
+  }
+
+  public get id(): string {
+    return this._id;
   }
 
   public get numberSuccessfulAnswers(): number {
@@ -32,6 +46,7 @@ export class TrainingSymbol implements ITrainingSymbol {
     if (this._numberSuccessfulAnswers > 0) {
       this._numberSuccessfulAnswers--;
     }
+    this.publishOnChange();
     console.log(
       `Symbol '${this.symbol}' was not guessed correctly. You dropped back down to '${this.numberSuccessfulAnswers}'.`
     );
@@ -39,8 +54,17 @@ export class TrainingSymbol implements ITrainingSymbol {
 
   succeed(): void {
     this._numberSuccessfulAnswers++;
+    this.publishOnChange();
     console.log(
       `Symbol '${this.symbol}' was guessed correctly '${this.numberSuccessfulAnswers}' times`
     );
+  }
+
+  onChange(onChangeHandler: () => void): void {
+    this.onChangeHandlers.push(onChangeHandler);
+  }
+
+  private publishOnChange() {
+    this.onChangeHandlers.forEach((onChangeHandler) => onChangeHandler());
   }
 }

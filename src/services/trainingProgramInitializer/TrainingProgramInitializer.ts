@@ -46,18 +46,40 @@ export class TrainingProgramInitializer implements ITrainingProgramInitializer {
   }
 
   private createTrainingSymbolsFromSymbols(): ITrainingSymbol[] {
-    return this.symbols.map((symbol) => new TrainingSymbol(symbol));
+    return this.symbols.map((symbol) => {
+      const trainingSymbolDO = this.trainingSymbolDAO.add({
+        numberSuccessfulAnswers: 0,
+        symbol,
+      });
+      return this.createTrainingSymbolFromDO(trainingSymbolDO);
+    });
   }
 
   private createTrainingSymbolsFromDOs(): ITrainingSymbol[] {
-    return this.trainingSymbolDAO
-      .findAll()
-      .map(
-        (trainingSymbolDO) =>
-          new TrainingSymbol(
-            trainingSymbolDO.symbol,
-            trainingSymbolDO.numberSuccessfulAnswers
-          )
-      );
+    return this.trainingSymbolDAO.findAll().map((trainingSymbolDO) => {
+      return this.createTrainingSymbolFromDO(trainingSymbolDO);
+    });
+  }
+
+  private createTrainingSymbolFromDO(
+    trainingSymbolDO: ITrainingSymbolDO
+  ): ITrainingSymbol {
+    const trainingSymbol = new TrainingSymbol(
+      trainingSymbolDO.symbol,
+      trainingSymbolDO.id,
+      trainingSymbolDO.numberSuccessfulAnswers
+    );
+    this.registerOnChange(trainingSymbol);
+    return trainingSymbol;
+  }
+
+  private registerOnChange(trainingSymbol: ITrainingSymbol) {
+    trainingSymbol.onChange(() => {
+      this.trainingSymbolDAO.update({
+        id: trainingSymbol.id,
+        numberSuccessfulAnswers: trainingSymbol.numberSuccessfulAnswers,
+        symbol: trainingSymbol.symbol,
+      });
+    });
   }
 }
