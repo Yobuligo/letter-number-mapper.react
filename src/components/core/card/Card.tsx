@@ -6,7 +6,7 @@ const Card: React.FC<{ className?: string; children: ReactNode }> = (props) => {
     <div
       className={
         props.className !== undefined
-          ? `${props.className} ${styles.card}`
+          ? `${styles.card} ${props.className}`
           : styles.card
       }
     >

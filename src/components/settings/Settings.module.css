@@ -1,8 +1,13 @@
 .settings {
   padding: 1rem 2rem;
+  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.2);
 }
 
 .settings h3{
   margin: 0.5rem 0;
   font-size: medium;
+}
+
+.card{
+  border-radius: 0 12px 12px 0;
 }

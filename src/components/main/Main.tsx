@@ -1,12 +1,10 @@
-import React, { ReactNode, useContext, useEffect, useState } from "react";
-import ReactDOM from "react-dom";
+import React, { useContext, useState } from "react";
 import { AppContext } from "../../AppContext";
 import { MaterialIcons } from "../../assets/icons/MaterialIcons";
 import { ISymbolMapper } from "../../services/symbolMapper/ISymbolMapper";
 import { LetterToNumberSymbolMapper } from "../../services/symbolMapper/LetterToNumberSymbolMapper";
 import { NumberToLetterSymbolMapper } from "../../services/symbolMapper/NumberToLetterSymbolMapper";
 import Bottom from "../bottom/Bottom";
-import ModalDialog from "../core/modalDialog/ModalDialog";
 import { Display } from "../display/Display";
 import { SolutionStatus } from "../exercise/SolutionStatus";
 import Keyboard from "../keyboard/Keyboard";
@@ -16,6 +14,7 @@ import SolvingTimeList from "../solvingTimeList/SolvingTimeList";
 import IToolbarAction from "../toolbar/IToolbarAction";
 import Toolbar from "../toolbar/Toolbar";
 import styles from "./Main.module.css";
+import ModalDialog from "../core/modalDialog/ModalDialog";
 
 export const Main: React.FC = () => {
   const context = useContext(AppContext);
@@ -62,12 +61,6 @@ export const Main: React.FC = () => {
   };
 
   const [showModalDialog, setShowModalDialog] = useState(false);
-  const [modalDialogContent, setModalDialogContent] =
-    useState<ReactNode>(null);
-
-  useEffect(() => {
-    setModalDialogContent(showModalDialog ? <Settings /> : null)
-  }, [showModalDialog])
 
   const toggleModalDialog = () => {
     setShowModalDialog((previous) => !previous)
@@ -85,18 +78,14 @@ export const Main: React.FC = () => {
 
   return (
     <div className={`${styles.main} ${getSolutionBackgroundStyle()}`}>
-      {showModalDialog
-        ? ReactDOM.createPortal(
-          <ModalDialog
-            onConfirm={() => {
-              setShowModalDialog(false)
-            }}
-          >
-            {modalDialogContent}
-          </ModalDialog>,
-          document.getElementById("overlay")!
-        )
-        : ""}
+      <ModalDialog
+        visible={showModalDialog}
+        onConfirm={() => {
+          setShowModalDialog(false)
+        }}
+      >
+        <Settings />
+      </ModalDialog>
       <Toolbar toolbarActions={toolbarActions} />
       <div className={styles.mainContainer}>
         <div className={styles.displayAndKeyboardContainer}>

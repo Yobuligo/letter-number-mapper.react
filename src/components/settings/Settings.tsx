@@ -9,7 +9,7 @@ const Settings: React.FC = () => {
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) =>
     event.preventDefault();
   return (
-    <Card className={styles.settings}>
+    <Card className={`${styles.card} ${styles.settings}`}>
       <section>
         <form onSubmit={onSubmit}>
           <ExerciseTypeSetting />
