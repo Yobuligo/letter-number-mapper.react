@@ -1,3 +1,5 @@
+
+import { HighlightStatus } from "./HighlightStatus";
 import { IKeyboardContext } from "./IKeyboardContext";
 import Key from "./Key";
 
@@ -6,17 +8,9 @@ const KeyboardRow: React.FC<{
   className?: string;
   keyboardContext: IKeyboardContext;
 }> = (props) => {
-  const highlightSymbol = (symbol: string): boolean => {
-    if (
-      props.keyboardContext.highlightedSymbols?.find((element) => {
-        return element === symbol;
-      })
-    ) {
-      return true;
-    } else {
-      return false;
-    }
-  };
+  const getHighlightStatusBySymbol = (symbol: string): HighlightStatus => {
+    return props.keyboardContext.highlightedSymbols?.get(symbol)!
+  }
 
   return (
     <div className={props.className}>
@@ -25,7 +19,7 @@ const KeyboardRow: React.FC<{
           <Key
             key={symbol}
             symbol={symbol}
-            highlight={highlightSymbol(symbol)}
+            highlightStatus={getHighlightStatusBySymbol(symbol)}
             keyboardContext={props.keyboardContext}
           />
         );

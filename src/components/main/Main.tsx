@@ -7,10 +7,12 @@ import { NumberToLetterSymbolMapper } from "../../services/symbolMapper/NumberTo
 import ModalDialog from "../core/modalDialog/ModalDialog";
 import { Display } from "../display/Display";
 import { SolutionStatus } from "../exercise/SolutionStatus";
+import History from "../history/History";
+import { HighlightStatus } from "../keyboard/HighlightStatus";
 import Keyboard from "../keyboard/Keyboard";
 import { KeyboardType } from "../keyboard/KeyboardType";
+import { HighlightedSymbols } from "../keyboard/KeyboardTypes";
 import Settings from "../settings/Settings";
-import History from "../history/History";
 import IToolbarAction from "../toolbar/IToolbarAction";
 import Toolbar from "../toolbar/Toolbar";
 import styles from "./Main.module.css";
@@ -30,34 +32,24 @@ export const Main: React.FC = () => {
     }
   };
 
-  const getHighlightedSymbols = (): string[] => {
+  const getHighlightedSymbols = (): HighlightedSymbols => {
+    const map = new Map()
     switch (context.exercise.solutionStatus) {
       case SolutionStatus.Successful: {
-        return [getSymbolMapper().map(context.exercise.symbol)];
+        map.set(getSymbolMapper().map(context.exercise.symbol), HighlightStatus.Success)
+        return map
       }
       case SolutionStatus.Failed: {
-        return [getSymbolMapper().map(context.exercise.symbol)];
+        const map = new Map()
+        map.set(getSymbolMapper().map(context.exercise.symbol), HighlightStatus.Failed)
+        return map
       }
-      case SolutionStatus.NotProvided: {
-        return [];
-      }
-    }
-  };
-
-  const getSolutionBackgroundStyle = () => {
-    switch (context.exercise.solutionStatus) {
-      case SolutionStatus.Successful: {
-        // currently reset as the button itself is highlighted
-        return styles.noSolutionProvided;
-      }
-      case SolutionStatus.Failed: {
-        return styles.failedSolution;
-      }
-      case SolutionStatus.NotProvided: {
-        return styles.noSolutionProvided;
+      default: {
+        map.set(getSymbolMapper().map(context.exercise.symbol), HighlightStatus.None)
+        return map
       }
     }
-  };
+  }
 
   const [showModalDialog, setShowModalDialog] = useState(false);
 
@@ -76,7 +68,7 @@ export const Main: React.FC = () => {
   ];
 
   return (
-    <div className={`${styles.main} ${getSolutionBackgroundStyle()}`}>
+    <div className={styles.main}>
       <ModalDialog
         visible={showModalDialog}
         onConfirm={() => {

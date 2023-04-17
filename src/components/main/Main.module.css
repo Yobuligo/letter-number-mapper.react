@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: white;
 }
 
 .mainContainer {
@@ -28,18 +29,6 @@
 
 .keyboard {
   margin-bottom: 1rem;
-}
-
-.noSolutionProvided {
-  background-color: white;
-}
-
-.successfulSolution {
-  background-color: rgb(2, 204, 29);
-}
-
-.failedSolution {
-  background-color: rgb(255, 99, 99);
 }
 
 /* @media (min-height: 25rem) { */

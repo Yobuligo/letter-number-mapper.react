@@ -1,20 +1,27 @@
+
+import { HighlightStatus } from "./HighlightStatus";
 import { IKeyboardContext } from "./IKeyboardContext";
+import styles from './Key.module.css';
 
 const Key: React.FC<{
   symbol: string;
-  highlight: boolean;
+  highlightStatus: HighlightStatus
   keyboardContext: IKeyboardContext;
 }> = (props) => {
-  const getHighlightClassName = (): string => {
-    if (props.highlight) {
-      return props.keyboardContext.highlightSymbolClassName ?? "";
-    } else {
-      return "";
+  const getClassName = () => {
+    switch (props.highlightStatus) {
+      case HighlightStatus.Success: {
+        return `${styles.highlight} ${styles.success}`
+      }
+      case HighlightStatus.Failed: {
+        return `${styles.highlight} ${styles.failed}`
+      }
+      default: return ""
     }
-  };
+  }
   return (
     <button
-      className={getHighlightClassName()}
+      className={getClassName()}
       onClick={() => {
         props.keyboardContext.clickHandler?.(props.symbol);
       }}

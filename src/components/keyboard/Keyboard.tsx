@@ -9,18 +9,12 @@ const Keyboard: React.FC<{
   keyboardContext: IKeyboardContext;
   className?: string;
 }> = (props) => {
-  const createKeyboardContext = (): IKeyboardContext => {
-    return {
-      ...props.keyboardContext,
-      highlightSymbolClassName: styles.highlight,
-    };
-  };
   return (
     <div className={`${props.className} ${styles.keyboard}`}>
       {props.keyboardType === KeyboardType.LETTER ? (
-        <LetterKeyboard keyboardContext={createKeyboardContext()} />
+        <LetterKeyboard keyboardContext={props.keyboardContext} />
       ) : (
-        <NumberKeyboard keyboardContext={createKeyboardContext()} />
+        <NumberKeyboard keyboardContext={props.keyboardContext} />
       )}
     </div>
   );

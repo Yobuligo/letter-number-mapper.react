@@ -6,5 +6,4 @@ import { ClickHandler, HighlightedSymbols } from "./KeyboardTypes";
 export interface IKeyboardContext {
   clickHandler?: ClickHandler;
   highlightedSymbols?: HighlightedSymbols;
-  highlightSymbolClassName?: string;
 }
