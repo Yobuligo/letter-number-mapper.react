@@ -43,6 +43,7 @@ const FeedbackTimeSetting: React.FC = () => {
   return (
     <Setting title="Feedback Time">
       <Slider
+        style={{marginLeft: "0.8rem"}}
         defaultValue={getDefaultValue()}
         step={marks[0].value}
         min={marks[0].value}

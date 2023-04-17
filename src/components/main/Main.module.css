@@ -31,7 +31,6 @@
   margin-bottom: 1rem;
 }
 
-/* @media (min-height: 25rem) { */
 @media (min-width: 40rem) and (min-height: 25rem) {
   .mainContainer {
     flex-direction: row;
@@ -40,12 +39,3 @@
     height: auto;
   }
 }
-
-/* @media (max-width: 40rem) and (min-height: 25rem) {
-  .mainContainer {
-    flex-direction: row;
-  }
-  .displayAndKeyboardContainer {
-    height: auto;
-  }
-} */
