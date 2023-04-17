@@ -37,6 +37,7 @@ const App: React.FC = () => {
         exerciseType: ExerciseType.LETTER_TO_NUMBER,
         feedbackTime: FeedbackTime.MIDDLE,
         showSolvingTimeList: true,
+        showSolvingTime: true,
       };
     } else {
       return locallyStoredParameters;
@@ -189,7 +190,7 @@ const App: React.FC = () => {
     stopwatch.start();
   });
 
-  const onSetExerciseTypeHandler = (exerciseType: ExerciseType) => {
+  const onSetExerciseType = (exerciseType: ExerciseType) => {
     setTrainingProgram(getTrainingProgramByExerciseType(exerciseType));
     console.log(`ExerciseType changed to ${ExerciseType[exerciseType]}`);
     updateSymbolMapper(exerciseType);
@@ -198,7 +199,7 @@ const App: React.FC = () => {
     });
   };
 
-  const onSetFeedbackTimeHandler = (feedbackTime: FeedbackTime) => {
+  const onSetFeedbackTime = (feedbackTime: FeedbackTime) => {
     setSettings((previousSettings) => {
       const settings: StoredParameters = {
         ...previousSettings,
@@ -208,11 +209,21 @@ const App: React.FC = () => {
     });
   };
 
-  const onSetShowSolvingTimeListHandler = (showSolvingTimeList: boolean) => {
+  const onSetShowSolvingTimeList = (showSolvingTimeList: boolean) => {
     setSettings((previousSettings) => {
       const settings: StoredParameters = {
         ...previousSettings,
         showSolvingTimeList: showSolvingTimeList,
+      };
+      return settings;
+    });
+  };
+
+  const onSetShowSolvingTime = (showSolvingTime: boolean) => {
+    setSettings((previousSettings) => {
+      const settings: StoredParameters = {
+        ...previousSettings,
+        showSolvingTime: showSolvingTime,
       };
       return settings;
     });
@@ -265,10 +276,12 @@ const App: React.FC = () => {
               exerciseType: settings.exerciseType,
               feedbackTime: settings.feedbackTime,
               showSolvingTimeList: settings.showSolvingTimeList,
+              showSolvingTime: settings.showSolvingTime,
             },
-            setExerciseType: onSetExerciseTypeHandler,
-            setFeedbackTime: onSetFeedbackTimeHandler,
-            setShowSolvingTimeList: onSetShowSolvingTimeListHandler,
+            setExerciseType: onSetExerciseType,
+            setFeedbackTime: onSetFeedbackTime,
+            setShowSolvingTimeList: onSetShowSolvingTimeList,
+            setShowSolvingTime: onSetShowSolvingTime,
             keyboardType: getKeyboardTypeByExerciseType(settings.exerciseType),
             onResetProgress: onResetProgress,
           },

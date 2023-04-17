@@ -8,18 +8,36 @@ const SolvingTimeSettings: React.FC = () => {
     context.settings.storedParameters.showSolvingTimeList
   );
 
+  const [showSolvingTime, setShowSolvingTime] = useState(
+    context.settings.storedParameters.showSolvingTime
+  );
+
   return (
     <Setting title="Solving Time">
-      <input
-        id="showSolvingTimeList"
-        type="checkbox"
-        checked={showSolvingTimeList}
-        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-          setShowSolvingTimeList(event.target.checked);
-          context.settings.setShowSolvingTimeList(event.target.checked);
-        }}
-      />
-      <label htmlFor="showSolvingTimeList">Display solving time list</label>
+      <div>
+        <input
+          id="showSolvingTimeList"
+          type="checkbox"
+          checked={showSolvingTimeList}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            setShowSolvingTimeList(event.target.checked);
+            context.settings.setShowSolvingTimeList(event.target.checked);
+          }}
+        />
+        <label htmlFor="showSolvingTimeList">Display solving time list</label>
+      </div>
+      <div>
+        <input
+          id="showSolvingTime"
+          type="checkbox"
+          checked={showSolvingTime}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            setShowSolvingTime(event.target.checked);
+            context.settings.setShowSolvingTime(event.target.checked);
+          }}
+        />
+        <label htmlFor="showSolvingTime">Display solving time</label>
+      </div>
     </Setting>
   );
 };

@@ -16,6 +16,7 @@ export const AppContextDefault: IAppContext = {
     setExerciseType: (exerciseType: ExerciseType) => {},
     setFeedbackTime: (feedbackTime: FeedbackTime) => {},
     setShowSolvingTimeList: (showSolvingTimeList: boolean) => {},
+    setShowSolvingTime: (showSolvingTime: boolean) => {},
     keyboardType: KeyboardType.NUMBER,
     correctSolution: undefined,
     onResetProgress: () => {},

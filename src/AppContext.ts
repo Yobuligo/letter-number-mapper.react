@@ -9,6 +9,7 @@ export type StoredParameters = {
   exerciseType: ExerciseType;
   feedbackTime: FeedbackTime;
   showSolvingTimeList: boolean;
+  showSolvingTime: boolean;
 };
 
 export const AppContext = createContext<IAppContext>(AppContextDefault);
