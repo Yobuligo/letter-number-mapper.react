@@ -10,7 +10,7 @@ import { SolutionStatus } from "../exercise/SolutionStatus";
 import Keyboard from "../keyboard/Keyboard";
 import { KeyboardType } from "../keyboard/KeyboardType";
 import Settings from "../settings/Settings";
-import SolvingTimeList from "../solvingTimeList/SolvingTimeList";
+import History from "../history/History";
 import IToolbarAction from "../toolbar/IToolbarAction";
 import Toolbar from "../toolbar/Toolbar";
 import styles from "./Main.module.css";
@@ -104,7 +104,7 @@ export const Main: React.FC = () => {
         </div>
         <div>
           {context.settings.storedParameters.showSolvingTimeList ? (
-            <SolvingTimeList />
+            <History />
           ) : undefined}
         </div>
       </div>

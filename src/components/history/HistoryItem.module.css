@@ -1,37 +1,37 @@
-div.solvingTimeItem {
+div.historyItem {
   display: inline-block;
   border-radius: 6px;
   margin: 0.25rem;
   padding: 0.25rem 3rem 0.25rem 1.5rem;
 }
 
-.solvingTimeItemSuccess{
+.historyItemSuccess{
   background-color:  rgb(2, 204, 29);
 }
 
-.solvingTimeItemFailed{
+.historyItemFailed{
   background-color: rgb(255, 99, 99);
 }
 
-.solvingTimeItem div {
+.historyItem div {
   display: inline-block;
 }
 
-.solvingTimeItemSymbol {
+.historyItemSymbol {
   width: 2rem;
 }
 
-.solvingTimeItemSymbol h1 {
+.historyItemSymbol h1 {
   display: inline;
   margin: 0;
   font-size: medium;
 }
 
-.solvingTimeItemTime {
+.historyItemTime {
   margin-left: 2rem;
   width: 5rem;
 }
 
-.solvingTimeItemNumberSuccessfulAnswers {
+.historyItemNumberSuccessfulAnswers {
   margin-left: 3rem;
 }
