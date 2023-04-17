@@ -3,7 +3,8 @@ import ExerciseTypeSetting from "./ExerciseTypeSetting";
 import FeedbackTimeSetting from "./FeedbackTimeSetting";
 import ResetProgressSettings from "./ResetProgressSettings";
 import styles from "./Settings.module.css";
-import SolvingTimeSettings from "./SolvingTimeSettings";
+import { SolvingTimeListSetting } from "./SolvingTimeListSetting";
+import { SolvingTimeSetting } from "./SolvingTimeSetting";
 
 const Settings: React.FC = () => {
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) =>
@@ -11,10 +12,12 @@ const Settings: React.FC = () => {
   return (
     <Card className={`${styles.card} ${styles.settings}`}>
       <section>
+        <h1>Settings</h1>
         <form onSubmit={onSubmit}>
           <ExerciseTypeSetting />
           <FeedbackTimeSetting />
-          <SolvingTimeSettings />
+          <SolvingTimeSetting />
+          <SolvingTimeListSetting />
           <ResetProgressSettings />
         </form>
       </section>

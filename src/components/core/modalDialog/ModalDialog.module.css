@@ -18,7 +18,7 @@
   transform: translateX(-105%);
   transition: transform 0.7s;
   z-index: 10;
-  width: 50%;
+  width: 60%;
 }
 
 .modalDialogVisible {
