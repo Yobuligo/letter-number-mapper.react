@@ -247,14 +247,15 @@ const App: React.FC = () => {
       return;
     }
     const mappedSelectedSymbol = symbolMapper.map(selectedSymbol);
+    stopwatch.stop();
     if (mappedSelectedSymbol === symbol) {
-      stopwatch.stop();
       console.log("Correct!");
       trainingExercise?.succeeded();
       pushElapsedToSolvingTimes(trainingExercise);
       setSolutionStatus(SolutionStatus.Successful);
     } else {
       trainingExercise?.failed();
+      pushElapsedToSolvingTimes(trainingExercise);
       setSolutionStatus(SolutionStatus.Failed);
       console.log(`Wrong solution (${mappedSelectedSymbol}) provided`);
     }

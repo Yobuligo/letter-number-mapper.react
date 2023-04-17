@@ -36,7 +36,7 @@ export const Main: React.FC = () => {
         return [getSymbolMapper().map(context.exercise.symbol)];
       }
       case SolutionStatus.Failed: {
-        return [];
+        return [getSymbolMapper().map(context.exercise.symbol)];
       }
       case SolutionStatus.NotProvided: {
         return [];

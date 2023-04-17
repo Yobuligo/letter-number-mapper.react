@@ -22,12 +22,13 @@ export class TrainingExercise implements ITrainingExercise {
     if (this.isSolved) {
       return;
     }
+    this.state = TrainingExerciseState.Failed;
     this.trainingSymbol.failed();
     this.raiseOnFailed();
   }
 
   get isSolved(): boolean {
-    return this.state === TrainingExerciseState.Succeeded;
+    return this.state !== TrainingExerciseState.Open;
   }
 
   get solutionStatus(): SolutionStatus {

@@ -20,7 +20,10 @@ export const useSolutionStatus = (onSolutionResetHandler: () => void) => {
         .feedbackTime as any;
       timer = setTimeout(() => {
         setSolutionStatus(SolutionStatus.NotProvided);
-        if (previousSolutionStatus === SolutionStatus.Successful) {
+        if (
+          previousSolutionStatus === SolutionStatus.Successful ||
+          previousSolutionStatus === SolutionStatus.Failed
+        ) {
           onSolutionResetHandler();
         }
         previousSolutionStatus = SolutionStatus.NotProvided;
