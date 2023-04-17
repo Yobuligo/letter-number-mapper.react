@@ -24,7 +24,7 @@ export const AppContextDefault: IAppContext = {
   exercise: {
     symbol: "A",
     provideExerciseSolution: () => {},
-    solutionStatus: SolutionStatus.NOT_PROVIDED,
+    solutionStatus: SolutionStatus.NotProvided,
     solvingTimes: [],
   },
   stopwatch: new Stopwatch(),

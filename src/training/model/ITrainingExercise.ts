@@ -1,3 +1,4 @@
+import { SolutionStatus } from "../../components/exercise/SolutionStatus";
 import { ITrainingSymbol } from "./ITrainingSymbol";
 
 /**
@@ -8,6 +9,7 @@ import { ITrainingSymbol } from "./ITrainingSymbol";
 export interface ITrainingExercise {
   readonly isSolved: boolean;
   readonly trainingSymbol: ITrainingSymbol;
+  readonly solutionStatus: SolutionStatus;
   failed(): void;
   succeeded(): void;
   onFail(onFailHandler: (trainingExercise: ITrainingExercise) => void): void;

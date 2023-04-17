@@ -7,7 +7,7 @@ const SolvingTime: React.FC = () => {
   const [solvingTime, setSolvingTime] = useState(0);
   const context = useContext(AppContext);
   useEffect(() => {
-    if (context.exercise.solutionStatus === SolutionStatus.SUCCESSFUL) {
+    if (context.exercise.solutionStatus === SolutionStatus.Successful) {
       setSolvingTime(context.stopwatch.elapsed);
     }
   }, [context.exercise.solutionStatus, context.stopwatch.elapsed]);

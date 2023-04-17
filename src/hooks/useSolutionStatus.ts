@@ -4,14 +4,14 @@ import { AppContext } from "./../AppContext";
 
 export const useSolutionStatus = (onSolutionResetHandler: () => void) => {
   const [solutionStatus, setSolutionStatus] = useState(
-    SolutionStatus.NOT_PROVIDED
+    SolutionStatus.NotProvided
   );
-  let previousSolutionStatus = SolutionStatus.NOT_PROVIDED;
+  let previousSolutionStatus = SolutionStatus.NotProvided;
   const context = useContext(AppContext);
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
-    if (solutionStatus !== SolutionStatus.NOT_PROVIDED) {
+    if (solutionStatus !== SolutionStatus.NotProvided) {
       previousSolutionStatus = solutionStatus;
       console.log(
         `Feedback time ${context.settings.storedParameters.feedbackTime}`
@@ -19,11 +19,11 @@ export const useSolutionStatus = (onSolutionResetHandler: () => void) => {
       const feedbackTime = context.settings.storedParameters
         .feedbackTime as any;
       timer = setTimeout(() => {
-        setSolutionStatus(SolutionStatus.NOT_PROVIDED);
-        if (previousSolutionStatus === SolutionStatus.SUCCESSFUL) {
+        setSolutionStatus(SolutionStatus.NotProvided);
+        if (previousSolutionStatus === SolutionStatus.Successful) {
           onSolutionResetHandler();
         }
-        previousSolutionStatus = SolutionStatus.NOT_PROVIDED;
+        previousSolutionStatus = SolutionStatus.NotProvided;
       }, feedbackTime);
     }
     return () => clearTimeout(timer);

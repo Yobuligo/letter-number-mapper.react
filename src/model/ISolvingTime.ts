@@ -1,3 +1,4 @@
+import { SolutionStatus } from "../components/exercise/SolutionStatus";
 import { ITrainingSymbol } from "../training/model/ITrainingSymbol";
 
 export interface ISolvingTime {
@@ -8,4 +9,5 @@ export interface ISolvingTime {
    * Otherwise the solving time would always only have the current numberSuccessfulAnswers but not the one at the time when a training exercise was solved.
    */
   numberSuccessfulAnswers: number;
+  solutionStatus: SolutionStatus;
 }

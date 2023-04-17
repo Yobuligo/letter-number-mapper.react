@@ -235,6 +235,7 @@ const App: React.FC = () => {
       trainingSymbol: trainingSymbol,
       time: stopwatch.elapsed,
       numberSuccessfulAnswers: trainingSymbol.numberSuccessfulAnswers,
+      solutionStatus: trainingExercise.solutionStatus,
     });
     solvingTimes.splice(10, solvingTimes.length);
   };
@@ -251,13 +252,11 @@ const App: React.FC = () => {
       console.log("Correct!");
       trainingExercise?.succeeded();
       pushElapsedToSolvingTimes(trainingExercise);
-      setSolutionStatus(SolutionStatus.SUCCESSFUL);
+      setSolutionStatus(SolutionStatus.Successful);
     } else {
       trainingExercise?.failed();
-      setSolutionStatus(SolutionStatus.FAILED);
-      console.log(
-        `Wrong solution (${mappedSelectedSymbol}) provided, try again`
-      );
+      setSolutionStatus(SolutionStatus.Failed);
+      console.log(`Wrong solution (${mappedSelectedSymbol}) provided`);
     }
   };
 

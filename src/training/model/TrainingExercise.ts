@@ -1,3 +1,4 @@
+import { SolutionStatus } from "../../components/exercise/SolutionStatus";
 import { ITrainingExercise } from "./ITrainingExercise";
 import { ITrainingSymbol } from "./ITrainingSymbol";
 import { TrainingExerciseState } from "./TrainingExerciseState";
@@ -27,6 +28,21 @@ export class TrainingExercise implements ITrainingExercise {
 
   get isSolved(): boolean {
     return this.state === TrainingExerciseState.Succeeded;
+  }
+
+  get solutionStatus(): SolutionStatus {
+    switch (this.state) {
+      case TrainingExerciseState.Open:
+        return SolutionStatus.NotProvided;
+      case TrainingExerciseState.Succeeded:
+        return SolutionStatus.Successful;
+      case TrainingExerciseState.Failed:
+        return SolutionStatus.Failed;
+      default:
+        throw new Error(
+          "Error when getting exercise solution state. Exercise state is unknown and cannot be mapped."
+        );
+    }
   }
 
   succeeded(): void {

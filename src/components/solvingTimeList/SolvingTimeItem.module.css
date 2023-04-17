@@ -1,9 +1,16 @@
 div.solvingTimeItem {
   display: inline-block;
   border-radius: 6px;
-  background-color: rgb(207, 207, 207);
   margin: 0.25rem;
   padding: 0.25rem 3rem 0.25rem 1.5rem;
+}
+
+.solvingTimeItemSuccess{
+  background-color:  rgb(2, 204, 29);
+}
+
+.solvingTimeItemFailed{
+  background-color: rgb(255, 99, 99);
 }
 
 .solvingTimeItem div {

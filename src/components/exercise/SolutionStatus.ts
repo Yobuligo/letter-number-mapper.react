@@ -1,5 +1,5 @@
-export enum SolutionStatus{
-    NOT_PROVIDED,
-    SUCCESSFUL,
-    FAILED
+export enum SolutionStatus {
+  NotProvided,
+  Successful,
+  Failed,
 }

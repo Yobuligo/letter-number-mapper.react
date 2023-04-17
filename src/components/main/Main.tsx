@@ -32,13 +32,13 @@ export const Main: React.FC = () => {
 
   const getHighlightedSymbols = (): string[] => {
     switch (context.exercise.solutionStatus) {
-      case SolutionStatus.SUCCESSFUL: {
+      case SolutionStatus.Successful: {
         return [getSymbolMapper().map(context.exercise.symbol)];
       }
-      case SolutionStatus.FAILED: {
+      case SolutionStatus.Failed: {
         return [];
       }
-      case SolutionStatus.NOT_PROVIDED: {
+      case SolutionStatus.NotProvided: {
         return [];
       }
     }
@@ -46,14 +46,14 @@ export const Main: React.FC = () => {
 
   const getSolutionBackgroundStyle = () => {
     switch (context.exercise.solutionStatus) {
-      case SolutionStatus.SUCCESSFUL: {
+      case SolutionStatus.Successful: {
         // currently reset as the button itself is highlighted
         return styles.noSolutionProvided;
       }
-      case SolutionStatus.FAILED: {
+      case SolutionStatus.Failed: {
         return styles.failedSolution;
       }
-      case SolutionStatus.NOT_PROVIDED: {
+      case SolutionStatus.NotProvided: {
         return styles.noSolutionProvided;
       }
     }
