@@ -4,7 +4,7 @@ import { MaterialIcons } from "../../assets/icons/MaterialIcons";
 import { ISymbolMapper } from "../../services/symbolMapper/ISymbolMapper";
 import { LetterToNumberSymbolMapper } from "../../services/symbolMapper/LetterToNumberSymbolMapper";
 import { NumberToLetterSymbolMapper } from "../../services/symbolMapper/NumberToLetterSymbolMapper";
-import Bottom from "../bottom/Bottom";
+import SolvingTime from "../bottom/SolvingTime";
 import { Display } from "../display/Display";
 import { SolutionStatus } from "../exercise/SolutionStatus";
 import Keyboard from "../keyboard/Keyboard";
@@ -109,7 +109,7 @@ export const Main: React.FC = () => {
           ) : undefined}
         </div>
       </div>
-      <Bottom />
+      <SolvingTime />
     </div>
   );
 };

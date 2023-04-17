@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../AppContext";
-import SolvingTime from "./SolvingTime";
+import SolvingTimeItem from "./SolvingTimeItem";
 import styles from "./SolvingTimeList.module.css";
 
 const SolvingTimeList: React.FC = () => {
   const context = useContext(AppContext);
   const items = context.exercise.solvingTimes.map((solvingTime) => (
-    <SolvingTime key={crypto.randomUUID()} solvingTime={solvingTime} />
+    <SolvingTimeItem key={crypto.randomUUID()} solvingTime={solvingTime} />
   ));
 
   return (
