@@ -4,7 +4,7 @@ import { MaterialIcons } from "../../assets/icons/MaterialIcons";
 import { ISymbolMapper } from "../../services/symbolMapper/ISymbolMapper";
 import { LetterToNumberSymbolMapper } from "../../services/symbolMapper/LetterToNumberSymbolMapper";
 import { NumberToLetterSymbolMapper } from "../../services/symbolMapper/NumberToLetterSymbolMapper";
-import SolvingTime from "../bottom/SolvingTime";
+import ModalDialog from "../core/modalDialog/ModalDialog";
 import { Display } from "../display/Display";
 import { SolutionStatus } from "../exercise/SolutionStatus";
 import Keyboard from "../keyboard/Keyboard";
@@ -14,7 +14,6 @@ import SolvingTimeList from "../solvingTimeList/SolvingTimeList";
 import IToolbarAction from "../toolbar/IToolbarAction";
 import Toolbar from "../toolbar/Toolbar";
 import styles from "./Main.module.css";
-import ModalDialog from "../core/modalDialog/ModalDialog";
 
 export const Main: React.FC = () => {
   const context = useContext(AppContext);
@@ -63,15 +62,15 @@ export const Main: React.FC = () => {
   const [showModalDialog, setShowModalDialog] = useState(false);
 
   const toggleModalDialog = () => {
-    setShowModalDialog((previous) => !previous)
-  }
+    setShowModalDialog((previous) => !previous);
+  };
 
   const toolbarActions: IToolbarAction[] = [
     {
       source: MaterialIcons.Menu,
       text: "Settings",
       onClickHandler: () => {
-        toggleModalDialog()
+        toggleModalDialog();
       },
     },
   ];
@@ -81,7 +80,7 @@ export const Main: React.FC = () => {
       <ModalDialog
         visible={showModalDialog}
         onConfirm={() => {
-          setShowModalDialog(false)
+          setShowModalDialog(false);
         }}
       >
         <Settings />
@@ -109,7 +108,6 @@ export const Main: React.FC = () => {
           ) : undefined}
         </div>
       </div>
-      <SolvingTime />
     </div>
   );
 };

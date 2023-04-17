@@ -8,7 +8,7 @@ const SolvingTimeItem: React.FC<{ solvingTime: ISolvingTime }> = (props) => {
         <h1>{props.solvingTime.trainingSymbol.symbol}</h1>
       </div>
       <div className={styles.solvingTimeItemTime}>
-        {props.solvingTime.time}s
+        {props.solvingTime.time} s
       </div>
       <div className={styles.solvingTimeItemNumberSuccessfulAnswers}>
         {props.solvingTime.numberSuccessfulAnswers}x
