@@ -9,7 +9,6 @@ export const SettingToggle: React.FC<{
   return (
     <Setting title={props.title}>
       <Switch
-        defaultChecked
         size="small"
         onChange={props.onChange}
         checked={props.checked}

@@ -33,23 +33,32 @@ export const Main: React.FC = () => {
   };
 
   const getHighlightedSymbols = (): HighlightedSymbols => {
-    const map = new Map()
+    const map = new Map();
     switch (context.exercise.solutionStatus) {
       case SolutionStatus.Successful: {
-        map.set(getSymbolMapper().map(context.exercise.symbol), HighlightStatus.Success)
-        return map
+        map.set(
+          getSymbolMapper().map(context.exercise.symbol),
+          HighlightStatus.Success
+        );
+        return map;
       }
       case SolutionStatus.Failed: {
-        const map = new Map()
-        map.set(getSymbolMapper().map(context.exercise.symbol), HighlightStatus.Failed)
-        return map
+        const map = new Map();
+        map.set(
+          getSymbolMapper().map(context.exercise.symbol),
+          HighlightStatus.Failed
+        );
+        return map;
       }
       default: {
-        map.set(getSymbolMapper().map(context.exercise.symbol), HighlightStatus.None)
-        return map
+        map.set(
+          getSymbolMapper().map(context.exercise.symbol),
+          HighlightStatus.None
+        );
+        return map;
       }
     }
-  }
+  };
 
   const [showModalDialog, setShowModalDialog] = useState(false);
 
@@ -71,11 +80,9 @@ export const Main: React.FC = () => {
     <div className={styles.main}>
       <ModalDialog
         visible={showModalDialog}
-        onConfirm={() => {
-          setShowModalDialog(false);
-        }}
+        onConfirm={() => setShowModalDialog(false)}
       >
-        <Settings />
+        <Settings onConfirm={() => setShowModalDialog(false)} />
       </ModalDialog>
       <Toolbar toolbarActions={toolbarActions} />
       <div className={styles.mainContainer}>
