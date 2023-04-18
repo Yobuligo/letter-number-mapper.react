@@ -4,13 +4,14 @@ import { AppContext, STORED_PARAMETERS, StoredParameters } from "./AppContext";
 import { Letters, Numbers } from "./Types/Types";
 import { ExerciseType } from "./components/exercise/ExerciseType";
 import { SolutionStatus } from "./components/exercise/SolutionStatus";
-import { KeyboardTypeInfo } from "./components/keyboard/KeyboardTypeInfo";
 import { Main } from "./components/main/Main";
 import { FeedbackTime } from "./components/settings/FeedbackTime";
+import { initializeSettings } from "./context/SettingsInitializer";
 import { useDebounce } from "./hooks/useDebounce";
 import { useSolutionStatus } from "./hooks/useSolutionStatus";
 import { ISolvingTime } from "./model/ISolvingTime";
 import { Stopwatch } from "./services/Stopwatch";
+import { KeyboardTypeInfo } from "./services/keyboardType/KeyboardTypeInfo";
 import { SymbolMapperInfo } from "./services/symbolMapper/SymbolMapperInfo";
 import { LetterTrainingProgramInitializer } from "./services/trainingProgramInitializer/LetterTrainingProgramInitializer";
 import { NumberTrainingProgramInitializer } from "./services/trainingProgramInitializer/NumberTrainingProgramInitializer";
@@ -25,27 +26,7 @@ const App: React.FC = () => {
     return new LocalStore();
   }, []);
 
-  const initializeSettings = (): StoredParameters => {
-    const locallyStoredParameters =
-      localStore.get<StoredParameters>(STORED_PARAMETERS);
-    if (
-      locallyStoredParameters === null ||
-      locallyStoredParameters === undefined
-    ) {
-      return {
-        exerciseType: ExerciseType.LETTER_TO_NUMBER,
-        feedbackTime: FeedbackTime.MIDDLE,
-        showSolvingTimeList: true,
-        showSolvingTime: true,
-      };
-    } else {
-      return locallyStoredParameters;
-    }
-  };
-
-  const [settings, setSettings] = useState<StoredParameters>(
-    initializeSettings()
-  );
+  const [settings, setSettings] = useState(initializeSettings(localStore));
 
   const getTrainingProgramByExerciseType = (
     exerciseType: ExerciseType

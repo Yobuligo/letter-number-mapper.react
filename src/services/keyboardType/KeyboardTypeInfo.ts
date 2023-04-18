@@ -1,6 +1,6 @@
-import { ExerciseType } from "../exercise/ExerciseType";
+import { ExerciseType } from "../../components/exercise/ExerciseType";
 import { IKeyboardTypeInfo } from "./IKeyboardTypeInfo";
-import { KeyboardType } from "./KeyboardType";
+import { KeyboardType } from "../../components/keyboard/KeyboardType";
 
 class KeyboardTypeInfoDefault implements IKeyboardTypeInfo {
   get(exerciseType: ExerciseType): KeyboardType {
