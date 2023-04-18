@@ -5,11 +5,11 @@ div.historyItem {
   padding: 0.25rem 3rem 0.25rem 1.5rem;
 }
 
-.historyItemSuccess{
-  background-color:  rgb(2, 204, 29);
+.historyItemSuccess {
+  background-color: rgb(2, 204, 29);
 }
 
-.historyItemFailed{
+.historyItemFailed {
   background-color: rgb(255, 99, 99);
 }
 
@@ -25,6 +25,10 @@ div.historyItem {
   display: inline;
   margin: 0;
   font-size: medium;
+}
+
+.historyItemAnswer {
+  width: 2rem;
 }
 
 .historyItemTime {

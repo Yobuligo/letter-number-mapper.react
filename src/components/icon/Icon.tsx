@@ -1,5 +1,8 @@
 import { MaterialIcons } from "../../assets/icons/MaterialIcons";
 
+/**
+ * This component is responsible for displaying material icons.
+ */
 const Icon: React.FC<{
   className?: string;
   icon: MaterialIcons;
