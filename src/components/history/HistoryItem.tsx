@@ -1,10 +1,10 @@
 import { ISolvingTime } from "../../model/ISolvingTime";
-import { getSymbolMapperByExerciseType } from "../../services/symbolMapper/SymbolMapperFunctions";
+import { SymbolMapperInfo } from "../../services/symbolMapper/SymbolMapperInfo";
 import { SolutionStatus } from "../exercise/SolutionStatus";
 import styles from "./HistoryItem.module.css";
 
 const getMappedSymbol = (solvingTime: ISolvingTime): string => {
-  return getSymbolMapperByExerciseType(solvingTime.exerciseType).map(
+  return SymbolMapperInfo.get(solvingTime.exerciseType).map(
     solvingTime.trainingSymbol.symbol
   );
 };

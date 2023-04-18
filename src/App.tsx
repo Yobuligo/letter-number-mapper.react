@@ -4,73 +4,35 @@ import { AppContext, STORED_PARAMETERS, StoredParameters } from "./AppContext";
 import { Letters, Numbers } from "./Types/Types";
 import { ExerciseType } from "./components/exercise/ExerciseType";
 import { SolutionStatus } from "./components/exercise/SolutionStatus";
-import { KeyboardType } from "./components/keyboard/KeyboardType";
 import { Main } from "./components/main/Main";
 import { FeedbackTime } from "./components/settings/FeedbackTime";
+import { initializeSettings } from "./context/SettingsInitializer";
 import { useDebounce } from "./hooks/useDebounce";
 import { useSolutionStatus } from "./hooks/useSolutionStatus";
 import { ISolvingTime } from "./model/ISolvingTime";
 import { Stopwatch } from "./services/Stopwatch";
-import { LetterToNumberSymbolMapper } from "./services/symbolMapper/LetterToNumberSymbolMapper";
-import { NumberToLetterSymbolMapper } from "./services/symbolMapper/NumberToLetterSymbolMapper";
-import { LetterTrainingProgramInitializer } from "./services/trainingProgramInitializer/LetterTrainingProgramInitializer";
-import { NumberTrainingProgramInitializer } from "./services/trainingProgramInitializer/NumberTrainingProgramInitializer";
+import { KeyboardTypeInfo } from "./services/keyboardType/KeyboardTypeInfo";
+import { SymbolMapperInfo } from "./services/symbolMapper/SymbolMapperInfo";
 import { LocalStore } from "./store/LocalStore";
 import { LetterDAO } from "./training/dataObject/LetterDAO";
 import { NumberDAO } from "./training/dataObject/NumberDAO";
 import { ITrainingExercise } from "./training/model/ITrainingExercise";
-import { ITrainingProgram } from "./training/model/ITrainingProgram";
+import { TrainingProgramRepo } from "./training/model/TrainingProgramRepo";
+import { TrainingSymbolReader } from "./training/model/TrainingSymbolReader";
 
 const App: React.FC = () => {
   const localStore = useMemo(() => {
     return new LocalStore();
   }, []);
 
-  const initializeSettings = (): StoredParameters => {
-    const locallyStoredParameters =
-      localStore.get<StoredParameters>(STORED_PARAMETERS);
-    if (
-      locallyStoredParameters === null ||
-      locallyStoredParameters === undefined
-    ) {
-      return {
-        exerciseType: ExerciseType.LETTER_TO_NUMBER,
-        feedbackTime: FeedbackTime.MIDDLE,
-        showSolvingTimeList: true,
-        showSolvingTime: true,
-      };
-    } else {
-      return locallyStoredParameters;
-    }
-  };
+  const [settings, setSettings] = useState(initializeSettings(localStore));
 
-  const [settings, setSettings] = useState<StoredParameters>(
-    initializeSettings()
+  const [trainingProgram, setTrainingProgram] = useState(
+    TrainingProgramRepo.fetch(settings.exerciseType)
   );
-
-  const getTrainingProgramByExerciseType = (
-    exerciseType: ExerciseType
-  ): ITrainingProgram => {
-    switch (exerciseType) {
-      case ExerciseType.LETTER_TO_NUMBER: {
-        return new LetterTrainingProgramInitializer().initialize();
-      }
-      case ExerciseType.NUMBER_TO_LETTER: {
-        return new NumberTrainingProgramInitializer().initialize();
-      }
-    }
-  };
-
-  const [trainingProgram, setTrainingProgram] = useState<ITrainingProgram>(
-    getTrainingProgramByExerciseType(settings.exerciseType)
-  );
-
-  const resetTrainingProgram = () => {
-    setTrainingProgram(getTrainingProgramByExerciseType(settings.exerciseType));
-  };
 
   const [trainingExercise, setTrainingExercise] = useState<ITrainingExercise>(
-    trainingProgram.nextTrainingExercise()
+    trainingProgram.trainingExercise
   );
 
   const symbolDAO = useMemo(() => {
@@ -91,53 +53,9 @@ const App: React.FC = () => {
     localStore.save(STORED_PARAMETERS, settings);
   }, [localStore, settings]);
 
-  const getKeyboardTypeByExerciseType = (exerciseType: ExerciseType) => {
-    if (exerciseType === ExerciseType.LETTER_TO_NUMBER) {
-      return KeyboardType.NUMBER;
-    } else {
-      return KeyboardType.LETTER;
-    }
-  };
-
-  const getSymbolMapperByExerciseType = (exerciseType: ExerciseType) => {
-    if (exerciseType === ExerciseType.LETTER_TO_NUMBER) {
-      return NumberToLetterSymbolMapper;
-    } else {
-      return LetterToNumberSymbolMapper;
-    }
-  };
-
-  const [symbolMapper, setSymbolMapper] = useState(
-    getSymbolMapperByExerciseType(settings.exerciseType)
+  const [symbol, setSymbol] = useState(
+    TrainingSymbolReader.get(trainingExercise)
   );
-
-  const readTrainingSymbol = (): string => {
-    if (trainingExercise === undefined) {
-      throw new Error(
-        `Error reading training symbol. The training exercise is undefined.`
-      );
-    }
-
-    if (trainingExercise.trainingSymbol === undefined) {
-      throw new Error(
-        `Error reading training symbol. The training symbol of the training exercise is undefined.`
-      );
-    }
-
-    if (trainingExercise.trainingSymbol.symbol === undefined) {
-      throw new Error(
-        `Error reading training symbol. The symbol of the training symbol instance is undefined.`
-      );
-    }
-
-    return trainingExercise.trainingSymbol.symbol;
-  };
-
-  const [symbol, setSymbol] = useState(readTrainingSymbol());
-
-  const updateSymbolMapper = (exerciseType: ExerciseType) => {
-    setSymbolMapper(getSymbolMapperByExerciseType(exerciseType));
-  };
 
   // register on key pressed event (to handle each key)
   useEffect(() => {
@@ -175,7 +93,7 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
-    setTrainingExercise(trainingProgram?.nextTrainingExercise());
+    setTrainingExercise(trainingProgram.nextTrainingExercise());
     stopwatch.start();
   }, [stopwatch, trainingProgram]);
 
@@ -184,15 +102,14 @@ const App: React.FC = () => {
   }, [trainingExercise]);
 
   const { solutionStatus, setSolutionStatus } = useSolutionStatus(() => {
-    setTrainingExercise(trainingProgram?.nextTrainingExercise());
+    setTrainingExercise(trainingProgram.nextTrainingExercise());
     stopwatch.start();
   });
 
   const onSetExerciseType = (exerciseType: ExerciseType) => {
-    setTrainingProgram(getTrainingProgramByExerciseType(exerciseType));
+    setTrainingProgram(TrainingProgramRepo.fetch(exerciseType));
     console.log(`ExerciseType changed to ${ExerciseType[exerciseType]}`);
     onResetSolvingTimes();
-    updateSymbolMapper(exerciseType);
     setSettings((previousSettings) => {
       return { ...previousSettings, exerciseType: exerciseType };
     });
@@ -241,20 +158,27 @@ const App: React.FC = () => {
   };
 
   const onExerciseSolutionProvided = (selectedSymbol: string) => {
-    // It must not be allowed to to solve the same exercise multiple times by e.g. fast clicking
+    // It must not be allowed to solve the same exercise multiple times by e.g. fast clicking
     // So if an exercise is already solved, leave here
+    if (!trainingExercise) {
+      throw new Error(
+        `Error when updating solved exercise. Instance of training exercise must not be null.`
+      );
+    }
     if (trainingExercise.isSolved) {
       return;
     }
-    const mappedSelectedSymbol = symbolMapper.map(selectedSymbol);
+    const mappedSelectedSymbol = SymbolMapperInfo.getReverse(
+      settings.exerciseType
+    ).map(selectedSymbol);
     stopwatch.stop();
     if (mappedSelectedSymbol === symbol) {
       console.log("Correct!");
-      trainingExercise?.succeeded();
+      trainingExercise.succeeded();
       pushElapsedToSolvingTimes(trainingExercise);
       setSolutionStatus(SolutionStatus.Successful);
     } else {
-      trainingExercise?.failed();
+      trainingExercise.failed();
       pushElapsedToSolvingTimes(trainingExercise);
       setSolutionStatus(SolutionStatus.Failed);
       console.log(`Wrong solution (${mappedSelectedSymbol}) provided`);
@@ -263,7 +187,9 @@ const App: React.FC = () => {
 
   const onResetProgress = () => {
     symbolDAO.deleteAll();
-    resetTrainingProgram();
+    TrainingProgramRepo.reset();
+    setTrainingProgram(TrainingProgramRepo.fetch(settings.exerciseType));
+    onResetSolvingTimes();
     console.log(`Progress reset`);
   };
 
@@ -286,7 +212,7 @@ const App: React.FC = () => {
             setFeedbackTime: onSetFeedbackTime,
             setShowSolvingTimeList: onSetShowSolvingTimeList,
             setShowSolvingTime: onSetShowSolvingTime,
-            keyboardType: getKeyboardTypeByExerciseType(settings.exerciseType),
+            keyboardType: KeyboardTypeInfo.get(settings.exerciseType),
             onResetProgress: onResetProgress,
           },
           exercise: {
