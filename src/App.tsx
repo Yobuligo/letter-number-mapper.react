@@ -11,8 +11,7 @@ import { useDebounce } from "./hooks/useDebounce";
 import { useSolutionStatus } from "./hooks/useSolutionStatus";
 import { ISolvingTime } from "./model/ISolvingTime";
 import { Stopwatch } from "./services/Stopwatch";
-import { LetterToNumberSymbolMapper } from "./services/symbolMapper/LetterToNumberSymbolMapper";
-import { NumberToLetterSymbolMapper } from "./services/symbolMapper/NumberToLetterSymbolMapper";
+import { SymbolMapperInfo } from "./services/symbolMapper/SymbolMapperInfo";
 import { LetterTrainingProgramInitializer } from "./services/trainingProgramInitializer/LetterTrainingProgramInitializer";
 import { NumberTrainingProgramInitializer } from "./services/trainingProgramInitializer/NumberTrainingProgramInitializer";
 import { LocalStore } from "./store/LocalStore";
@@ -99,18 +98,6 @@ const App: React.FC = () => {
     }
   };
 
-  const getSymbolMapperByExerciseType = (exerciseType: ExerciseType) => {
-    if (exerciseType === ExerciseType.LETTER_TO_NUMBER) {
-      return NumberToLetterSymbolMapper;
-    } else {
-      return LetterToNumberSymbolMapper;
-    }
-  };
-
-  const [symbolMapper, setSymbolMapper] = useState(
-    getSymbolMapperByExerciseType(settings.exerciseType)
-  );
-
   const readTrainingSymbol = (): string => {
     if (trainingExercise === undefined) {
       throw new Error(
@@ -134,10 +121,6 @@ const App: React.FC = () => {
   };
 
   const [symbol, setSymbol] = useState(readTrainingSymbol());
-
-  const updateSymbolMapper = (exerciseType: ExerciseType) => {
-    setSymbolMapper(getSymbolMapperByExerciseType(exerciseType));
-  };
 
   // register on key pressed event (to handle each key)
   useEffect(() => {
@@ -192,7 +175,6 @@ const App: React.FC = () => {
     setTrainingProgram(getTrainingProgramByExerciseType(exerciseType));
     console.log(`ExerciseType changed to ${ExerciseType[exerciseType]}`);
     onResetSolvingTimes();
-    updateSymbolMapper(exerciseType);
     setSettings((previousSettings) => {
       return { ...previousSettings, exerciseType: exerciseType };
     });
@@ -246,7 +228,9 @@ const App: React.FC = () => {
     if (trainingExercise.isSolved) {
       return;
     }
-    const mappedSelectedSymbol = symbolMapper.map(selectedSymbol);
+    const mappedSelectedSymbol = SymbolMapperInfo.getReverse(
+      settings.exerciseType
+    ).map(selectedSymbol);
     stopwatch.stop();
     if (mappedSelectedSymbol === symbol) {
       console.log("Correct!");

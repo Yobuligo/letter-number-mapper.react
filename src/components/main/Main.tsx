@@ -1,21 +1,18 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "../../AppContext";
 import { MaterialIcons } from "../../assets/icons/MaterialIcons";
-import { ISymbolMapper } from "../../services/symbolMapper/ISymbolMapper";
-import { LetterToNumberSymbolMapper } from "../../services/symbolMapper/LetterToNumberSymbolMapper";
-import { NumberToLetterSymbolMapper } from "../../services/symbolMapper/NumberToLetterSymbolMapper";
 import ModalDialog from "../core/modalDialog/ModalDialog";
 import { Display } from "../display/Display";
 import { SolutionStatus } from "../exercise/SolutionStatus";
 import History from "../history/History";
 import { HighlightStatus } from "../keyboard/HighlightStatus";
 import Keyboard from "../keyboard/Keyboard";
-import { KeyboardType } from "../keyboard/KeyboardType";
 import { HighlightedSymbols } from "../keyboard/KeyboardTypes";
 import Settings from "../settings/Settings";
 import IToolbarAction from "../toolbar/IToolbarAction";
 import Toolbar from "../toolbar/Toolbar";
 import styles from "./Main.module.css";
+import { SymbolMapperInfo } from "../../services/symbolMapper/SymbolMapperInfo";
 
 export const Main: React.FC = () => {
   const context = useContext(AppContext);
@@ -24,32 +21,26 @@ export const Main: React.FC = () => {
     context.exercise.provideExerciseSolution(selectedSymbol);
   };
 
-  const getSymbolMapper = (): ISymbolMapper => {
-    if (context.settings.keyboardType === KeyboardType.LETTER) {
-      return NumberToLetterSymbolMapper;
-    } else {
-      return LetterToNumberSymbolMapper;
-    }
-  };
-
   const getHighlightedSymbols = (): HighlightedSymbols => {
-    const map = new Map()
+    const map = new Map();
+    const exerciseType = context.settings.storedParameters.exerciseType;
+    const symbolMapper = SymbolMapperInfo.get(exerciseType);
+    const mappedSymbol = symbolMapper.map(context.exercise.symbol);
     switch (context.exercise.solutionStatus) {
       case SolutionStatus.Successful: {
-        map.set(getSymbolMapper().map(context.exercise.symbol), HighlightStatus.Success)
-        return map
+        map.set(mappedSymbol, HighlightStatus.Success);
+        return map;
       }
       case SolutionStatus.Failed: {
-        const map = new Map()
-        map.set(getSymbolMapper().map(context.exercise.symbol), HighlightStatus.Failed)
-        return map
+        map.set(mappedSymbol, HighlightStatus.Failed);
+        return map;
       }
       default: {
-        map.set(getSymbolMapper().map(context.exercise.symbol), HighlightStatus.None)
-        return map
+        map.set(mappedSymbol, HighlightStatus.None);
+        return map;
       }
     }
-  }
+  };
 
   const [showModalDialog, setShowModalDialog] = useState(false);
 
