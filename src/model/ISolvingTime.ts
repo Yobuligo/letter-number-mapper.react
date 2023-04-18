@@ -1,3 +1,4 @@
+import { ExerciseType } from "../components/exercise/ExerciseType";
 import { SolutionStatus } from "../components/exercise/SolutionStatus";
 import { ITrainingSymbol } from "../training/model/ITrainingSymbol";
 
@@ -10,4 +11,5 @@ export interface ISolvingTime {
    */
   numberSuccessfulAnswers: number;
   solutionStatus: SolutionStatus;
+  exerciseType: ExerciseType;
 }

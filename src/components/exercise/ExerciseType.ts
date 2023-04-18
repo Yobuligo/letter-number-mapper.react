@@ -2,4 +2,3 @@ export enum ExerciseType {
   LETTER_TO_NUMBER = "LETTER_TO_NUMBER",
   NUMBER_TO_LETTER = "NUMBER_TO_LETTER",
 }
-export const EXERCISE_TYPE = "EXERCISE_TYPE";

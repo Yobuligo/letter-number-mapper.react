@@ -235,6 +235,7 @@ const App: React.FC = () => {
       time: stopwatch.elapsed,
       numberSuccessfulAnswers: trainingSymbol.numberSuccessfulAnswers,
       solutionStatus: trainingExercise.solutionStatus,
+      exerciseType: settings.exerciseType,
     });
     solvingTimes.splice(10, solvingTimes.length);
   };
