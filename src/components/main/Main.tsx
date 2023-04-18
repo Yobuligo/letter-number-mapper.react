@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "../../AppContext";
 import { MaterialIcons } from "../../assets/icons/MaterialIcons";
+import { SymbolMapperInfo } from "../../services/symbolMapper/SymbolMapperInfo";
 import ModalDialog from "../core/modalDialog/ModalDialog";
 import { Display } from "../display/Display";
 import { SolutionStatus } from "../exercise/SolutionStatus";
@@ -12,7 +13,6 @@ import Settings from "../settings/Settings";
 import IToolbarAction from "../toolbar/IToolbarAction";
 import Toolbar from "../toolbar/Toolbar";
 import styles from "./Main.module.css";
-import { SymbolMapperInfo } from "../../services/symbolMapper/SymbolMapperInfo";
 
 export const Main: React.FC = () => {
   const context = useContext(AppContext);
@@ -62,11 +62,9 @@ export const Main: React.FC = () => {
     <div className={styles.main}>
       <ModalDialog
         visible={showModalDialog}
-        onConfirm={() => {
-          setShowModalDialog(false);
-        }}
+        onConfirm={() => setShowModalDialog(false)}
       >
-        <Settings />
+        <Settings onConfirm={() => setShowModalDialog(false)} />
       </ModalDialog>
       <Toolbar toolbarActions={toolbarActions} />
       <div className={styles.mainContainer}>
