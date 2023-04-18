@@ -12,10 +12,6 @@ button.key {
     border-color: #642472
 }
 
-button.key:hover {
-    background-color: #642472;
-}
-
 button.key.success,
 button.key:hover.success {
     background-color: rgb(2, 204, 29);
@@ -23,6 +19,14 @@ button.key:hover.success {
 
 button.key.failed {
     background-color: rgb(255, 99, 99);
+}
+
+/* This is a bugfix for ensuring that only on none-mobile-devices, a button has a hover state. Otherwise the hover-state is never
+   removed on mobile devices. */
+@media (min-width: 40rem) and (min-height: 25rem) and (hover: hover) {
+    button.key:hover {
+        background-color: #642472;
+    }
 }
 
 @keyframes grow {
