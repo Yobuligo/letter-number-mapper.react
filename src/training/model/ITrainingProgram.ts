@@ -6,6 +6,7 @@ import { ITrainingSection } from "./ITrainingSection";
  * The ITrainingProgram is a mediator for all services and the frontend.
  */
 export interface ITrainingProgram {
+  readonly trainingExercise: ITrainingExercise;
   readonly trainingSections: ITrainingSection[];
   nextTrainingExercise(): ITrainingExercise;
 }

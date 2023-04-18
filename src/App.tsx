@@ -31,7 +31,7 @@ const App: React.FC = () => {
   );
 
   const [trainingExercise, setTrainingExercise] = useState<ITrainingExercise>(
-    trainingProgram.nextTrainingExercise()
+    trainingProgram.trainingExercise
   );
 
   const symbolDAO = useMemo(() => {
@@ -112,7 +112,7 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
-    setTrainingExercise(trainingProgram?.nextTrainingExercise());
+    setTrainingExercise(trainingProgram.nextTrainingExercise());
     stopwatch.start();
   }, [stopwatch, trainingProgram]);
 
@@ -121,7 +121,7 @@ const App: React.FC = () => {
   }, [trainingExercise]);
 
   const { solutionStatus, setSolutionStatus } = useSolutionStatus(() => {
-    setTrainingExercise(trainingProgram?.nextTrainingExercise());
+    setTrainingExercise(trainingProgram.nextTrainingExercise());
     stopwatch.start();
   });
 
@@ -177,8 +177,13 @@ const App: React.FC = () => {
   };
 
   const onExerciseSolutionProvided = (selectedSymbol: string) => {
-    // It must not be allowed to to solve the same exercise multiple times by e.g. fast clicking
+    // It must not be allowed to solve the same exercise multiple times by e.g. fast clicking
     // So if an exercise is already solved, leave here
+    if (!trainingExercise) {
+      throw new Error(
+        `Error when updating solved exercise. Instance of training exercise must not be null.`
+      );
+    }
     if (trainingExercise.isSolved) {
       return;
     }
@@ -188,11 +193,11 @@ const App: React.FC = () => {
     stopwatch.stop();
     if (mappedSelectedSymbol === symbol) {
       console.log("Correct!");
-      trainingExercise?.succeeded();
+      trainingExercise.succeeded();
       pushElapsedToSolvingTimes(trainingExercise);
       setSolutionStatus(SolutionStatus.Successful);
     } else {
-      trainingExercise?.failed();
+      trainingExercise.failed();
       pushElapsedToSolvingTimes(trainingExercise);
       setSolutionStatus(SolutionStatus.Failed);
       console.log(`Wrong solution (${mappedSelectedSymbol}) provided`);

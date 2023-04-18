@@ -6,6 +6,7 @@ import { TrainingSymbolPicker } from "./TrainingSymbolPicker";
 import { TrainingSymbolShifter } from "./TrainingSymbolShifter";
 
 export class TrainingProgram implements ITrainingProgram {
+  private _trainingExercise?: ITrainingExercise;
   private trainingSymbolPicker = new TrainingSymbolPicker(this);
   private trainingSymbolShifter = new TrainingSymbolShifter();
 
@@ -13,17 +14,24 @@ export class TrainingProgram implements ITrainingProgram {
     this.addTrainingSectionRelations();
   }
 
+  get trainingExercise(): ITrainingExercise {
+    if (!this._trainingExercise) {
+      this._trainingExercise = this.nextTrainingExercise();
+    }
+    return this._trainingExercise;
+  }
+
   nextTrainingExercise(): ITrainingExercise {
-    const trainingExercise = TrainingExerciseFactory.create(
+    this._trainingExercise = TrainingExerciseFactory.create(
       this.trainingSymbolPicker.next()
     );
-    trainingExercise.onFail((trainingExercise) => {
+    this._trainingExercise.onFail((trainingExercise) => {
       this.trainingSymbolShifter.shiftDown(trainingExercise.trainingSymbol);
     });
-    trainingExercise.onSucceed((trainingExercise) => {
+    this._trainingExercise.onSucceed((trainingExercise) => {
       this.trainingSymbolShifter.shiftUp(trainingExercise.trainingSymbol);
     });
-    return trainingExercise;
+    return this._trainingExercise;
   }
 
   private addTrainingSectionRelations() {
