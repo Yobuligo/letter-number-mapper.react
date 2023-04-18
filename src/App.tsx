@@ -4,7 +4,7 @@ import { AppContext, STORED_PARAMETERS, StoredParameters } from "./AppContext";
 import { Letters, Numbers } from "./Types/Types";
 import { ExerciseType } from "./components/exercise/ExerciseType";
 import { SolutionStatus } from "./components/exercise/SolutionStatus";
-import { KeyboardType } from "./components/keyboard/KeyboardType";
+import { KeyboardTypeInfo } from "./components/keyboard/KeyboardTypeInfo";
 import { Main } from "./components/main/Main";
 import { FeedbackTime } from "./components/settings/FeedbackTime";
 import { useDebounce } from "./hooks/useDebounce";
@@ -89,14 +89,6 @@ const App: React.FC = () => {
   useEffect(() => {
     localStore.save(STORED_PARAMETERS, settings);
   }, [localStore, settings]);
-
-  const getKeyboardTypeByExerciseType = (exerciseType: ExerciseType) => {
-    if (exerciseType === ExerciseType.LETTER_TO_NUMBER) {
-      return KeyboardType.NUMBER;
-    } else {
-      return KeyboardType.LETTER;
-    }
-  };
 
   const readTrainingSymbol = (): string => {
     if (trainingExercise === undefined) {
@@ -270,7 +262,7 @@ const App: React.FC = () => {
             setFeedbackTime: onSetFeedbackTime,
             setShowSolvingTimeList: onSetShowSolvingTimeList,
             setShowSolvingTime: onSetShowSolvingTime,
-            keyboardType: getKeyboardTypeByExerciseType(settings.exerciseType),
+            keyboardType: KeyboardTypeInfo.get(settings.exerciseType),
             onResetProgress: onResetProgress,
           },
           exercise: {
