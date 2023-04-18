@@ -1,5 +1,5 @@
 .history h4 {
-  margin-bottom: 0.3rem;
+  margin: 0;
 }
 
 .items {
@@ -7,6 +7,13 @@
   flex-direction: column;
   align-items: flex-start;
   min-width: 20rem;
+}
+
+.headline {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.3rem;
+  margin-top: 1.5rem;
 }
 
 .headline h4 {
@@ -21,11 +28,6 @@
 .headline span:hover {
   color: red;
   cursor: pointer;
-}
-
-.headline {
-  display: flex;
-  align-items: center;
 }
 
 @media (min-width: 60rem) {

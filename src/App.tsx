@@ -191,6 +191,7 @@ const App: React.FC = () => {
   const onSetExerciseType = (exerciseType: ExerciseType) => {
     setTrainingProgram(getTrainingProgramByExerciseType(exerciseType));
     console.log(`ExerciseType changed to ${ExerciseType[exerciseType]}`);
+    onResetSolvingTimes();
     updateSymbolMapper(exerciseType);
     setSettings((previousSettings) => {
       return { ...previousSettings, exerciseType: exerciseType };
