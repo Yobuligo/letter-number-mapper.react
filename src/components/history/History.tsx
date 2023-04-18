@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../AppContext";
-import HistoryItem from "./HistoryItem";
+import { MaterialIcons } from "../../assets/icons/MaterialIcons";
 import styles from "./History.module.css";
+import HistoryItem from "./HistoryItem";
 
 const History: React.FC = () => {
   const context = useContext(AppContext);
@@ -11,7 +12,12 @@ const History: React.FC = () => {
 
   return (
     <div className={styles.history}>
-      <h4>History</h4>
+      <div className={styles.headline}>
+        <h4>History</h4>
+        <span className="material-symbols-outlined">
+          {MaterialIcons.Delete}
+        </span>
+      </div>
       <div className={styles.items}>{items}</div>
     </div>
   );

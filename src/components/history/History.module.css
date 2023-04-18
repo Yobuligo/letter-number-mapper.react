@@ -4,6 +4,25 @@
   align-items: flex-start;
 }
 
+.headline h4 {
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+
+.headline button {
+  font-size: 0rem;
+}
+
+.headline span:hover {
+  color: red;
+  cursor: pointer;
+}
+
+.headline {
+  display: flex;
+  align-items: center;
+}
+
 @media (min-width: 60rem) {
   .history {
     margin-left: 5rem;

@@ -1,10 +1,9 @@
 import { ISolvingTime } from "../../model/ISolvingTime";
 import { SolutionStatus } from "../exercise/SolutionStatus";
-import SolvingTime from "../solvingTime/SolvingTime";
 import styles from "./HistoryItem.module.css";
 
 const HistoryItem: React.FC<{ solvingTime: ISolvingTime }> = (props) => {
-  const content = ""
+  const content = "";
   return (
     <div
       className={`${styles.historyItem} ${
@@ -14,7 +13,11 @@ const HistoryItem: React.FC<{ solvingTime: ISolvingTime }> = (props) => {
       }`}
     >
       <div className={styles.historyItemSymbol}>
-        <h1>{props.solvingTime.trainingSymbol.symbol} {props.solvingTime.solutionStatus === SolutionStatus.Failed && content}</h1>
+        <h1>
+          {props.solvingTime.trainingSymbol.symbol}{" "}
+          {props.solvingTime.solutionStatus === SolutionStatus.Failed &&
+            content}
+        </h1>
       </div>
       <div className={styles.historyItemTime}>{props.solvingTime.time} s</div>
       <div className={styles.historyItemNumberSuccessfulAnswers}>
