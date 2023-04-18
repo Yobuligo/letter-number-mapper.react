@@ -13,9 +13,8 @@ import { ISolvingTime } from "./model/ISolvingTime";
 import { Stopwatch } from "./services/Stopwatch";
 import { KeyboardTypeInfo } from "./services/keyboardType/KeyboardTypeInfo";
 import { SymbolMapperInfo } from "./services/symbolMapper/SymbolMapperInfo";
-import { LetterTrainingProgramInitializer } from "./services/trainingProgramInitializer/LetterTrainingProgramInitializer";
-import { NumberTrainingProgramInitializer } from "./services/trainingProgramInitializer/NumberTrainingProgramInitializer";
 import { LocalStore } from "./store/LocalStore";
+import { TrainingProgramInfo } from "./training/TrainingProgramInfo";
 import { LetterDAO } from "./training/dataObject/LetterDAO";
 import { NumberDAO } from "./training/dataObject/NumberDAO";
 import { ITrainingExercise } from "./training/model/ITrainingExercise";
@@ -28,25 +27,12 @@ const App: React.FC = () => {
 
   const [settings, setSettings] = useState(initializeSettings(localStore));
 
-  const getTrainingProgramByExerciseType = (
-    exerciseType: ExerciseType
-  ): ITrainingProgram => {
-    switch (exerciseType) {
-      case ExerciseType.LETTER_TO_NUMBER: {
-        return new LetterTrainingProgramInitializer().initialize();
-      }
-      case ExerciseType.NUMBER_TO_LETTER: {
-        return new NumberTrainingProgramInitializer().initialize();
-      }
-    }
-  };
-
   const [trainingProgram, setTrainingProgram] = useState<ITrainingProgram>(
-    getTrainingProgramByExerciseType(settings.exerciseType)
+    TrainingProgramInfo.get(settings.exerciseType)
   );
 
   const resetTrainingProgram = () => {
-    setTrainingProgram(getTrainingProgramByExerciseType(settings.exerciseType));
+    setTrainingProgram(TrainingProgramInfo.get(settings.exerciseType));
   };
 
   const [trainingExercise, setTrainingExercise] = useState<ITrainingExercise>(
@@ -145,7 +131,7 @@ const App: React.FC = () => {
   });
 
   const onSetExerciseType = (exerciseType: ExerciseType) => {
-    setTrainingProgram(getTrainingProgramByExerciseType(exerciseType));
+    setTrainingProgram(TrainingProgramInfo.get(exerciseType));
     console.log(`ExerciseType changed to ${ExerciseType[exerciseType]}`);
     onResetSolvingTimes();
     setSettings((previousSettings) => {
