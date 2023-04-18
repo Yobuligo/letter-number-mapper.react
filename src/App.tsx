@@ -85,9 +85,7 @@ const App: React.FC = () => {
     return new Stopwatch();
   }, []);
 
-  const solvingTimes = useMemo<ISolvingTime[]>(() => {
-    return [];
-  }, [trainingProgram]);
+  const [solvingTimes, setSolvingTimes] = useState<ISolvingTime[]>([]);
 
   useEffect(() => {
     localStore.save(STORED_PARAMETERS, settings);
@@ -267,6 +265,10 @@ const App: React.FC = () => {
     console.log(`Progress reset`);
   };
 
+  const onResetSolvingTimes = () => {
+    setSolvingTimes([]);
+  };
+
   return (
     <>
       <AppContext.Provider
@@ -290,6 +292,7 @@ const App: React.FC = () => {
             provideExerciseSolution: onExerciseSolutionProvided,
             solutionStatus: solutionStatus,
             solvingTimes: solvingTimes,
+            resetSolvingTimes: onResetSolvingTimes,
           },
           stopwatch: stopwatch,
         }}

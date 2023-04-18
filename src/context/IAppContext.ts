@@ -22,6 +22,7 @@ export type IAppContext = {
     provideExerciseSolution: (selectedSymbol: string) => void;
     solutionStatus: SolutionStatus;
     solvingTimes: ISolvingTime[];
+    resetSolvingTimes: () => void;
   };
   stopwatch: IStopwatch;
 };

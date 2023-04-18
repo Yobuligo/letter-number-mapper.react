@@ -26,6 +26,7 @@ export const AppContextDefault: IAppContext = {
     provideExerciseSolution: () => {},
     solutionStatus: SolutionStatus.NotProvided,
     solvingTimes: [],
+    resetSolvingTimes: () => {},
   },
   stopwatch: new Stopwatch(),
 };
