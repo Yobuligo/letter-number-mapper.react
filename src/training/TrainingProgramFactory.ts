@@ -1,11 +1,11 @@
 import { ExerciseType } from "../components/exercise/ExerciseType";
 import { LetterTrainingProgramInitializer } from "../services/trainingProgramInitializer/LetterTrainingProgramInitializer";
 import { NumberTrainingProgramInitializer } from "../services/trainingProgramInitializer/NumberTrainingProgramInitializer";
-import { ITrainingProgramInfo } from "./ITrainingProgramInfo";
+import { ITrainingProgramInfo } from "./ITrainingProgramFactory";
 import { ITrainingProgram } from "./model/ITrainingProgram";
 
-class TrainingProgramInfoDefault implements ITrainingProgramInfo {
-  get(exerciseType: ExerciseType): ITrainingProgram {
+class TrainingProgramFactoryDefault implements ITrainingProgramInfo {
+  create(exerciseType: ExerciseType): ITrainingProgram {
     switch (exerciseType) {
       case ExerciseType.LETTER_TO_NUMBER: {
         return new LetterTrainingProgramInitializer().initialize();
@@ -17,4 +17,4 @@ class TrainingProgramInfoDefault implements ITrainingProgramInfo {
   }
 }
 
-export const TrainingProgramInfo = new TrainingProgramInfoDefault();
+export const TrainingProgramFactory = new TrainingProgramFactoryDefault();

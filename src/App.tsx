@@ -14,11 +14,10 @@ import { Stopwatch } from "./services/Stopwatch";
 import { KeyboardTypeInfo } from "./services/keyboardType/KeyboardTypeInfo";
 import { SymbolMapperInfo } from "./services/symbolMapper/SymbolMapperInfo";
 import { LocalStore } from "./store/LocalStore";
-import { TrainingProgramInfo } from "./training/TrainingProgramInfo";
 import { LetterDAO } from "./training/dataObject/LetterDAO";
 import { NumberDAO } from "./training/dataObject/NumberDAO";
 import { ITrainingExercise } from "./training/model/ITrainingExercise";
-import { ITrainingProgram } from "./training/model/ITrainingProgram";
+import { TrainingProgramRepo } from "./training/model/TrainingProgramRepo";
 
 const App: React.FC = () => {
   const localStore = useMemo(() => {
@@ -27,13 +26,9 @@ const App: React.FC = () => {
 
   const [settings, setSettings] = useState(initializeSettings(localStore));
 
-  const [trainingProgram, setTrainingProgram] = useState<ITrainingProgram>(
-    TrainingProgramInfo.get(settings.exerciseType)
+  const [trainingProgram, setTrainingProgram] = useState(
+    TrainingProgramRepo.fetch(settings.exerciseType)
   );
-
-  const resetTrainingProgram = () => {
-    setTrainingProgram(TrainingProgramInfo.get(settings.exerciseType));
-  };
 
   const [trainingExercise, setTrainingExercise] = useState<ITrainingExercise>(
     trainingProgram.nextTrainingExercise()
@@ -131,7 +126,7 @@ const App: React.FC = () => {
   });
 
   const onSetExerciseType = (exerciseType: ExerciseType) => {
-    setTrainingProgram(TrainingProgramInfo.get(exerciseType));
+    setTrainingProgram(TrainingProgramRepo.fetch(exerciseType));
     console.log(`ExerciseType changed to ${ExerciseType[exerciseType]}`);
     onResetSolvingTimes();
     setSettings((previousSettings) => {
@@ -206,7 +201,9 @@ const App: React.FC = () => {
 
   const onResetProgress = () => {
     symbolDAO.deleteAll();
-    resetTrainingProgram();
+    TrainingProgramRepo.reset();
+    setTrainingProgram(TrainingProgramRepo.fetch(settings.exerciseType));
+    onResetSolvingTimes();
     console.log(`Progress reset`);
   };
 
