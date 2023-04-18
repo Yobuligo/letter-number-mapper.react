@@ -1,7 +1,12 @@
+.history h4 {
+  margin-bottom: 0.3rem;
+}
+
 .items {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  min-width: 20rem;
 }
 
 .headline h4 {

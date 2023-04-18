@@ -1,12 +1,26 @@
-div.setting{
-  margin-bottom: 2rem;
+.setting {
+  display: flex;
+  border-bottom: 1px solid rgb(214, 214, 214);
+  padding-bottom: 0.8rem;
 }
 
-div.setting:last-of-type{
+div.setting {
+  margin-bottom: 0.5rem;
+}
+
+div.setting:last-of-type {
   margin-bottom: 0;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.setting h3 {
+  width: 45%;
+  align-self: center;
 }
 
 .settingContent {
   margin-left: 1rem;
+  width: 55%;
+  align-self: center;
 }
-

@@ -3,11 +3,16 @@
   box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.2);
 }
 
-.settings h3{
-  margin: 0.5rem 0;
-  font-size: medium;
+h1 {
+  margin-top: 0;
+  margin-bottom: 0.8rem;
 }
 
-.card{
+.settings h3 {
+  margin: 0.5rem 0;
+  font-size: small;
+}
+
+.card {
   border-radius: 0 12px 12px 0;
 }

@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { AppContext } from "../../AppContext";
 import { ExerciseType } from "../exercise/ExerciseType";
 import Setting from "./Setting";
+import styles from "./ResetProgressSettings.module.css";
 
 const ResetProgressSettings: React.FC = () => {
   const context = useContext(AppContext);
@@ -21,7 +22,7 @@ const ResetProgressSettings: React.FC = () => {
     }
   };
   return (
-    <Setting title="Reset Progress">
+    <Setting title="Reset Progress" className={styles.setting}>
       <button onClick={onReset}>Reset</button>
     </Setting>
   );

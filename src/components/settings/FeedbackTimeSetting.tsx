@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { AppContext } from "../../AppContext";
 import { FeedbackTime } from "./FeedbackTime";
 import Setting from "./Setting";
+import styles from "./FeedbackTimeSetting.module.css";
 
 const FeedbackTimeSetting: React.FC = () => {
   const context = useContext(AppContext);
@@ -43,6 +44,7 @@ const FeedbackTimeSetting: React.FC = () => {
   return (
     <Setting title="Feedback Time">
       <Slider
+        className={styles.slider}
         defaultValue={getDefaultValue()}
         step={marks[0].value}
         min={marks[0].value}

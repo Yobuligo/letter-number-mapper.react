@@ -18,8 +18,15 @@
   transform: translateX(-105%);
   transition: transform 0.7s;
   z-index: 10;
+  width: 60%;
 }
 
 .modalDialogVisible {
   transform: translateX(-2%);
+}
+
+@media (min-width: 40rem) and (min-height: 25rem) {
+  .modalDialog {
+    width: 30%;
+  }
 }
