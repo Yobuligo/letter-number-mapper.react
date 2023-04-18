@@ -18,6 +18,7 @@ import { LetterDAO } from "./training/dataObject/LetterDAO";
 import { NumberDAO } from "./training/dataObject/NumberDAO";
 import { ITrainingExercise } from "./training/model/ITrainingExercise";
 import { TrainingProgramRepo } from "./training/model/TrainingProgramRepo";
+import { TrainingSymbolReader } from "./training/model/TrainingSymbolReader";
 
 const App: React.FC = () => {
   const localStore = useMemo(() => {
@@ -52,29 +53,9 @@ const App: React.FC = () => {
     localStore.save(STORED_PARAMETERS, settings);
   }, [localStore, settings]);
 
-  const readTrainingSymbol = (): string => {
-    if (trainingExercise === undefined) {
-      throw new Error(
-        `Error reading training symbol. The training exercise is undefined.`
-      );
-    }
-
-    if (trainingExercise.trainingSymbol === undefined) {
-      throw new Error(
-        `Error reading training symbol. The training symbol of the training exercise is undefined.`
-      );
-    }
-
-    if (trainingExercise.trainingSymbol.symbol === undefined) {
-      throw new Error(
-        `Error reading training symbol. The symbol of the training symbol instance is undefined.`
-      );
-    }
-
-    return trainingExercise.trainingSymbol.symbol;
-  };
-
-  const [symbol, setSymbol] = useState(readTrainingSymbol());
+  const [symbol, setSymbol] = useState(
+    TrainingSymbolReader.get(trainingExercise)
+  );
 
   // register on key pressed event (to handle each key)
   useEffect(() => {
