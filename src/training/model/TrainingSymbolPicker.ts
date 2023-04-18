@@ -38,13 +38,24 @@ export class TrainingSymbolPicker implements ITrainingSymbolPicker {
     let size = this.trainingProgram.trainingSections.length;
     const trainingSymbols: ITrainingSymbol[] = [];
     this.trainingProgram.trainingSections.forEach((trainingSection) => {
+      const times = this.calcBinaryNumber(size)
       trainingSection
         .findAllTrainingSymbols()
         .forEach((trainingSymbol) =>
-          repeat(size, () => trainingSymbols.push(trainingSymbol))
+          repeat(times, () => trainingSymbols.push(trainingSymbol))
         );
       size--;
     });
     return trainingSymbols;
+  }
+
+  private calcBinaryNumber(size: number): number {
+    let cursor: number = 1;
+    let result: number = 1;
+    while (cursor < size) {
+      result = result * 2;
+      cursor++;
+    }
+    return result;
   }
 }
