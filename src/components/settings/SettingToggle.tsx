@@ -1,5 +1,15 @@
-import { Switch } from "@mui/material";
+import { Switch, styled } from "@mui/material";
 import Setting from "./Setting";
+
+const primaryColor = "#642472";
+const CustomSwitch = styled(Switch)({
+  "& .MuiSwitch-switchBase.Mui-checked": {
+    color: primaryColor,
+  },
+  "& .MuiSwitch-switchBase.Mui-checked+.MuiSwitch-track": {
+    backgroundColor: primaryColor,
+  },
+});
 
 export const SettingToggle: React.FC<{
   title: string;
@@ -8,7 +18,7 @@ export const SettingToggle: React.FC<{
 }> = (props) => {
   return (
     <Setting title={props.title}>
-      <Switch
+      <CustomSwitch
         size="small"
         onChange={props.onChange}
         checked={props.checked}

@@ -1,10 +1,30 @@
 import { Mark } from "@mui/base";
-import { Slider } from "@mui/material";
+import { Slider, styled } from "@mui/material";
 import { useContext } from "react";
 import { AppContext } from "../../AppContext";
 import { FeedbackTime } from "./FeedbackTime";
 import Setting from "./Setting";
 import styles from "./FeedbackTimeSetting.module.css";
+
+const CustomSlider = styled(Slider)({
+  color: "#642472",
+  height: 8,
+  "& .MuiSlider-track": {
+    border: "none",
+  },
+  "& .MuiSlider-thumb": {
+    height: 16,
+    width: 16,
+    backgroundColor: "#fff",
+    border: "2px solid currentColor",
+    "&:focus, &:hover, &.Mui-active, &.Mui-focusVisible": {
+      boxShadow: "inherit",
+    },
+    "&:before": {
+      display: "none",
+    },
+  },
+});
 
 const FeedbackTimeSetting: React.FC = () => {
   const context = useContext(AppContext);
@@ -43,7 +63,7 @@ const FeedbackTimeSetting: React.FC = () => {
 
   return (
     <Setting title="Feedback Time">
-      <Slider
+      <CustomSlider
         className={styles.slider}
         defaultValue={getDefaultValue()}
         step={marks[0].value}
