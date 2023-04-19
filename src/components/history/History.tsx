@@ -4,11 +4,13 @@ import { MaterialIcons } from "../../assets/icons/MaterialIcons";
 import Icon from "../icon/Icon";
 import styles from "./History.module.css";
 import HistoryItem from "./HistoryItem";
+import HistoryItemGrid from "./HistoryItemGrid";
 
 const History: React.FC = () => {
   const context = useContext(AppContext);
   const items = context.exercise.solvingTimes.map((solvingTime) => (
-    <HistoryItem key={crypto.randomUUID()} solvingTime={solvingTime} />
+    <HistoryItemGrid key={crypto.randomUUID()} solvingTime={solvingTime} />
+    // <HistoryItem key={crypto.randomUUID()} solvingTime={solvingTime} />
   ));
 
   return (

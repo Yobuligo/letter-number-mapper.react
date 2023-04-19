@@ -1,5 +1,8 @@
 export enum MaterialIcons {
+  ArrowRight = "arrow_right_alt",
+  ChevronLeft = "chevron_left",
+  Clock = "pace",
   Delete = "delete",
   Menu = "menu",
-  ChevronLeft = "chevron_left"
+  QuestionMark = "question_mark",
 }
