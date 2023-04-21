@@ -49,6 +49,11 @@ const App: React.FC = () => {
 
   const [solvingTimes, setSolvingTimes] = useState<ISolvingTime[]>([]);
 
+  const [lastPracticedSymbol, setLastPracticedSymbol] = useState<string>();
+  const onSetLastPracticedSymbol = (symbol: string) => {
+    setLastPracticedSymbol(symbol);
+  };
+
   useEffect(() => {
     localStore.save(STORED_PARAMETERS, settings);
   }, [localStore, settings]);
@@ -177,10 +182,12 @@ const App: React.FC = () => {
       trainingExercise.succeeded();
       pushElapsedToSolvingTimes(trainingExercise);
       setSolutionStatus(SolutionStatus.Successful);
+      setLastPracticedSymbol(trainingExercise.trainingSymbol.symbol);
     } else {
       trainingExercise.failed();
       pushElapsedToSolvingTimes(trainingExercise);
       setSolutionStatus(SolutionStatus.Failed);
+      setLastPracticedSymbol(trainingExercise.trainingSymbol.symbol);
       console.log(`Wrong solution (${mappedSelectedSymbol}) provided`);
     }
   };
@@ -223,6 +230,8 @@ const App: React.FC = () => {
             resetSolvingTimes: onResetSolvingTimes,
           },
           stopwatch: stopwatch,
+          lastPracticedSymbol: lastPracticedSymbol,
+          setLastPracticedSymbol: onSetLastPracticedSymbol,
         }}
       >
         <Main />

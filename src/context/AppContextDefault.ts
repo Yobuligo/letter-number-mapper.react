@@ -29,4 +29,6 @@ export const AppContextDefault: IAppContext = {
     resetSolvingTimes: () => {},
   },
   stopwatch: new Stopwatch(),
+  lastPracticedSymbol: "A",
+  setLastPracticedSymbol: () => {},
 };

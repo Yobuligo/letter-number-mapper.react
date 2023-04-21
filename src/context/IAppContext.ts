@@ -25,4 +25,6 @@ export type IAppContext = {
     resetSolvingTimes: () => void;
   };
   stopwatch: IStopwatch;
+  lastPracticedSymbol: string | undefined;
+  setLastPracticedSymbol: (symbol: string) => void;
 };
