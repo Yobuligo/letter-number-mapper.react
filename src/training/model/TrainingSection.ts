@@ -34,11 +34,13 @@ export class TrainingSection implements ITrainingSection {
     return this.trainingSymbols.size === 0;
   }
 
-  findAllTrainingSymbols(): ITrainingSymbol[] {
+  findAllTrainingSymbols(excludeSymbols?: string[]): ITrainingSymbol[] {
     const resultTrainingSymbols: ITrainingSymbol[] = [];
-    this.trainingSymbols.forEach((trainingSymbol) =>
-      resultTrainingSymbols.push(trainingSymbol)
-    );
+    this.trainingSymbols.forEach((trainingSymbol) => {
+      if (!excludeSymbols?.includes(trainingSymbol.symbol)) {
+        resultTrainingSymbols.push(trainingSymbol);
+      }
+    });
     return resultTrainingSymbols;
   }
 

@@ -4,43 +4,31 @@ import { ITrainingSymbol } from "./ITrainingSymbol";
 import { ITrainingSymbolPicker } from "./ITrainingSymbolPicker";
 
 export class TrainingSymbolPicker implements ITrainingSymbolPicker {
-  private currentIndex = 0;
-
   constructor(private trainingProgram: ITrainingProgram) {}
 
-  next(): ITrainingSymbol {
-    return this.selectTrainingSymbol();
+  next(excludeSymbols?: string[]): ITrainingSymbol {
+    return this.selectTrainingSymbol(excludeSymbols);
   }
 
-  private selectTrainingSymbol(): ITrainingSymbol {
-    const trainingSymbolList = this.buildTrainingSymbolList();
-    if (trainingSymbolList.length < 2) {
-      throw new Error(
-        "Error when selecting next training symbol. TrainingSymbolList contains only 1 entry, which would lead in the following code to an endless loop. Function not supported for that constellation."
-      );
-    }
-    while (true) {
-      const percent = Math.random() * trainingSymbolList.length;
-      const next = Math.ceil(percent);
-      if (next !== this.currentIndex) {
-        this.currentIndex = next;
-        break;
-      }
-    }
-
+  private selectTrainingSymbol(excludeSymbols?: string[]): ITrainingSymbol {
+    const trainingSymbolList = this.buildTrainingSymbolList(excludeSymbols);
+    const percent = Math.random() * trainingSymbolList.length;
+    const next = Math.ceil(percent);
     return (
-      trainingSymbolList.at(this.currentIndex - 1) ??
+      trainingSymbolList.at(next - 1) ??
       error(`Error when picking training symbol. Training symbol is undefined`)
     );
   }
 
-  private buildTrainingSymbolList(): ITrainingSymbol[] {
+  private buildTrainingSymbolList(
+    excludeSymbols?: string[]
+  ): ITrainingSymbol[] {
     let size = this.trainingProgram.trainingSections.length;
     const trainingSymbols: ITrainingSymbol[] = [];
     this.trainingProgram.trainingSections.forEach((trainingSection) => {
-      const times = this.calcBinaryNumber(size)
+      const times = this.calcBinaryNumber(size);
       trainingSection
-        .findAllTrainingSymbols()
+        .findAllTrainingSymbols(excludeSymbols)
         .forEach((trainingSymbol) =>
           repeat(times, () => trainingSymbols.push(trainingSymbol))
         );

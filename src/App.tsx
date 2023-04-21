@@ -98,7 +98,11 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
-    setTrainingExercise(trainingProgram.nextTrainingExercise());
+    setTrainingExercise(
+      trainingProgram.nextTrainingExercise(
+        lastPracticedSymbol ? [lastPracticedSymbol] : []
+      )
+    );
     stopwatch.start();
   }, [stopwatch, trainingProgram]);
 
@@ -107,7 +111,11 @@ const App: React.FC = () => {
   }, [trainingExercise]);
 
   const { solutionStatus, setSolutionStatus } = useSolutionStatus(() => {
-    setTrainingExercise(trainingProgram.nextTrainingExercise());
+    setTrainingExercise(
+      trainingProgram.nextTrainingExercise(
+        lastPracticedSymbol ? [lastPracticedSymbol] : []
+      )
+    );
     stopwatch.start();
   });
 

@@ -8,5 +8,5 @@ import { ITrainingSection } from "./ITrainingSection";
 export interface ITrainingProgram {
   readonly trainingExercise: ITrainingExercise;
   readonly trainingSections: ITrainingSection[];
-  nextTrainingExercise(): ITrainingExercise;
+  nextTrainingExercise(excludeSymbols?: string[]): ITrainingExercise;
 }

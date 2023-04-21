@@ -21,9 +21,9 @@ export class TrainingProgram implements ITrainingProgram {
     return this._trainingExercise;
   }
 
-  nextTrainingExercise(): ITrainingExercise {
+  nextTrainingExercise(excludeSymbols?: string[]): ITrainingExercise {
     this._trainingExercise = TrainingExerciseFactory.create(
-      this.trainingSymbolPicker.next()
+      this.trainingSymbolPicker.next(excludeSymbols)
     );
     this._trainingExercise.onFail((trainingExercise) => {
       this.trainingSymbolShifter.shiftDown(trainingExercise.trainingSymbol);

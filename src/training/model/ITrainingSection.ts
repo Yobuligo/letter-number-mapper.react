@@ -17,7 +17,7 @@ export interface ITrainingSection {
   predecessor: ITrainingSection | undefined;
   addTrainingSymbol(trainingSymbol: ITrainingSymbol): void;
   countTrainingSymbols(): number;
-  findAllTrainingSymbols(): ITrainingSymbol[];
+  findAllTrainingSymbols(excludeSymbols?: string[]): ITrainingSymbol[];
   hasTrainingSymbols(): boolean;
   hasNotTrainingSymbols(): boolean;
   removeTrainingSymbol(trainingSymbol: ITrainingSymbol): void;
