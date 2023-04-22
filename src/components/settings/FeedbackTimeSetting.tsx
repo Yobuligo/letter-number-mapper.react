@@ -1,33 +1,37 @@
 import { Mark } from "@mui/base";
 import { Slider, styled } from "@mui/material";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AppContext } from "../../AppContext";
 import { FeedbackTime } from "./FeedbackTime";
 import Setting from "./Setting";
 import styles from "./FeedbackTimeSetting.module.css";
 
-const CustomSlider = styled(Slider)({
-  color: "#642472",
-  height: 8,
-  "& .MuiSlider-track": {
-    border: "none",
-  },
-  "& .MuiSlider-thumb": {
-    height: 16,
-    width: 16,
-    backgroundColor: "#fff",
-    border: "2px solid currentColor",
-    "&:focus, &:hover, &.Mui-active, &.Mui-focusVisible": {
-      boxShadow: "inherit",
-    },
-    "&:before": {
-      display: "none",
-    },
-  },
-});
-
 const FeedbackTimeSetting: React.FC = () => {
   const context = useContext(AppContext);
+  const [primaryColor] = useState(
+    getComputedStyle(document.documentElement).getPropertyValue(
+      "--primaryColor"
+    )
+  );
+  const CustomSlider = styled(Slider)({
+    color: primaryColor,
+    height: 8,
+    "& .MuiSlider-track": {
+      border: "none",
+    },
+    "& .MuiSlider-thumb": {
+      height: 16,
+      width: 16,
+      // backgroundColor: "#fff",
+      border: "2px solid currentColor",
+      "&:focus, &:hover, &.Mui-active, &.Mui-focusVisible": {
+        boxShadow: "inherit",
+      },
+      "&:before": {
+        display: "none",
+      },
+    },
+  });
   const buildMarks = (): Mark[] => {
     const marks: Mark[] = [];
     const entries = Object.entries(FeedbackTime);

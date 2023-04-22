@@ -6,26 +6,26 @@
 }
 
 button.key {
-    background-color: rgba(100, 36, 114, 0.8);
+    background-color: var(--primaryColor80);
     color: white;
     border-radius: 5px;
-    border-color: #642472
+    border-color: var(--primaryColor)
 }
 
 button.key.success,
 button.key:hover.success {
-    background-color: rgb(2, 204, 29);
+    background-color: var(--successColor);
 }
 
 button.key.failed {
-    background-color: rgb(255, 99, 99);
+    background-color: var(--failColor);
 }
 
 /* This is a bugfix for ensuring that only on none-mobile-devices, a button has a hover state. Otherwise the hover-state is never
    removed on mobile devices. */
 @media (min-width: 40rem) and (min-height: 25rem) and (hover: hover) {
     button.key:hover {
-        background-color: #642472;
+        background-color: var(--primaryColor)
     }
 }
 
