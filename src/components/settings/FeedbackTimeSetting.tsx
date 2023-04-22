@@ -1,12 +1,12 @@
 import { Mark } from "@mui/base";
 import { Slider, styled } from "@mui/material";
-import { useContext, useState } from "react";
+import { useContext, useMemo } from "react";
 import { AppContext } from "../../AppContext";
 import { FeedbackTime } from "./FeedbackTime";
-import Setting from "./Setting";
 import styles from "./FeedbackTimeSetting.module.css";
+import Setting from "./Setting";
 
-const CustomSlider = styled(Slider)<{ primary_color: string }>({
+const CustomSlider = styled(Slider)({
   height: 8,
   "& .MuiSlider-track": {
     border: "none",
@@ -31,10 +31,12 @@ const CustomColoredSlider = styled(CustomSlider)<{ primary_color: string }>`
 
 const FeedbackTimeSetting: React.FC = () => {
   const context = useContext(AppContext);
-  const [primaryColor] = useState(
-    getComputedStyle(document.documentElement).getPropertyValue(
-      "--primaryColor"
-    )
+  const primaryColor = useMemo(
+    () =>
+      getComputedStyle(document.documentElement).getPropertyValue(
+        "--primaryColor"
+      ),
+    []
   );
   const buildMarks = (): Mark[] => {
     const marks: Mark[] = [];
