@@ -6,6 +6,29 @@ import { FeedbackTime } from "./FeedbackTime";
 import Setting from "./Setting";
 import styles from "./FeedbackTimeSetting.module.css";
 
+const CustomSlider = styled(Slider)<{ primary_color: string }>({
+  height: 8,
+  "& .MuiSlider-track": {
+    border: "none",
+  },
+  "& .MuiSlider-thumb": {
+    height: 16,
+    width: 16,
+    // backgroundColor: "#fff",
+    border: "2px solid currentColor",
+    "&:focus, &:hover, &.Mui-active, &.Mui-focusVisible": {
+      boxShadow: "inherit",
+    },
+    "&:before": {
+      display: "none",
+    },
+  },
+});
+
+const CustomColoredSlider = styled(CustomSlider)<{ primary_color: string }>`
+  color: ${(props) => props.primary_color};
+`;
+
 const FeedbackTimeSetting: React.FC = () => {
   const context = useContext(AppContext);
   const [primaryColor] = useState(
@@ -13,25 +36,6 @@ const FeedbackTimeSetting: React.FC = () => {
       "--primaryColor"
     )
   );
-  const CustomSlider = styled(Slider)({
-    color: primaryColor,
-    height: 8,
-    "& .MuiSlider-track": {
-      border: "none",
-    },
-    "& .MuiSlider-thumb": {
-      height: 16,
-      width: 16,
-      // backgroundColor: "#fff",
-      border: "2px solid currentColor",
-      "&:focus, &:hover, &.Mui-active, &.Mui-focusVisible": {
-        boxShadow: "inherit",
-      },
-      "&:before": {
-        display: "none",
-      },
-    },
-  });
   const buildMarks = (): Mark[] => {
     const marks: Mark[] = [];
     const entries = Object.entries(FeedbackTime);
@@ -67,9 +71,10 @@ const FeedbackTimeSetting: React.FC = () => {
 
   return (
     <Setting title="Feedback Time">
-      <CustomSlider
+      <CustomColoredSlider
+        primary_color={primaryColor}
         className={styles.slider}
-        defaultValue={getDefaultValue()}
+        value={getDefaultValue()}
         step={marks[0].value}
         min={marks[0].value}
         max={marks[marks.length - 1].value}
