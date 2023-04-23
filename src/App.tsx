@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo, useState } from "react";
-import "./App.css";
 import { AppContext, STORED_PARAMETERS, StoredParameters } from "./AppContext";
 import { Letters, Numbers } from "./Types/Types";
 import { ExerciseType } from "./components/exercise/ExerciseType";

@@ -11,7 +11,7 @@
 }
 
 .toolbar button {
-  background-color: white;
+  background-color: var(--mainBackgroundColor);
   border: none;
   margin: 0.5rem;
 }
