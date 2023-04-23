@@ -6,7 +6,7 @@
 }
 
 button.key {
-    background-color: var(--primaryColor80);
+    background-color: var(--primaryColor_transp80);
     color: white;
     border-radius: 5px;
     border-color: var(--primaryColor)
