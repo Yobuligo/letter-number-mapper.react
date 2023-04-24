@@ -1,9 +1,8 @@
 .banner {
     position: absolute;
     top: 0;
-    right: 0;
-    width: 10rem;
-    transform: translateX(2.5rem) translateY(1.5rem) rotateZ(45deg);
+    right: 1rem;
+    padding: 0 0.5rem;
     background-color: var(--primaryColor);
     color: var(--mainTextColorOnPrimary);
     font-size: 1rem;

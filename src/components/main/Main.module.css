@@ -8,8 +8,6 @@ button {
 
 .main {
   position: relative;
-  overflow: hidden;
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
