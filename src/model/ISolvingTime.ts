@@ -12,4 +12,5 @@ export interface ISolvingTime {
   numberSuccessfulAnswers: number;
   solutionStatus: SolutionStatus;
   exerciseType: ExerciseType;
+  selectedSymbol: string;
 }
