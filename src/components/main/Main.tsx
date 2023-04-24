@@ -13,6 +13,7 @@ import Settings from "../settings/Settings";
 import IToolbarAction from "../toolbar/IToolbarAction";
 import Toolbar from "../toolbar/Toolbar";
 import styles from "./Main.module.css";
+import { DevModeBanner } from "../devMode/DevModeBanner";
 
 export const Main: React.FC = () => {
   const context = useContext(AppContext);
@@ -66,6 +67,7 @@ export const Main: React.FC = () => {
       >
         <Settings onConfirm={() => setShowModalDialog(false)} />
       </ModalDialog>
+      <DevModeBanner />
       <Toolbar toolbarActions={toolbarActions} />
       <div className={styles.mainContainer}>
         <div className={styles.displayAndKeyboardContainer}>

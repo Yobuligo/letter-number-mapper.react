@@ -34,6 +34,16 @@ const App: React.FC = () => {
     trainingProgram.trainingExercise
   );
 
+  const [pickedSymbols, setPickedSymbols] = useState(new Map<string, number>());
+  const findPickedSymbolCount = (symbol: string) => {
+    const reverseSymbol = SymbolMapperInfo.getReverse(
+      settings.exerciseType
+    ).map(symbol);
+    return pickedSymbols.get(reverseSymbol) ?? 0;
+  };
+
+  const [devModeActive, setDevModeActive] = useState(true);
+
   const symbolDAO = useMemo(() => {
     if (settings.exerciseType === ExerciseType.LETTER_TO_NUMBER) {
       return LetterDAO;
@@ -96,13 +106,22 @@ const App: React.FC = () => {
     addKey(uppercaseSymbol);
   };
 
-  useEffect(() => {
-    setTrainingExercise(
-      trainingProgram.nextTrainingExercise(
-        lastPracticedSymbol ? [lastPracticedSymbol] : []
-      )
+  const onNewTrainingExercise = () => {
+    const nextTrainingExercise = trainingProgram.nextTrainingExercise(
+      lastPracticedSymbol ? [lastPracticedSymbol] : []
     );
+    setPickedSymbols((previous) => {
+      const newCount =
+        (previous.get(nextTrainingExercise.trainingSymbol.symbol) ?? 0) + 1;
+      previous.set(nextTrainingExercise.trainingSymbol.symbol, newCount);
+      return new Map(previous);
+    });
+    setTrainingExercise(nextTrainingExercise);
     stopwatch.start();
+  };
+
+  useEffect(() => {
+    onNewTrainingExercise();
   }, [stopwatch, trainingProgram]);
 
   useEffect(() => {
@@ -110,18 +129,14 @@ const App: React.FC = () => {
   }, [trainingExercise]);
 
   const { solutionStatus, setSolutionStatus } = useSolutionStatus(() => {
-    setTrainingExercise(
-      trainingProgram.nextTrainingExercise(
-        lastPracticedSymbol ? [lastPracticedSymbol] : []
-      )
-    );
-    stopwatch.start();
+    onNewTrainingExercise();
   });
 
   const onSetExerciseType = (exerciseType: ExerciseType) => {
     setTrainingProgram(TrainingProgramRepo.fetch(exerciseType));
     console.log(`ExerciseType changed to ${ExerciseType[exerciseType]}`);
     onResetSolvingTimes();
+    setPickedSymbols(new Map());
     setSettings((previousSettings) => {
       return { ...previousSettings, exerciseType: exerciseType };
     });
@@ -235,6 +250,11 @@ const App: React.FC = () => {
             solutionStatus: solutionStatus,
             solvingTimes: solvingTimes,
             resetSolvingTimes: onResetSolvingTimes,
+          },
+          devMode: {
+            devModeActive: devModeActive,
+            setDevModeActive: setDevModeActive,
+            findPickedSymbolCount: findPickedSymbolCount,
           },
           stopwatch: stopwatch,
           lastPracticedSymbol: lastPracticedSymbol,

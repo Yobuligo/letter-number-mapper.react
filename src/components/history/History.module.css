@@ -2,6 +2,10 @@
   margin: 0;
 }
 
+.history {
+  width: 50%;
+}
+
 .items {
   display: flex;
   flex-direction: column;

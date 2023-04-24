@@ -1,0 +1,13 @@
+.count {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: minmax(50%, 100%);
+    padding: 0 0.1rem;
+    background-color: white;
+    color: var(--primaryColor);
+    border: 1px solid black;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    font-size: 0.8rem;
+}
