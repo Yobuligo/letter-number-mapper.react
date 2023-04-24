@@ -42,7 +42,7 @@ const App: React.FC = () => {
     return pickedSymbols.get(reverseSymbol) ?? 0;
   };
 
-  const [devModeActive, setDevModeActive] = useState(true);
+  const [devModeActive, setDevModeActive] = useState(false);
 
   const symbolDAO = useMemo(() => {
     if (settings.exerciseType === ExerciseType.LETTER_TO_NUMBER) {
