@@ -9,6 +9,7 @@ export class TrainingExercise implements ITrainingExercise {
   private state: TrainingExerciseState = TrainingExerciseState.Open;
   private onFailHandlers: EventHandler[] = [];
   private onSucceedHandlers: EventHandler[] = [];
+  private onDestructHandlers: EventHandler[] = [];
 
   constructor(public trainingSymbol: ITrainingSymbol) {
     if (trainingSymbol === undefined) {
@@ -16,6 +17,10 @@ export class TrainingExercise implements ITrainingExercise {
         `Error when creating training exercise. The training symbol is undefined.`
       );
     }
+  }
+
+  destruct(): void {
+    this.onDestructHandlers.forEach((destructHandler) => destructHandler(this));
   }
 
   failed(): void {
@@ -53,6 +58,12 @@ export class TrainingExercise implements ITrainingExercise {
     this.state = TrainingExerciseState.Succeeded;
     this.trainingSymbol.succeed();
     this.raiseOnSucceed();
+  }
+
+  onDestruct(
+    onDestructHandler: (trainingExercise: ITrainingExercise) => void
+  ): void {
+    this.onDestructHandlers.push(onDestructHandler);
   }
 
   onFail(onFailHandler: (trainingExercise: ITrainingExercise) => void): void {

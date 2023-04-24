@@ -28,5 +28,12 @@ export const AppContextDefault: IAppContext = {
     solvingTimes: [],
     resetSolvingTimes: () => {},
   },
+  devMode: {
+    devModeActive: false,
+    setDevModeActive: () => {},
+    findPickedSymbolCount: (symbol: string) => 0,
+  },
   stopwatch: new Stopwatch(),
+  lastPracticedSymbol: "A",
+  setLastPracticedSymbol: () => {},
 };

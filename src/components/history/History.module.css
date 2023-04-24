@@ -2,6 +2,10 @@
   margin: 0;
 }
 
+.history {
+  width: 50%;
+}
+
 .items {
   display: flex;
   flex-direction: column;
@@ -26,7 +30,7 @@
 }
 
 .headline span:hover {
-  color: red;
+  color: var(--warningColor);
   cursor: pointer;
 }
 

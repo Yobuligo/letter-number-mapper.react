@@ -7,10 +7,11 @@ button {
 }
 
 .main {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: white;
+  background-color: var(--mainBackgroundColor);
 }
 
 .mainContainer {
@@ -39,6 +40,7 @@ button {
   .mainContainer {
     flex-direction: row;
   }
+
   .displayAndKeyboardContainer {
     height: auto;
   }

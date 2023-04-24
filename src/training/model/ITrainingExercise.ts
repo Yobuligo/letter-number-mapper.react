@@ -10,8 +10,12 @@ export interface ITrainingExercise {
   readonly isSolved: boolean;
   readonly trainingSymbol: ITrainingSymbol;
   readonly solutionStatus: SolutionStatus;
+  destruct(): void;
   failed(): void;
   succeeded(): void;
+  onDestruct(
+    onDestructHandler: (trainingExercise: ITrainingExercise) => void
+  ): void;
   onFail(onFailHandler: (trainingExercise: ITrainingExercise) => void): void;
   onSucceed(
     onSucceedHandler: (trainingExercise: ITrainingExercise) => void

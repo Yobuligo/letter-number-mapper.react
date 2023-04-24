@@ -10,7 +10,7 @@ export const SolvingTimeListSetting: React.FC = () => {
 
   return (
     <SettingToggle
-      title="Display solving time list"
+      title="Display History"
       checked={showSolvingTimeList}
       onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
         setShowSolvingTimeList(event.target.checked);

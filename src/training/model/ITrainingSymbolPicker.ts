@@ -5,5 +5,5 @@ import { ITrainingSymbol } from "./ITrainingSymbol";
  * It calculates randomized the ITrainingSection and finally the ITrainingSymbol from a ITrainingProgram.
  */
 export interface ITrainingSymbolPicker {
-  next(): ITrainingSymbol;
+  next(excludeSymbols?: string[]): ITrainingSymbol;
 }

@@ -24,5 +24,12 @@ export type IAppContext = {
     solvingTimes: ISolvingTime[];
     resetSolvingTimes: () => void;
   };
+  devMode: {
+    devModeActive: Boolean;
+    setDevModeActive: (active: boolean) => void;
+    findPickedSymbolCount: (symbol: string) => number;
+  };
   stopwatch: IStopwatch;
+  lastPracticedSymbol: string | undefined;
+  setLastPracticedSymbol: (symbol: string) => void;
 };

@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo, useState } from "react";
-import "./App.css";
 import { AppContext, STORED_PARAMETERS, StoredParameters } from "./AppContext";
 import { Letters, Numbers } from "./Types/Types";
 import { ExerciseType } from "./components/exercise/ExerciseType";
@@ -35,6 +34,16 @@ const App: React.FC = () => {
     trainingProgram.trainingExercise
   );
 
+  const [pickedSymbols, setPickedSymbols] = useState(new Map<string, number>());
+  const findPickedSymbolCount = (symbol: string) => {
+    const reverseSymbol = SymbolMapperInfo.getReverse(
+      settings.exerciseType
+    ).map(symbol);
+    return pickedSymbols.get(reverseSymbol) ?? 0;
+  };
+
+  const [devModeActive, setDevModeActive] = useState(false);
+
   const symbolDAO = useMemo(() => {
     if (settings.exerciseType === ExerciseType.LETTER_TO_NUMBER) {
       return LetterDAO;
@@ -48,6 +57,11 @@ const App: React.FC = () => {
   }, []);
 
   const [solvingTimes, setSolvingTimes] = useState<ISolvingTime[]>([]);
+
+  const [lastPracticedSymbol, setLastPracticedSymbol] = useState<string>();
+  const onSetLastPracticedSymbol = (symbol: string) => {
+    setLastPracticedSymbol(symbol);
+  };
 
   useEffect(() => {
     localStore.save(STORED_PARAMETERS, settings);
@@ -92,9 +106,22 @@ const App: React.FC = () => {
     addKey(uppercaseSymbol);
   };
 
-  useEffect(() => {
-    setTrainingExercise(trainingProgram.nextTrainingExercise());
+  const onNewTrainingExercise = () => {
+    const nextTrainingExercise = trainingProgram.nextTrainingExercise(
+      lastPracticedSymbol ? [lastPracticedSymbol] : []
+    );
+    setPickedSymbols((previous) => {
+      const newCount =
+        (previous.get(nextTrainingExercise.trainingSymbol.symbol) ?? 0) + 1;
+      previous.set(nextTrainingExercise.trainingSymbol.symbol, newCount);
+      return new Map(previous);
+    });
+    setTrainingExercise(nextTrainingExercise);
     stopwatch.start();
+  };
+
+  useEffect(() => {
+    onNewTrainingExercise();
   }, [stopwatch, trainingProgram]);
 
   useEffect(() => {
@@ -102,14 +129,14 @@ const App: React.FC = () => {
   }, [trainingExercise]);
 
   const { solutionStatus, setSolutionStatus } = useSolutionStatus(() => {
-    setTrainingExercise(trainingProgram.nextTrainingExercise());
-    stopwatch.start();
+    onNewTrainingExercise();
   });
 
   const onSetExerciseType = (exerciseType: ExerciseType) => {
     setTrainingProgram(TrainingProgramRepo.fetch(exerciseType));
     console.log(`ExerciseType changed to ${ExerciseType[exerciseType]}`);
     onResetSolvingTimes();
+    setPickedSymbols(new Map());
     setSettings((previousSettings) => {
       return { ...previousSettings, exerciseType: exerciseType };
     });
@@ -177,10 +204,12 @@ const App: React.FC = () => {
       trainingExercise.succeeded();
       pushElapsedToSolvingTimes(trainingExercise);
       setSolutionStatus(SolutionStatus.Successful);
+      setLastPracticedSymbol(trainingExercise.trainingSymbol.symbol);
     } else {
       trainingExercise.failed();
       pushElapsedToSolvingTimes(trainingExercise);
       setSolutionStatus(SolutionStatus.Failed);
+      setLastPracticedSymbol(trainingExercise.trainingSymbol.symbol);
       console.log(`Wrong solution (${mappedSelectedSymbol}) provided`);
     }
   };
@@ -222,7 +251,14 @@ const App: React.FC = () => {
             solvingTimes: solvingTimes,
             resetSolvingTimes: onResetSolvingTimes,
           },
+          devMode: {
+            devModeActive: devModeActive,
+            setDevModeActive: setDevModeActive,
+            findPickedSymbolCount: findPickedSymbolCount,
+          },
           stopwatch: stopwatch,
+          lastPracticedSymbol: lastPracticedSymbol,
+          setLastPracticedSymbol: onSetLastPracticedSymbol,
         }}
       >
         <Main />
