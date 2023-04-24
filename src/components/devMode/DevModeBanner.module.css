@@ -1,8 +1,18 @@
+.bannerWrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 7rem;
+    height: 7rem;
+    overflow: hidden;
+}
+
 .banner {
     position: absolute;
     top: 0;
-    right: 1rem;
-    padding: 0 0.5rem;
+    right: 0;
+    width: 10rem;
+    transform: translateX(3rem) translateY(1rem) rotateZ(45deg);
     background-color: var(--primaryColor);
     color: var(--mainTextColorOnPrimary);
     font-size: 1rem;

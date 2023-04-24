@@ -23,13 +23,15 @@ export const DevModeBanner: React.FC = () => {
   }, [devModeTriggerCounter]);
 
   return (
-    <h1
-      className={`${styles.banner} ${
-        context.devMode.devModeActive ? styles.visible : ""
-      }`}
-      onClick={() => setDevModeTriggerCounter((prev) => prev + 1)}
-    >
-      DevMode
-    </h1>
+    <div className={styles.bannerWrapper}>
+      <h1
+        className={`${styles.banner} ${
+          context.devMode.devModeActive ? styles.visible : ""
+        }`}
+        onClick={() => setDevModeTriggerCounter((prev) => prev + 1)}
+      >
+        DevMode
+      </h1>
+    </div>
   );
 };
