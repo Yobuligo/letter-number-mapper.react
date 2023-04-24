@@ -19,14 +19,18 @@ const HistoryItem: React.FC<{ solvingTime: ISolvingTime }> = (props) => {
   }`;
   return (
     <div className={styles.historyItemLayout}>
-      <div className={styles.exercise}>
+      <div className={styles.joinedRows}>
         <h1 className={statusClassName}>
           {props.solvingTime.trainingSymbol.symbol}
         </h1>
-        <Icon icon={MaterialIcons.ArrowRight} />
+        <Icon icon={MaterialIcons.AdsClick} />
+        <h2>n/a</h2>
+      </div>
+      <div className={styles.joinedRows}>
+        <Icon icon={MaterialIcons.Quiz} />
         <h2>{getMappedSymbol(props.solvingTime)}</h2>
       </div>
-      <Icon icon={MaterialIcons.QuestionMark} />
+      <Icon icon={MaterialIcons.StackedTicks} />
       <h3>{props.solvingTime.numberSuccessfulAnswers}x</h3>
       <Icon icon={MaterialIcons.Clock} />
       <h3>{props.solvingTime.time} s</h3>
