@@ -24,7 +24,7 @@ const HistoryItem: React.FC<{ solvingTime: ISolvingTime }> = (props) => {
           {props.solvingTime.trainingSymbol.symbol}
         </h1>
         <Icon icon={MaterialIcons.AdsClick} />
-        <h2>n/a</h2>
+        <h2>{props.solvingTime.selectedSymbol}</h2>
       </div>
       <div className={styles.joinedRows}>
         <Icon icon={MaterialIcons.Quiz} />

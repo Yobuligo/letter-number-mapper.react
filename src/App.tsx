@@ -172,7 +172,10 @@ const App: React.FC = () => {
     });
   };
 
-  const pushElapsedToSolvingTimes = (trainingExercise: ITrainingExercise) => {
+  const pushElapsedToSolvingTimes = (
+    trainingExercise: ITrainingExercise,
+    selectedSymbol: string
+  ) => {
     const trainingSymbol = trainingExercise.trainingSymbol;
     solvingTimes.splice(0, 0, {
       trainingSymbol: trainingSymbol,
@@ -180,6 +183,7 @@ const App: React.FC = () => {
       numberSuccessfulAnswers: trainingSymbol.numberSuccessfulAnswers,
       solutionStatus: trainingExercise.solutionStatus,
       exerciseType: settings.exerciseType,
+      selectedSymbol,
     });
     solvingTimes.splice(10, solvingTimes.length);
   };
@@ -202,12 +206,12 @@ const App: React.FC = () => {
     if (mappedSelectedSymbol === symbol) {
       console.log("Correct!");
       trainingExercise.succeeded();
-      pushElapsedToSolvingTimes(trainingExercise);
+      pushElapsedToSolvingTimes(trainingExercise, selectedSymbol);
       setSolutionStatus(SolutionStatus.Successful);
       setLastPracticedSymbol(trainingExercise.trainingSymbol.symbol);
     } else {
       trainingExercise.failed();
-      pushElapsedToSolvingTimes(trainingExercise);
+      pushElapsedToSolvingTimes(trainingExercise, selectedSymbol);
       setSolutionStatus(SolutionStatus.Failed);
       setLastPracticedSymbol(trainingExercise.trainingSymbol.symbol);
       console.log(`Wrong solution (${mappedSelectedSymbol}) provided`);
