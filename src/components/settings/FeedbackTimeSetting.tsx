@@ -5,6 +5,7 @@ import { AppContext } from "../../AppContext";
 import { FeedbackTime } from "./FeedbackTime";
 import styles from "./FeedbackTimeSetting.module.css";
 import Setting from "./Setting";
+import { usePrimaryColor } from "../../hooks/usePrimaryColor";
 
 const CustomSlider = styled(Slider)({
   height: 8,
@@ -14,7 +15,6 @@ const CustomSlider = styled(Slider)({
   "& .MuiSlider-thumb": {
     height: 16,
     width: 16,
-    // backgroundColor: "#fff",
     border: "2px solid currentColor",
     "&:focus, &:hover, &.Mui-active, &.Mui-focusVisible": {
       boxShadow: "inherit",
@@ -31,13 +31,7 @@ const CustomColoredSlider = styled(CustomSlider)<{ primary_color: string }>`
 
 const FeedbackTimeSetting: React.FC = () => {
   const context = useContext(AppContext);
-  const primaryColor = useMemo(
-    () =>
-      getComputedStyle(document.documentElement).getPropertyValue(
-        "--primaryColor"
-      ),
-    []
-  );
+  const primaryColor = usePrimaryColor();
   const buildMarks = (): Mark[] => {
     const marks: Mark[] = [];
     const entries = Object.entries(FeedbackTime);
