@@ -18,6 +18,7 @@ import { NumberDAO } from "./training/dataObject/NumberDAO";
 import { ITrainingExercise } from "./training/model/ITrainingExercise";
 import { TrainingProgramRepo } from "./training/model/TrainingProgramRepo";
 import { TrainingSymbolReader } from "./training/model/TrainingSymbolReader";
+import { StartScreen } from "./components/startScreen/StartScreen";
 
 const App: React.FC = () => {
   const localStore = useMemo(() => {
@@ -265,7 +266,8 @@ const App: React.FC = () => {
           setLastPracticedSymbol: onSetLastPracticedSymbol,
         }}
       >
-        <Main />
+        <StartScreen />
+        {/* <Main /> */}
       </AppContext.Provider>
     </>
   );

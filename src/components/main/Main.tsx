@@ -14,6 +14,8 @@ import IToolbarAction from "../toolbar/IToolbarAction";
 import Toolbar from "../toolbar/Toolbar";
 import styles from "./Main.module.css";
 import { DevModeBanner } from "../devMode/DevModeBanner";
+import { StartScreen } from "../startScreen/StartScreen";
+import { Statistics } from "../startScreen/Statistics";
 
 export const Main: React.FC = () => {
   const context = useContext(AppContext);
@@ -71,6 +73,7 @@ export const Main: React.FC = () => {
       <Toolbar toolbarActions={toolbarActions} />
       <div className={styles.mainContainer}>
         <div className={styles.displayAndKeyboardContainer}>
+          <StartScreen />
           <Display
             className={styles.display}
             symbol={context.exercise.symbol}

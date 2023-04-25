@@ -1,10 +1,10 @@
 import { useMemo } from "react";
 
-export const usePrimaryColor = () => {
+export const useCSSColor = (colorVariableName: string) => {
   const primaryColor = useMemo(
     () =>
       getComputedStyle(document.documentElement).getPropertyValue(
-        "--primaryColor"
+        colorVariableName
       ),
     []
   );

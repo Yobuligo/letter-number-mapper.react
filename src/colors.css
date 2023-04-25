@@ -14,4 +14,11 @@
 
     /* Setting */
     --settingBorderColor: #d6d6d6;
+
+    /* Statistics */
+    --trainingSection1Color: white;
+    --trainingSection2Color: rgba(100, 36, 114, 0.35);
+    --trainingSection3Color: rgba(100, 36, 114, 0.7);
+    --trainingSection4Color: rgb(100, 36, 114);
+
 }

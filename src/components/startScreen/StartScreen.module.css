@@ -1,0 +1,46 @@
+.startScreen {
+    display: flex;
+    flex-direction: column;
+}
+
+.playMode {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.toggleExerciseButton {
+    background-color: var(--primaryColor);
+    height: 3rem;
+    width: 3rem;
+    background-size: 100%;
+    border: 1px solid black;
+}
+
+.numberToLetterButton {
+    background-image: url(../../assets/images/1_to_A.png);
+
+}
+
+.letterToNumberButton {
+    background-image: url(../../assets/images/Z_to_26.png);
+}
+
+.startButton {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: var(--primaryColor);
+    color: white;
+    margin-left: 1rem;
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+}
+
+.startButton h1 {
+    margin: 0;
+    margin-left: 0.5rem;
+    font-size: 1rem;
+    font-variant: small-caps;
+}

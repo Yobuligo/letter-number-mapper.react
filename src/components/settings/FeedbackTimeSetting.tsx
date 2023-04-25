@@ -5,7 +5,7 @@ import { AppContext } from "../../AppContext";
 import { FeedbackTime } from "./FeedbackTime";
 import styles from "./FeedbackTimeSetting.module.css";
 import Setting from "./Setting";
-import { usePrimaryColor } from "../../hooks/usePrimaryColor";
+import { useCSSColor } from "../../hooks/useCSSColor";
 
 const CustomSlider = styled(Slider)({
   height: 8,
@@ -31,7 +31,7 @@ const CustomColoredSlider = styled(CustomSlider)<{ primary_color: string }>`
 
 const FeedbackTimeSetting: React.FC = () => {
   const context = useContext(AppContext);
-  const primaryColor = usePrimaryColor();
+  const primaryColor = useCSSColor("--primaryColor");
   const buildMarks = (): Mark[] => {
     const marks: Mark[] = [];
     const entries = Object.entries(FeedbackTime);
