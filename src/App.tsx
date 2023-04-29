@@ -19,6 +19,7 @@ import { ITrainingExercise } from "./training/model/ITrainingExercise";
 import { TrainingProgramRepo } from "./training/model/TrainingProgramRepo";
 import { TrainingSymbolReader } from "./training/model/TrainingSymbolReader";
 import { StartScreen } from "./components/startScreen/StartScreen";
+import { Tooltip } from "./components/core/tooltip/Tooltip";
 
 const App: React.FC = () => {
   const localStore = useMemo(() => {

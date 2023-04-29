@@ -1,12 +1,14 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AppContext } from "../../AppContext";
 import { useCSSColor } from "../../hooks/useCSSColor";
 import Keyboard from "../keyboard/Keyboard";
 import { ILegendItem } from "../legend/ILegendItem";
 import { Legend } from "../legend/Legend";
 import styles from "./Statistics.module.css";
+import { Tooltip } from "../core/tooltip/Tooltip";
 
 export const Statistics: React.FC = () => {
+  const [showTooltip, setShowTooltip] = useState(true);
   const context = useContext(AppContext);
   const legendItems: Array<ILegendItem> = [
     { label: "Abschnitt 1", color: useCSSColor("--trainingSection1Color") },
@@ -17,7 +19,14 @@ export const Statistics: React.FC = () => {
 
   return (
     <section className={styles.statistics}>
-      <h1>Statistik</h1>
+      <h1>
+        Statistik
+        {showTooltip && (
+          <Tooltip onHide={() => setShowTooltip(false)}>
+            <p style={{ display: "inline-block", margin: 0 }}>test</p>
+          </Tooltip>
+        )}
+      </h1>
       <p>
         Hier kannst du sehen, wie gut du die Zahlen und Buchstaben bereits
         beherrschst. Je dunkler, desto besser.
