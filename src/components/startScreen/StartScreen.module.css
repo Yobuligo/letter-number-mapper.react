@@ -7,24 +7,56 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 1rem 0;
 }
 
-.toggleExerciseButton {
+.playMode h3 {
+    margin: 1rem;
+}
+
+.toggleButton {
+    display: flex;
+    align-items: center;
+    padding: 0.2rem 0.5rem;
     background-color: var(--primaryColor);
-    height: 3rem;
-    width: 3rem;
-    background-size: 100%;
+    color: white;
     border: 1px solid black;
+    font-size: 1rem;
+    cursor: pointer;
 }
 
-.numberToLetterButton {
-    background-image: url(../../assets/images/1_to_A.png);
-
+.toggleButton:hover,
+.toggleButton.active{
+    background-color: var(--primaryColor_transp80);
+    color: black;
 }
 
-.letterToNumberButton {
+.toggleButtonLeft {
+    border-right: 3px solid black;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.toggleButtonRight {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.toggleButtonIcon {
+    height: 2rem;
+    width: 2rem;
+    background-size: 100%;
+}
+
+.toggleButtonIconLetterToNumber {
     background-image: url(../../assets/images/Z_to_26.png);
+}
+
+.toggleButtonIconNumberToLetter {
+    background-image: url(../../assets/images/1_to_A.png);
+}
+
+.toggleButtonCaption {
+    padding: 0 0.5rem;
 }
 
 .startButton {
@@ -36,9 +68,15 @@
     margin-left: 1rem;
     border-radius: 20px;
     padding: 0.5rem 1rem;
+    cursor: pointer;
 }
 
-.startButton h1 {
+.startButton:hover{
+    background-color: var(--primaryColor_transp80);
+    color: black;
+}
+
+.startButton div {
     margin: 0;
     margin-left: 0.5rem;
     font-size: 1rem;

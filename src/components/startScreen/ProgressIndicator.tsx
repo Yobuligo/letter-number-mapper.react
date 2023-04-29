@@ -15,13 +15,15 @@ export const ProgressIndicator: React.FC = () => {
     <div className={styles.progressIndicator}>
       {getMarks(styles.markTop)}
       <div className={styles.bar}></div>
-      <div className={styles.startLabel}>Some more practice</div>
+      <div className={styles.startLabel}>Needs practice</div>
       <div className={`${styles.markFix} ${styles.markFixEnd}`}></div>
       {getMarks(styles.markBottom)}
       <div className={styles.endLabel}>Mastered</div>
       <div className={styles.markFix}></div>
       {labels.map((label) => (
-        <div className={styles.label}>{label}</div>
+        <div key={label} className={styles.label}>
+          {label}
+        </div>
       ))}
     </div>
   );

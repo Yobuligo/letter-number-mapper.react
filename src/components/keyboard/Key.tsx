@@ -23,11 +23,16 @@ const Key: React.FC<{
         return "";
     }
   };
+  const random = Math.random();
   return (
     <button
       className={`${getClassName()} ${styles.key}`}
       onClick={() => {
         props.keyboardContext.clickHandler?.(props.symbol);
+      }}
+      style={{
+        backgroundColor: `rgba(100, 36, 114, ${random})`,
+        color: `${random > 0.5 ? "white" : "black"}`,
       }}
     >
       {props.symbol}

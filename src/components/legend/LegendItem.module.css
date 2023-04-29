@@ -1,0 +1,15 @@
+.colorBlock {
+    display: inline-block;
+    height: 1rem;
+    width: 2rem;
+    border: 1px solid black;
+    margin-right: 0.5rem;
+}
+
+.label {
+    display: inline-block;
+    margin-right: 1rem;
+}
+.label:last-of-type{
+    margin-right: 0;
+}

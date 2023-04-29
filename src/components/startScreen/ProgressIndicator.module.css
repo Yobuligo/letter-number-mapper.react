@@ -1,17 +1,14 @@
 .progressIndicator {
     display: grid;
-    grid-template-rows: 15% 40% 15% 30%;
+    grid-template-rows: 10% 30% 10% 50%;
     grid-template-columns: 1fr repeat(3, 2fr) 1fr;
+    width: 50rem;
+    font-size: small;
 }
 
 .markTop {
     grid-row-start: 1;
     border-left: 1px solid black;
-}
-
-.markTop:lastOfType {
-    background-color: blue;
-    border-color: green;
 }
 
 .markTop:first-of-type {
@@ -38,9 +35,10 @@ div.markFix+.markBottom,
 
 .label {
     position: relative;
-    grid-row-start: 5;
+    grid-row-start: 4;
     text-align: end;
     right: -2.2rem;
+    padding-top: 0.3rem;
 }
 
 .startLabel {
@@ -54,7 +52,7 @@ div.markFix+.markBottom,
 .endLabel {
     grid-row-start: 2;
     grid-column-start: 5;
-    padding-top: 0.2rem;
+    align-self: center;
     padding-left: 0.5rem;
     border-left: 1px solid black;
 }
