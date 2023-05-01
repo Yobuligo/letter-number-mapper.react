@@ -8,9 +8,15 @@ import styles from "./Statistics.module.css";
 import { Tooltip } from "../core/tooltip/Tooltip";
 import Icon from "../icon/Icon";
 import { MaterialIcons } from "../../assets/icons/MaterialIcons";
+import { HighlightedSymbols } from "../keyboard/KeyboardTypes";
+import { ITrainingProgram } from "../../training/model/ITrainingProgram";
+import { HighlightStatus } from "../keyboard/HighlightStatus";
+import { KeyboardType } from "../keyboard/KeyboardType";
 
-export const Statistics: React.FC = () => {
-  const [showTooltip, setShowTooltip] = useState(true);
+export const Statistics: React.FC<{ trainingProgram: ITrainingProgram }> = (
+  props
+) => {
+  const [showTooltip, setShowTooltip] = useState(false);
   const context = useContext(AppContext);
   const legendItems: Array<ILegendItem> = [
     { label: "Abschnitt 1", color: useCSSColor("--trainingSection1Color") },
@@ -18,6 +24,45 @@ export const Statistics: React.FC = () => {
     { label: "Abschnitt 3", color: useCSSColor("--trainingSection3Color") },
     { label: "Abschnitt 4", color: useCSSColor("--trainingSection4Color") },
   ];
+
+  const getHighlightedSymbols = (): HighlightedSymbols => {
+    const map = new Map();
+    props.trainingProgram.trainingSections.forEach((trainingSection, index) => {
+      let highlightStatus = HighlightStatus.None;
+      switch (index) {
+        case 0: {
+          highlightStatus = HighlightStatus.Lightest;
+          break;
+        }
+        case 1: {
+          highlightStatus = HighlightStatus.Light;
+          break;
+        }
+        case 2: {
+          highlightStatus = HighlightStatus.Dark;
+          break;
+        }
+        case 3: {
+          highlightStatus = HighlightStatus.Darkest;
+          break;
+        }
+      }
+      trainingSection
+        .findAllTrainingSymbols()
+        .forEach((trainingSymbol) =>
+          map.set(trainingSymbol.symbol, highlightStatus)
+        );
+    });
+    return map;
+  };
+
+  const getStatisticsKeyboardType = () => {
+    if (context.settings.keyboardType === KeyboardType.LETTER) {
+      return KeyboardType.NUMBER;
+    } else {
+      return KeyboardType.LETTER;
+    }
+  };
 
   return (
     <section className={styles.statistics}>
@@ -41,10 +86,10 @@ export const Statistics: React.FC = () => {
       </p>
       <Keyboard
         className={styles.keyboard}
-        keyboardType={context.settings.keyboardType}
+        keyboardType={getStatisticsKeyboardType()}
         keyboardContext={{
           clickHandler: () => {},
-          highlightedSymbols: new Map(),
+          highlightedSymbols: getHighlightedSymbols(),
         }}
       />
       <Legend legendItems={legendItems} className={styles.legend} />

@@ -1,5 +1,9 @@
 export enum HighlightStatus {
-    None,
-    Success,
-    Failed
+  None,
+  Success,
+  Failed,
+  Darkest,
+  Dark,
+  Light,
+  Lightest,
 }

@@ -19,20 +19,27 @@ const Key: React.FC<{
       case HighlightStatus.Failed: {
         return `${styles.highlight} ${styles.failed}`;
       }
+      case HighlightStatus.Darkest: {
+        return styles.darkest;
+      }
+      case HighlightStatus.Dark: {
+        return styles.dark;
+      }
+      case HighlightStatus.Light: {
+        return styles.light;
+      }
+      case HighlightStatus.Lightest: {
+        return styles.lightest;
+      }
       default:
         return "";
     }
   };
-  const random = Math.random();
   return (
     <button
       className={`${getClassName()} ${styles.key}`}
       onClick={() => {
         props.keyboardContext.clickHandler?.(props.symbol);
-      }}
-      style={{
-        backgroundColor: `rgba(100, 36, 114, ${random})`,
-        color: `${random > 0.5 ? "white" : "black"}`,
       }}
     >
       {props.symbol}

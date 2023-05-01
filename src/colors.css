@@ -21,4 +21,12 @@
     --trainingSection3Color: rgba(100, 36, 114, 0.7);
     --trainingSection4Color: rgb(100, 36, 114);
 
+    /*Key */
+    --keyLightTextColor: white;
+    --keyDarkTextColor: black;
+    --keyLightestColor: white;
+    --keyLightColor: rgba(100, 36, 114, 0.35);
+    --keyDarkColor: rgba(100, 36, 114, 0.7);
+    --keyDarkestColor: rgb(100, 36, 114);
+
 }

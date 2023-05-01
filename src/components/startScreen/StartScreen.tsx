@@ -5,8 +5,11 @@ import Icon from "../icon/Icon";
 import styles from "./StartScreen.module.css";
 import { Statistics } from "./Statistics";
 import { ExerciseType } from "../exercise/ExerciseType";
+import { ITrainingProgram } from "../../training/model/ITrainingProgram";
 
-export const StartScreen: React.FC = () => {
+export const StartScreen: React.FC<{ trainingProgram: ITrainingProgram }> = (
+  props
+) => {
   const context = useContext(AppContext);
   const exerciseType = context.settings.storedParameters.exerciseType;
   return (
@@ -48,7 +51,7 @@ export const StartScreen: React.FC = () => {
           <div>PLAY</div>
         </div>
       </div>
-      <Statistics />
+      <Statistics trainingProgram={props.trainingProgram} />
     </div>
   );
 };
