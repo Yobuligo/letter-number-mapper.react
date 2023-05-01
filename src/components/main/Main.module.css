@@ -36,6 +36,19 @@ button {
   margin-bottom: 1rem;
 }
 
+.modalDialog {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateX(-105%);
+  transition: transform 0.7s;
+  width: 60%;
+}
+
+.modalDialogVisible {
+  transform: translateX(-2%);
+}
+
 @media (min-width: 40rem) and (min-height: 25rem) {
   .mainContainer {
     flex-direction: row;
@@ -43,5 +56,9 @@ button {
 
   .displayAndKeyboardContainer {
     height: auto;
+  }
+
+  .modalDialog {
+    width: 30%;
   }
 }

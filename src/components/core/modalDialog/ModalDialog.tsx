@@ -3,6 +3,7 @@ import styles from "./ModalDialog.module.css";
 
 const ModalDialog: React.FC<{
   className?: string;
+  classNameOnShow?: string;
   children: ReactNode;
   onConfirm?: () => void;
   visible?: boolean;
@@ -13,8 +14,8 @@ const ModalDialog: React.FC<{
         <div className={styles.backdrop} onClick={props.onConfirm}></div>
       )}
       <div
-        className={`${styles.modalDialog} ${
-          props.visible ? styles.modalDialogVisible : ""
+        className={`${styles.modalDialog} ${props.className} ${
+          props.visible ? props.classNameOnShow : ""
         }`}
       >
         {props.children}

@@ -64,6 +64,8 @@ export const Main: React.FC = () => {
       <ModalDialog
         visible={showModalDialog}
         onConfirm={() => setShowModalDialog(false)}
+        className={styles.modalDialog}
+        classNameOnShow={styles.modalDialogVisible}
       >
         <Settings onConfirm={() => setShowModalDialog(false)} />
       </ModalDialog>

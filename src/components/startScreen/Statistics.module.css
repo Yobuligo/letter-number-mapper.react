@@ -8,6 +8,11 @@
 .statistics h1 {
     font-size: large;
     margin: 0;
+    margin-right: 0.3rem;
+}
+
+.title{
+    display: flex;
 }
 
 .statistics p {
