@@ -5,10 +5,10 @@ import Setting from "./Setting";
 
 const LanguageSetting: React.FC = () => {
   const languages = useLanguages();
-  
+
   const toggleButtons = languages.map((language) => (
     <ToggleButton key={language.key} value={language.key}>
-      {language.title}
+      {language.value}
     </ToggleButton>
   ));
 
