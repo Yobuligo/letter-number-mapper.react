@@ -1,4 +1,6 @@
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { ToggleButton, ToggleButtonGroup, styled } from "@mui/material";
+import { useMemo } from "react";
+import { useCSSColor } from "../../hooks/useCSSColor";
 import { useLanguage } from "../../hooks/useLanguage";
 import { useLanguages } from "../../hooks/useLanguages";
 import { useTranslation } from "../../hooks/useTranslation";
@@ -8,11 +10,29 @@ const LanguageSetting: React.FC = () => {
   const [language, setLanguage] = useLanguage();
   const languages = useLanguages();
   const { t } = useTranslation();
+  const primaryColor = useCSSColor("--primaryColor");
+  const textColorOnPrimary = useCSSColor("--mainTextColorOnPrimary");
+
+  const CustomToggleButton = useMemo(
+    () =>
+      styled(ToggleButton)({
+        "&.MuiToggleButton-root": {
+          fontSize: "0.6rem",
+          paddingTop: "0.2rem",
+          paddingBottom: "0.2rem",
+        },
+        "&.Mui-selected, &.Mui-selected:hover": {
+          color: textColorOnPrimary,
+          backgroundColor: primaryColor,
+        },
+      }),
+    [primaryColor, textColorOnPrimary]
+  );
 
   const toggleButtons = languages.map((language) => (
-    <ToggleButton key={language.key} value={language.key}>
+    <CustomToggleButton key={language.key} value={language.key}>
       {language.value}
-    </ToggleButton>
+    </CustomToggleButton>
   ));
 
   const onLanguageChange = (

@@ -1,61 +1,60 @@
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import { AppContext } from "../../AppContext";
 import { useTranslation } from "../../hooks/useTranslation";
 import { ExerciseType } from "../exercise/ExerciseType";
 import Setting from "./Setting";
+import { ToggleButton, ToggleButtonGroup, styled } from "@mui/material";
+import { useCSSColor } from "../../hooks/useCSSColor";
 
 const ExerciseTypeSetting: React.FC = () => {
   const { t } = useTranslation();
   const context = useContext(AppContext);
-
-  const switchExerciseType = () => {
-    if (
-      context.settings.storedParameters.exerciseType ===
-      ExerciseType.LETTER_TO_NUMBER
-    ) {
-      context.settings.setExerciseType(ExerciseType.NUMBER_TO_LETTER);
-    } else {
-      context.settings.setExerciseType(ExerciseType.LETTER_TO_NUMBER);
-    }
-  };
+  const primaryColor = useCSSColor("--primaryColor");
+  const textColorOnPrimary = useCSSColor("--mainTextColorOnPrimary");
 
   const onSwitchExerciseTypeHandler = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.MouseEvent<HTMLElement, MouseEvent>,
+    newExerciseType: any
   ) => {
-    if (event.target.checked) {
-      switchExerciseType();
-    }
+    context.settings.setExerciseType(newExerciseType);
   };
 
-  const isChecked = (exerciseType: ExerciseType) => {
-    return context.settings.storedParameters.exerciseType === exerciseType
-      ? true
-      : false;
-  };
+  const CustomToggleButton = useMemo(
+    () =>
+      styled(ToggleButton)({
+        "&.MuiToggleButton-root": {
+          fontSize: "0.6rem",
+          paddingTop: "0.2rem",
+          paddingBottom: "0.2rem",
+        },
+        "&.Mui-selected, &.Mui-selected:hover": {
+          color: textColorOnPrimary,
+          backgroundColor: primaryColor,
+        },
+      }),
+    [primaryColor, textColorOnPrimary]
+  );
 
   return (
     <Setting title={t.settings.exerciseType}>
-      <div>
-        <input
-          id="letterToNumber"
-          name="exerciseType"
-          type="radio"
-          checked={isChecked(ExerciseType.LETTER_TO_NUMBER)}
-          onChange={onSwitchExerciseTypeHandler}
-        />
-        <label htmlFor="letterToNumber">{t.global.letterToNumber}</label>
-      </div>
-      <div>
-        <input
-          id="numberToLetter"
-          name="exerciseType"
-          type="radio"
-          value=""
-          checked={isChecked(ExerciseType.NUMBER_TO_LETTER)}
-          onChange={onSwitchExerciseTypeHandler}
-        />
-        <label htmlFor="numberToLetter">{t.global.numberToLetter}</label>
-      </div>
+      <ToggleButtonGroup
+        value={context.settings.storedParameters.exerciseType}
+        exclusive
+        onChange={onSwitchExerciseTypeHandler}
+      >
+        <CustomToggleButton
+          key={ExerciseType.LETTER_TO_NUMBER}
+          value={ExerciseType.LETTER_TO_NUMBER}
+        >
+          {t.global.letterToNumber}
+        </CustomToggleButton>
+        <CustomToggleButton
+          key={ExerciseType.NUMBER_TO_LETTER}
+          value={ExerciseType.NUMBER_TO_LETTER}
+        >
+          {t.global.numberToLetter}
+        </CustomToggleButton>
+      </ToggleButtonGroup>
     </Setting>
   );
 };
