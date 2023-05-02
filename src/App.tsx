@@ -274,7 +274,13 @@ const App: React.FC = () => {
             onPlay={() => setShowMain(true)}
           />
         )}
-        {showMain && <Main />}
+        {showMain && (
+          <Main
+            onNavigateBack={() => {
+              setShowMain(false);
+            }}
+          />
+        )}
       </AppContext.Provider>
     </>
   );
