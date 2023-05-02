@@ -1,9 +1,10 @@
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
-import { useState } from "react";
+import { useLanguage } from "../../hooks/useLanguage";
 import { useLanguages } from "../../hooks/useLanguages";
 import Setting from "./Setting";
 
 const LanguageSetting: React.FC = () => {
+  const [language, setLanguage] = useLanguage();
   const languages = useLanguages();
 
   const toggleButtons = languages.map((language) => (
@@ -11,8 +12,6 @@ const LanguageSetting: React.FC = () => {
       {language.value}
     </ToggleButton>
   ));
-
-  const [language, setLanguage] = useState("de");
 
   const onLanguageChange = (
     event: React.MouseEvent<HTMLElement, MouseEvent>,
