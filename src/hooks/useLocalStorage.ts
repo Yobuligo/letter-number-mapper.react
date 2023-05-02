@@ -2,9 +2,9 @@ import { useCallback, useEffect, useState } from "react";
 
 export const useLocalStorage = <T>(
   key: string,
-  fallbackValue?: T
+  fallbackValue: T
 ): [value: T | undefined, setValue: (value: T) => void] => {
-  const [value, setValue] = useState<T>();
+  const [value, setValue] = useState<T>(fallbackValue);
 
   useEffect(() => {
     const item = localStorage.getItem(key);

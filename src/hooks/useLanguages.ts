@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { IPair } from "../core/IPair";
-import * as languagesJSON from "../data/texts/languages.json";
+import * as languagesJSON from "../data/languages/languages.json";
 
 /**
  * This hook is responsible for loading all available languages key-value pairs.
