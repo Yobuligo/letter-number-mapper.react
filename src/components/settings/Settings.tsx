@@ -1,4 +1,5 @@
 import { MaterialIcons } from "../../assets/icons/MaterialIcons";
+import { useTranslation } from "../../hooks/useTranslation";
 import { IConfirmable } from "../core/IConfirmable";
 import Card from "../core/card/Card";
 import Icon from "../icon/Icon";
@@ -11,6 +12,7 @@ import { SolvingTimeListSetting } from "./SolvingTimeListSetting";
 import { SolvingTimeSetting } from "./SolvingTimeSetting";
 
 const Settings: React.FC<IConfirmable> = (props) => {
+  const { t } = useTranslation();
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) =>
     event.preventDefault();
 
@@ -18,7 +20,7 @@ const Settings: React.FC<IConfirmable> = (props) => {
     <Card className={`${styles.card} ${styles.settings}`}>
       <div className={styles.headline}>
         <Icon icon={MaterialIcons.ChevronLeft} onClick={props.onConfirm} />
-        <h1 onClick={props.onConfirm}>Settings</h1>
+        <h1 onClick={props.onConfirm}>{t.settings.title}</h1>
       </div>
       <div className={styles.form}>
         <form onSubmit={onSubmit}>

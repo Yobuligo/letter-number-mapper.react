@@ -1,28 +1,42 @@
 import { useContext, useState } from "react";
 import { AppContext } from "../../AppContext";
+import { MaterialIcons } from "../../assets/icons/MaterialIcons";
 import { useCSSColor } from "../../hooks/useCSSColor";
+import { useTranslation } from "../../hooks/useTranslation";
+import { ITrainingProgram } from "../../training/model/ITrainingProgram";
+import { Tooltip } from "../core/tooltip/Tooltip";
+import Icon from "../icon/Icon";
+import { HighlightStatus } from "../keyboard/HighlightStatus";
 import Keyboard from "../keyboard/Keyboard";
+import { KeyboardType } from "../keyboard/KeyboardType";
+import { HighlightedSymbols } from "../keyboard/KeyboardTypes";
 import { ILegendItem } from "../legend/ILegendItem";
 import { Legend } from "../legend/Legend";
 import styles from "./Statistics.module.css";
-import { Tooltip } from "../core/tooltip/Tooltip";
-import Icon from "../icon/Icon";
-import { MaterialIcons } from "../../assets/icons/MaterialIcons";
-import { HighlightedSymbols } from "../keyboard/KeyboardTypes";
-import { ITrainingProgram } from "../../training/model/ITrainingProgram";
-import { HighlightStatus } from "../keyboard/HighlightStatus";
-import { KeyboardType } from "../keyboard/KeyboardType";
 
 export const Statistics: React.FC<{ trainingProgram: ITrainingProgram }> = (
   props
 ) => {
   const [showTooltip, setShowTooltip] = useState(false);
+  const { t } = useTranslation();
   const context = useContext(AppContext);
   const legendItems: Array<ILegendItem> = [
-    { label: "Abschnitt 1", color: useCSSColor("--trainingSection1Color") },
-    { label: "Abschnitt 2", color: useCSSColor("--trainingSection2Color") },
-    { label: "Abschnitt 3", color: useCSSColor("--trainingSection3Color") },
-    { label: "Abschnitt 4", color: useCSSColor("--trainingSection4Color") },
+    {
+      label: t.statistics.section1,
+      color: useCSSColor("--trainingSection1Color"),
+    },
+    {
+      label: t.statistics.section2,
+      color: useCSSColor("--trainingSection2Color"),
+    },
+    {
+      label: t.statistics.section3,
+      color: useCSSColor("--trainingSection3Color"),
+    },
+    {
+      label: t.statistics.section4,
+      color: useCSSColor("--trainingSection4Color"),
+    },
   ];
 
   const getHighlightedSymbols = (): HighlightedSymbols => {
@@ -69,15 +83,12 @@ export const Statistics: React.FC<{ trainingProgram: ITrainingProgram }> = (
       {showTooltip && (
         <Tooltip onHide={() => setShowTooltip(false)}>
           <p style={{ display: "inline-block", margin: 0 }}>
-            Die Abschnitte repräsentieren die Fächer in einem
-            Lern-Karteikartensystem. Die Buchstaben und Zahlen bewegen sich je
-            nachdem ob richtig oder falsch beantwortet in diesen Fächern auf und
-            ab.
+            {t.statistics.tooltip}
           </p>
         </Tooltip>
       )}
       <div className={styles.title}>
-        <h1>Statistik</h1>
+        <h1>{t.statistics.title}</h1>
         <Icon
           icon={MaterialIcons.Info}
           onClick={() => setShowTooltip(true)}
@@ -89,10 +100,7 @@ export const Statistics: React.FC<{ trainingProgram: ITrainingProgram }> = (
           }}
         />
       </div>
-      <p>
-        Hier kannst du sehen, wie gut du die Zahlen und Buchstaben bereits
-        beherrschst. Je dunkler, desto besser.
-      </p>
+      <p>{t.statistics.explanation}</p>
       <Keyboard
         className={styles.keyboard}
         keyboardType={getStatisticsKeyboardType()}

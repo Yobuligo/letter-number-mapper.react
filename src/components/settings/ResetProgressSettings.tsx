@@ -1,20 +1,22 @@
 import { useContext } from "react";
 import { AppContext } from "../../AppContext";
+import { useTranslation } from "../../hooks/useTranslation";
 import { ExerciseType } from "../exercise/ExerciseType";
-import Setting from "./Setting";
 import styles from "./ResetProgressSettings.module.css";
+import Setting from "./Setting";
 
 const ResetProgressSettings: React.FC = () => {
+  const { t, i } = useTranslation();
   const context = useContext(AppContext);
   const onReset = () => {
     const text =
       context.settings.storedParameters.exerciseType ===
       ExerciseType.LETTER_TO_NUMBER
-        ? "letter to number"
-        : "number to letter";
+        ? t.global.letterToNumber
+        : t.global.numberToLetter;
 
     const needsReset = window.confirm(
-      `Do you really want to reset your progress from '${text}'?`
+      i(t.settings.resetProgress.question, { text: text })
     );
 
     if (needsReset) {
@@ -22,7 +24,7 @@ const ResetProgressSettings: React.FC = () => {
     }
   };
   return (
-    <Setting title="Reset Progress" className={styles.setting}>
+    <Setting title={t.settings.resetProgress.title} className={styles.setting}>
       <button onClick={onReset}>Reset</button>
     </Setting>
   );

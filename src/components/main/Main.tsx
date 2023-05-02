@@ -14,8 +14,10 @@ import Settings from "../settings/Settings";
 import IToolbarAction from "../toolbar/IToolbarAction";
 import Toolbar from "../toolbar/Toolbar";
 import styles from "./Main.module.css";
+import { useTranslation } from "../../hooks/useTranslation";
 
 export const Main: React.FC<{ onNavigateBack: () => void }> = (props) => {
+  const { t } = useTranslation()
   const context = useContext(AppContext);
 
   const onKeyboardClickHandler = (selectedSymbol: string) => {
@@ -52,12 +54,12 @@ export const Main: React.FC<{ onNavigateBack: () => void }> = (props) => {
   const toolbarActions: IToolbarAction[] = [
     {
       icon: MaterialIcons.ChevronLeft,
-      text: "Back",
+      text: t.main.back,
       onClickHandler: props.onNavigateBack,
     },
     {
       icon: MaterialIcons.Menu,
-      text: "Settings",
+      text: t.main.settings,
       onClickHandler: toggleModalDialog,
     },
   ];
