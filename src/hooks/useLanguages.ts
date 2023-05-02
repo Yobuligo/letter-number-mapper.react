@@ -6,5 +6,12 @@ interface ILanguage {
 }
 
 export const useLanguages = (): ILanguage[] => {
-  return (languagesJSON as any)["default"];
+  const languages: ILanguage[] = [];
+  for (const key in languagesJSON) {
+    if (key === "default") {
+      continue;
+    }
+    languages.push({ key, title: (languagesJSON as any)[key] });
+  }
+  return languages;
 };
