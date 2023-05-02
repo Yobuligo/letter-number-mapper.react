@@ -4,6 +4,7 @@ import Card from "../core/card/Card";
 import Icon from "../icon/Icon";
 import ExerciseTypeSetting from "./ExerciseTypeSetting";
 import FeedbackTimeSetting from "./FeedbackTimeSetting";
+import LanguageSetting from "./LanguageSetting";
 import ResetProgressSettings from "./ResetProgressSettings";
 import styles from "./Settings.module.css";
 import { SolvingTimeListSetting } from "./SolvingTimeListSetting";
@@ -25,6 +26,7 @@ const Settings: React.FC<IConfirmable> = (props) => {
           <FeedbackTimeSetting />
           <SolvingTimeSetting />
           <SolvingTimeListSetting />
+          <LanguageSetting />
           <ResetProgressSettings />
         </form>
       </div>
