@@ -78,7 +78,16 @@ export const Statistics: React.FC<{ trainingProgram: ITrainingProgram }> = (
       )}
       <div className={styles.title}>
         <h1>Statistik</h1>
-        <Icon icon={MaterialIcons.Info} onClick={() => setShowTooltip(true)} />
+        <Icon
+          icon={MaterialIcons.Info}
+          onClick={() => setShowTooltip(true)}
+          onMouseEnter={() => {
+            setShowTooltip(true);
+          }}
+          onMouseLeave={() => {
+            setShowTooltip(false);
+          }}
+        />
       </div>
       <p>
         Hier kannst du sehen, wie gut du die Zahlen und Buchstaben bereits

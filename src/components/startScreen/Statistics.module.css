@@ -11,8 +11,12 @@
     margin-right: 0.3rem;
 }
 
-.title{
+/* needs to have a z-index so the backdrop does not move over it and 
+   triggers an onMouseLeave event and therefore a reload of the component */
+.title {
+    position: relative;
     display: flex;
+    z-index: 100;
 }
 
 .statistics p {
