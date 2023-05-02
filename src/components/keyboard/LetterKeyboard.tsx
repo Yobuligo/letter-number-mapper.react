@@ -6,15 +6,13 @@ const LetterKeyboard: React.FC<{
   keyboardContext: IKeyboardContext;
 }> = (props) => {
   return (
-    <>
-      <div>
+      <div className={styles.letterKeyboard}>
         <KeyboardRow
           symbols={["Q", "W", "E", "R", "T", "Z", "U", "I", "O", "P"]}
           keyboardContext={props.keyboardContext}
         />
         <KeyboardRow
           symbols={["A", "S", "D", "F", "G", "H", "J", "K", "L"]}
-          className={styles.secondRow}
           keyboardContext={props.keyboardContext}
         />
         <KeyboardRow
@@ -23,7 +21,6 @@ const LetterKeyboard: React.FC<{
           keyboardContext={props.keyboardContext}
         />
       </div>
-    </>
   );
 };
 
