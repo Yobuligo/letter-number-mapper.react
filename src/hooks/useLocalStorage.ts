@@ -1,25 +1,29 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+
 export const useLocalStorage = <T>(
   key: string,
-  initialValue?: T
+  fallbackValue: T
 ): [value: T | undefined, setValue: (value: T) => void] => {
-  const [value, setValue] = useState<T>();
+  const [value, setValue] = useState<T>(fallbackValue);
 
   useEffect(() => {
-    if (initialValue) {
-      updateValue(initialValue);
+    const item = localStorage.getItem(key);
+    if (item) {
+      setValue(JSON.parse(item));
     } else {
-      const item = localStorage.getItem(key);
-      if (item) {
-        setValue(JSON.parse(item));
+      if (fallbackValue) {
+        updateValue(fallbackValue);
       }
     }
   }, []);
 
-  const updateValue = (value: T) => {
-    setValue(value);
-    localStorage.setItem(key, JSON.stringify(value));
-  };
+  const updateValue = useCallback(
+    (value: T) => {
+      setValue(value);
+      localStorage.setItem(key, JSON.stringify(value));
+    },
+    [key]
+  );
 
   return [value, updateValue];
 };

@@ -6,17 +6,19 @@ import styles from "./StartScreen.module.css";
 import { Statistics } from "./Statistics";
 import { ExerciseType } from "../exercise/ExerciseType";
 import { ITrainingProgram } from "../../training/model/ITrainingProgram";
+import { useTranslation } from "../../hooks/useTranslation";
 
 export const StartScreen: React.FC<{
   trainingProgram: ITrainingProgram;
   onPlay: () => void;
 }> = (props) => {
+  const { t } = useTranslation()
   const context = useContext(AppContext);
   const exerciseType = context.settings.storedParameters.exerciseType;
   return (
     <div className={styles.startScreen}>
       <div className={styles.playMode}>
-        <h3>Spielmodus:</h3>
+        <h3>{t("startScreen.gameMode")}:</h3>
         <div
           className={`${styles.toggleButton} ${styles.toggleButtonLeft} ${
             exerciseType === ExerciseType.NUMBER_TO_LETTER
@@ -49,7 +51,7 @@ export const StartScreen: React.FC<{
         </div>
         <div className={styles.startButton} onClick={props.onPlay}>
           <Icon icon={MaterialIcons.PlayCircle}></Icon>
-          <div>PLAY</div>
+          <div>{t("startScreen.startGame")}</div>
         </div>
       </div>
       <Statistics trainingProgram={props.trainingProgram} />
