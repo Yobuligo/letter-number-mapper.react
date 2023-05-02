@@ -1,5 +1,7 @@
+import { MaterialIcons } from "../../assets/icons/MaterialIcons";
+
 interface IToolbarAction {
-  source: string;
+  icon: MaterialIcons;
   text: string;
   onClickHandler?: () => void;
 }

@@ -1,11 +1,12 @@
+import Icon from "../icon/Icon";
 import IToolbarAction from "./IToolbarAction";
 import styles from "./Toolbar.module.css";
 
 const Toolbar: React.FC<{ toolbarActions?: IToolbarAction[] }> = (props) => {
   const items = props.toolbarActions?.map((toolbarAction) => {
     return (
-      <button key={toolbarAction.source} onClick={toolbarAction.onClickHandler}>
-        <span className="material-symbols-outlined">{toolbarAction.source}</span>
+      <button key={toolbarAction.icon} onClick={toolbarAction.onClickHandler}>
+        <Icon icon={toolbarAction.icon} />
       </button>
     );
   });

@@ -15,7 +15,7 @@ import IToolbarAction from "../toolbar/IToolbarAction";
 import Toolbar from "../toolbar/Toolbar";
 import styles from "./Main.module.css";
 
-export const Main: React.FC = () => {
+export const Main: React.FC<{ onNavigateBack: () => void }> = (props) => {
   const context = useContext(AppContext);
 
   const onKeyboardClickHandler = (selectedSymbol: string) => {
@@ -51,11 +51,14 @@ export const Main: React.FC = () => {
 
   const toolbarActions: IToolbarAction[] = [
     {
-      source: MaterialIcons.Menu,
+      icon: MaterialIcons.ChevronLeft,
+      text: "Back",
+      onClickHandler: props.onNavigateBack,
+    },
+    {
+      icon: MaterialIcons.Menu,
       text: "Settings",
-      onClickHandler: () => {
-        toggleModalDialog();
-      },
+      onClickHandler: toggleModalDialog,
     },
   ];
 
