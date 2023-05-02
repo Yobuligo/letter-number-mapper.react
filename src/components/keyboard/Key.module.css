@@ -8,7 +8,7 @@
 button.key {
     position: relative;
     background-color: var(--primaryColor_transp80);
-    color: white;
+    color: var(--keyLightTextColor);
     border-radius: 5px;
     border-color: var(--primaryColor)
 }
@@ -18,8 +18,31 @@ button.key:hover.success {
     background-color: var(--successColor);
 }
 
-button.key.failed {
+button.key.failed,
+button.key:hover.failed {
     background-color: var(--failColor);
+}
+
+button.key.darkest,
+button.key.darkest:hover {
+    background-color: var(--keyDarkestColor);
+}
+
+button.key.dark,
+button.key.dark:hover {
+    background-color: var(--keyDarkColor);
+}
+
+button.key.light,
+button.key.light:hover {
+    background-color: var(--keyLightColor);
+    color: var(--keyDarkTextColor);
+}
+
+button.key.lightest,
+button.key.lightest:hover {
+    background-color: var(--keyLightestColor);
+    color: var(--keyDarkTextColor);
 }
 
 /* This is a bugfix for ensuring that only on none-mobile-devices, a button has a hover state. Otherwise the hover-state is never

@@ -19,6 +19,18 @@ const Key: React.FC<{
       case HighlightStatus.Failed: {
         return `${styles.highlight} ${styles.failed}`;
       }
+      case HighlightStatus.Darkest: {
+        return styles.darkest;
+      }
+      case HighlightStatus.Dark: {
+        return styles.dark;
+      }
+      case HighlightStatus.Light: {
+        return styles.light;
+      }
+      case HighlightStatus.Lightest: {
+        return styles.lightest;
+      }
       default:
         return "";
     }

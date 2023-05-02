@@ -3,6 +3,7 @@ import { AppContext } from "../../AppContext";
 import { MaterialIcons } from "../../assets/icons/MaterialIcons";
 import { SymbolMapperInfo } from "../../services/symbolMapper/SymbolMapperInfo";
 import ModalDialog from "../core/modalDialog/ModalDialog";
+import { DevModeBanner } from "../devMode/DevModeBanner";
 import { Display } from "../display/Display";
 import { SolutionStatus } from "../exercise/SolutionStatus";
 import History from "../history/History";
@@ -13,7 +14,6 @@ import Settings from "../settings/Settings";
 import IToolbarAction from "../toolbar/IToolbarAction";
 import Toolbar from "../toolbar/Toolbar";
 import styles from "./Main.module.css";
-import { DevModeBanner } from "../devMode/DevModeBanner";
 
 export const Main: React.FC = () => {
   const context = useContext(AppContext);
@@ -64,6 +64,8 @@ export const Main: React.FC = () => {
       <ModalDialog
         visible={showModalDialog}
         onConfirm={() => setShowModalDialog(false)}
+        className={styles.modalDialog}
+        classNameOnShow={styles.modalDialogVisible}
       >
         <Settings onConfirm={() => setShowModalDialog(false)} />
       </ModalDialog>
