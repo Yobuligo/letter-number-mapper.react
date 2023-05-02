@@ -1,12 +1,12 @@
 import { IKeyboardContext } from "./IKeyboardContext";
 import KeyboardRow from "./KeyboardRow";
+import styles from './NumberKeyboard.module.css'
 
 const NumberKeyboard: React.FC<{
   keyboardContext: IKeyboardContext;
 }> = (props) => {
   return (
-    <>
-      <div>
+      <div className={styles.numberKeyboard}>
         <KeyboardRow
           symbols={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]}
           keyboardContext={props.keyboardContext}
@@ -20,7 +20,6 @@ const NumberKeyboard: React.FC<{
           keyboardContext={props.keyboardContext}
         />
       </div>
-    </>
   );
 };
 

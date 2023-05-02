@@ -14,7 +14,6 @@ const LetterKeyboard: React.FC<{
         />
         <KeyboardRow
           symbols={["A", "S", "D", "F", "G", "H", "J", "K", "L"]}
-          className={styles.secondRow}
           keyboardContext={props.keyboardContext}
         />
         <KeyboardRow
