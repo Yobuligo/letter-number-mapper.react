@@ -11,5 +11,5 @@ export interface ITrainingSymbol {
   trainingSection: ITrainingSection;
   failed(): void;
   succeed(): void;
-  onChange(onFailHandler: () => void): void;
+  onChange(onChangeHandler: () => void): void;
 }
