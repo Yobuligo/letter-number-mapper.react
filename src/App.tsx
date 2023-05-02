@@ -25,6 +25,8 @@ const App: React.FC = () => {
     return new LocalStore();
   }, []);
 
+  const [showMain, setShowMain] = useState(false);
+
   const [settings, setSettings] = useState(initializeSettings(localStore));
 
   const [trainingProgram, setTrainingProgram] = useState(
@@ -266,8 +268,13 @@ const App: React.FC = () => {
           setLastPracticedSymbol: onSetLastPracticedSymbol,
         }}
       >
-        <StartScreen trainingProgram={trainingProgram} />
-        {/* <Main /> */}
+        {!showMain && (
+          <StartScreen
+            trainingProgram={trainingProgram}
+            onPlay={() => setShowMain(true)}
+          />
+        )}
+        {showMain && <Main />}
       </AppContext.Provider>
     </>
   );

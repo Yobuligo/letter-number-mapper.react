@@ -7,9 +7,10 @@ import { Statistics } from "./Statistics";
 import { ExerciseType } from "../exercise/ExerciseType";
 import { ITrainingProgram } from "../../training/model/ITrainingProgram";
 
-export const StartScreen: React.FC<{ trainingProgram: ITrainingProgram }> = (
-  props
-) => {
+export const StartScreen: React.FC<{
+  trainingProgram: ITrainingProgram;
+  onPlay: () => void;
+}> = (props) => {
   const context = useContext(AppContext);
   const exerciseType = context.settings.storedParameters.exerciseType;
   return (
@@ -46,7 +47,7 @@ export const StartScreen: React.FC<{ trainingProgram: ITrainingProgram }> = (
             className={`${styles.toggleButtonIcon} ${styles.toggleButtonIconLetterToNumber}`}
           ></div>
         </div>
-        <div className={styles.startButton}>
+        <div className={styles.startButton} onClick={props.onPlay}>
           <Icon icon={MaterialIcons.PlayCircle}></Icon>
           <div>PLAY</div>
         </div>
