@@ -25,7 +25,8 @@ const Settings: React.FC<IConfirmable> = (props) => {
       <div className={styles.form}>
         <form onSubmit={onSubmit}>
           <ExerciseTypeSetting />
-          <FeedbackTimeSetting />
+          {/* The feedback settings have no impact with the current css implementation */}
+          {/* <FeedbackTimeSetting /> */}
           <SolvingTimeSetting />
           <SolvingTimeListSetting />
           <LanguageSetting />
