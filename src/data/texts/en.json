@@ -2,10 +2,10 @@
     "exercise": {
         "taskLetterToNumber": "Which letter is the",
         "taskNumberToLetter": "Which letter is at position",
-        "alphabet": "Alphabet"
+        "alphabet": "at alphabet"
     },
     "global": {
-        "letterToNumber": "Letter To number",
+        "letterToNumber": "Letter To Number",
         "numberToLetter": "Number to Letter"
     },
     "history": {
@@ -27,7 +27,10 @@
         "displaySolvingTime": "Display solving time",
         "displayHistory": "Display history",
         "language": "Language",
-        "resetProgress": "Reset progress"
+        "resetProgress": {
+            "title": "Reset progress",
+            "question": "Do you really want to reset your progress from '{{text}}'?"
+        }
     },
     "startScreen": {
         "gameMode": "Game mode",

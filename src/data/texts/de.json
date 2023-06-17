@@ -1,45 +1,48 @@
 {
     "exercise": {
-        "taskLetterToNumber": "Which letter is the",
-        "taskNumberToLetter": "Which letter is at position",
-        "alphabet": "Alphabet"
+        "taskLetterToNumber": "Der wievielte Buchstabe ist",
+        "taskNumberToLetter": "Welcher Buchstabe ist an Stelle",
+        "alphabet": "im Alphabet"
     },
     "global": {
-        "letterToNumber": "Letter To number",
+        "letterToNumber": "Letter To Number",
         "numberToLetter": "Number to Letter"
     },
     "history": {
-        "title": "History"
+        "title": "Historie"
     },
     "main": {
-        "back": "Back",
-        "settings": "Settings"
+        "back": "Zurück",
+        "settings": "Einstellungen"
     },
     "settings": {
-        "title": "Settings",
-        "exerciseType": "Exercise Type",
-        "feedbackTime": "Feedback time",
+        "title": "Einstellungen",
+        "exerciseType": "Spielmodus",
+        "feedbackTime": "Rückmeldungszeit",
         "feedbackTimeType": {
-            "short": "short",
-            "middle": "middle",
-            "long": "long"
+            "short": "kurz",
+            "middle": "mittel",
+            "long": "lang"
         },
-        "displaySolvingTime": "Display solving time",
-        "displayHistory": "Display history",
-        "language": "Language",
-        "resetProgress": "Reset progress"
+        "displaySolvingTime": "Lösungsdauer anzeigen",
+        "displayHistory": "Historie anzeigen",
+        "language": "Sprache",
+        "resetProgress": {
+            "title": "Fortschritt zurücksetzen",
+            "question": "Möchtest du wirklich den Fortschritt von '{{text}}' zurücksetzen?"
+        }
     },
     "startScreen": {
         "gameMode": "Spielmodus",
         "startGame": "START"
     },
     "statistics": {
-        "title": "Statistics",
-        "explanation": "Here you can see your progress for specific letters and numbers. The darker, the better.",
-        "section1": "Section 1",
-        "section2": "Section 2",
-        "section3": "Section 3",
-        "section4": "Section 4",
-        "tooltip": "The sections represent a part of a card index. The letters and numbers are moving depending on if they were guessed right or wrong between these sections up or down."
+        "title": "Statistik",
+        "explanation": "Hier kannst du sehen, wie gut du die Zahlen und Buchstaben bereits beherrschst. Je dunkler, desto besser.",
+        "section1": "Abschnitt 1",
+        "section2": "Abschnitt 2",
+        "section3": "Abschnitt 3",
+        "section4": "Abschnitt 4",
+        "tooltip": "Die Abschnitte repräsentieren die Fächer in einem Lern-Karteikartensystem. Die Buchstaben und Zahlen bewegen sich je nachdem ob richtig oder falsch beantwortet in diesen Fächern auf und ab."
     }
 }

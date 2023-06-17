@@ -3,16 +3,23 @@ import { useLanguage } from "./useLanguage";
 
 export const useTranslation = () => {
   const [language, setLanguage] = useLanguage();
-  const translate = (key: string) => {
-    const keys = key.split(".");
-    return getTranslations(keys);
+
+  const interpolation = (text: string, placeholders: any): string => {
+    let newText = text;
+    for (const placeholder in placeholders) {
+      const placeholderText = placeholders[placeholder];
+      const searchString = `{{${placeholder}}}`;
+      newText = newText.replaceAll(searchString, placeholderText);
+    }
+    return newText;
   };
 
-  const getTranslations = (keys: string[]) => {
-    return keys.reduce((obj, key) => {
-      return obj[key];
-    }, (translations as any)[language]);
-  };
-
-  return { t: translate, language, setLanguage };
+  switch (language) {
+    case "de": {
+      return { t: translations["de"], i: interpolation, language, setLanguage };
+    }
+    default: {
+      return { t: translations.en, i: interpolation, language, setLanguage };
+    }
+  }
 };

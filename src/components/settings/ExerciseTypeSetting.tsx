@@ -1,11 +1,13 @@
 import { useContext, useMemo } from "react";
 import { AppContext } from "../../AppContext";
+import { useTranslation } from "../../hooks/useTranslation";
 import { ExerciseType } from "../exercise/ExerciseType";
 import Setting from "./Setting";
 import { ToggleButton, ToggleButtonGroup, styled } from "@mui/material";
 import { useCSSColor } from "../../hooks/useCSSColor";
 
 const ExerciseTypeSetting: React.FC = () => {
+  const { t } = useTranslation();
   const context = useContext(AppContext);
   const primaryColor = useCSSColor("--primaryColor");
   const textColorOnPrimary = useCSSColor("--mainTextColorOnPrimary");
@@ -34,7 +36,7 @@ const ExerciseTypeSetting: React.FC = () => {
   );
 
   return (
-    <Setting title="Exercise Type">
+    <Setting title={t.settings.exerciseType}>
       <ToggleButtonGroup
         value={context.settings.storedParameters.exerciseType}
         exclusive
@@ -44,13 +46,13 @@ const ExerciseTypeSetting: React.FC = () => {
           key={ExerciseType.LETTER_TO_NUMBER}
           value={ExerciseType.LETTER_TO_NUMBER}
         >
-          Letter to number
+          {t.global.letterToNumber}
         </CustomToggleButton>
         <CustomToggleButton
           key={ExerciseType.NUMBER_TO_LETTER}
           value={ExerciseType.NUMBER_TO_LETTER}
         >
-          Number to letter
+          {t.global.numberToLetter}
         </CustomToggleButton>
       </ToggleButtonGroup>
     </Setting>

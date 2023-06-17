@@ -1,11 +1,12 @@
 import { Mark } from "@mui/base";
 import { Slider, styled } from "@mui/material";
-import { useContext, useMemo } from "react";
+import { useContext } from "react";
 import { AppContext } from "../../AppContext";
+import { useCSSColor } from "../../hooks/useCSSColor";
 import { FeedbackTime } from "./FeedbackTime";
 import styles from "./FeedbackTimeSetting.module.css";
 import Setting from "./Setting";
-import { useCSSColor } from "../../hooks/useCSSColor";
+import { useTranslation } from "../../hooks/useTranslation";
 
 const CustomSlider = styled(Slider)({
   height: 8,
@@ -30,6 +31,7 @@ const CustomColoredSlider = styled(CustomSlider)<{ primary_color: string }>`
 `;
 
 const FeedbackTimeSetting: React.FC = () => {
+  const { t } = useTranslation()
   const context = useContext(AppContext);
   const primaryColor = useCSSColor("--primaryColor");
   const buildMarks = (): Mark[] => {
@@ -66,7 +68,7 @@ const FeedbackTimeSetting: React.FC = () => {
   };
 
   return (
-    <Setting title="Feedback Time">
+    <Setting title={t.settings.feedbackTime}>
       <CustomColoredSlider
         primary_color={primaryColor}
         className={styles.slider}
