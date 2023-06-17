@@ -2,7 +2,7 @@
     "exercise": {
         "taskLetterToNumber": "Which letter is the",
         "taskNumberToLetter": "Which letter is at position",
-        "alphabet": "at alphabet"
+        "alphabet": "in the alphabet"
     },
     "global": {
         "letterToNumber": "Letter To Number",
@@ -43,6 +43,6 @@
         "section2": "Section 2",
         "section3": "Section 3",
         "section4": "Section 4",
-        "tooltip": "The sections represent a part of a card index. The letters and numbers are moving depending on if they were guessed right or wrong between these sections up or down."
+        "tooltip": "The sections represent the parts of a card index. The letters and numbers move up or down between the sections if they were guessed right or wrong respectively."
     }
 }
