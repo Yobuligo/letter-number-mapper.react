@@ -17,17 +17,17 @@
     display: flex;
     align-items: center;
     padding: 0.2rem 0.5rem;
-    background-color: var(--primaryColor);
-    color: white;
+    background-color: var(--primaryColor_transp80);
+    color: black;
     border: 1px solid black;
     font-size: 1rem;
     cursor: pointer;
 }
 
 .toggleButton:hover,
-.toggleButton.active{
-    background-color: var(--primaryColor_transp80);
-    color: black;
+.toggleButton.active {
+    background-color: var(--primaryColor);
+    color: white;
 }
 
 .toggleButtonLeft {
@@ -72,7 +72,7 @@
     cursor: pointer;
 }
 
-.startButton:hover{
+.startButton:hover {
     background-color: var(--primaryColor_transp80);
     color: black;
 }
