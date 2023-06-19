@@ -21,6 +21,7 @@
     color: black;
     border: 1px solid black;
     font-size: 1rem;
+    cursor: default;
     cursor: pointer;
 }
 
@@ -28,6 +29,10 @@
 .toggleButton.active {
     background-color: var(--primaryColor);
     color: white;
+}
+
+.toggleButton.active {
+    cursor: default;
 }
 
 .toggleButtonLeft {
