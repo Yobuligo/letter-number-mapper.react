@@ -1,26 +1,19 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
+import { readLocalStorage } from "../utils/readLocalStorage";
+import { writeLocalStorage } from "../utils/writeLocalStorage";
 
 export const useLocalStorage = <T>(
   key: string,
   fallbackValue: T
 ): [value: T | undefined, setValue: (value: T) => void] => {
-  const [value, setValue] = useState<T>(fallbackValue);
-
-  useEffect(() => {
-    const item = localStorage.getItem(key);
-    if (item) {
-      setValue(JSON.parse(item));
-    } else {
-      if (fallbackValue) {
-        updateValue(fallbackValue);
-      }
-    }
-  }, []);
+  const [value, setValue] = useState<T>(
+    readLocalStorage(key) ?? writeLocalStorage(key, fallbackValue)
+  );
 
   const updateValue = useCallback(
     (value: T) => {
       setValue(value);
-      localStorage.setItem(key, JSON.stringify(value));
+      writeLocalStorage(key, value);
     },
     [key]
   );
