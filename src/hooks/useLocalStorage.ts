@@ -5,7 +5,7 @@ import { writeLocalStorage } from "../utils/writeLocalStorage";
 export const useLocalStorage = <T>(
   key: string,
   fallbackValue: T
-): [value: T | undefined, setValue: (value: T) => void] => {
+): [value: T, setValue: (value: T) => void] => {
   const [value, setValue] = useState<T>(
     readLocalStorage(key) ?? writeLocalStorage(key, fallbackValue)
   );

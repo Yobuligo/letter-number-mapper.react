@@ -8,6 +8,7 @@ import { IAppContext } from "./IAppContext";
 
 export const AppContextDefault: IAppContext = {
   settings: {
+    language: { value: "", setValue: () => {} },
     storedParameters: {
       exerciseType: ExerciseType.LETTER_TO_NUMBER,
       feedbackTime: FeedbackTime.MIDDLE,

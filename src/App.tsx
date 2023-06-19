@@ -19,6 +19,7 @@ import { ITrainingExercise } from "./training/model/ITrainingExercise";
 import { TrainingProgramRepo } from "./training/model/TrainingProgramRepo";
 import { TrainingSymbolReader } from "./training/model/TrainingSymbolReader";
 import { StartScreen } from "./components/startScreen/StartScreen";
+import { useLanguage } from "./hooks/useLanguage";
 
 const App: React.FC = () => {
   const localStore = useMemo(() => {
@@ -238,6 +239,7 @@ const App: React.FC = () => {
       <AppContext.Provider
         value={{
           settings: {
+            language: useLanguage(),
             storedParameters: {
               exerciseType: settings.exerciseType,
               feedbackTime: settings.feedbackTime,

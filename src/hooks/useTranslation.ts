@@ -1,8 +1,9 @@
+import { useContext } from "react";
+import { AppContext } from "../AppContext";
 import * as translations from "../data/texts";
-import { useLanguage } from "./useLanguage";
 
 export const useTranslation = () => {
-  const [language, setLanguage] = useLanguage();
+  const context = useContext(AppContext);
 
   const interpolation = (text: string, placeholders: any): string => {
     let newText = text;
@@ -14,7 +15,10 @@ export const useTranslation = () => {
     return newText;
   };
 
-  switch (language) {
+  const language = context.settings.language.value;
+  const setLanguage = context.settings.language.setValue;
+
+  switch (context.settings.language.value) {
     case "de": {
       return { t: translations["de"], i: interpolation, language, setLanguage };
     }

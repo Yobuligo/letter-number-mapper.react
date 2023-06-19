@@ -1,13 +1,13 @@
 import { ToggleButton, ToggleButtonGroup, styled } from "@mui/material";
-import { useMemo } from "react";
+import { useContext, useMemo } from "react";
+import { AppContext } from "../../AppContext";
 import { useCSSColor } from "../../hooks/useCSSColor";
-import { useLanguage } from "../../hooks/useLanguage";
 import { useLanguages } from "../../hooks/useLanguages";
 import { useTranslation } from "../../hooks/useTranslation";
 import Setting from "./Setting";
 
 const LanguageSetting: React.FC = () => {
-  const [language, setLanguage] = useLanguage();
+  const context = useContext(AppContext);
   const languages = useLanguages();
   const { t } = useTranslation();
   const primaryColor = useCSSColor("--primaryColor");
@@ -38,10 +38,14 @@ const LanguageSetting: React.FC = () => {
   const onLanguageChange = (
     event: React.MouseEvent<HTMLElement, MouseEvent>,
     newLanguage: any
-  ) => setLanguage(newLanguage);
+  ) => context.settings.language.setValue(newLanguage);
   return (
     <Setting title={t.settings.language}>
-      <ToggleButtonGroup value={language} exclusive onChange={onLanguageChange}>
+      <ToggleButtonGroup
+        value={context.settings.language.value}
+        exclusive
+        onChange={onLanguageChange}
+      >
         {toggleButtons}
       </ToggleButtonGroup>
     </Setting>

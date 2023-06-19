@@ -1,4 +1,5 @@
 import { StoredParameters } from "../AppContext";
+import { IValue } from "../Types/IValue";
 import { ExerciseType } from "../components/exercise/ExerciseType";
 import { SolutionStatus } from "../components/exercise/SolutionStatus";
 import { KeyboardType } from "../components/keyboard/KeyboardType";
@@ -8,6 +9,7 @@ import { IStopwatch } from "../services/IStopwatch";
 
 export type IAppContext = {
   settings: {
+    language: IValue<string>;
     storedParameters: StoredParameters;
     setExerciseType: (exerciseType: ExerciseType) => void;
     setFeedbackTime: (feedbackTime: FeedbackTime) => void;
