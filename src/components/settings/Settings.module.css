@@ -11,24 +11,34 @@
   border-radius: 0 12px 12px 0;
 }
 
-.headline{
+.headline {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   margin-top: 1rem;
   margin-left: 0.5rem;
 }
 
-.headline span{
+.headline span {
   cursor: pointer;
 }
 
-.headline h1{
+.headline h1 {
   display: inline-block;
   margin: 0;
   font-size: medium;
   cursor: pointer;
 }
 
-.form{
+.headlineLeft {
+  display: flex;
+  align-items: center;
+}
+
+.headlineRight {
+  margin-right: 1rem;
+}
+
+.form {
   padding: 1rem 2rem;
 }

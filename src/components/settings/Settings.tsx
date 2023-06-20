@@ -3,14 +3,13 @@ import { useTranslation } from "../../hooks/useTranslation";
 import { IConfirmable } from "../core/IConfirmable";
 import Card from "../core/card/Card";
 import Icon from "../icon/Icon";
+import { Version } from "../version/Version";
 import ExerciseTypeSetting from "./ExerciseTypeSetting";
-import FeedbackTimeSetting from "./FeedbackTimeSetting";
 import LanguageSetting from "./LanguageSetting";
 import ResetProgressSettings from "./ResetProgressSettings";
 import styles from "./Settings.module.css";
 import { SolvingTimeListSetting } from "./SolvingTimeListSetting";
 import { SolvingTimeSetting } from "./SolvingTimeSetting";
-import { VersionInfoSetting } from "./VersionInfoSetting";
 
 const Settings: React.FC<IConfirmable> = (props) => {
   const { t } = useTranslation();
@@ -20,8 +19,11 @@ const Settings: React.FC<IConfirmable> = (props) => {
   return (
     <Card className={`${styles.card} ${styles.settings}`}>
       <div className={styles.headline}>
-        <Icon icon={MaterialIcons.ChevronLeft} onClick={props.onConfirm} />
-        <h1 onClick={props.onConfirm}>{t.settings.title}</h1>
+        <div className={styles.headlineLeft}>
+          <Icon icon={MaterialIcons.ChevronLeft} onClick={props.onConfirm} />
+          <h1 onClick={props.onConfirm}>{t.settings.title}</h1>
+        </div>
+        <Version className={styles.headlineRight} />
       </div>
       <div className={styles.form}>
         <form onSubmit={onSubmit}>
@@ -31,7 +33,6 @@ const Settings: React.FC<IConfirmable> = (props) => {
           <SolvingTimeSetting />
           <SolvingTimeListSetting />
           <LanguageSetting />
-          <VersionInfoSetting />
           <ResetProgressSettings />
         </form>
       </div>
