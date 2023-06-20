@@ -3,10 +3,6 @@ export class Stopwatch implements IStopwatch {
   private startTime?: Date;
   private stopTime?: Date;
 
-  constructor() {
-    console.log(``);
-  }
-
   get elapsed(): number {
     if (this.startTime === undefined) {
       return 0;

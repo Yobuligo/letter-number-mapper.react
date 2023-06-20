@@ -9,9 +9,6 @@ export class TrainingSymbolShifter implements ITrainingSymbolShifter {
         trainingSymbol.trainingSection.answersTillProgression
     ) {
       trainingSymbol.trainingSection = trainingSymbol.trainingSection.follower;
-      console.log(
-        `Symbol ${trainingSymbol.symbol} was shifted up to ${trainingSymbol.trainingSection.id}. training section.`
-      );
     }
   }
 
@@ -23,9 +20,6 @@ export class TrainingSymbolShifter implements ITrainingSymbolShifter {
     ) {
       trainingSymbol.trainingSection =
         trainingSymbol.trainingSection.predecessor;
-      console.log(
-        `Symbol ${trainingSymbol.symbol} was shifted down to ${trainingSymbol.trainingSection.id}. training section.`
-      );
     }
   }
 }

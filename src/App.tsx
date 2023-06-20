@@ -92,13 +92,11 @@ const App: React.FC = () => {
   };
 
   const addKey = useDebounce(getDebounceTimeInMillis(), (debouncedValue) => {
-    console.log(`Solution provided: ${debouncedValue}`);
     onExerciseSolutionProvided(debouncedValue);
   });
 
   const onKeyPressed = (keyboardEvent: KeyboardEvent) => {
     const uppercaseSymbol = keyboardEvent.key.toUpperCase();
-    console.log(`The key ${uppercaseSymbol} was pressed`);
     //filter out/ignore all other keys but the letters/numbers
     if (
       !Letters.includes(uppercaseSymbol) &&
@@ -138,7 +136,6 @@ const App: React.FC = () => {
 
   const onSetExerciseType = (exerciseType: ExerciseType) => {
     setTrainingProgram(TrainingProgramRepo.fetch(exerciseType));
-    console.log(`ExerciseType changed to ${ExerciseType[exerciseType]}`);
     onResetSolvingTimes();
     setPickedSymbols(new Map());
     setSettings((previousSettings) => {
@@ -208,7 +205,6 @@ const App: React.FC = () => {
     ).map(selectedSymbol);
     stopwatch.stop();
     if (mappedSelectedSymbol === symbol) {
-      console.log("Correct!");
       trainingExercise.succeeded();
       pushElapsedToSolvingTimes(trainingExercise, selectedSymbol);
       setSolutionStatus(SolutionStatus.Successful);
@@ -218,7 +214,6 @@ const App: React.FC = () => {
       pushElapsedToSolvingTimes(trainingExercise, selectedSymbol);
       setSolutionStatus(SolutionStatus.Failed);
       setLastPracticedSymbol(trainingExercise.trainingSymbol.symbol);
-      console.log(`Wrong solution (${mappedSelectedSymbol}) provided`);
     }
   };
 
@@ -227,7 +222,6 @@ const App: React.FC = () => {
     TrainingProgramRepo.reset();
     setTrainingProgram(TrainingProgramRepo.fetch(settings.exerciseType));
     onResetSolvingTimes();
-    console.log(`Progress reset`);
   };
 
   const onResetSolvingTimes = () => {

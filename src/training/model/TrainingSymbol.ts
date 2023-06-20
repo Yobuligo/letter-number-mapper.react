@@ -47,17 +47,11 @@ export class TrainingSymbol implements ITrainingSymbol {
       this._numberSuccessfulAnswers--;
     }
     this.publishOnChange();
-    console.log(
-      `Symbol '${this.symbol}' was not guessed correctly. You dropped back down to '${this.numberSuccessfulAnswers}'.`
-    );
   }
 
   succeed(): void {
     this._numberSuccessfulAnswers++;
     this.publishOnChange();
-    console.log(
-      `Symbol '${this.symbol}' was guessed correctly '${this.numberSuccessfulAnswers}' times`
-    );
   }
 
   onChange(onChangeHandler: () => void): void {

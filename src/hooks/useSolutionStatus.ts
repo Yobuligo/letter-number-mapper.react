@@ -13,9 +13,6 @@ export const useSolutionStatus = (onSolutionResetHandler: () => void) => {
     let timer: NodeJS.Timeout;
     if (solutionStatus !== SolutionStatus.NotProvided) {
       previousSolutionStatus = solutionStatus;
-      console.log(
-        `Feedback time ${context.settings.storedParameters.feedbackTime}`
-      );
       const feedbackTime = context.settings.storedParameters
         .feedbackTime as any;
       timer = setTimeout(() => {
