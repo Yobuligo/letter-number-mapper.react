@@ -30,7 +30,8 @@
         "resetProgress": {
             "title": "Reset progress",
             "question": "Do you really want to reset your progress from '{{text}}'?"
-        }
+        },
+        "version": "Version"
     },
     "startScreen": {
         "gameMode": "Game mode",

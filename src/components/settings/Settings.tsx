@@ -10,6 +10,7 @@ import ResetProgressSettings from "./ResetProgressSettings";
 import styles from "./Settings.module.css";
 import { SolvingTimeListSetting } from "./SolvingTimeListSetting";
 import { SolvingTimeSetting } from "./SolvingTimeSetting";
+import { VersionInfoSetting } from "./VersionInfoSetting";
 
 const Settings: React.FC<IConfirmable> = (props) => {
   const { t } = useTranslation();
@@ -30,6 +31,7 @@ const Settings: React.FC<IConfirmable> = (props) => {
           <SolvingTimeSetting />
           <SolvingTimeListSetting />
           <LanguageSetting />
+          <VersionInfoSetting />
           <ResetProgressSettings />
         </form>
       </div>

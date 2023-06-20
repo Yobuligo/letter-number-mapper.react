@@ -30,7 +30,8 @@
         "resetProgress": {
             "title": "Fortschritt zurücksetzen",
             "question": "Möchtest du wirklich den Fortschritt von '{{text}}' zurücksetzen?"
-        }
+        },
+        "version": "Version"
     },
     "startScreen": {
         "gameMode": "Spielmodus",
