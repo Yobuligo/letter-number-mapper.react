@@ -8,7 +8,7 @@ const LetterKeyboard: React.FC<{
   return (
       <div className={styles.letterKeyboard}>
         <KeyboardRow
-          symbols={["Q", "W", "E", "R", "T", "Z", "U", "I", "O", "P"]}
+          symbols={["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"]}
           keyboardContext={props.keyboardContext}
         />
         <KeyboardRow
@@ -16,7 +16,7 @@ const LetterKeyboard: React.FC<{
           keyboardContext={props.keyboardContext}
         />
         <KeyboardRow
-          symbols={["Y", "X", "C", "V", "B", "N", "M"]}
+          symbols={["Z", "X", "C", "V", "B", "N", "M"]}
           className={styles.thirdRow}
           keyboardContext={props.keyboardContext}
         />
