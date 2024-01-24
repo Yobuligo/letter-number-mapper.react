@@ -6,7 +6,7 @@ const Toolbar: React.FC<{ toolbarActions?: IToolbarAction[] }> = (props) => {
   const items = props.toolbarActions?.map((toolbarAction) => {
     return (
       <button key={toolbarAction.icon} onClick={toolbarAction.onClickHandler}>
-        <Icon icon={toolbarAction.icon} />
+        <Icon icon={toolbarAction.icon} className={styles.icon} />
       </button>
     );
   });

@@ -5,14 +5,13 @@
   left: 0;
 }
 
-.toolbar img {
-  height: 2rem;
-  width: 2rem;
-}
-
 .toolbar button {
   background-color: var(--mainBackgroundColor);
   border: none;
   margin: 0.5rem 0.2rem;
   padding: 0;
+}
+
+.icon {
+  font-size: 2rem;
 }
