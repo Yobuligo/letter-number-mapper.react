@@ -2,6 +2,7 @@ import { StoredParameters } from "../AppContext";
 import { IValue } from "../Types/IValue";
 import { ExerciseType } from "../components/exercise/ExerciseType";
 import { SolutionStatus } from "../components/exercise/SolutionStatus";
+import { KeyboardLayout } from "../components/keyboard/KeyboardLayout";
 import { KeyboardType } from "../components/keyboard/KeyboardType";
 import { FeedbackTime } from "../components/settings/FeedbackTime";
 import { ISolvingTime } from "../model/ISolvingTime";
@@ -9,10 +10,11 @@ import { IStopwatch } from "../services/IStopwatch";
 
 export type IAppContext = {
   settings: {
-    language: IValue<string>;
+    letterToNumber_language: IValue<string>;
     storedParameters: StoredParameters;
     setExerciseType: (exerciseType: ExerciseType) => void;
     setFeedbackTime: (feedbackTime: FeedbackTime) => void;
+    setKeyboardLayout: (keyboardLayout: KeyboardLayout) => void;
     setShowSolvingTimeList: (showSolvingTimeList: boolean) => void;
     setShowSolvingTime: (showSolvingTime: boolean) => void;
     keyboardType: KeyboardType;

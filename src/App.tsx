@@ -20,6 +20,7 @@ import { TrainingProgramRepo } from "./training/model/TrainingProgramRepo";
 import { TrainingSymbolReader } from "./training/model/TrainingSymbolReader";
 import { StartScreen } from "./components/startScreen/StartScreen";
 import { useLanguage } from "./hooks/useLanguage";
+import { KeyboardLayout } from "./components/keyboard/KeyboardLayout";
 
 const App: React.FC = () => {
   const localStore = useMemo(() => {
@@ -143,6 +144,12 @@ const App: React.FC = () => {
     });
   };
 
+  const onSetKeyboardLayout = (keyboardLayout: KeyboardLayout) => {
+    setSettings((previousSettings) => {
+      return { ...previousSettings, keyboardLayout: keyboardLayout };
+    });
+  };
+
   const onSetFeedbackTime = (feedbackTime: FeedbackTime) => {
     setSettings((previousSettings) => {
       const settings: StoredParameters = {
@@ -233,15 +240,17 @@ const App: React.FC = () => {
       <AppContext.Provider
         value={{
           settings: {
-            language: useLanguage(),
+            letterToNumber_language: useLanguage(),
             storedParameters: {
               exerciseType: settings.exerciseType,
               feedbackTime: settings.feedbackTime,
+              keyboardLayout: settings.keyboardLayout,
               showSolvingTimeList: settings.showSolvingTimeList,
               showSolvingTime: settings.showSolvingTime,
             },
             setExerciseType: onSetExerciseType,
             setFeedbackTime: onSetFeedbackTime,
+            setKeyboardLayout: onSetKeyboardLayout,
             setShowSolvingTimeList: onSetShowSolvingTimeList,
             setShowSolvingTime: onSetShowSolvingTime,
             keyboardType: KeyboardTypeInfo.get(settings.exerciseType),

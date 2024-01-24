@@ -26,6 +26,7 @@
         },
         "displaySolvingTime": "Display solving time",
         "displayHistory": "Display history",
+        "keyboardLayout": "Keyboard layout",
         "language": "Language",
         "resetProgress": {
             "title": "Reset progress",

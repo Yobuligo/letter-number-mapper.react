@@ -2,13 +2,12 @@ import { ToggleButton, ToggleButtonGroup, styled } from "@mui/material";
 import { useContext, useMemo } from "react";
 import { AppContext } from "../../AppContext";
 import { useCSSColor } from "../../hooks/useCSSColor";
-import { useLanguages } from "../../hooks/useLanguages";
 import { useTranslation } from "../../hooks/useTranslation";
+import { KeyboardLayout } from "../keyboard/KeyboardLayout";
 import Setting from "./Setting";
 
-const LanguageSetting: React.FC = () => {
+const KeyboardLayoutSetting: React.FC = () => {
   const context = useContext(AppContext);
-  const languages = useLanguages();
   const { t } = useTranslation();
   const primaryColor = useCSSColor("--primaryColor");
   const textColorOnPrimary = useCSSColor("--mainTextColorOnPrimary");
@@ -29,22 +28,24 @@ const LanguageSetting: React.FC = () => {
     [primaryColor, textColorOnPrimary]
   );
 
-  const toggleButtons = languages.map((language) => (
-    <CustomToggleButton key={language.key} value={language.key}>
-      {language.value}
-    </CustomToggleButton>
-  ));
+  const toggleButtons = Object.keys(KeyboardLayout)
+    .filter((element) => !(parseInt(element) >= 0))
+    .map((layout) => (
+      <CustomToggleButton key={layout} value={layout}>
+        {layout}
+      </CustomToggleButton>
+    ));
 
-  const onLanguageChange = (
-    event: React.MouseEvent<HTMLElement, MouseEvent>,
-    newLanguage: any
-  ) => context.settings.letterToNumber_language.setValue(newLanguage);
+  const onKeyboardLayoutChange = (
+    _: React.MouseEvent<HTMLElement, MouseEvent>,
+    newLayout: any
+  ) => context.settings.setKeyboardLayout(newLayout);
   return (
-    <Setting title={t.settings.language}>
+    <Setting title={t.settings.keyboardLayout}>
       <ToggleButtonGroup
-        value={context.settings.letterToNumber_language.value}
+        value={context.settings.storedParameters.keyboardLayout}
         exclusive
-        onChange={onLanguageChange}
+        onChange={onKeyboardLayoutChange}
       >
         {toggleButtons}
       </ToggleButtonGroup>
@@ -52,4 +53,4 @@ const LanguageSetting: React.FC = () => {
   );
 };
 
-export default LanguageSetting;
+export default KeyboardLayoutSetting;

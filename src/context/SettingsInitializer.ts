@@ -1,5 +1,6 @@
 import { STORED_PARAMETERS, StoredParameters } from "../AppContext";
 import { ExerciseType } from "../components/exercise/ExerciseType";
+import { KeyboardLayout } from "../components/keyboard/KeyboardLayout";
 import { FeedbackTime } from "../components/settings/FeedbackTime";
 import { LocalStore } from "../store/LocalStore";
 
@@ -15,6 +16,7 @@ export const initializeSettings = (
     return {
       exerciseType: ExerciseType.LETTER_TO_NUMBER,
       feedbackTime: FeedbackTime.MIDDLE,
+      keyboardLayout: KeyboardLayout.QWERTY,
       showSolvingTimeList: true,
       showSolvingTime: true,
     };

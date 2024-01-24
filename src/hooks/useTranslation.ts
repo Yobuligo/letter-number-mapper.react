@@ -15,10 +15,10 @@ export const useTranslation = () => {
     return newText;
   };
 
-  const language = context.settings.language.value;
-  const setLanguage = context.settings.language.setValue;
+  const language = context.settings.letterToNumber_language.value;
+  const setLanguage = context.settings.letterToNumber_language.setValue;
 
-  switch (context.settings.language.value) {
+  switch (context.settings.letterToNumber_language.value) {
     case "de": {
       return { t: translations["de"], i: interpolation, language, setLanguage };
     }

@@ -17,7 +17,7 @@ import styles from "./Main.module.css";
 import { useTranslation } from "../../hooks/useTranslation";
 
 export const Main: React.FC<{ onNavigateBack: () => void }> = (props) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const context = useContext(AppContext);
 
   const onKeyboardClickHandler = (selectedSymbol: string) => {
@@ -85,6 +85,7 @@ export const Main: React.FC<{ onNavigateBack: () => void }> = (props) => {
           />
           <Keyboard
             className={styles.keyboard}
+            keyboardLayout={context.settings.storedParameters.keyboardLayout}
             keyboardType={context.settings.keyboardType}
             keyboardContext={{
               clickHandler: onKeyboardClickHandler,

@@ -103,6 +103,7 @@ export const Statistics: React.FC<{ trainingProgram: ITrainingProgram }> = (
       <p>{t.statistics.explanation}</p>
       <Keyboard
         className={styles.keyboard}
+        keyboardLayout={context.settings.storedParameters.keyboardLayout}
         keyboardType={getStatisticsKeyboardType()}
         keyboardContext={{
           clickHandler: () => {},
