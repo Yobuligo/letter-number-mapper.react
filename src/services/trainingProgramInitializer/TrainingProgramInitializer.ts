@@ -57,6 +57,7 @@ export class TrainingProgramInitializer implements ITrainingProgramInitializer {
 
   private createTrainingSymbolsFromDOs(): ITrainingSymbol[] {
     return this.trainingSymbolDAO.findAll().map((trainingSymbolDO) => {
+      trainingSymbolDO.numberSuccessfulAnswers = Math.floor(Math.random() * 12)
       return this.createTrainingSymbolFromDO(trainingSymbolDO);
     });
   }

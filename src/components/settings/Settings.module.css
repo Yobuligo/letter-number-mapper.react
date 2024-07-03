@@ -42,3 +42,15 @@
 .form {
   padding: 1rem 2rem;
 }
+
+.privacyPolicy {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  margin: 0 1rem 0.5rem 0;
+}
+
+.privacyPolicy > a {
+  text-decoration: none;
+  color: var(--keyDarkColor);
+}

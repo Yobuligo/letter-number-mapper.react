@@ -38,6 +38,15 @@ const Settings: React.FC<IConfirmable> = (props) => {
           <ResetProgressSettings />
         </form>
       </div>
+      <div className={styles.privacyPolicy}>
+        <a
+          href={process.env.REACT_APP_PRIVACY_POLICY_LINK}
+          target="_blank"
+          rel="noreferrer"
+        >
+          {t.settings.dataProtection}
+        </a>
+      </div>
     </Card>
   );
 };

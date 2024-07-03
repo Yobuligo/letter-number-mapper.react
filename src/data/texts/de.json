@@ -24,6 +24,7 @@
             "middle": "mittel",
             "long": "lang"
         },
+        "dataProtection": "Datenschutzerklärung",
         "displaySolvingTime": "Lösungsdauer anzeigen",
         "displayHistory": "Historie anzeigen",
         "keyboardLayout": "Keyboard Layout",

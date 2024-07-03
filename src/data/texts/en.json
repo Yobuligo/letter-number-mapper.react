@@ -24,6 +24,7 @@
             "middle": "middle",
             "long": "long"
         },
+        "dataProtection": "Privacy policy",
         "displaySolvingTime": "Display solving time",
         "displayHistory": "Display history",
         "keyboardLayout": "Keyboard layout",
