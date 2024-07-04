@@ -1,5 +1,5 @@
 import { ILegendItem } from "./ILegendItem";
-import styles from "./Legend.module.css";
+import styles from "./Legend.module.scss";
 import { LegendItem } from "./LegendItem";
 
 export const Legend: React.FC<{

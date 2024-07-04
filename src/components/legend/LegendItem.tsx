@@ -1,5 +1,5 @@
 import { ILegendItem } from "./ILegendItem";
-import styles from "./LegendItem.module.css";
+import styles from "./LegendItem.module.scss";
 
 export const LegendItem: React.FC<{ legendItem: ILegendItem }> = (props) => {
   return (

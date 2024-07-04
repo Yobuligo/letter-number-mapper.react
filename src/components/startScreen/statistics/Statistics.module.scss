@@ -1,0 +1,44 @@
+@import '../../../styles/global/colors.module.scss';
+
+.statistics {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.statistics h1 {
+    font-size: large;
+    margin: 0;
+    margin-right: 0.3rem;
+}
+
+/* needs to have a z-index so the backdrop does not move over it and 
+   triggers an onMouseLeave event and therefore a reload of the component */
+.title {
+    position: relative;
+    display: flex;
+    z-index: 100;
+}
+
+.statistics p {
+    width: 100%;
+    font-size: 0.7rem;
+    margin: 0.2rem 0;
+}
+
+.legend {
+    margin-top: 1rem;
+    width: 85%;
+}
+
+.keyboard button:hover {
+    background-color: $primaryColor_light;
+}
+
+:export {
+    trainingSection1Color: $neutralColor;
+    trainingSection2Color: $primaryColor_lightest;
+    trainingSection3Color: $primaryColor_lighter;
+    trainingSection4Color: $primaryColor;
+}

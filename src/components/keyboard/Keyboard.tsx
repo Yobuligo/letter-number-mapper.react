@@ -1,5 +1,5 @@
 import { IKeyboardContext } from "./IKeyboardContext";
-import styles from "./Keyboard.module.css";
+import styles from "./Keyboard.module.scss";
 import { KeyboardLayout } from "./KeyboardLayout";
 import { KeyboardType } from "./KeyboardType";
 import LetterKeyboard from "./LetterKeyboard";

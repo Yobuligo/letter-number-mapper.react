@@ -1,6 +1,8 @@
+@import '../../styles/global/colors.module.scss';
+
 .setting {
   display: flex;
-  border-bottom: 1px solid var(--settingBorderColor);
+  border-bottom: 1px solid $lightGray;
   padding-bottom: 0.8rem;
 }
 

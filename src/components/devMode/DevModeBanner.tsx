@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import styles from "./DevModeBanner.module.css";
+import styles from "./DevModeBanner.module.scss";
 import { AppContext } from "../../AppContext";
 
 export const DevModeBanner: React.FC = () => {

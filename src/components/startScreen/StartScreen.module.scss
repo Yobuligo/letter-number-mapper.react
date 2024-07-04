@@ -1,0 +1,94 @@
+@import '../../styles/global/colors.module.scss';
+
+.startScreen {
+    display: flex;
+    flex-direction: column;
+}
+
+.playMode {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.playMode h3 {
+    margin: 1rem;
+}
+
+.toggleButton {
+    display: flex;
+    align-items: center;
+    padding: 0.2rem 0.5rem;
+    background-color: $primaryColor_light;
+    color: black;
+    border: 1px solid black;
+    font-size: 1rem;
+    cursor: default;
+    cursor: pointer;
+    min-height: 3rem;
+}
+
+.toggleButton:hover,
+.toggleButton.active {
+    background-color: $primaryColor;
+    color: white;
+}
+
+.toggleButton.active {
+    cursor: default;
+}
+
+.toggleButtonLeft {
+    border-right: 1.5px solid black;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+.toggleButtonRight {
+    border-left: 1.5px solid black;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+.toggleButtonIcon {
+    height: 2rem;
+    width: 2rem;
+    background-size: 100%;
+}
+
+.toggleButtonIconLetterToNumber {
+    background-image: url(../../assets/images/Z_to_26.png);
+}
+
+.toggleButtonIconNumberToLetter {
+    background-image: url(../../assets/images/1_to_A.png);
+}
+
+.toggleButtonCaption {
+    padding: 0 0.5rem;
+}
+
+.startButton {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: $primaryColor;
+    color: white;
+    margin-left: 1rem;
+    border-radius: 30px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    min-height: 3rem;
+}
+
+.startButton:hover {
+    background-color: $primaryColor_light;
+    color: black;
+}
+
+.startButton div {
+    margin: 0;
+    margin-left: 0.5rem;
+    font-size: 1rem;
+    font-variant: small-caps;
+}

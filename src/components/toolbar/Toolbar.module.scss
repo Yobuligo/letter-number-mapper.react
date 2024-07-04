@@ -1,3 +1,5 @@
+@import '../../styles/global/colors.module.scss';
+
 .toolbar {
   position: absolute;
   display: flex;
@@ -6,7 +8,7 @@
 }
 
 .toolbar button {
-  background-color: var(--mainBackgroundColor);
+  background-color: $neutralColor;
   border: none;
   margin: 0.5rem 0.2rem;
   padding: 0;

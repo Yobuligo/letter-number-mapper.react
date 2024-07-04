@@ -1,6 +1,6 @@
 import Icon from "../icon/Icon";
 import IToolbarAction from "./IToolbarAction";
-import styles from "./Toolbar.module.css";
+import styles from "./Toolbar.module.scss";
 
 const Toolbar: React.FC<{ toolbarActions?: IToolbarAction[] }> = (props) => {
   const items = props.toolbarActions?.map((toolbarAction) => {

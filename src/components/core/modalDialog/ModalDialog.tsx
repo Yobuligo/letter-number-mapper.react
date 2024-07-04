@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import styles from "./ModalDialog.module.css";
+import styles from "./ModalDialog.module.scss";
 
 const ModalDialog: React.FC<{
   className?: string;

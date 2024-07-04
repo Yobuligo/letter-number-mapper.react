@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { AppContext } from "../../AppContext";
 import { useTranslation } from "../../hooks/useTranslation";
 import { ExerciseType } from "../exercise/ExerciseType";
-import styles from "./ResetProgressSettings.module.css";
+import styles from "./ResetProgressSettings.module.scss";
 import Setting from "./Setting";
 
 const ResetProgressSettings: React.FC = () => {

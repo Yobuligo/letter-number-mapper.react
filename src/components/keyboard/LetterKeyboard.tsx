@@ -1,7 +1,7 @@
 import { IKeyboardContext } from "./IKeyboardContext";
 import { KeyboardLayout } from "./KeyboardLayout";
 import KeyboardRow from "./KeyboardRow";
-import styles from "./LetterKeyboard.module.css";
+import styles from "./LetterKeyboard.module.scss";
 
 const LetterKeyboard: React.FC<{
   keyboardLayout: KeyboardLayout;

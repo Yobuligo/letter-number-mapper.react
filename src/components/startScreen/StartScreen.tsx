@@ -5,8 +5,9 @@ import { useTranslation } from "../../hooks/useTranslation";
 import { ITrainingProgram } from "../../training/model/ITrainingProgram";
 import { ExerciseType } from "../exercise/ExerciseType";
 import Icon from "../icon/Icon";
-import styles from "./StartScreen.module.css";
-import { Statistics } from "./Statistics";
+import styles from "./StartScreen.module.scss";
+import { Statistics } from "./statistics/Statistics";
+
 
 export const StartScreen: React.FC<{
   trainingProgram: ITrainingProgram;

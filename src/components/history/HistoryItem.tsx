@@ -3,7 +3,7 @@ import { ISolvingTime } from "../../model/ISolvingTime";
 import { SymbolMapperInfo } from "../../services/symbolMapper/SymbolMapperInfo";
 import { SolutionStatus } from "../exercise/SolutionStatus";
 import Icon from "../icon/Icon";
-import styles from "./HistoryItem.module.css";
+import styles from "./HistoryItem.module.scss";
 
 const getMappedSymbol = (solvingTime: ISolvingTime): string => {
   return SymbolMapperInfo.get(solvingTime.exerciseType).map(

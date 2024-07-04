@@ -8,7 +8,7 @@ import ExerciseTypeSetting from "./ExerciseTypeSetting";
 import KeyboardLayoutSetting from "./KeyboardLayoutSetting";
 import LanguageSetting from "./LanguageSetting";
 import ResetProgressSettings from "./ResetProgressSettings";
-import styles from "./Settings.module.css";
+import styles from "./Settings.module.scss";
 import { SolvingTimeListSetting } from "./SolvingTimeListSetting";
 import { SolvingTimeSetting } from "./SolvingTimeSetting";
 

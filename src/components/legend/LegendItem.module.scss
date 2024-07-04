@@ -1,0 +1,14 @@
+.legendItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 0.5rem;
+  margin-right: 1rem;
+}
+
+.colorBlock {
+  display: inline-block;
+  height: 1rem;
+  width: 2rem;
+  border: 1px solid black;
+}

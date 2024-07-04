@@ -1,5 +1,7 @@
+@import "../../styles/global/colors.module.scss";
+
 .settings {
-  box-shadow: 1px 1px 5px 1px var(--boxShadowColor);
+  box-shadow: 1px 1px 5px 1px $boxShadowColor;
 }
 
 .settings h3 {
@@ -52,5 +54,5 @@
 
 .privacyPolicy > a {
   text-decoration: none;
-  color: var(--keyDarkColor);
+  color: $primaryColor_lighter;
 }

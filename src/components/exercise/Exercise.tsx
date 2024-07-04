@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { AppContext } from "../../AppContext";
 import { useTranslation } from "../../hooks/useTranslation";
-import styles from "./Exercise.module.css";
+import styles from "./Exercise.module.scss";
 import { ExerciseType } from "./ExerciseType";
 
 export const Exercise: React.FC<{

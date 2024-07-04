@@ -13,7 +13,7 @@ import { HighlightedSymbols } from "../keyboard/KeyboardTypes";
 import Settings from "../settings/Settings";
 import IToolbarAction from "../toolbar/IToolbarAction";
 import Toolbar from "../toolbar/Toolbar";
-import styles from "./Main.module.css";
+import styles from "./Main.module.scss";
 import { useTranslation } from "../../hooks/useTranslation";
 
 export const Main: React.FC<{ onNavigateBack: () => void }> = (props) => {

@@ -1,3 +1,5 @@
+@import '../../styles/global/colors.module.scss';
+
 * {
   box-sizing: border-box;
 }
@@ -11,7 +13,7 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--mainBackgroundColor);
+  background-color: $neutralColor;
 }
 
 .mainContainer {

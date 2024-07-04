@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import styles from "./ProgressIndicator.module.css";
+import styles from "./ProgressIndicator.module.scss";
 
 export const ProgressIndicator: React.FC = () => {
   const labels = ["Section 1", "Section 2", "Section 3", "Section 4"];

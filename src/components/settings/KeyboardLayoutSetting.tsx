@@ -1,16 +1,16 @@
 import { ToggleButton, ToggleButtonGroup, styled } from "@mui/material";
 import { useContext, useMemo } from "react";
 import { AppContext } from "../../AppContext";
-import { useCSSColor } from "../../hooks/useCSSColor";
 import { useTranslation } from "../../hooks/useTranslation";
+import colors from "../../styles/global/colors.module.scss";
 import { KeyboardLayout } from "../keyboard/KeyboardLayout";
 import Setting from "./Setting";
 
 const KeyboardLayoutSetting: React.FC = () => {
   const context = useContext(AppContext);
   const { t } = useTranslation();
-  const primaryColor = useCSSColor("--primaryColor");
-  const textColorOnPrimary = useCSSColor("--mainTextColorOnPrimary");
+  const primaryColor = colors.primaryColor;
+  const textColorOnPrimary = colors.mainTextColorOnPrimary;
 
   const CustomToggleButton = useMemo(
     () =>

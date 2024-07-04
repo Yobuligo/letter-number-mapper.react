@@ -1,6 +1,6 @@
 import { useAppMeta } from "../../hooks/useAppMeta";
 import { style } from "../../utils/style";
-import styles from "./Version.module.css";
+import styles from "./Version.module.scss";
 
 export const Version: React.FC<{ className?: string }> = (props) => {
   const appMeta = useAppMeta();

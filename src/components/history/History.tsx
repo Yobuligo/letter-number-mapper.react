@@ -3,7 +3,7 @@ import { AppContext } from "../../AppContext";
 import { MaterialIcons } from "../../assets/icons/MaterialIcons";
 import { useTranslation } from "../../hooks/useTranslation";
 import Icon from "../icon/Icon";
-import styles from "./History.module.css";
+import styles from "./History.module.scss";
 import HistoryItem from "./HistoryItem";
 
 const History: React.FC = () => {

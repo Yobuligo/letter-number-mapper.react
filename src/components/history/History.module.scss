@@ -1,3 +1,5 @@
+@import '../../styles/global/colors.module.scss';
+
 .history h4 {
   margin: 0;
 }
@@ -30,7 +32,7 @@
 }
 
 .headline span:hover {
-  color: var(--warningColor);
+  color: $warningColor;
   cursor: pointer;
 }
 

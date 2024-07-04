@@ -1,14 +1,14 @@
 import { Switch, styled } from "@mui/material";
 import { useMemo } from "react";
+import colors from "../../styles/global/colors.module.scss";
 import Setting from "./Setting";
-import { useCSSColor } from "../../hooks/useCSSColor";
 
 export const SettingToggle: React.FC<{
   title: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   checked?: boolean;
 }> = (props) => {
-  const primaryColor = useCSSColor("--primaryColor");
+  const primaryColor = colors.primaryColor;
 
   const CustomSwitch = useMemo(
     () =>

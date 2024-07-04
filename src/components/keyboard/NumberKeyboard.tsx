@@ -1,6 +1,6 @@
 import { IKeyboardContext } from "./IKeyboardContext";
 import KeyboardRow from "./KeyboardRow";
-import styles from './NumberKeyboard.module.css'
+import styles from './NumberKeyboard.module.scss'
 
 const NumberKeyboard: React.FC<{
   keyboardContext: IKeyboardContext;

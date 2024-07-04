@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../AppContext";
 import { SolutionStatus } from "../exercise/SolutionStatus";
-import styles from "./SolvingTime.module.css";
+import styles from "./SolvingTime.module.scss";
 
 const SolvingTime: React.FC = () => {
   const [solvingTime, setSolvingTime] = useState(0);

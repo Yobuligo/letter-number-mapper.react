@@ -1,16 +1,17 @@
+import { ToggleButton, ToggleButtonGroup, styled } from "@mui/material";
 import { useContext, useMemo } from "react";
 import { AppContext } from "../../AppContext";
 import { useTranslation } from "../../hooks/useTranslation";
+import "../../styles/global/colors.module.scss";
+import colors from "../../styles/global/colors.module.scss";
 import { ExerciseType } from "../exercise/ExerciseType";
 import Setting from "./Setting";
-import { ToggleButton, ToggleButtonGroup, styled } from "@mui/material";
-import { useCSSColor } from "../../hooks/useCSSColor";
 
 const ExerciseTypeSetting: React.FC = () => {
   const { t } = useTranslation();
   const context = useContext(AppContext);
-  const primaryColor = useCSSColor("--primaryColor");
-  const textColorOnPrimary = useCSSColor("--mainTextColorOnPrimary");
+  const primaryColor = colors.primaryColor;
+  const textColorOnPrimary = colors.mainTextColorOnPrimary;
 
   const onSwitchExerciseTypeHandler = (
     event: React.MouseEvent<HTMLElement, MouseEvent>,

@@ -3,7 +3,7 @@ import { AppContext } from "../../AppContext";
 import { DevModeKeyCount } from "../devMode/DevModeKeyCount";
 import { HighlightStatus } from "./HighlightStatus";
 import { IKeyboardContext } from "./IKeyboardContext";
-import styles from "./Key.module.css";
+import styles from "./Key.module.scss";
 
 const Key: React.FC<{
   symbol: string;

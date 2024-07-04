@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import ModalDialog from "../modalDialog/ModalDialog";
-import styles from "./tooltip.module.css";
+import styles from "./tooltip.module.scss";
 
 export const Tooltip: React.FC<{ onHide: () => void; children?: ReactNode }> = (
   props

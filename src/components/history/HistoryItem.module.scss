@@ -1,3 +1,7 @@
+@import '../../styles/global/colors.module.scss';
+
+$historyBorderColor: $darkColor;
+
 .historyItemLayout {
     width: 100%;
     display: grid;
@@ -8,7 +12,7 @@
     align-items: center;
     margin-bottom: 1rem;
     padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--historyBorderColor);
+    border-bottom: 1px solid $historyBorderColor;
 }
 
 .historyItemLayout:last-of-type {
@@ -41,13 +45,13 @@
     align-items: center;
     align-self: stretch;
     justify-self: stretch;
-    border-right: 1px solid var(--historyBorderColor);
+    border-right: 1px solid $historyBorderColor;
 }
 
 .historyItemSuccess {
-    color: var(--successColor)
+    color: $successColor;
 }
 
 .historyItemFailed {
-    color: var(--failColor)
+    color: $failColor;
 }

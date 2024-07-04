@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import styles from "./Setting.module.css";
+import styles from "./Setting.module.scss";
 
 const Setting: React.FC<{
   title: string;

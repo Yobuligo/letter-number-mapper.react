@@ -1,0 +1,22 @@
+$primaryColor: #642472;
+$primaryColor_light: transparentize($primaryColor, 0.2);
+$primaryColor_lighter: transparentize($primaryColor, 0.3);
+$primaryColor_lightest: transparentize($primaryColor, 0.65);
+
+$failColor: #d62a2a;
+$successColor: #039917;
+$warningColor: $failColor;
+
+$neutralColor: white;
+$darkColor: black;
+$lightGray: #d6d6d6;
+$darkGray: gray;
+
+$mainTextColorOnPrimary: $neutralColor;
+$boxShadowColor: rgba(0, 0, 0, 0.2);
+
+// Ensures the variables can be used in TypeScript
+:export {
+    primaryColor: $primaryColor;
+    mainTextColorOnPrimary: $mainTextColorOnPrimary;
+}
