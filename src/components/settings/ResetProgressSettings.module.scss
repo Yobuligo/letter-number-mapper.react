@@ -3,3 +3,15 @@
 .setting h3 {
   color: $warningColor;
 }
+
+.resetButton {
+  color: $primaryColor;
+  background-color: $neutralColor;
+  border: 1px solid $primaryColor;
+  padding: 0.2rem 0.5rem;
+}
+
+.resetButton:hover {
+  background-color: $primaryColor_light;
+  color: $neutralColor;
+}

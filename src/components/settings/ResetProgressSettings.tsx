@@ -25,7 +25,7 @@ const ResetProgressSettings: React.FC = () => {
   };
   return (
     <Setting title={t.settings.resetProgress.title} className={styles.setting}>
-      <button onClick={onReset}>Reset</button>
+      <button onClick={onReset} className={styles.resetButton}>Reset</button>
     </Setting>
   );
 };
