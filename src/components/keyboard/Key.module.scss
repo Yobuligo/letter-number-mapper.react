@@ -6,11 +6,12 @@ $keyLightestColor: $neutralColor;
 $keyLightColor: $primaryColor_lightest;
 $keyDarkColor: $primaryColor_lighter;
 $keyDarkestColor: $primaryColor;
+$borderRadius: 5px;
 
 .highlight {
     font-size: xx-large;
     color: $neutralColor;
-    border-radius: 5px;
+    border-radius: $borderRadius;
     animation: grow 0.9s;
 }
 
@@ -18,7 +19,7 @@ button.key {
     position: relative;
     background-color: $primaryColor_light;
     color: $keyLightTextColor;
-    border-radius: 5px;
+    border-radius: $borderRadius;
     border-color: $primaryColor
 }
 

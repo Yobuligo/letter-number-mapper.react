@@ -8,7 +8,6 @@ import Icon from "../icon/Icon";
 import styles from "./StartScreen.module.scss";
 import { Statistics } from "./statistics/Statistics";
 
-
 export const StartScreen: React.FC<{
   trainingProgram: ITrainingProgram;
   onPlay: () => void;
@@ -16,15 +15,16 @@ export const StartScreen: React.FC<{
   const { t } = useTranslation();
   const context = useContext(AppContext);
   const exerciseType = context.settings.storedParameters.exerciseType;
+  const isNumberToLetter = exerciseType === ExerciseType.NUMBER_TO_LETTER;
+  const isLetterToNumber = exerciseType === ExerciseType.LETTER_TO_NUMBER;
+
   return (
     <div className={styles.startScreen}>
       <div className={styles.playMode}>
         <h3>{t.startScreen.gameMode}:</h3>
         <div
           className={`${styles.toggleButton} ${styles.toggleButtonLeft} ${
-            exerciseType === ExerciseType.NUMBER_TO_LETTER
-              ? `${styles.active}`
-              : ""
+            isNumberToLetter ? `${styles.activeButton}` : ""
           }`}
           onClick={() =>
             context.settings.setExerciseType(ExerciseType.NUMBER_TO_LETTER)
@@ -39,9 +39,7 @@ export const StartScreen: React.FC<{
         </div>
         <div
           className={`${styles.toggleButton} ${styles.toggleButtonRight} ${
-            exerciseType === ExerciseType.LETTER_TO_NUMBER
-              ? `${styles.active}`
-              : ""
+            isLetterToNumber ? `${styles.activeButton}` : ""
           }`}
           onClick={() =>
             context.settings.setExerciseType(ExerciseType.LETTER_TO_NUMBER)

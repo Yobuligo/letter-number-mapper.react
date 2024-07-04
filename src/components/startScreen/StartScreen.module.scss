@@ -20,8 +20,7 @@
     align-items: center;
     padding: 0.2rem 0.5rem;
     background-color: $primaryColor_light;
-    color: black;
-    border: 1px solid black;
+    border: 1px solid $darkColor;
     font-size: 1rem;
     cursor: default;
     cursor: pointer;
@@ -29,23 +28,20 @@
 }
 
 .toggleButton:hover,
-.toggleButton.active {
+.toggleButton.activeButton {
     background-color: $primaryColor;
-    color: white;
-}
-
-.toggleButton.active {
+    color: $neutralColor;
     cursor: default;
 }
 
 .toggleButtonLeft {
-    border-right: 1.5px solid black;
+    border-right: 1.5px solid $darkColor;
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
 }
 
 .toggleButtonRight {
-    border-left: 1.5px solid black;
+    border-left: 1.5px solid $darkColor;
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
 }
@@ -83,7 +79,7 @@
 
 .startButton:hover {
     background-color: $primaryColor_light;
-    color: black;
+    color: $darkColor;
 }
 
 .startButton div {
