@@ -23,6 +23,7 @@
     font-size: 1rem;
     cursor: default;
     cursor: pointer;
+    min-height: 3rem;
 }
 
 .toggleButton:hover,
@@ -37,14 +38,14 @@
 
 .toggleButtonLeft {
     border-right: 1.5px solid black;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
 }
 
 .toggleButtonRight {
     border-left: 1.5px solid black;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
 }
 
 .toggleButtonIcon {
@@ -72,9 +73,10 @@
     background-color: var(--primaryColor);
     color: white;
     margin-left: 1rem;
-    border-radius: 20px;
+    border-radius: 30px;
     padding: 0.5rem 1rem;
     cursor: pointer;
+    min-height: 3rem;
 }
 
 .startButton:hover {
