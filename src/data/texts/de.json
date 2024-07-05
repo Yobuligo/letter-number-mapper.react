@@ -42,10 +42,10 @@
     "statistics": {
         "title": "Statistik",
         "explanation": "Hier kannst du sehen, wie gut du die Zahlen und Buchstaben bereits beherrschst. Je dunkler, desto besser.",
-        "section1": "Abschnitt 1",
-        "section2": "Abschnitt 2",
-        "section3": "Abschnitt 3",
-        "section4": "Abschnitt 4",
-        "tooltip": "Die Abschnitte repräsentieren die Fächer in einem Lern-Karteikartensystem. Die Buchstaben und Zahlen bewegen sich je nachdem ob richtig oder falsch beantwortet in diesen Fächern auf und ab."
+        "section1": "braucht Übung",
+        "section2": "wird besser",
+        "section3": "erfahren",
+        "section4": "gemeistert",
+        "tooltip": "Die Farben repräsentieren die Fächer in einem Lern-Karteikartensystem. Die Buchstaben und Zahlen bewegen sich je nachdem ob richtig oder falsch beantwortet in diesen Fächern auf und ab."
     }
 }
