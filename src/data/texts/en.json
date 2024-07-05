@@ -42,10 +42,10 @@
     "statistics": {
         "title": "Statistics",
         "explanation": "Here you can see your progress for specific letters and numbers. The darker, the better.",
-        "section1": "Section 1",
-        "section2": "Section 2",
-        "section3": "Section 3",
-        "section4": "Section 4",
-        "tooltip": "The sections represent the parts of a card index. The letters and numbers move up or down between the sections if they were guessed right or wrong respectively."
+        "section1": "Needs practice",
+        "section2": "Getting better",
+        "section3": "Experienced",
+        "section4": "Mastered",
+        "tooltip": "The colors represent the sections of a card index. The letters and numbers move up or down between the sections if they were guessed right or wrong respectively."
     }
 }
