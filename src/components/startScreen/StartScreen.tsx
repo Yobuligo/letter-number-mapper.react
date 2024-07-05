@@ -31,7 +31,11 @@ export const StartScreen: React.FC<{
           }
         >
           <div
-            className={`${styles.toggleButtonIcon} ${styles.toggleButtonIconNumberToLetter}`}
+            className={`${styles.toggleButtonIcon} ${
+              isNumberToLetter
+                ? `${styles.toggleButtonIconLetterToNumber}`
+                : `${styles.toggleButtonIconLetterToNumberInactive}`
+            }`}
           ></div>
           <div className={styles.toggleButtonCaption}>
             {t.global.numberToLetter}
@@ -49,7 +53,11 @@ export const StartScreen: React.FC<{
             {t.global.letterToNumber}
           </div>
           <div
-            className={`${styles.toggleButtonIcon} ${styles.toggleButtonIconLetterToNumber}`}
+            className={`${styles.toggleButtonIcon} ${
+              isLetterToNumber
+                ? `${styles.toggleButtonIconNumberToLetter}`
+                : `${styles.toggleButtonIconNumberToLetterInactive}`
+            }`}
           ></div>
         </div>
         <div className={styles.startButton} onClick={props.onPlay}>

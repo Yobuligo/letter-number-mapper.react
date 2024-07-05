@@ -25,6 +25,7 @@
     cursor: default;
     cursor: pointer;
     min-height: 3rem;
+    color: $darkGray;
 }
 
 .toggleButton:hover,
@@ -56,8 +57,16 @@
     background-image: url(../../assets/images/Z_to_26.png);
 }
 
+.toggleButtonIconLetterToNumberInactive {
+    background-image: url(../../assets/images/Z_to_26_inactive.png);
+}
+
 .toggleButtonIconNumberToLetter {
     background-image: url(../../assets/images/1_to_A.png);
+}
+
+.toggleButtonIconNumberToLetterInactive {
+    background-image: url(../../assets/images/1_to_A_inactive.png);
 }
 
 .toggleButtonCaption {
