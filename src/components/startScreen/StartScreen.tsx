@@ -7,6 +7,8 @@ import { ExerciseType } from "../exercise/ExerciseType";
 import Icon from "../icon/Icon";
 import styles from "./StartScreen.module.scss";
 import { Statistics } from "./statistics/Statistics";
+import { ReactComponent as OneToA } from "../../assets/images/1_to_a.svg";
+import { ReactComponent as ZTo26 } from "../../assets/images/z_to_26.svg";
 
 export const StartScreen: React.FC<{
   trainingProgram: ITrainingProgram;
@@ -30,13 +32,11 @@ export const StartScreen: React.FC<{
             context.settings.setExerciseType(ExerciseType.NUMBER_TO_LETTER)
           }
         >
-          <div
+          <OneToA
             className={`${styles.toggleButtonIcon} ${
-              isNumberToLetter
-                ? `${styles.toggleButtonIconLetterToNumber}`
-                : `${styles.toggleButtonIconLetterToNumberInactive}`
+              isNumberToLetter ? "" : `${styles.toggleButtonIconInactive}`
             }`}
-          ></div>
+          />
           <div className={styles.toggleButtonCaption}>
             {t.global.numberToLetter}
           </div>
@@ -52,13 +52,11 @@ export const StartScreen: React.FC<{
           <div className={styles.toggleButtonCaption}>
             {t.global.letterToNumber}
           </div>
-          <div
+          <ZTo26
             className={`${styles.toggleButtonIcon} ${
-              isLetterToNumber
-                ? `${styles.toggleButtonIconNumberToLetter}`
-                : `${styles.toggleButtonIconNumberToLetterInactive}`
+              isLetterToNumber ? "" : `${styles.toggleButtonIconInactive}`
             }`}
-          ></div>
+          />
         </div>
         <div className={styles.startButton} onClick={props.onPlay}>
           <Icon icon={MaterialIcons.PlayCircle}></Icon>
