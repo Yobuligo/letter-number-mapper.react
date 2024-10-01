@@ -15,6 +15,10 @@ $darkGray: gray;
 $mainTextColorOnPrimary: $neutralColor;
 $boxShadowColor: rgba(0, 0, 0, 0.2);
 
+$color-buy-me-a-coffee-background: #3c88b4;
+$color-buy-me-a-coffee-font: #fdfdf7;
+$color-buy-me-a-coffee-icon: #b2b49d;
+
 // Ensures the variables can be used in TypeScript
 :export {
     primaryColor: $primaryColor;

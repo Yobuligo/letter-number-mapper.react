@@ -11,3 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: "Epilogue";
+  src: url('./fonts/epilogue/Epilogue-Regular.ttf');
+  font-weight: 500;
+}

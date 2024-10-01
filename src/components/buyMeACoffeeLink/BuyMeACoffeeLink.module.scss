@@ -1,0 +1,33 @@
+@use '../../styles/global/colors.module.scss';
+
+.buyMeACoffeeLink {
+    display: flex;
+    flex-direction: row;
+    column-gap: 0.5rem;
+    width: fit-content;
+    padding: 0.5rem;
+    text-decoration: none;
+    background-color: colors.$color-buy-me-a-coffee-background;
+    color: colors.$color-buy-me-a-coffee-font;
+    border-radius: 7px;
+}
+
+.icon {
+    width: 2rem;
+    height: auto;
+    flex-shrink: 0;
+    color: colors.$color-buy-me-a-coffee-icon;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: 'Epilogue';
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.05rem;
+    row-gap: 0.25rem;
+    //compensate for the line-height in the bottom -> nicer for the eye
+    margin-top: 0.15rem;
+}

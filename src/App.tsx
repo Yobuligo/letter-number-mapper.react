@@ -21,6 +21,8 @@ import { TrainingSymbolReader } from "./training/model/TrainingSymbolReader";
 import { StartScreen } from "./components/startScreen/StartScreen";
 import { useLanguage } from "./hooks/useLanguage";
 import { KeyboardLayout } from "./components/keyboard/KeyboardLayout";
+import { Footer } from "./components/footer/Footer";
+import styles from './App.module.scss';
 
 const App: React.FC = () => {
   const localStore = useMemo(() => {
@@ -273,19 +275,22 @@ const App: React.FC = () => {
           setLastPracticedSymbol: onSetLastPracticedSymbol,
         }}
       >
-        {!showMain && (
-          <StartScreen
-            trainingProgram={trainingProgram}
-            onPlay={() => setShowMain(true)}
-          />
-        )}
-        {showMain && (
-          <Main
-            onNavigateBack={() => {
-              setShowMain(false);
-            }}
-          />
-        )}
+        <div className={styles.page}>
+          {!showMain && (
+            <StartScreen
+              trainingProgram={trainingProgram}
+              onPlay={() => setShowMain(true)}
+            />
+          )}
+          {showMain && (
+            <Main
+              onNavigateBack={() => {
+                setShowMain(false);
+              }}
+            />
+          )}
+          <Footer />
+        </div>
       </AppContext.Provider>
     </>
   );
